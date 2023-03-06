@@ -69,3 +69,32 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 # chatting_app
+
+## 사용중인 react 기술
+
+### 1. 다국어 처리 기능 - react-i18next
+  참고 사이트 : https://ddeck.tistory.com/40
+  
+### 2. 리액트 라우터 - react-router-dom
+  
+### 3. 리덕스 사가 : redux-saga 
+  비동기 작업을 처리하기 위한 미들웨어. redux-thunk보다 많은 기능 지원
+  redux => useDispatch & dispatch로 action 처리
+        => useSelector로 사용하길 원하는 data 선택
+
+### 4. immer 
+  더 쉬운 불변성 관리 가능
+ 
+### 5. react bootstrap 적용
+
+### 6. 리덕스 툴킷 사용
+   npm i @reduxjs/toolkit react-redux
+
+### 7. styled-component 사용
+
+명령어 모음
+
+ npm i react-datepicker --save
+
+## 사용중인 spring 기술
+??
