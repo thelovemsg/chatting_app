@@ -1,0 +1,29 @@
+:root {
+  --main-text-color-head: #fafabe;
+  --main-danger-color: red;
+}
+
+.navbar-toggler {
+  background-color: var(--main-text-color-head) !important;
+}
+
+.color-yellow-first {
+  color: var(--main-text-color-head) !important;
+}
+
+#basic-nav-dropdown {
+  color: var(--main-text-color-head) !important;
+}
+
+.href-style {
+  text-decoration: none;
+}
+
+.btn {
+  margin-left: 10px !important;
+  margin-right: 10px !important;
+}
+
+.footer-height {
+  height: 10% !important;
+}
