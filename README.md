@@ -92,5 +92,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ### 7. styled-component 사용
 
+명령어 모음
+
+ npm i react-datepicker --save
+
 ## 사용중인 spring 기술
 ??
