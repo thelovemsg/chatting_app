@@ -1,16 +1,32 @@
 import Button from "react-bootstrap/Button";
-import { Form } from "react-bootstrap";
+import { ButtonToolbar, Form, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useState } from "react";
 import {
   StyledButton,
-  StyledForm,
   StyledGroup,
   StyledLabel,
+  StyledLoginForm,
 } from "../styled-components/StyledForm";
+import { useDispatch, useSelector } from "react-redux";
+import { LOG_IN_REQUEST } from "../reducers/user";
 
 const Signin = () => {
+  const dispatch = useDispatch();
+  const { loginHandling } = useSelector((state) => state.user);
+
+  const tooltip = (
+    <Tooltip id="tooltip">
+      Did you forget your password? <br />
+      <strong>Just click here!</strong>
+    </Tooltip>
+  );
+
+  const onFinish = (values) => {
+    dispatch(LOG_IN_REQUEST(values));
+  };
+
   return (
-    <StyledForm>
+    <StyledLoginForm className="mb-8" onFinish={onFinish}>
       <StyledGroup className="mb-3">
         <StyledLabel>Email address</StyledLabel>
         <Form.Control type="email" placeholder="Enter email" />
@@ -20,14 +36,22 @@ const Signin = () => {
         <Form.Control type="password" placeholder="Password" />
       </StyledGroup>
       <StyledGroup className="justify-content-center">
-        <StyledButton variant="primary" type="submit">
-          Try Signin!
-        </StyledButton>
-        <StyledButton variant="secondary" type="submit">
-          Find Password
-        </StyledButton>
+        <ButtonToolbar>
+          <StyledButton variant="primary" type="submit">
+            Try Signin!
+          </StyledButton>
+          <OverlayTrigger placement="top" overlay={tooltip}>
+            <StyledButton
+              variant="secondary"
+              type="submit"
+              loading={loginHandling}
+            >
+              Find Password
+            </StyledButton>
+          </OverlayTrigger>
+        </ButtonToolbar>
       </StyledGroup>
-    </StyledForm>
+    </StyledLoginForm>
   );
 };
 

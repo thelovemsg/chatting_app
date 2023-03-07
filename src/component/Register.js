@@ -1,5 +1,5 @@
 import Button from "react-bootstrap/Button";
-import { Form } from "react-bootstrap";
+import { Form, ModalTitle } from "react-bootstrap";
 import { useState } from "react";
 import {
   StyledButton,
@@ -7,21 +7,17 @@ import {
   StyledGroup,
   StyledLabel,
 } from "../styled-components/StyledForm";
-import PopupPostCode from "./address/PopupPostCode";
-import PopupDom from "./address/PopupDom";
+import Post from "./address/Post";
 
 const Register = () => {
-  // 팝업창 상태 관리
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [enroll_company, setEnroll_company] = useState({
+    address: "",
+  });
 
-  // 팝업창 열기
-  const openPostCode = () => {
-    setIsPopupOpen(true);
-  };
+  const [popup, setPopup] = useState(false);
 
-  // 팝업창 닫기
-  const closePostCode = () => {
-    setIsPopupOpen(false);
+  const handleComplete = (data) => {
+    setPopup(!popup);
   };
 
   return (
@@ -37,6 +33,25 @@ const Register = () => {
       <StyledGroup className="mb-3">
         <StyledLabel>Password Check</StyledLabel>
         <Form.Control type="password" placeholder="Password again" />
+      </StyledGroup>
+      <StyledGroup>
+        <StyledLabel>Address 1</StyledLabel>
+        <Form.Control
+          className="mb-3 w-40"
+          type="text"
+          placeholder="Addess"
+          value={enroll_company.address}
+          required={true}
+          readOnly
+          onClick={handleComplete}
+        />
+        {popup && (
+          <Post company={enroll_company} setcompany={setEnroll_company}></Post>
+        )}
+      </StyledGroup>
+      <StyledGroup>
+        <StyledLabel>Address 2</StyledLabel>
+        <Form.Control type="text" placeholder="detailed address" />
       </StyledGroup>
       <StyledGroup className="justify-content-center">
         <StyledButton variant="primary" type="submit">

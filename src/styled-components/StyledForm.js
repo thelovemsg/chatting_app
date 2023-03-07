@@ -8,7 +8,18 @@ import styled, { css } from "styled-components";
 // }
 
 export const StyledForm = styled(Form)`
-  margin: 10vw;
+  margin: 5vw;
+  @media (max-width: 768px) {
+    margin-bottom: 15vh;
+  }
+`;
+
+export const StyledLoginForm = styled(Form)`
+  margin-top: 25vh;
+  @media (max-width: 768px) {
+    margin-top: 10vh;
+    margin-bottom: 15vh;
+  }
 `;
 
 export const StyledGroup = styled("div")`

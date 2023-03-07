@@ -1,5 +1,3 @@
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faGitAlt } from "@fortawesome/free-brands-svg-icons";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 
 const Footer = () => {

@@ -2,9 +2,11 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Navtag = () => {
+  const { loginDone } = useSelector((state) => state.user);
   return (
     <Navbar bg="dark" expand="lg" className="color-yellow-first">
       <Container>
@@ -21,7 +23,7 @@ const Navtag = () => {
           <Nav className="me-autod color-yellow-first">
             <Nav.Link>
               <Link to="/signin" className="color-yellow-first href-style">
-                로그인 / 로그아웃
+                {loginDone ? "로그아웃" : "로그인"}
               </Link>
             </Nav.Link>
             <Nav.Link>
