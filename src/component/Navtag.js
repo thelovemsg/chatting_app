@@ -4,6 +4,8 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import Login from "./Login";
+import Logout from "./Logout";
 
 const Navtag = () => {
   const { loginDone } = useSelector((state) => state.user);
@@ -23,7 +25,7 @@ const Navtag = () => {
           <Nav className="me-autod color-yellow-first">
             <Nav.Link>
               <Link to="/signin" className="color-yellow-first href-style">
-                {loginDone ? "로그아웃" : "로그인"}
+                {loginDone ? <Logout /> : <Login />}
               </Link>
             </Nav.Link>
             <Nav.Link>

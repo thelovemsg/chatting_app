@@ -1,6 +1,12 @@
 import Button from "react-bootstrap/Button";
-import { ButtonToolbar, Form, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { useState } from "react";
+import {
+  ButtonToolbar,
+  Form,
+  OverlayTrigger,
+  Spinner,
+  Tooltip,
+} from "react-bootstrap";
+import { useEffect, useState } from "react";
 import {
   StyledButton,
   StyledGroup,
@@ -9,10 +15,22 @@ import {
 } from "../styled-components/StyledForm";
 import { useDispatch, useSelector } from "react-redux";
 import { LOG_IN_REQUEST } from "../reducers/user";
+import { useNavigate } from "react-router-dom";
 
 const Signin = () => {
+  let navigate = useNavigate();
+  // const history = useHistory();
   const dispatch = useDispatch();
-  const { loginHandling } = useSelector((state) => state.user);
+  const { loginHandling, loginDone } = useSelector((state) => state.user);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    dispatch(LOG_IN_REQUEST(formData));
+  };
+
+  useEffect(() => {
+    if (loginDone) navigate("/home");
+  }, [loginDone]);
 
   const tooltip = (
     <Tooltip id="tooltip">
@@ -21,31 +39,39 @@ const Signin = () => {
     </Tooltip>
   );
 
-  const onFinish = (values) => {
-    dispatch(LOG_IN_REQUEST(values));
-  };
-
   return (
-    <StyledLoginForm className="mb-8" onFinish={onFinish}>
+    <StyledLoginForm className="mb-8" onSubmit={handleSubmit}>
       <StyledGroup className="mb-3">
         <StyledLabel>Email address</StyledLabel>
-        <Form.Control type="email" placeholder="Enter email" />
+        <Form.Control
+          type="email"
+          name="email"
+          placeholder="Enter email"
+          required
+          onSubmit={handleSubmit}
+        />
       </StyledGroup>
       <StyledGroup className="mb-3">
         <StyledLabel>Password</StyledLabel>
-        <Form.Control type="password" placeholder="Password" />
+        <Form.Control
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
+        />
       </StyledGroup>
       <StyledGroup className="justify-content-center">
         <ButtonToolbar>
+          {loginHandling ? (
+            <Spinner animation="border" variant="info" className="mt-2" />
+          ) : (
+            ""
+          )}
           <StyledButton variant="primary" type="submit">
             Try Signin!
           </StyledButton>
           <OverlayTrigger placement="top" overlay={tooltip}>
-            <StyledButton
-              variant="secondary"
-              type="submit"
-              loading={loginHandling}
-            >
+            <StyledButton variant="secondary" type="submit">
               Find Password
             </StyledButton>
           </OverlayTrigger>
