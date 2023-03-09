@@ -24,9 +24,13 @@ const Navtag = () => {
         >
           <Nav className="me-autod color-yellow-first">
             <Nav.Link>
-              <Link to="/signin" className="color-yellow-first href-style">
-                {loginDone ? <Logout /> : <Login />}
-              </Link>
+              {loginDone ? (
+                <Logout />
+              ) : (
+                <Link to="/signin" className="color-yellow-first href-style">
+                  <Login />
+                </Link>
+              )}
             </Nav.Link>
             <Nav.Link>
               <Link to="/register" className="color-yellow-first href-style">
