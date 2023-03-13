@@ -98,3 +98,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ## 사용중인 spring 기술
 ??
+
+### 이슈사항 정리
+#### 2023-03-13
+로그인, 로그아웃 시 url 관리 => 가장 최상위에서 해줘야 복잡하지 않고 관리가 잘 된다. 
+=> useEffect사용 시에는 state값의 변화를 통해 이벤트를 줄 수 가 있는데... 이것의 문제는 문맥에 맞지 않는 이벤트를 중구난방으로 난사하면 어디서 수정해야하는지 절대 못찾음
