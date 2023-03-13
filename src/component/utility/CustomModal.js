@@ -3,23 +3,34 @@
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { Spinner } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
-const CustomModal = ({ show, title, message, onClose, action }) => {
+const CustomModal = ({ show, title, message, onClose, actionType }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
 
-  const handleActionClick = () => {
-    if (typeof action === "function") {
-      console.log("tesitng...");
-      setIsLoading(!isLoading);
-      action();
-    }
+  const dispatchAction = () => {
+    setIsLoading(true);
+    return new Promise((resolve, reject) => {
+      dispatch(actionType);
+      resolve();
+    });
+  };
+
+  const handleActionClick = async () => {
+    setIsLoading(true);
+    await dispatchAction();
   };
 
   const handleActionClose = () => {
     setIsLoading(false);
     onClose();
   };
+
+  useEffect(() => {
+    setIsLoading(false);
+  }, [show]);
 
   return (
     <Modal show={show} onHide={onClose}>

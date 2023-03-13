@@ -15,22 +15,15 @@ import {
 } from "../styled-components/StyledForm";
 import { useDispatch, useSelector } from "react-redux";
 import { LOG_IN_REQUEST } from "../reducers/user";
-import { useNavigate } from "react-router-dom";
 
 const Signin = () => {
-  let navigate = useNavigate();
-  // const history = useHistory();
   const dispatch = useDispatch();
-  const { loginHandling, loginDone } = useSelector((state) => state.user);
+  const { loginHandling } = useSelector((state) => state.user);
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     dispatch(LOG_IN_REQUEST(formData));
   };
-
-  useEffect(() => {
-    if (loginDone) navigate("/home");
-  }, [loginDone]);
 
   const tooltip = (
     <Tooltip id="tooltip">

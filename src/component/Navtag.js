@@ -1,14 +1,21 @@
+import { useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Login from "./Login";
 import Logout from "./Logout";
 
 const Navtag = () => {
-  const { loginDone } = useSelector((state) => state.user);
+  const navigate = useNavigate();
+  const { loginDone, logoutDone } = useSelector((state) => state.user);
+  useEffect(() => {
+    if (logoutDone) navigate("/home");
+    if (loginDone) navigate("/home");
+  }, [logoutDone, loginDone]);
+
   return (
     <Navbar bg="dark" expand="lg" className="color-yellow-first">
       <Container>

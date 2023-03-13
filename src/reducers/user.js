@@ -5,6 +5,7 @@ export const userSlice = createSlice({
   initialState: {
     loginHandling: false,
     loginDone: false,
+    logoutDone: false,
     loginError: null,
   },
   reducers: {
@@ -14,9 +15,14 @@ export const userSlice = createSlice({
     LOG_IN_SUCCESS: (state) => {
       state.loginHandling = false;
       state.loginDone = true;
+      state.logoutDone = false;
     },
-    LOG_IN_FAILURE: (state) => {
+    LOG_IN_FAILURE: (state, action) => {
       state.loginHandling = false;
+      state.loginError = {
+        code: action.payload.code,
+        message: action.payload.message,
+      };
     },
     LOG_OUT_REQUEST: (state) => {
       state.loginHandling = true;
@@ -24,9 +30,15 @@ export const userSlice = createSlice({
     LOG_OUT_SUCCESS: (state) => {
       state.loginHandling = false;
       state.loginDone = false;
+      state.logoutDone = true;
     },
-    LOG_OUT_FAILURE: (state) => {
+    LOG_OUT_FAILURE: (state, action) => {
+      // api 통신시 에러와 에러메시지 받음. default 처리
       state.loginHandling = false;
+      state.loginError = {
+        code: "0109", //action.payload.code,
+        message: "testing", //action.payload.message
+      };
     },
   },
 });

@@ -5,7 +5,6 @@ import {
   LOG_OUT_FAILURE,
   LOG_OUT_SUCCESS,
 } from "../reducers/user";
-
 function* logIn(action) {
   try {
     // const result = yield call(logInAPI);
@@ -20,14 +19,14 @@ function* logOut(action) {
   try {
     // const result = yield call(logInAPI);
     yield delay(1000);
+    // throw new Error("tesitng");
     yield put(LOG_OUT_SUCCESS());
   } catch (err) {
-    yield put(LOG_OUT_FAILURE());
+    yield put(LOG_OUT_FAILURE({ code: err.code, message: err.messsage }));
   }
 }
 
 function* watchLogIn() {
-  console.log("watchLogIn");
   yield takeLatest("user/LOG_IN_REQUEST", logIn);
 }
 
