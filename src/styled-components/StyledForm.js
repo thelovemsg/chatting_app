@@ -45,3 +45,9 @@ export const StyledButton = styled(Button)`
     margin-top: 1vh;
   }
 `;
+
+export const StyledLangButton = styled(Button)`
+  font-size: 17px;
+  padding-left: 10px;
+  padding-right: 10px;
+`;

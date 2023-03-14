@@ -58,3 +58,17 @@
   height: 100%;
   width: 80%;
 }
+
+.carousel {
+  background-color: #584c33;
+}
+
+.carousel-image {
+  width: 300px;
+  height: 300px;
+  margin-left: 15vw;
+}
+
+.carousel-caption {
+  margin-bottom: 10vh;
+}

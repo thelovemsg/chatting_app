@@ -10,7 +10,16 @@ import Register from "./component/Register";
 import Home from "./component/Home";
 import Profile from "./component/Profile";
 
+import { useTranslation, Trans } from "react-i18next"; // 1. react-i18next import
+
+const lngs = {
+  // 2. 언어 구분을 위한 lng 객체 생성
+  en: { nativeName: "English" },
+  ko: { nativeName: "Korean" },
+};
+
 function App() {
+  const { t, i18n } = useTranslation();
   return (
     <BrowserRouter>
       <div className="App">
