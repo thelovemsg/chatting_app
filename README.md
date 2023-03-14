@@ -73,7 +73,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ## 사용중인 react 기술
 
 ### 1. 다국어 처리 기능 - react-i18next
-  참고 사이트 : https://ddeck.tistory.com/40
+  참고 사이트 
+  https://locize.com/blog/react-i18next/#why-i18next
   
 ### 2. 리액트 라우터 - react-router-dom
   
@@ -103,3 +104,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 #### 2023-03-13
 로그인, 로그아웃 시 url 관리 => 가장 최상위에서 해줘야 복잡하지 않고 관리가 잘 된다. 
 => useEffect사용 시에는 state값의 변화를 통해 이벤트를 줄 수 가 있는데... 이것의 문제는 문맥에 맞지 않는 이벤트를 중구난방으로 난사하면 어디서 수정해야하는지 절대 못찾음
+
+#### 2023-03-15
+다국어 처리 적용 완료(영어랑 한국어클릭시 변환 되도록 다 등록해야함 ㅠㅠ...)
+bootstrap carousel적용. (디자인 이상하다는것은 반박 불가)
