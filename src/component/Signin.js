@@ -12,6 +12,7 @@ import {
   StyledGroup,
   StyledLabel,
   StyledLoginForm,
+  StyledValidationCheck,
 } from "../styled-components/StyledForm";
 import { useDispatch, useSelector } from "react-redux";
 import { LOG_IN_REQUEST } from "../reducers/user";
@@ -53,6 +54,7 @@ const Signin = () => {
           required
         />
       </StyledGroup>
+      <StyledValidationCheck>로그인시 뭐 없으면</StyledValidationCheck>
       <StyledGroup className="justify-content-center">
         <ButtonToolbar>
           {loginHandling ? (

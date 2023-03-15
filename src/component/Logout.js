@@ -4,11 +4,11 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import CustomModal from "../component/utility/CustomModal";
 import { LOG_OUT_REQUEST } from "../reducers/user";
-import { useTranslation } from "react-i18next";
+import { Trans } from "react-i18next";
 
 const Logout = () => {
   const { loginError } = useSelector((state) => state.user);
-  const { lang } = useTranslation();
+
   useEffect(() => {
     if (loginError != null) {
       setShowModal(false);
@@ -32,7 +32,7 @@ const Logout = () => {
       </div>
       <CustomModal
         show={showModal}
-        title={lang("test")}
+        title={<Trans i18nKey="carousel.carousel_image_1_title" />}
         message="My Modal Message"
         onClose={handleCloseModal}
         actionType={LOG_OUT_REQUEST()}

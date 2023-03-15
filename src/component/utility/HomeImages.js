@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
-import { useTranslation, Trans } from "react-i18next";
+import { Trans } from "react-i18next";
 
 function ControlledCarousel() {
-  const { t } = useTranslation();
-
   const [index, setIndex] = useState(0);
 
   const handleSelect = (selectedIndex, e) => {
@@ -20,10 +18,10 @@ function ControlledCarousel() {
           alt="First slide"
         />
         <Carousel.Caption>
-          <h3>
-            <Trans i18nKey="carousel.carousel_image_1_title"></Trans>
+          <h3 className="carousel-caption">
+            <Trans i18nKey="carousel.carousel_image_1_title" />
           </h3>
-          <Trans i18nKey="carousel.carousel_image_1_description"></Trans>
+          <Trans i18nKey="carousel.carousel_image_1_description" />
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -34,10 +32,10 @@ function ControlledCarousel() {
         />
 
         <Carousel.Caption>
-          <h3>
-            <Trans i18nKey="carousel.carousel_image_2_title"></Trans>
+          <h3 className="carousel-caption">
+            <Trans i18nKey="carousel.carousel_image_2_title" />
           </h3>
-          <Trans i18nKey="carousel.carousel_image_2_description"></Trans>
+          <Trans i18nKey="carousel.carousel_image_2_description" />
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -46,12 +44,11 @@ function ControlledCarousel() {
           src="./img/neo.png"
           alt="Third slide"
         />
-
         <Carousel.Caption>
-          <h3>
-            <Trans i18nKey="carousel.carousel_image_3_title"></Trans>
+          <h3 className="carousel-caption">
+            <Trans i18nKey="carousel.carousel_image_3_title" />
           </h3>
-          <Trans i18nKey="carousel.carousel_image_3_description"></Trans>
+          <Trans i18nKey="carousel.carousel_image_3_description" />
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>

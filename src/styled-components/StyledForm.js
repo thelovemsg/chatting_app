@@ -8,9 +8,12 @@ import styled, { css } from "styled-components";
 // }
 
 export const StyledForm = styled(Form)`
-  margin: 5vw;
+  margin-top: 5vw;
+  margin-bottom: 10vw;
+  margin-left: 5vw;
+  margin-right: 5vw;
   @media (max-width: 768px) {
-    margin-bottom: 15vh;
+    margin-bottom: 20vh;
   }
 `;
 
@@ -44,6 +47,11 @@ export const StyledButton = styled(Button)`
   @media (min-width: 768px) {
     margin-top: 1vh;
   }
+`;
+
+export const StyledValidationCheck = styled("div")`
+  margin: auto;
+  color: red;
 `;
 
 export const StyledLangButton = styled(Button)`

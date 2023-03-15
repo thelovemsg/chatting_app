@@ -6,6 +6,9 @@ import {
   StyledForm,
   StyledGroup,
   StyledLabel,
+  StyledNicknameCheckButton,
+  StyledSpan,
+  StyledValidationCheck,
 } from "../styled-components/StyledForm";
 import Post from "./address/Post";
 
@@ -49,10 +52,17 @@ const Register = () => {
           <Post company={enroll_company} setcompany={setEnroll_company}></Post>
         )}
       </StyledGroup>
-      <StyledGroup>
+      <StyledGroup className="mb-3">
         <StyledLabel>Address 2</StyledLabel>
         <Form.Control type="text" placeholder="detailed address" />
       </StyledGroup>
+      <StyledGroup className="mb-3">
+        <StyledLabel>Nickname</StyledLabel>
+        <Form.Control type="text" placeholder="nickname" />
+      </StyledGroup>
+      <StyledValidationCheck>
+        가입시 뭐 없으면 메시지 표시
+      </StyledValidationCheck>
       <StyledGroup className="justify-content-center">
         <StyledButton variant="primary" type="submit">
           Try Signin!
