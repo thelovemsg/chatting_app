@@ -97,15 +97,15 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
  npm i react-datepicker --save
 
 ### spring 이슈사항 정리
-####2023-03-16 추가
-spring-data-jpa
-spring-web-socket
-query-dsl
+#### 2023-03-16 추가
+##### spring-data-jpa
+##### spring-web-socket
+##### query-dsl
 
-1.jpa를 사용하는 방법을 현재 까먹음 => jpashop2에서 한 작업들 참고로 Member(일), Address(다) 구현하기 
-2.passwordConverter 기능을 추가해서 실제로 db에 잘 저장이 되는지 확인하기
-3.서버 시작시 DataInit 작업 해주기
-4.신경써야 할 작업이 있는지 더 확인해야함
+  1. jpa를 사용하는 방법을 현재 까먹음 => jpashop2에서 한 작업들 참고로 Member(일), Address(다) 구현하기 
+  2. passwordConverter 기능을 추가해서 실제로 db에 잘 저장이 되는지 확인하기
+  3. 서버 시작시 DataInit 작업 해주기
+  4. 신경써야 할 작업이 있는지 더 확인해야함
 
 ### react 이슈사항 정리
 #### 2023-03-13
