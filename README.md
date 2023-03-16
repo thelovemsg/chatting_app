@@ -94,13 +94,20 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ### 7. styled-component 사용
 
 명령어 모음
-
  npm i react-datepicker --save
 
-## 사용중인 spring 기술
-??
+### spring 이슈사항 정리
+####2023-03-16 추가
+spring-data-jpa
+spring-web-socket
+query-dsl
 
-### 이슈사항 정리
+1.jpa를 사용하는 방법을 현재 까먹음 => jpashop2에서 한 작업들 참고로 Member(일), Address(다) 구현하기 
+2.passwordConverter 기능을 추가해서 실제로 db에 잘 저장이 되는지 확인하기
+3.서버 시작시 DataInit 작업 해주기
+4.신경써야 할 작업이 있는지 더 확인해야함
+
+### react 이슈사항 정리
 #### 2023-03-13
 로그인, 로그아웃 시 url 관리 => 가장 최상위에서 해줘야 복잡하지 않고 관리가 잘 된다. 
 => useEffect사용 시에는 state값의 변화를 통해 이벤트를 줄 수 가 있는데... 이것의 문제는 문맥에 맞지 않는 이벤트를 중구난방으로 난사하면 어디서 수정해야하는지 절대 못찾음
