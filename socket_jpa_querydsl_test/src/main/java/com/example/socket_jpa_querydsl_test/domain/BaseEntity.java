@@ -2,6 +2,7 @@ package com.example.socket_jpa_querydsl_test.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -24,5 +25,9 @@ public abstract class BaseEntity {
     private String createdBy;
     @Column(name = "lastModifiedBy")
     private String lastModifiedBy;
+
+//    @Column(name = "flag", columnDefinition = "TINYINT(1) CHECK (flag in (0,1))")
+//    @ColumnDefault("1")
+//    private int flag;
 
 }

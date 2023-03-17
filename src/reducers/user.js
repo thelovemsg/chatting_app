@@ -7,6 +7,8 @@ export const userSlice = createSlice({
     loginDone: false,
     logoutDone: false,
     loginError: null,
+    registerDone: null,
+    registerError: null
   },
   reducers: {
     LOG_IN_REQUEST: (state) => {
@@ -40,6 +42,22 @@ export const userSlice = createSlice({
         message: "testing", //action.payload.message
       };
     },
+    REGISTER_REQUEST: (state) => {
+      state.loginHandling = true;
+    },
+    REGISTER_SUCCESS: (state) => {
+      state.loginHandling = false;
+      state.loginDone = false;
+      state.logoutDone = true;
+    },
+    REGISTER_FAILURE: (state, action) => {
+      // api 통신시 에러와 에러메시지 받음. default 처리
+      state.loginHandling = false;
+      state.loginError = {
+        code: "0109", //action.payload.code,
+        message: "testing", //action.payload.message
+      };
+    },
   },
 });
 
@@ -51,6 +69,9 @@ export const {
   LOG_OUT_REQUEST,
   LOG_OUT_SUCCESS,
   LOG_OUT_FAILURE,
+  REGISTER_REQUEST,
+  REGISTER_SUCCESS,
+  REGISTER_FAILURE,
 } = userSlice.actions;
 
 export const userReducer = userSlice.reducer;

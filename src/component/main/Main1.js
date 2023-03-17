@@ -1,7 +1,13 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 const Main1 = () => {
   return (
     <>
-      <div>1. 적용 기술 2. 깃헙 주소 3. 이메일 주소</div>
+      <div> 
+        {/* Testing...
+        <FontAwesomeIcon icon="fa-brands fa-github" /> */}
+        {/* 깃헙 주소 3. 이메일 주소 */}
+      </div>
     </>
   );
 };

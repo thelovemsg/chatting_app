@@ -2,12 +2,11 @@ package com.example.socket_jpa_querydsl_test.domain.utils;
 
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
+import sun.security.x509.CertificateAlgorithmId;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
-import static sun.security.x509.CertificateAlgorithmId.ALGORITHM;
 
 @Converter
 public class PasswordConverter implements AttributeConverter<String, String> {
@@ -25,7 +24,7 @@ public class PasswordConverter implements AttributeConverter<String, String> {
 
     public static String encode(String password){
         try {
-            MessageDigest md = MessageDigest.getInstance(ALGORITHM);
+            MessageDigest md = MessageDigest.getInstance(CertificateAlgorithmId.ALGORITHM);
             md.update(password.getBytes());
             return String.format("%0128x", new BigInteger(1, md.digest()));
         }catch (NoSuchAlgorithmException e){

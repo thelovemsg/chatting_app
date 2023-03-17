@@ -6,8 +6,6 @@ import {
   StyledForm,
   StyledGroup,
   StyledLabel,
-  StyledNicknameCheckButton,
-  StyledSpan,
   StyledValidationCheck,
 } from "../styled-components/StyledForm";
 import Post from "./address/Post";

@@ -1,5 +1,6 @@
 package com.example.socket_jpa_querydsl_test.domain;
 
+import com.example.socket_jpa_querydsl_test.domain.status.AddressStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -15,6 +16,12 @@ import static jakarta.persistence.FetchType.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
+@SequenceGenerator(
+        name = "ADDRESS_SEQ_GENERATOR"
+        , sequenceName = "ADDRESS_SEQ"
+        , initialValue = 1
+        , allocationSize = 1
+)
 @Data
 public class Address extends BaseEntity{
 
@@ -32,5 +39,12 @@ public class Address extends BaseEntity{
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
+
+    @Column(name = "seqNo")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ADDRESS_SEQ_GENERATOR")
+    private Long seqNo;
+
+    @Enumerated(EnumType.STRING)
+    private AddressStatus addressStatus = AddressStatus.ETC;
 
 }

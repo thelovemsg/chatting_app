@@ -17,6 +17,7 @@
 
 .href-style {
   text-decoration: none;
+  text-align: center;
 }
 
 .btn {
@@ -74,7 +75,7 @@
 @media screen and (max-width: 900px) {
   .carousel-image {
     margin: auto;
-    content-visibility: hidden;
+    visibility: hidden;
   }
 
   .carousel-caption {
