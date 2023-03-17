@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
-@SpringBootApplication(scanBasePackages = {"com.example.socket_jpa_querydsl_test"})
+@SpringBootApplication
 @EnableJpaAuditing
 public class SocketJpaQuerydslTestApplication {
 

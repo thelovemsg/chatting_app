@@ -1,6 +1,8 @@
 package com.example.socket_jpa_querydsl_test.service;
 
+import com.example.socket_jpa_querydsl_test.domain.Address;
 import com.example.socket_jpa_querydsl_test.domain.Member;
+import com.example.socket_jpa_querydsl_test.repository.AddressRepository;
 import com.example.socket_jpa_querydsl_test.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,7 @@ import java.util.List;
 public class MemberService {
 
     private final MemberRepository memberRepository;
+    private final AddressRepository addressRepository;
 
     public Member getMember(String name, String password){
         return memberRepository.getMemberByNameAndPassword(name, password);
@@ -28,4 +31,5 @@ public class MemberService {
     public Member saveMember(Member member){
         return memberRepository.save(member);
     }
+
 }

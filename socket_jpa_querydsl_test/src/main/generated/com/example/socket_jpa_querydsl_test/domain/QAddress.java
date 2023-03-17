@@ -39,9 +39,6 @@ public class QAddress extends EntityPathBase<Address> {
     public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
 
     //inherited
-    public final NumberPath<Integer> flag = _super.flag;
-
-    //inherited
     public final StringPath lastModifiedBy = _super.lastModifiedBy;
 
     public final QMember member;
@@ -49,7 +46,7 @@ public class QAddress extends EntityPathBase<Address> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> modifiedDate = _super.modifiedDate;
 
-    public final NumberPath<Long> seqNo = createNumber("seqNo", Long.class);
+    public final DateTimePath<java.time.LocalDateTime> regDate = createDateTime("regDate", java.time.LocalDateTime.class);
 
     public QAddress(String variable) {
         this(Address.class, forVariable(variable), INITS);

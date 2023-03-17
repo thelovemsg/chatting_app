@@ -4,8 +4,10 @@ import com.example.socket_jpa_querydsl_test.domain.status.AddressStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,9 +42,9 @@ public class Address extends BaseEntity{
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @Column(name = "seqNo")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ADDRESS_SEQ_GENERATOR")
-    private Long seqNo;
+    @Column(name = "regDate")
+    @CreatedDate
+    private LocalDateTime regDate;
 
     @Enumerated(EnumType.STRING)
     private AddressStatus addressStatus = AddressStatus.ETC;

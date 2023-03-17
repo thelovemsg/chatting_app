@@ -21,10 +21,10 @@ public abstract class BaseEntity {
     @Column(name = "modifiedDate")
     private LocalDateTime modifiedDate;
 
-    @Column(name = "createdBy")
-    private String createdBy;
-    @Column(name = "lastModifiedBy")
-    private String lastModifiedBy;
+    @Column(name = "createdBy", nullable = false, columnDefinition = "varchar(255) default 'ADMIN'")
+    private String createdBy = "ADMIN";
+    @Column(name = "lastModifiedBy", nullable = false, columnDefinition = "varchar(255) default 'ADMIN'")
+    private String lastModifiedBy  = "ADMIN";
 
 //    @Column(name = "flag", columnDefinition = "TINYINT(1) CHECK (flag in (0,1))")
 //    @ColumnDefault("1")

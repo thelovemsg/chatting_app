@@ -24,7 +24,7 @@ public class PasswordConverter implements AttributeConverter<String, String> {
 
     public static String encode(String password){
         try {
-            MessageDigest md = MessageDigest.getInstance(CertificateAlgorithmId.ALGORITHM);
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
             md.update(password.getBytes());
             return String.format("%0128x", new BigInteger(1, md.digest()));
         }catch (NoSuchAlgorithmException e){
