@@ -14,7 +14,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.TransactionSystemException;
 
+import java.util.List;
 import java.util.Set;
+
+import static org.assertj.core.api.Assertions.*;
 
 @SpringBootTest
 @Transactional
@@ -31,6 +34,21 @@ public class MemberTest {
     public static void setUp() {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
+    }
+    
+    @DisplayName("init data 조회하기")
+    @Test
+    public void find_init_data() {
+        // member데이터는 초기화시 2개
+        List<Member> members = memberService.getMembers();
+        assertThat(members.size()).isEqualTo(2);
+
+        for (Member member : members) {
+            System.out.println(addressService.findAddresses(member.getId()).toString());
+        }
+
+        // address데이터는 초기화시 3개
+//        assertThat(addressService.getAdress().size()).isEqualTo(2);
     }
 
     @DisplayName("phone number setting test")

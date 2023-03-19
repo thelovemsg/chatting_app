@@ -18,18 +18,13 @@ import static jakarta.persistence.FetchType.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-@SequenceGenerator(
-        name = "ADDRESS_SEQ_GENERATOR"
-        , sequenceName = "ADDRESS_SEQ"
-        , initialValue = 1
-        , allocationSize = 1
-)
 @Data
+@ToString(exclude = "member")
 public class Address extends BaseEntity{
 
     @Id @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id")
-    private String address_id;
+    @Column(name = "address_id")
+    private String id;
 
     @Column(name = "address1")
     private String address1;

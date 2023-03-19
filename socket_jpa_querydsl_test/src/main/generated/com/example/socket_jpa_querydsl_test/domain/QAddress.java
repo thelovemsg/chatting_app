@@ -28,8 +28,6 @@ public class QAddress extends EntityPathBase<Address> {
 
     public final StringPath address2 = createString("address2");
 
-    public final StringPath address_id = createString("address_id");
-
     public final EnumPath<com.example.socket_jpa_querydsl_test.domain.status.AddressStatus> addressStatus = createEnum("addressStatus", com.example.socket_jpa_querydsl_test.domain.status.AddressStatus.class);
 
     //inherited
@@ -37,6 +35,8 @@ public class QAddress extends EntityPathBase<Address> {
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
+
+    public final StringPath id = createString("id");
 
     //inherited
     public final StringPath lastModifiedBy = _super.lastModifiedBy;

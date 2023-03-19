@@ -64,23 +64,24 @@
   background-color: #584c33;
 }
 
+.carousel-item {
+  height: 83vh;
+}
+
 .carousel-image {
   width: 300px;
   height: 300px;
-  margin-left: 10vw;
+  margin: auto;
   margin-top: 9vh;
   margin-bottom: 9vh;
 }
 
 @media screen and (max-width: 900px) {
   .carousel-image {
+    width: 150px;
+    height: 150px;
     margin: auto;
-    visibility: hidden;
-  }
-
-  .carousel-caption {
-    color: black !important;
-    font-weight: bold;
+    margin-top: 20vh;
   }
 }
 
