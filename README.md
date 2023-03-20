@@ -1,6 +1,5 @@
 # chatting_app - 웹소켓을 기반으로한 채팅 앱 제작기
 
-
 ## 사용중인 react 기술
 
 ### 1. 다국어 처리 기능 - react-i18next
@@ -27,7 +26,7 @@
 명령어 모음
  npm i react-datepicker --save
 
-### spring 이슈사항 정리
+## spring 이슈사항 정리
 #### 2023-03-16 추가
 ##### spring-data-jpa
 ##### spring-web-socket
