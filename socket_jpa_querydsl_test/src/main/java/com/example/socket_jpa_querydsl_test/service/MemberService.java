@@ -29,6 +29,7 @@ public class MemberService {
     }
 
     public Member saveMember(Member member){
+        // 이메일 동일한거 안됌, 닉네임 동일한거 안됌
         return memberRepository.save(member);
     }
 
