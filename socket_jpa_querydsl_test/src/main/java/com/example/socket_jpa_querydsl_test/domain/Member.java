@@ -36,6 +36,7 @@ public class Member extends BaseEntity implements Serializable {
     private String name;
 
     @Column(name = "nickname")
+
     private String nickname;
 
     @Column(name = "phoneNumber")
