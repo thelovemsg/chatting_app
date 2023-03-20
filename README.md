@@ -117,3 +117,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 bootstrap carousel적용. (디자인 이상하다는것은 반박 불가)
 
 git repository 연결 테스트...
+
+## 새로이 학습해야 할 것 / 적용 목표
+
+#### 2023-03-20  
+##### 1. 암호화에 대한 이해와 방법 및 적용 필요(java)
+##### 2. 공통 에러 처리를 위한 Custom Exception 처리 로직 (java)
