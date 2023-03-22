@@ -2,13 +2,10 @@ package com.example.socket_jpa_querydsl_test.domain;
 
 import com.example.socket_jpa_querydsl_test.domain.status.AddressStatus;
 import com.example.socket_jpa_querydsl_test.domain.utils.PasswordConverter;
-import com.example.socket_jpa_querydsl_test.dto.MemberDto;
+import com.example.socket_jpa_querydsl_test.api.dto.entity.MemberSaveDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Pattern;
 import lombok.*;
-import org.hibernate.validator.constraints.Length;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.io.Serializable;
@@ -16,7 +13,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(uniqueConstraints =  @UniqueConstraint(columnNames = {"member_id","email", "phoneNumber", "nickname"}))
+@Table(uniqueConstraints =
+            {
+                @UniqueConstraint(columnNames = {"nickname"}),
+                @UniqueConstraint(columnNames = {"phoneNumber"}),
+                @UniqueConstraint(columnNames = {"email"})
+            }
+        )
 @EntityListeners(AuditingEntityListener.class)
 @Data
 @Builder
@@ -36,7 +39,6 @@ public class Member extends BaseEntity implements Serializable {
     private String name;
 
     @Column(name = "nickname")
-
     private String nickname;
 
     @Column(name = "phoneNumber")
@@ -55,10 +57,10 @@ public class Member extends BaseEntity implements Serializable {
         addresses.add(address);
     }
 
-    public static Member createMember(MemberDto memberDto){
+    public static Member createMember(MemberSaveDto memberSaveDto){
         Address address = new Address();
-        address.setAddress1(memberDto.getAddress1());
-        address.setAddress2(memberDto.getAddress2());
+        address.setAddress1(memberSaveDto.getAddress1());
+        address.setAddress2(memberSaveDto.getAddress2());
         address.setAddressStatus(AddressStatus.PRIMARY);
 
         List<Address> addresses = new ArrayList<>();
@@ -66,11 +68,12 @@ public class Member extends BaseEntity implements Serializable {
 
         return new Member()
                 .builder()
-                .name(memberDto.getUsername())
-                .email(memberDto.getEmail())
+                .name(memberSaveDto.getName())
+                .nickname(memberSaveDto.getNickname())
+                .email(memberSaveDto.getEmail())
                 .addresses(addresses)
-                .password(memberDto.getPassword())
-                .phoneNumber(memberDto.getPhoneNumber())
+                .password(memberSaveDto.getPassword())
+                .phoneNumber(memberSaveDto.getPhoneNumber())
                 .build();
     }
 

@@ -6,10 +6,6 @@ import jakarta.persistence.Converter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
 @Converter
 @Component
 @RequiredArgsConstructor
@@ -29,12 +25,6 @@ public class PasswordConverter implements AttributeConverter<String, String> {
     }
 
     public String encode(String password){
-        try {
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
-            md.update(password.getBytes());
-            return String.format("%0128x", new BigInteger(1, md.digest()));
-        }catch (NoSuchAlgorithmException e){
-            throw new RuntimeException(e.getMessage());
-        }
+        return EncryptionUtils.encrypt(password, envData.getENCRYPTION_KEY());
     }
 }

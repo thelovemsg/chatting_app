@@ -1,4 +1,4 @@
-package com.example.socket_jpa_querydsl_test.dto;
+package com.example.socket_jpa_querydsl_test.api.dto.entity;
 
 import com.example.socket_jpa_querydsl_test.domain.status.AddressStatus;
 import lombok.AllArgsConstructor;

@@ -1,8 +1,8 @@
 package com.example.socket_jpa_querydsl_test.api;
 
-import com.example.socket_jpa_querydsl_test.api.dto.CreateMemberResponse;
+import com.example.socket_jpa_querydsl_test.api.dto.response.MemberResponseDto;
 import com.example.socket_jpa_querydsl_test.domain.Member;
-import com.example.socket_jpa_querydsl_test.dto.MemberDto;
+import com.example.socket_jpa_querydsl_test.api.dto.entity.MemberSaveDto;
 import com.example.socket_jpa_querydsl_test.service.MemberService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -21,14 +21,14 @@ public class MemberApiController {
     private final MemberService memberService;
 
     @PostMapping("/memberSave")
-    public ResponseEntity<CreateMemberResponse> saveMember(@Valid @RequestBody MemberDto memberDto, BindingResult result){
+    public ResponseEntity<MemberResponseDto> saveMember(@Valid @RequestBody MemberSaveDto memberSaveDto, BindingResult result){
         if(result.hasErrors()){
             throw new IllegalArgumentException(getErrorMessage(result));
         }
 
-        Member member = Member.createMember(memberDto);
+        Member member = Member.createMember(memberSaveDto);
         member = memberService.saveMember(member);
-        return customResponse(new CreateMemberResponse(member));
+        return customResponse(new MemberResponseDto(member));
     }
 
 }

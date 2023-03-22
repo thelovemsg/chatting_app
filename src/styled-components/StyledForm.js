@@ -12,16 +12,17 @@ export const StyledForm = styled(Form)`
   margin-bottom: 10vw;
   margin-left: 5vw;
   margin-right: 5vw;
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
+    margin-top: 10vh;
     margin-bottom: 20vh;
   }
 `;
 
 export const StyledLoginForm = styled(Form)`
-  margin-top: 25vh;
+  margin-top: 15vh;
   @media (max-width: 768px) {
     margin-top: 10vh;
-    margin-bottom: 15vh;
+    margin-bottom: 20vh;
   }
 `;
 

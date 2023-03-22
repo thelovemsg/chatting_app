@@ -1,4 +1,4 @@
-package com.example.socket_jpa_querydsl_test.api.dto;
+package com.example.socket_jpa_querydsl_test.api.dto.response;
 
 import com.example.socket_jpa_querydsl_test.domain.Member;
 import lombok.AllArgsConstructor;
@@ -8,12 +8,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateMemberResponse {
+public class MemberResponseDto {
     private String id;
     private String name;
     private String nickname;
 
-    public CreateMemberResponse(Member member){
+    public MemberResponseDto(Member member){
         this.name = member.getName();
         this.nickname = member.getNickname();
     }

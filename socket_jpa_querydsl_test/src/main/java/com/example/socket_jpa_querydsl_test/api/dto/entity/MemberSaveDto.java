@@ -1,4 +1,4 @@
-package com.example.socket_jpa_querydsl_test.dto;
+package com.example.socket_jpa_querydsl_test.api.dto.entity;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -11,7 +11,7 @@ import org.hibernate.validator.constraints.Length;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MemberDto {
+public class MemberSaveDto {
 
     @Email
     @NotBlank(message = "email needed")
@@ -21,7 +21,7 @@ public class MemberDto {
     private String name;
 
     @NotBlank
-    private String username;
+    private String nickname;
 
     @Pattern(regexp = "\\d+", message = "must contain only digits")
     @NotBlank(message = "phoneNumber needed")

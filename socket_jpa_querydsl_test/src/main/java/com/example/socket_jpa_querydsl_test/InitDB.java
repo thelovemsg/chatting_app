@@ -25,7 +25,7 @@ public class InitDB {
     static class InitService {
         private final EntityManager em;
         public void initDb1() {
-            Member member = createMember("test1@naver.com", "testbot1", "01011112222", "password1234");
+            Member member = createMember("test1@naver.com", "testbot1", "samenicknam1","01011112222", "password1234");
             em.persist(member);
 
             Address address = createAddress("address1", "address2");
@@ -34,7 +34,7 @@ public class InitDB {
         }
 
         public void initDb2() {
-            Member member = createMember("test2@naver.com", "testbot2", "01022223333", "password12345");
+            Member member = createMember("test2@naver.com", "testbot2", "samenicknam2", "01022223333", "password12345");
             em.persist(member);
 
             Address address = createAddress("address11_1", "address22_1");
@@ -53,10 +53,11 @@ public class InitDB {
             return address;
         }
 
-        private Member createMember(String email, String name, String phoneNumber, String password) {
+        private Member createMember(String email, String name, String nickname, String phoneNumber, String password) {
             Member member = new Member();
             member.setEmail(email);
             member.setName(name);
+            member.setNickname(nickname);
             member.setPhoneNumber(phoneNumber);
             member.setPassword(password);
             return member;

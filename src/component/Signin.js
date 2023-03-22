@@ -34,7 +34,7 @@ const Signin = () => {
   );
 
   return (
-    <StyledLoginForm className="mb-8" onSubmit={handleSubmit}>
+    <StyledLoginForm onSubmit={handleSubmit}>
       <StyledGroup className="mb-3">
         <StyledLabel>Email address</StyledLabel>
         <Form.Control
@@ -62,15 +62,15 @@ const Signin = () => {
           ) : (
             ""
           )}
-          <StyledButton variant="primary" type="submit">
-            Try Signin!
-          </StyledButton>
-          <OverlayTrigger placement="top" overlay={tooltip}>
-            <StyledButton variant="secondary" type="submit">
-              Find Password
-            </StyledButton>
-          </OverlayTrigger>
         </ButtonToolbar>
+        <StyledButton variant="primary" type="submit">
+          Try Signin!
+        </StyledButton>
+        <OverlayTrigger placement="top" overlay={tooltip}>
+          <StyledButton variant="secondary" type="submit">
+            Find Password
+          </StyledButton>
+        </OverlayTrigger>
       </StyledGroup>
     </StyledLoginForm>
   );
