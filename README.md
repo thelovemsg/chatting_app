@@ -1,74 +1,4 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# chatting_app
+# chatting_app - 웹소켓을 기반으로한 채팅 앱 제작기
 
 ## 사용중인 react 기술
 
@@ -96,7 +26,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 명령어 모음
  npm i react-datepicker --save
 
-### spring 이슈사항 정리
+## spring 이슈사항 정리
 #### 2023-03-16 추가
 ##### spring-data-jpa
 ##### spring-web-socket
@@ -119,7 +49,17 @@ bootstrap carousel적용. (디자인 이상하다는것은 반박 불가)
 git repository 연결 테스트...
 
 ## 새로이 학습해야 할 것 / 적용 목표
+#### 필수사항
+##### 1. frontend 클린 코드 작성법 숙지
+참고 영상
+https://www.youtube.com/watch?v=edWbHp_k_9Y&ab_channel=%ED%86%A0%EC%8A%A4
 
-#### 2023-03-20  
+사실 프론트엔드에서의 클린 코드를 신경쓰지 않았음. 학습 필수!
+
+#### 2023-03-20 오전
 ##### 1. 암호화에 대한 이해와 방법 및 적용 필요(java)
 ##### 2. 공통 에러 처리를 위한 Custom Exception 처리 로직 (java)
+
+#### 2023-03-20 오후
+##### 1. 다국어 처리를 react 에서 관리하긴 하지만 spring boot 에서도 해주고 싶음.
+이유는 메시지를 그대로 alert로 띄워주고 싶음.(다국어 처리된 상태로). 이에 대한 고민이 필요함.
