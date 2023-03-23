@@ -12,10 +12,10 @@ import java.nio.charset.Charset;
 import java.util.stream.Collectors;
 
 public class CustomResponseUtils {
-    public static <T> ResponseEntity customResponse(T t){
+    public static <T> ResponseEntity customResponse(T data){
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(new MediaType("application","json", Charset.forName("UTF-8")));
-        return new ResponseEntity(t, headers, HttpStatus.OK);
+        return new ResponseEntity(data, headers, HttpStatus.OK);
     }
 
     /**

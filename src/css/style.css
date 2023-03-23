@@ -88,3 +88,15 @@
 .carousel-caption {
   margin-bottom: 10vh;
 }
+
+.display-none {
+  display: none !important;
+}
+
+.display-none {
+  display: none;
+}
+
+.display-inline-block {
+  display: inline-block;
+}

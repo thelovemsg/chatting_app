@@ -11,24 +11,40 @@ public class EncryptionUtils {
 
     private static String ALGORITHM = "AES";
     private final static String TRANSFORMATION = "AES/ECB/PKCS5Padding";
-    private static final int KEY_SIZE_BITS = 256;
     private static final String CHARSET_NAME = "UTF-8";
 
-    public static String encrypt(String password, String key) {
-
+    /**
+     *
+     * @param originalPassword
+     * @param key
+     * @return
+     * @description
+     * The lengh of the key must not exceed over 16.
+     * this encryption method use AES algorithm.
+     */
+    public static String encrypt(String originalPassword, String key) {
         try {
             String newKey = key.substring(0, 16);
             Cipher cipher = Cipher.getInstance(TRANSFORMATION);
             SecretKeySpec secretKey = new SecretKeySpec(newKey.getBytes(CHARSET_NAME), ALGORITHM);
             cipher.init(Cipher.ENCRYPT_MODE, secretKey);
 
-            byte[] encrypted = cipher.doFinal(password.getBytes(CHARSET_NAME));
+            byte[] encrypted = cipher.doFinal(originalPassword.getBytes(CHARSET_NAME));
             return Base64.getEncoder().encodeToString(encrypted);
         } catch (Exception e) {
             throw new RuntimeException("Failed to encrypt password", e);
         }
     }
 
+    /**
+     *
+     * @param encodedPassword
+     * @param key
+     * @return
+     * @description
+     * The lengh of the key must not exceed over 16.
+     * this encryption method use AES algorithm.
+     */
     public static String decrypt(String encodedPassword, String key) {
         try {
             String newKey = key.substring(0, 16);

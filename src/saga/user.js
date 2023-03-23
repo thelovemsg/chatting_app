@@ -1,4 +1,5 @@
-import { all, delay, fork, put, takeLatest } from "redux-saga/effects";
+import { all, call, delay, fork, put, takeLatest } from "redux-saga/effects";
+import { memberJoinApi } from "../api/member/member";
 import {
   LOG_IN_FAILURE,
   LOG_IN_SUCCESS,
@@ -29,17 +30,17 @@ function* logOut(action) {
 }
 
 function* userRegister(action) {
-  console.log('user register test... :: ', action);
+  console.log("user register test... :: ", action);
   try {
     // const result = yield call(logInAPI);
-    yield delay(1000);
-    // throw new Error("tesitng");
+    const data = yield call(memberJoinApi, action.payload);
+    console.log("result data :: ", data);
     yield put(REGISTER_SUCCESS());
   } catch (err) {
+    console.log(err);
     yield put(REGISTER_FAILURE({ code: err.code, message: err.messsage }));
   }
 }
-
 
 function* watchLogIn() {
   yield takeLatest("user/LOG_IN_REQUEST", logIn);
@@ -50,7 +51,7 @@ function* watchLogOut() {
 }
 
 function* watchRegister() {
-  yield takeLatest("user/REGISTER_REQUSET", userRegister);
+  yield takeLatest("user/REGISTER_REQUEST", userRegister);
 }
 
 export default function* userSaga() {

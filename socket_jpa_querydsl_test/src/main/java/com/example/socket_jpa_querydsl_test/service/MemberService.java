@@ -1,5 +1,6 @@
 package com.example.socket_jpa_querydsl_test.service;
 
+import com.example.socket_jpa_querydsl_test.api.dto.entity.MemberDto;
 import com.example.socket_jpa_querydsl_test.domain.Member;
 import com.example.socket_jpa_querydsl_test.domain.QMember;
 import com.example.socket_jpa_querydsl_test.repository.AddressRepository;
@@ -20,6 +21,21 @@ public class MemberService {
 
     public Member getMember(String name, String password){
         return memberRepository.getMemberByNameAndPassword(name, password);
+    }
+
+    public String findExistMember(MemberDto memberDto){
+        String result = null;
+        switch(memberDto.getName()){
+            case "email" :
+                result = findDuplicateFieldName(memberDto.getValue(), null, null);
+                break;
+            case "nickname":
+                result = findDuplicateFieldName(null, memberDto.getValue(), null);
+                break;
+            case "phoneNumber":
+                result = findDuplicateFieldName(null, null, memberDto.getValue());
+        }
+        return result;
     }
 
     public Long getMemberCount() {

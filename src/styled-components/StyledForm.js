@@ -40,7 +40,27 @@ export const StyledLabel = styled("label")`
   text-align: left;
   margin-bottom: 10px;
   @media (min-width: 768px) {
-    width: 300px;
+    width: 180px;
+    margin: auto;
+  }
+`;
+
+export const StyledMsgLabel = styled("label")`
+  text-align: left;
+  margin-bottom: 10px;
+  margin-right: 10px !important;
+  color: red;
+  @media (min-width: 768px) {
+    width: 180px;
+    margin: auto;
+  }
+`;
+
+export const StyledMessage = styled("label")`
+  width: 200px;
+  text-align: center;
+  @media (max-width: 768px) {
+    display: none;
   }
 `;
 
