@@ -32,6 +32,7 @@
   },
   "scripts": {
     "start": "set PORT=3002 && react-scripts start",
+    "start production": "REACT_APP_API_BASE_URL=https://localhost:9090 REACT_APP_ENVIRONMENT=production react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

@@ -1,6 +1,4 @@
 import { Form } from "react-bootstrap";
-import { useState } from "react";
-import axios from "axios";
 import {
   StyledButton,
   StyledForm,
@@ -9,22 +7,32 @@ import {
   StyledMsgLabel,
   StyledValidationCheck,
 } from "../styled-components/StyledForm";
-import Post from "./address/Post";
 import { useDispatch } from "react-redux";
 import { REGISTER_REQUEST } from "../reducers/user";
+import AddressPopup from "./address/AddressPopup";
+import useRegister from "../hooks/useRegister";
 
 const Register = () => {
-  let duplicateCheckFlag = true;
+  const {
+    enroll_company,
+    setEnroll_company,
+    validationStatus,
+    phoneNumber,
+    emailValidationMsg,
+    nicknameValidationMsg,
+    phoneNumberValidationMsg,
+    handlePhoneNumberFormat,
+    handleValidationBlur,
+  } = useRegister();
+
   const dispatch = useDispatch();
-  const [enroll_company, setEnroll_company] = useState({
-    address: "",
-  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (duplicateCheckFlag) {
-      alert("plz check duplicate values");
+    const { email, nickname, phoneNumber } = validationStatus;
+    if (!email || !nickname || !phoneNumber) {
+      alert("check!");
       return;
     }
 
@@ -40,61 +48,6 @@ const Register = () => {
     };
 
     dispatch(REGISTER_REQUEST(data));
-  };
-
-  const [popup, setPopup] = useState(false);
-
-  const [emailValidationMsg, setEmailValidationMsg] = useState("");
-  const [nicknameValidationMsg, setNicknameValidationMsg] = useState("");
-  const [phoneNumberValidationMsg, setPhoneNumberValidationMsg] = useState("");
-
-  const isValidEmail = (email) => {
-    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-    return emailRegex.test(email);
-  };
-
-  const autoHyphen = (phoneNumber) => {
-    console.log(phoneNumber);
-    //   target.value = target.value
-    //  .replace(/[^0-9]/g, '')
-    // .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
-  };
-
-  const handleValidationBlur = async (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    if (name === "email" && !isValidEmail(value)) {
-      setEmailValidationMsg("Invalid email address");
-      return;
-    } else {
-      setEmailValidationMsg("");
-    }
-
-    const response = await axios.post(
-      "http://localhost:9090/findMemberByTarget",
-      { name, value }
-    );
-
-    let result = response?.data;
-    result ? (duplicateCheckFlag = false) : (duplicateCheckFlag = true);
-    if (result === "email") {
-      setEmailValidationMsg(`${response.data} already exist`);
-    } else if (result === "phoneNumber") {
-      setPhoneNumberValidationMsg(`${response.data} already exist`);
-    } else if (result === "nickname") {
-      setNicknameValidationMsg(`${response.data} already exist`);
-    } else {
-      if (name === "email") {
-        setEmailValidationMsg("");
-      } else if (name === "phoneNumber") {
-        setPhoneNumberValidationMsg("");
-      } else if (name === "nickname") {
-        setNicknameValidationMsg("");
-      }
-    }
-  };
-  const handleComplete = (data) => {
-    setPopup(!popup);
   };
 
   return (
@@ -162,26 +115,18 @@ const Register = () => {
           type="text"
           name="phoneNumber"
           placeholder="phone number"
-          onChange={autoHyphen}
+          value={phoneNumber}
+          onChange={handlePhoneNumberFormat}
           onBlur={handleValidationBlur}
           required
         />
       </StyledGroup>
       <StyledGroup>
         <StyledLabel>Address 1</StyledLabel>
-        <Form.Control
-          className="mb-3 w-40"
-          type="text"
-          placeholder="Addess"
-          name="address1"
-          value={enroll_company.address}
-          required={true}
-          readOnly
-          onClick={handleComplete}
-        />
-        {popup && (
-          <Post company={enroll_company} setcompany={setEnroll_company}></Post>
-        )}
+        <AddressPopup
+          enroll_company={enroll_company}
+          setEnroll_company={setEnroll_company}
+        ></AddressPopup>
       </StyledGroup>
       <StyledGroup className="mb-3">
         <StyledLabel>Address 2</StyledLabel>

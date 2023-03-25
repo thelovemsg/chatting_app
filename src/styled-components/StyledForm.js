@@ -54,6 +54,10 @@ export const StyledMsgLabel = styled("label")`
     width: 180px;
     margin: auto;
   }
+
+  @media (max-width: 768px) {
+    margin-left: 10px;
+  }
 `;
 
 export const StyledMessage = styled("label")`

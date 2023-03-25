@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { Modal } from "react-bootstrap";
+import React from "react";
 import DaumPostcode from "react-daum-postcode";
 import "../../css/style.css";
 
