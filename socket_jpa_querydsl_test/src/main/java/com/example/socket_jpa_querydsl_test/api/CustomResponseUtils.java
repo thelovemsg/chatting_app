@@ -26,7 +26,7 @@ public class CustomResponseUtils {
      */
     public static String getErrorMessage(BindingResult result) {
         FieldError fieldError = result.getFieldError();
-        return fieldError.getField() + " " + fieldError.getDefaultMessage();
+        return fieldError.getField() + fieldError.getDefaultMessage();
     }
 
 

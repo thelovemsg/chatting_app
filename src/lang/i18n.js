@@ -31,6 +31,16 @@ i18n
             carousel_image_3_description:
               "If you don't like it, just give me any feedback!",
           },
+          register: {
+            checkEmail: "Check email",
+            wrongPhoneNumberFormat: "Wrong phone number format",
+            nicknameEmpty: "Nickname cannot be empty",
+            alreadyExists: "already exists",
+            passwordMismatch: "Password doesn't match",
+            passwordRegexCheck:
+              "최소 8 자, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자 필요",
+            errorFound: "please check input datas",
+          },
         },
       },
       ko: {
@@ -49,6 +59,16 @@ i18n
             carousel_image_3_title: "세번째",
             carousel_image_3_description:
               "마음에 안드신다면, 어떤 피드백이든 주세요!",
+          },
+          register: {
+            checkEmail: "이메일을 확인하세요",
+            wrongPhoneNumberFormat: "잘못된 전화번호 형식",
+            nicknameEmpty: "별명을 입력해주세요",
+            alreadyExists: "이 이미 존재합니다",
+            passwordMismatch: "비밀번호가 일치하지 않습니다.",
+            passwordRegexCheck:
+              "최소 8 자, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자 필요",
+            errorFound: "입력 값을 확인해 주세요",
           },
         },
       },

@@ -1,11 +1,5 @@
-import { Button, Form, Group } from "react-bootstrap";
-import styled, { css } from "styled-components";
-
-// transform: translateY(-100%);
-
-// @media only screen and (max-width: 500px) {
-//   transform: translateY(-60%);
-// }
+import { Button, Form } from "react-bootstrap";
+import styled from "styled-components";
 
 export const StyledForm = styled(Form)`
   margin-top: 5vw;

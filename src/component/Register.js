@@ -7,12 +7,14 @@ import {
   StyledMsgLabel,
   StyledValidationCheck,
 } from "../styled-components/StyledForm";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { REGISTER_REQUEST } from "../reducers/user";
 import AddressPopup from "./address/AddressPopup";
 import useRegister from "../hooks/useRegister";
-
+import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
 const Register = () => {
+  const { t } = useTranslation();
   const {
     enroll_company,
     setEnroll_company,
@@ -21,18 +23,23 @@ const Register = () => {
     emailValidationMsg,
     nicknameValidationMsg,
     phoneNumberValidationMsg,
+    passwordRegexMsg,
+    passwordMismatchMsg,
+    handlePasswordRegex,
+    handlePasswordValidation,
     handlePhoneNumberFormat,
     handleValidationBlur,
   } = useRegister();
 
   const dispatch = useDispatch();
-
+  const { registerError } = useSelector((state) => state.user);
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const { email, nickname, phoneNumber } = validationStatus;
+
     if (!email || !nickname || !phoneNumber) {
-      alert("check!");
+      alert(`${t("register.errorFound")}`);
       return;
     }
 
@@ -81,6 +88,7 @@ const Register = () => {
         <Form.Control
           type="text"
           name="nickname"
+          autoComplete="username"
           placeholder="nickname"
           onBlur={handleValidationBlur}
           required
@@ -88,19 +96,33 @@ const Register = () => {
       </StyledGroup>
       <StyledGroup className="mb-3">
         <StyledLabel>Password</StyledLabel>
+        {passwordRegexMsg ? (
+          <StyledMsgLabel>{passwordRegexMsg}</StyledMsgLabel>
+        ) : (
+          ""
+        )}
         <Form.Control
           type="password"
           name="password"
+          autoComplete="new-password"
           placeholder="Password"
+          onChange={handlePasswordRegex}
           required
         />
       </StyledGroup>
       <StyledGroup className="mb-3">
         <StyledLabel>Password Check</StyledLabel>
+        {passwordMismatchMsg ? (
+          <StyledMsgLabel>{passwordMismatchMsg}</StyledMsgLabel>
+        ) : (
+          ""
+        )}
         <Form.Control
           type="password"
           name="passwordCheck"
+          autoComplete="new-password"
           placeholder="Password again"
+          onChange={handlePasswordValidation}
           required
         />
       </StyledGroup>
@@ -138,7 +160,7 @@ const Register = () => {
         />
       </StyledGroup>
       <StyledValidationCheck>
-        가입시 뭐 없으면 메시지 표시
+        {registerError ? <StyledMsgLabel>{registerError}</StyledMsgLabel> : ""}
       </StyledValidationCheck>
       <StyledGroup className="justify-content-center">
         <StyledButton variant="primary" type="submit">

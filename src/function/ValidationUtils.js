@@ -7,3 +7,9 @@ export const isValidPhoneNumber = (phoneNumber) => {
   const phoneNumeberRegex = /(01[016789])-([1-9]{1}[0-9]{2,3})-([0-9]{4})$/;
   return phoneNumeberRegex.test(phoneNumber);
 };
+
+export const isValidPassword = (password) => {
+  const passwordRegex =
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+  return passwordRegex.test(password);
+};

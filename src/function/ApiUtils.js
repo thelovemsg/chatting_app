@@ -1,11 +1,9 @@
 // api.js
-
+import { BASE_URL } from "./EnvUtils";
 import axios from "axios";
-const isLocal = process.env.REACT_APP_ENVIRONMENT === "local";
-const baseUrl = isLocal ? "http://localhost:9090" : "https://example.com";
 
 export const findMemberByTarget = async (name, value) => {
-  const response = await axios.post(`${baseUrl}/findMemberByTarget`, {
+  const response = await axios.post(`${BASE_URL}/findMemberByTarget`, {
     name,
     value,
   });

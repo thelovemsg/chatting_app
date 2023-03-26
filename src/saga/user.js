@@ -30,15 +30,16 @@ function* logOut(action) {
 }
 
 function* userRegister(action) {
-  console.log("user register test... :: ", action);
   try {
     // const result = yield call(logInAPI);
     const data = yield call(memberJoinApi, action.payload);
-    console.log("result data :: ", data);
+    if (data.status === "BAD_REQUEST") {
+      throw new Error(data.message);
+    }
     yield put(REGISTER_SUCCESS());
   } catch (err) {
-    console.log(err);
-    yield put(REGISTER_FAILURE({ code: err.code, message: err.messsage }));
+    alert(err.message);
+    yield put(REGISTER_FAILURE(err));
   }
 }
 
