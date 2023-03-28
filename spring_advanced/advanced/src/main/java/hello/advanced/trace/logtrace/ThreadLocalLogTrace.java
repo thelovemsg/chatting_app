@@ -9,7 +9,7 @@ public class ThreadLocalLogTrace implements LogTrace{
 
     private static final String START_PREFIX = "-->";
     private static final String COMPLETE_PREFIX = "<--";
-    private static final String EX_PREFIX = "< X-";
+    private static final String EX_PREFIX = "<X-";
 
 //    private TraceId traceIdHolder; // traceId 동기화, 동시성 이슈 발생
     private ThreadLocal<TraceId> traceIdHolder = new ThreadLocal<>();
@@ -73,7 +73,7 @@ public class ThreadLocalLogTrace implements LogTrace{
     private static String addSpace(String prefix, int level) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < level; i++) {
-            sb.append( (i == level - 1) ? "|" + prefix : "| ");
+            sb.append( (i == level - 1) ? "|" + prefix : "|  ");
         }
         return sb.toString();
     }
