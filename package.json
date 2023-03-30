@@ -26,9 +26,12 @@
     "react-router-dom": "^6.8.2",
     "react-scripts": "5.0.1",
     "redux-saga": "^1.2.2",
+    "sockjs-client": "^1.6.1",
+    "stompjs": "^2.3.3",
     "styled-component": "^2.8.0",
     "styled-components": "^5.3.8",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "websocket": "^1.0.34"
   },
   "scripts": {
     "start": "set PORT=3002 && set REACT_APP_API_BASE_URL=http://localhost:9090 && react-scripts start",
