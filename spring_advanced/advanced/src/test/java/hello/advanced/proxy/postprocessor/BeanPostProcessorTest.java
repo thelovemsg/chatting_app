@@ -15,7 +15,7 @@ public class BeanPostProcessorTest {
 
     @Test
     void basicConfig() {
-        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(BasicConfig.class);
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(BeanPostProcessorConfig.class);
         //A는 빈으로 등록된다.
         B b = applicationContext.getBean("beanA", B.class);
         b.helloB();
@@ -26,7 +26,7 @@ public class BeanPostProcessorTest {
 
     @Slf4j
     @Configuration
-    static class BasicConfig {
+    static class BeanPostProcessorConfig {
         @Bean(name = "beanA")
         public A a() {
             return new A();

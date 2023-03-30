@@ -1,4 +1,4 @@
-package hello.advanced.config.v4_postprocessor;
+package hello.advanced.config.v4_postprocessor.postprocessor;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.aop.Advisor;
@@ -34,6 +34,6 @@ public class PackageLogTracePostProcessor implements BeanPostProcessor {
         Object proxy = proxyFactory.getProxy();
         log.info("create proxy: target={} proxy={}", bean.getClass(), proxy.getClass());
         return proxy;
-
     }
+
 }

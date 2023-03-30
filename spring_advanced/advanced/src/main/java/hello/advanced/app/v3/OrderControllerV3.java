@@ -1,33 +1,28 @@
 package hello.advanced.app.v3;
 
-import hello.advanced.trace.TraceStatus;
-import hello.advanced.trace.hellotrace.HelloTraceV2;
-import hello.advanced.trace.logtrace.LogTrace;
-import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Slf4j
 @RestController
-@RequiredArgsConstructor
 public class OrderControllerV3 {
 
     private final OrderServiceV3 orderService;
 
-    private final LogTrace trace;
+    public OrderControllerV3(OrderServiceV3 orderService) {
+        this.orderService = orderService;
+    }
 
     @GetMapping("/v3/request")
     public String request(String itemId) {
-        TraceStatus status = null;
-        try {
-            status = trace.begin("OrderController.request()");
-            orderService.orderItem(itemId);
-            trace.end(status);
-            return "ok";
-        } catch (Exception e) {
-            trace.exception(status, e);
-            throw e;
-        }
+        orderService.orderItem(itemId);
+        return "ok";
+    }
+
+    @GetMapping("/v3/no-log")
+    public String noLog() {
+        return "ok";
     }
 
 }
-
