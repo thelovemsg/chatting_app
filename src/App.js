@@ -11,6 +11,7 @@ import Home from "./component/Home";
 import Profile from "./component/Profile";
 
 import { useTranslation, Trans } from "react-i18next"; // 1. react-i18next import
+import Main1 from "./component/main/Main1";
 
 const lngs = {
   // 2. 언어 구분을 위한 lng 객체 생성
@@ -22,14 +23,14 @@ function App() {
   const { t, i18n } = useTranslation();
   return (
     <BrowserRouter>
-      <div className="App">
+      <div>
         <TopContainer />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<Main1 />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
         <FooterContainer />

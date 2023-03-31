@@ -1,5 +1,7 @@
+import Main1 from "./main/Main1";
+
 const Profile = () => {
-  return <div>Profile</div>;
+  return <div>test</div>;
 };
 
 export default Profile;
