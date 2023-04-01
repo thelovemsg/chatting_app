@@ -2,22 +2,22 @@ package com.example.socket_jpa_querydsl_test;
 
 import com.example.socket_jpa_querydsl_test.domain.Address;
 import com.example.socket_jpa_querydsl_test.domain.Member;
-import com.example.socket_jpa_querydsl_test.domain.status.AddressStatus;
 import com.example.socket_jpa_querydsl_test.service.AddressService;
 import com.example.socket_jpa_querydsl_test.service.MemberService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.*;
-import org.aspectj.lang.annotation.Before;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
-import org.springframework.transaction.TransactionSystemException;
 
 import java.util.List;
 import java.util.Set;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @Transactional
