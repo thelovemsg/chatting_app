@@ -2,6 +2,7 @@ package com.example.socket_jpa_querydsl_test.websocket.config;
 
 import com.example.socket_jpa_querydsl_test.domain.utils.BadWordsUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.support.ChannelInterceptor;
@@ -11,13 +12,20 @@ import java.nio.charset.StandardCharsets;
 
 @Slf4j
 public class FilterChannelInterceptor implements ChannelInterceptor {
+
+    private final BadWordsUtils badWordsUtils;
+
+    public FilterChannelInterceptor(BadWordsUtils badWordsUtils) {
+        this.badWordsUtils = badWordsUtils;
+    }
+
     @Override
     public Message<?> preSend(Message<?> message, MessageChannel channel) {
         Object payload = message.getPayload();
         if (payload instanceof byte[]) {
             String originalContent = new String((byte[]) payload, StandardCharsets.UTF_8);
-            String sendingContent = BadWordsUtils.censorBadWords(originalContent)
-                                        ? BadWordsUtils.maskingBadWords(originalContent) : originalContent;
+            String sendingContent = badWordsUtils.censorBadWords(originalContent)
+                                        ? badWordsUtils.maskingBadWords(originalContent) : originalContent;
             Message<?> censoredMessage = new GenericMessage<>(sendingContent, message.getHeaders());
             return ChannelInterceptor.super.preSend(censoredMessage, channel);
         }

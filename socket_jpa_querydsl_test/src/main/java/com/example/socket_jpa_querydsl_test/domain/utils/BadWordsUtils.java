@@ -1,5 +1,7 @@
 package com.example.socket_jpa_querydsl_test.domain.utils;
 
+import org.springframework.stereotype.Component;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,6 +11,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+@Component
 
 public class BadWordsUtils {
     private static Set<String> badWords;

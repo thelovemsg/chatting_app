@@ -1,5 +1,6 @@
 package com.example.socket_jpa_querydsl_test.websocket.config;
 
+import com.example.socket_jpa_querydsl_test.domain.utils.BadWordsUtils;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.ChannelRegistration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
@@ -10,6 +11,12 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @Configuration
 @EnableWebSocketMessageBroker
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
+
+    private final BadWordsUtils badWordsUtils;
+
+    public WebSocketConfig(BadWordsUtils badWordsUtils) {
+        this.badWordsUtils = badWordsUtils;
+    }
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
@@ -24,7 +31,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void configureClientInboundChannel(ChannelRegistration registration) {
-        registration.interceptors(new FilterChannelInterceptor());
+        registration.interceptors(new FilterChannelInterceptor(badWordsUtils));
     }
 
 }
