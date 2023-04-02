@@ -78,3 +78,12 @@ export const StyledLangButton = styled(Button)`
   padding-left: 10px;
   padding-right: 10px;
 `;
+
+export const StyledErrorMsg = styled("div")`
+  color: red;
+  width: 50%;
+  margin: auto;
+  margin-top: 15px;
+  border: solid;
+  border-radius: 18px;
+`;

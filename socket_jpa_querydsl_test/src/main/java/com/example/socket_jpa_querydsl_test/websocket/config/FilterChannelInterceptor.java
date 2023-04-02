@@ -1,6 +1,10 @@
 package com.example.socket_jpa_querydsl_test.websocket.config;
 
+<<<<<<< Updated upstream
 import com.example.socket_jpa_querydsl_test.domain.utils.BadWordsUtils;
+=======
+import com.example.socket_jpa_querydsl_test.websocket.utils.WordCheckUtils;
+>>>>>>> Stashed changes
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.Message;
@@ -8,11 +12,22 @@ import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.support.ChannelInterceptor;
 import org.springframework.messaging.support.GenericMessage;
 
+<<<<<<< Updated upstream
 import java.nio.charset.StandardCharsets;
+=======
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+>>>>>>> Stashed changes
 
 @Slf4j
 public class FilterChannelInterceptor implements ChannelInterceptor {
 
+<<<<<<< Updated upstream
     private final BadWordsUtils badWordsUtils;
 
     public FilterChannelInterceptor(BadWordsUtils badWordsUtils) {
@@ -30,6 +45,26 @@ public class FilterChannelInterceptor implements ChannelInterceptor {
             return ChannelInterceptor.super.preSend(censoredMessage, channel);
         }
         return ChannelInterceptor.super.preSend(message, channel);
+=======
+    @Override
+    public Message<?> preSend(Message<?> message, MessageChannel channel) {
+        String payload = (String) message.getPayload();
+        Matcher matcher = WordCheckUtils.loadBadWordPattern().matcher(payload);
+
+        if(matcher.find()){
+            String result = matcher.replaceAll(matchResult -> {
+                String word = matchResult.group();
+                int length = word.length();
+                if (length <= 2) {
+                    return "*".repeat(length);
+                } else {
+                    return word.substring(0, 1) + "*".repeat(length - 2) + word.substring(length - 1);
+                }
+            });
+            return new GenericMessage<>(result, message.getHeaders());
+        }
+        return message;
+>>>>>>> Stashed changes
     }
 
     @Override
@@ -44,21 +79,4 @@ public class FilterChannelInterceptor implements ChannelInterceptor {
         ChannelInterceptor.super.postSend(message, channel, sent);
     }
 
-    @Override
-    public boolean preReceive(MessageChannel channel) {
-        log.info("preReceive channel={}", channel);
-        return ChannelInterceptor.super.preReceive(channel);
-    }
-
-    @Override
-    public Message<?> postReceive(Message<?> message, MessageChannel channel) {
-        log.info("postReceive mssage={} channel={}", message, channel);
-        return ChannelInterceptor.super.postReceive(message, channel);
-    }
-
-    @Override
-    public void afterReceiveCompletion(Message<?> message, MessageChannel channel, Exception ex) {
-        log.info("afterReceiveCompletion mssage={} channel={}", message, channel);
-        ChannelInterceptor.super.afterReceiveCompletion(message, channel, ex);
-    }
 }

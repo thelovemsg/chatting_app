@@ -100,3 +100,30 @@
 .display-inline-block {
   display: inline-block;
 }
+
+.chat-main {
+  text-align: center;
+  max-width: 600px;
+  margin: 30px auto;
+}
+
+.chat-window {
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  padding: 20px;
+  overflow-y: auto;
+  max-height: 400px;
+}
+
+.chat-input {
+  width: 80%;
+  padding: 10px 15px;
+  margin: 20px 0;
+  box-sizing: border-box;
+}
+
+.chat-send-button {
+  padding: 10px 15px;
+  font-size: 14px;
+  cursor: pointer;
+}

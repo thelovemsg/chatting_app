@@ -39,7 +39,7 @@ function* userRegister(action) {
     yield put(REGISTER_SUCCESS());
   } catch (err) {
     alert(err.message);
-    yield put(REGISTER_FAILURE(err));
+    yield put(REGISTER_FAILURE(err.message));
   }
 }
 

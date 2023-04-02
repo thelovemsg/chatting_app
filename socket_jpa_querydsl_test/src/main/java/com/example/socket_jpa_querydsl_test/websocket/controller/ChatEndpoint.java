@@ -17,6 +17,7 @@ public class ChatEndpoint {
     @MessageMapping("/chat")
     @SendTo("/topic/messages")
     public String handleChatMessage(String message) {
+        System.out.println("handleChatMessage working ... :: message = " + message);
         return message;
     }
 }
