@@ -63,3 +63,4 @@ https://www.youtube.com/watch?v=edWbHp_k_9Y&ab_channel=%ED%86%A0%EC%8A%A4
 #### 2023-03-20 오후
 ##### 1. 다국어 처리를 react 에서 관리하긴 하지만 spring boot 에서도 해주고 싶음.
 이유는 메시지를 그대로 alert로 띄워주고 싶음.(다국어 처리된 상태로). 이에 대한 고민이 필요함.
+testing...
