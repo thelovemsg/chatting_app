@@ -14,24 +14,22 @@ import org.springframework.web.socket.config.annotation.WebSocketTransportRegist
 @EnableWebSocketMessageBroker
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
-<<<<<<< Updated upstream
     private final BadWordsUtils badWordsUtils;
 
     public WebSocketConfig(BadWordsUtils badWordsUtils) {
         this.badWordsUtils = badWordsUtils;
     }
 
-=======
     /**
      * 메시지 브로커 설정 역할
      * 클라이언트와 서버 사이에 메시지를 주고 받는데 책임을 짐.
      * @param config
      */
->>>>>>> Stashed changes
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
-        config.enableSimpleBroker("/topic");
+        config.enableSimpleBroker("/topic", "/queue");
         config.setApplicationDestinationPrefixes("/app");
+        config.setUserDestinationPrefix("/user");
     }
 
     /**

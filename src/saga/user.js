@@ -20,11 +20,13 @@ function* logIn(action) {
 
 function* logOut(action) {
   try {
+    console.log("logout action in saga/user.js");
     // const result = yield call(logInAPI);
     yield delay(1000);
     // throw new Error("tesitng");
     yield put(LOG_OUT_SUCCESS());
   } catch (err) {
+    console.error("error occur!");
     yield put(LOG_OUT_FAILURE({ code: err.code, message: err.messsage }));
   }
 }

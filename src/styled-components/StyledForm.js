@@ -70,6 +70,7 @@ export const StyledButton = styled(Button)`
 
 export const StyledValidationCheck = styled("div")`
   margin: auto;
+  text-align: center;
   color: red;
 `;
 

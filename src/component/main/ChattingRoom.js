@@ -6,7 +6,7 @@ import {
   StyledErrorMSg,
 } from "../../styled-components/StyledForm";
 
-const Main1 = () => {
+const ChattingRoom = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
@@ -40,7 +40,7 @@ const Main1 = () => {
   }, []);
 
   const handleError = (errorMessage) => {
-    console.error("Error message received:", errorMessage.body);
+    setErrorMsg(errorMessage.body);
     // Display the error message to the user or handle it as needed
   };
 
@@ -78,4 +78,4 @@ const Main1 = () => {
   );
 };
 
-export default Main1;
+export default ChattingRoom;

@@ -12,7 +12,6 @@ import { REGISTER_REQUEST } from "../reducers/user";
 import AddressPopup from "./address/AddressPopup";
 import useRegister from "../hooks/useRegister";
 import { useTranslation } from "react-i18next";
-import { useEffect } from "react";
 const Register = () => {
   const { t } = useTranslation();
   const {

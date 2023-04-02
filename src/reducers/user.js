@@ -5,8 +5,10 @@ export const userSlice = createSlice({
   initialState: {
     loginHandling: false,
     loginDone: false,
+    logoutHandling: false,
     logoutDone: false,
     loginError: null,
+    logoutError: null,
     registerHandling: false,
     registerDone: false,
     registerError: null,
@@ -28,16 +30,21 @@ export const userSlice = createSlice({
       };
     },
     LOG_OUT_REQUEST: (state) => {
-      state.loginHandling = true;
+      state.logoutHandling = true;
     },
     LOG_OUT_SUCCESS: (state) => {
-      state.loginHandling = false;
-      state.registerDone = true;
+      state.logoutHandling = false;
+      state.logoutDone = true;
+      state.loginDone = false;
     },
     LOG_OUT_FAILURE: (state, action) => {
+      console.log("LOG_OUT_FAILURE :: ", state);
       // api 통신시 에러와 에러메시지 받음. default 처리
-      state.loginHandling = false;
-      state.registerDone = false;
+      state.logoutHandling = false;
+      state.logoutError = {
+        code: action.payload.code,
+        message: action.payload.message,
+      };
     },
     REGISTER_REQUEST: (state) => {
       state.registerHandling = true;

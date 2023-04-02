@@ -3,6 +3,25 @@
   --main-danger-color: red;
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+a {
+  text-decoration-line: none !important;
+}
+
+.active-link {
+  font-weight: bold;
+  font-style: italic;
+  text-align: cenbter;
+}
+
 .navbar-toggler {
   background-color: var(--main-text-color-head) !important;
 }
@@ -13,6 +32,16 @@
 
 #basic-nav-dropdown {
   color: var(--main-text-color-head) !important;
+}
+
+.dropdown-menu {
+  width: 50% !important;
+  margin: auto !important;
+}
+
+a.dropdown-item {
+  text-align: center !important;
+  margin: auto;
 }
 
 .href-style {
@@ -126,4 +155,23 @@
   padding: 10px 15px;
   font-size: 14px;
   cursor: pointer;
+}
+
+/* ScrollToBottomButton.js css*/
+.scroll-to-bottom {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.scroll-to-bottom:hover {
+  background-color: #0056b3;
 }
