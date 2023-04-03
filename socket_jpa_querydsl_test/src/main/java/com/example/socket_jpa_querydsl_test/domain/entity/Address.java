@@ -1,4 +1,4 @@
-package com.example.socket_jpa_querydsl_test.domain;
+package com.example.socket_jpa_querydsl_test.domain.entity;
 
 import com.example.socket_jpa_querydsl_test.domain.status.AddressStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -8,8 +8,6 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 import static jakarta.persistence.EnumType.STRING;
 import static jakarta.persistence.FetchType.*;

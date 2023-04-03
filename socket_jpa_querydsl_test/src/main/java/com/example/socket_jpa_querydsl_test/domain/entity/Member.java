@@ -1,4 +1,4 @@
-package com.example.socket_jpa_querydsl_test.domain;
+package com.example.socket_jpa_querydsl_test.domain.entity;
 
 import com.example.socket_jpa_querydsl_test.domain.status.AddressStatus;
 import com.example.socket_jpa_querydsl_test.domain.utils.PasswordConverter;

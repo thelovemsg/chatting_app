@@ -1,5 +1,6 @@
 package com.example.socket_jpa_querydsl_test.websocket.config;
 
+import com.example.socket_jpa_querydsl_test.domain.utils.BadWordsUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;

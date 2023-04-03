@@ -1,6 +1,6 @@
 package com.example.socket_jpa_querydsl_test.api.dto.response;
 
-import com.example.socket_jpa_querydsl_test.domain.Member;
+import com.example.socket_jpa_querydsl_test.domain.entity.Member;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

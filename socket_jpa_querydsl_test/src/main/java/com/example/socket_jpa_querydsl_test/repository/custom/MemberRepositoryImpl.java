@@ -1,11 +1,9 @@
 package com.example.socket_jpa_querydsl_test.repository.custom;
 
-import com.example.socket_jpa_querydsl_test.domain.Member;
-import com.example.socket_jpa_querydsl_test.domain.QMember;
+import com.example.socket_jpa_querydsl_test.domain.entity.Member;
 import com.querydsl.jpa.JPQLQueryFactory;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

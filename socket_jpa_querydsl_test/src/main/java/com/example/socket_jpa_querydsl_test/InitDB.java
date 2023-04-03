@@ -1,7 +1,7 @@
 package com.example.socket_jpa_querydsl_test;
 
-import com.example.socket_jpa_querydsl_test.domain.Address;
-import com.example.socket_jpa_querydsl_test.domain.Member;
+import com.example.socket_jpa_querydsl_test.domain.entity.Address;
+import com.example.socket_jpa_querydsl_test.domain.entity.Member;
 import jakarta.annotation.PostConstruct;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;

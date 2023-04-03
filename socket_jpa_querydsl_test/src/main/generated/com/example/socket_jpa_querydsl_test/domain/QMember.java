@@ -2,6 +2,8 @@ package com.example.socket_jpa_querydsl_test.domain;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
+import com.example.socket_jpa_querydsl_test.domain.entity.Address;
+import com.example.socket_jpa_querydsl_test.domain.entity.Member;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;

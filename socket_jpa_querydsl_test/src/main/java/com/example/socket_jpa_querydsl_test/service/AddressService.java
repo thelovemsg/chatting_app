@@ -1,6 +1,6 @@
 package com.example.socket_jpa_querydsl_test.service;
 
-import com.example.socket_jpa_querydsl_test.domain.Address;
+import com.example.socket_jpa_querydsl_test.domain.entity.Address;
 import com.example.socket_jpa_querydsl_test.repository.AddressRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
