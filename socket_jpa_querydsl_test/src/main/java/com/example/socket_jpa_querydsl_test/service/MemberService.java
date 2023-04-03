@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -56,7 +55,6 @@ public class MemberService {
 
     public String findDuplicateFieldName(String email, String nickname, String phoneNumber) {
         QMember member = QMember.member;
-        BooleanBuilder predicate = new BooleanBuilder();
 
         if(email != null && memberRepository.findOne(member.email.equalsIgnoreCase(email)).isPresent()){
             return "email";

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@EqualsAndHashCode(callSuper = true)
 @Table(uniqueConstraints =
             {
                 @UniqueConstraint(columnNames = {"nickname"}),
@@ -20,7 +21,6 @@ import java.util.List;
                 @UniqueConstraint(columnNames = {"email"})
             }
         )
-@EntityListeners(AuditingEntityListener.class)
 @Data
 @Builder
 @NoArgsConstructor
@@ -51,6 +51,7 @@ public class Member extends BaseEntity implements Serializable {
 
 //    @JsonIgnore
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    @Builder.Default
     private List<Address> addresses = new ArrayList<>();
 
     public void addAddress(Address address){

@@ -11,13 +11,13 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static jakarta.persistence.EnumType.STRING;
 import static jakarta.persistence.FetchType.*;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@EntityListeners(AuditingEntityListener.class)
 @Data
 @ToString(exclude = "member")
 public class Address extends BaseEntity{
@@ -41,7 +41,7 @@ public class Address extends BaseEntity{
     @CreatedDate
     private LocalDateTime regDate;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(STRING)
     private AddressStatus addressStatus = AddressStatus.ETC;
 
 }
