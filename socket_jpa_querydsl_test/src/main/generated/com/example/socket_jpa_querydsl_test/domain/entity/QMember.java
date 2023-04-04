@@ -1,9 +1,7 @@
-package com.example.socket_jpa_querydsl_test.domain;
+package com.example.socket_jpa_querydsl_test.domain.entity;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.example.socket_jpa_querydsl_test.domain.entity.Address;
-import com.example.socket_jpa_querydsl_test.domain.entity.Member;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;
@@ -18,7 +16,7 @@ import com.querydsl.core.types.dsl.PathInits;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QMember extends EntityPathBase<Member> {
 
-    private static final long serialVersionUID = 1251759411L;
+    private static final long serialVersionUID = 924924556L;
 
     public static final QMember member = new QMember("member1");
 

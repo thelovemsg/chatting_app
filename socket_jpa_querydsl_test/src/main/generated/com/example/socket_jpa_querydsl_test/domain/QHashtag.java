@@ -2,6 +2,7 @@ package com.example.socket_jpa_querydsl_test.domain;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
+import com.example.socket_jpa_querydsl_test.domain.entity.Hashtag;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;
@@ -22,7 +23,7 @@ public class QHashtag extends EntityPathBase<Hashtag> {
 
     public static final QHashtag hashtag = new QHashtag("hashtag");
 
-    public final QBaseEntity _super = new QBaseEntity(this);
+    public final com.example.socket_jpa_querydsl_test.domain.entity.QBaseEntity _super = new com.example.socket_jpa_querydsl_test.domain.entity.QBaseEntity(this);
 
     public final QChattingRoom chattingRoom;
 

@@ -1,9 +1,7 @@
-package com.example.socket_jpa_querydsl_test.domain;
+package com.example.socket_jpa_querydsl_test.domain.entity;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.example.socket_jpa_querydsl_test.domain.entity.ChattingRoom;
-import com.example.socket_jpa_querydsl_test.domain.entity.Hashtag;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;
@@ -18,11 +16,13 @@ import com.querydsl.core.types.dsl.PathInits;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QChattingRoom extends EntityPathBase<ChattingRoom> {
 
-    private static final long serialVersionUID = 1206095898L;
+    private static final long serialVersionUID = 410209971L;
 
     public static final QChattingRoom chattingRoom = new QChattingRoom("chattingRoom");
 
-    public final com.example.socket_jpa_querydsl_test.domain.entity.QBaseEntity _super = new com.example.socket_jpa_querydsl_test.domain.entity.QBaseEntity(this);
+    public final QBaseEntity _super = new QBaseEntity(this);
+
+    public final StringPath content = createString("content");
 
     //inherited
     public final StringPath createdBy = _super.createdBy;
@@ -30,7 +30,7 @@ public class QChattingRoom extends EntityPathBase<ChattingRoom> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
 
-    public final ListPath<Hashtag, QHashtag> hashtags = this.<Hashtag, QHashtag>createList("hashtags", Hashtag.class, QHashtag.class, PathInits.DIRECT2);
+    public final ListPath<Hashtag, com.example.socket_jpa_querydsl_test.domain.QHashtag> hashtags = this.<Hashtag, com.example.socket_jpa_querydsl_test.domain.QHashtag>createList("hashtags", Hashtag.class, com.example.socket_jpa_querydsl_test.domain.QHashtag.class, PathInits.DIRECT2);
 
     public final StringPath id = createString("id");
 
@@ -39,12 +39,6 @@ public class QChattingRoom extends EntityPathBase<ChattingRoom> {
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> modifiedDate = _super.modifiedDate;
-
-    public final StringPath name = createString("name");
-
-    public final StringPath password = createString("password");
-
-    public final EnumPath<com.example.socket_jpa_querydsl_test.domain.status.ChattingRoomStatus> status = createEnum("status", com.example.socket_jpa_querydsl_test.domain.status.ChattingRoomStatus.class);
 
     public QChattingRoom(String variable) {
         super(ChattingRoom.class, forVariable(variable));

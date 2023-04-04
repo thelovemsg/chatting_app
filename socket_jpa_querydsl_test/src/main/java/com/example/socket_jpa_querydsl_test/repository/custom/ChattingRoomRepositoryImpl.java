@@ -1,8 +1,6 @@
 package com.example.socket_jpa_querydsl_test.repository.custom;
 
-import com.example.socket_jpa_querydsl_test.domain.ChattingRoom;
-import com.example.socket_jpa_querydsl_test.domain.QChattingRoom;
-import com.example.socket_jpa_querydsl_test.domain.QHashtag;
+import com.example.socket_jpa_querydsl_test.domain.entity.ChattingRoom;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.JPQLQueryFactory;
 import org.springframework.beans.factory.annotation.Autowired;

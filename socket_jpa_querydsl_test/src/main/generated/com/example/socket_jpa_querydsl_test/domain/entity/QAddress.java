@@ -1,8 +1,7 @@
-package com.example.socket_jpa_querydsl_test.domain;
+package com.example.socket_jpa_querydsl_test.domain.entity;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.example.socket_jpa_querydsl_test.domain.entity.Address;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;
@@ -17,7 +16,7 @@ import com.querydsl.core.types.dsl.PathInits;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QAddress extends EntityPathBase<Address> {
 
-    private static final long serialVersionUID = -1946737541L;
+    private static final long serialVersionUID = 806283842L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
