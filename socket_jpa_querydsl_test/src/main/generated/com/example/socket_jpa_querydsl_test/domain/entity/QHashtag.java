@@ -1,8 +1,7 @@
-package com.example.socket_jpa_querydsl_test.domain;
+package com.example.socket_jpa_querydsl_test.domain.entity;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.example.socket_jpa_querydsl_test.domain.entity.Hashtag;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;
@@ -17,13 +16,13 @@ import com.querydsl.core.types.dsl.PathInits;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QHashtag extends EntityPathBase<Hashtag> {
 
-    private static final long serialVersionUID = -101497773L;
+    private static final long serialVersionUID = -1643443686L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
     public static final QHashtag hashtag = new QHashtag("hashtag");
 
-    public final com.example.socket_jpa_querydsl_test.domain.entity.QBaseEntity _super = new com.example.socket_jpa_querydsl_test.domain.entity.QBaseEntity(this);
+    public final QBaseEntity _super = new QBaseEntity(this);
 
     public final QChattingRoom chattingRoom;
 
@@ -34,6 +33,9 @@ public class QHashtag extends EntityPathBase<Hashtag> {
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
+
+    //inherited
+    public final NumberPath<Integer> flag = _super.flag;
 
     public final StringPath id = createString("id");
 

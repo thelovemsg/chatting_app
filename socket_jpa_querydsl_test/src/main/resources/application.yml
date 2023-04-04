@@ -44,3 +44,6 @@ password:
   encryption_key: thelovemsg-secret-key
   algorithm: AES
   transformation: AES/ECB/PKCS5Padding
+file:
+  storage:
+    location:  D://IntelliJ_IDEA//files

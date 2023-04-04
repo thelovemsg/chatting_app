@@ -6,7 +6,6 @@ import com.example.socket_jpa_querydsl_test.api.dto.entity.MemberSaveDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,12 +14,12 @@ import java.util.List;
 @Entity
 @EqualsAndHashCode(callSuper = true)
 @Table(uniqueConstraints =
-            {
-                @UniqueConstraint(columnNames = {"nickname"}),
-                @UniqueConstraint(columnNames = {"phoneNumber"}),
-                @UniqueConstraint(columnNames = {"email"})
-            }
-        )
+    {
+        @UniqueConstraint(columnNames = {"nickname"}),
+        @UniqueConstraint(columnNames = {"phoneNumber"}),
+        @UniqueConstraint(columnNames = {"email"})
+    }
+)
 @Data
 @Builder
 @NoArgsConstructor
@@ -53,6 +52,9 @@ public class Member extends BaseEntity implements Serializable {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     @Builder.Default
     private List<Address> addresses = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<File> files = new ArrayList<>();
 
     public void addAddress(Address address){
         addresses.add(address);

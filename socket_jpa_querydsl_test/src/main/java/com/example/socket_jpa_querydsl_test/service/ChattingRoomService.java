@@ -1,5 +1,6 @@
 package com.example.socket_jpa_querydsl_test.service;
 
+import com.example.socket_jpa_querydsl_test.domain.entity.ChattingRoom;
 import com.example.socket_jpa_querydsl_test.domain.entity.Hashtag;
 import com.example.socket_jpa_querydsl_test.repository.ChattingRoomRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,8 @@ public class ChattingRoomService {
             Hashtag hashtag = new Hashtag(content, chattingRoom, sequence.getAndIncrement());
             chattingRoom.addHashtag(hashtag);
         });
+
+        return chattingRoomRepository.save(chattingRoom);
     }
 
 }

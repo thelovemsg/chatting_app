@@ -32,6 +32,11 @@ public class QMember extends EntityPathBase<Member> {
 
     public final StringPath email = createString("email");
 
+    public final ListPath<File, QFile> files = this.<File, QFile>createList("files", File.class, QFile.class, PathInits.DIRECT2);
+
+    //inherited
+    public final NumberPath<Integer> flag = _super.flag;
+
     public final StringPath id = createString("id");
 
     //inherited

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-import static com.example.socket_jpa_querydsl_test.domain.QMember.*;
+import static com.example.socket_jpa_querydsl_test.domain.entity.QMember.member;
 
 @Repository
 public class MemberRepositoryImpl implements MemberRepositoryCustom{

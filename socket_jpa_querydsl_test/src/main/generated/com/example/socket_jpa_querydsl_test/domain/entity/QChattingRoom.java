@@ -22,15 +22,16 @@ public class QChattingRoom extends EntityPathBase<ChattingRoom> {
 
     public final QBaseEntity _super = new QBaseEntity(this);
 
-    public final StringPath content = createString("content");
-
     //inherited
     public final StringPath createdBy = _super.createdBy;
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
 
-    public final ListPath<Hashtag, com.example.socket_jpa_querydsl_test.domain.QHashtag> hashtags = this.<Hashtag, com.example.socket_jpa_querydsl_test.domain.QHashtag>createList("hashtags", Hashtag.class, com.example.socket_jpa_querydsl_test.domain.QHashtag.class, PathInits.DIRECT2);
+    //inherited
+    public final NumberPath<Integer> flag = _super.flag;
+
+    public final ListPath<Hashtag, QHashtag> hashtags = this.<Hashtag, QHashtag>createList("hashtags", Hashtag.class, QHashtag.class, PathInits.DIRECT2);
 
     public final StringPath id = createString("id");
 
@@ -39,6 +40,12 @@ public class QChattingRoom extends EntityPathBase<ChattingRoom> {
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> modifiedDate = _super.modifiedDate;
+
+    public final StringPath name = createString("name");
+
+    public final StringPath password = createString("password");
+
+    public final EnumPath<com.example.socket_jpa_querydsl_test.domain.status.ChattingRoomStatus> status = createEnum("status", com.example.socket_jpa_querydsl_test.domain.status.ChattingRoomStatus.class);
 
     public QChattingRoom(String variable) {
         super(ChattingRoom.class, forVariable(variable));
