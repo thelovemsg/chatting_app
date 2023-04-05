@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8cebb3be-31b2-4eec-a345-a24764aba0d6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/generated/com/example/socket_jpa_querydsl_test/domain/entity/QFile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/java/com/example/socket_jpa_querydsl_test/controller/FileController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/java/com/example/socket_jpa_querydsl_test/domain/entity/File.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/java/com/example/socket_jpa_querydsl_test/repository/FileRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/java/com/example/socket_jpa_querydsl_test/service/FileStorageService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/test/java/com/example/socket_jpa_querydsl_test/service/FileStorageServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/generated/com/example/socket_jpa_querydsl_test/domain/QChattingRoom.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/generated/com/example/socket_jpa_querydsl_test/domain/QHashtag.java" beforeDir="false" afterPath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/generated/com/example/socket_jpa_querydsl_test/domain/entity/QHashtag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/generated/com/example/socket_jpa_querydsl_test/domain/entity/QAddress.java" beforeDir="false" afterPath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/generated/com/example/socket_jpa_querydsl_test/domain/entity/QAddress.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/generated/com/example/socket_jpa_querydsl_test/domain/entity/QBaseEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/generated/com/example/socket_jpa_querydsl_test/domain/entity/QBaseEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/generated/com/example/socket_jpa_querydsl_test/domain/entity/QChattingRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/generated/com/example/socket_jpa_querydsl_test/domain/entity/QChattingRoom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/generated/com/example/socket_jpa_querydsl_test/domain/entity/QMember.java" beforeDir="false" afterPath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/generated/com/example/socket_jpa_querydsl_test/domain/entity/QMember.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/java/com/example/socket_jpa_querydsl_test/domain/entity/BaseEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/java/com/example/socket_jpa_querydsl_test/domain/entity/BaseEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/java/com/example/socket_jpa_querydsl_test/domain/entity/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/java/com/example/socket_jpa_querydsl_test/domain/entity/Member.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/java/com/example/socket_jpa_querydsl_test/repository/custom/ChattingRoomRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/java/com/example/socket_jpa_querydsl_test/repository/custom/ChattingRoomRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/java/com/example/socket_jpa_querydsl_test/repository/custom/MemberRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/java/com/example/socket_jpa_querydsl_test/repository/custom/MemberRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/java/com/example/socket_jpa_querydsl_test/service/ChattingRoomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/java/com/example/socket_jpa_querydsl_test/service/ChattingRoomService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/java/com/example/socket_jpa_querydsl_test/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/java/com/example/socket_jpa_querydsl_test/service/MemberService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/resources/application.yml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2Nxrn3XdknZnnrPcBAJEJ9WiWLW" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8cebb3be-31b2-4eec-a345-a24764aba0d6" name="Changes" comment="" />
+      <created>1680616741127</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1680616741127</updated>
+    </task>
+    <servers />
+  </component>
+</project>

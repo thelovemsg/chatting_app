@@ -40,6 +40,9 @@ public class Member extends BaseEntity implements Serializable {
     @Column(name = "nickname")
     private String nickname;
 
+    @Column(name = "user_own_id")
+    private String user_own_id;
+
     @Column(name = "phoneNumber")
     private String phoneNumber;
 

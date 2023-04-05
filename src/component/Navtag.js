@@ -4,7 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useSelector } from "react-redux";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Login from "./Login";
 import Logout from "./Logout";
 import { useTranslation, Trans } from "react-i18next"; // 1. react-i18next import
@@ -80,10 +80,35 @@ const Navtag = () => {
                   홈화면
                 </Link>
               </Nav.Link>
-              <Nav.Link>
-                {loginDone ? (
-                  <Logout />
-                ) : (
+              {loginDone ? (
+                <>
+                  <Nav.Link className="href-style">
+                    <Link
+                      to="/friends"
+                      className={generateLinkClassName("/friends")}
+                      onClick={() => handleLinkClick("/friends")}
+                    >
+                      채팅하기
+                      {/* 채팅하기는 로그인 해야만 되도록 하자.
+                  만일 로그인이 안됫으면? 로그인 화면으로 안내한 후에 다시 채팅방으로 와야함. */}
+                    </Link>
+                  </Nav.Link>
+                  <Nav.Link className="href-style">
+                    <Link
+                      to="/profile"
+                      className={generateLinkClassName("/profile")}
+                      onClick={() => handleLinkClick("/profile")}
+                    >
+                      프로필
+                      {/* 프로필도 로그인 한 후에 표출 */}
+                    </Link>
+                  </Nav.Link>
+                  <Nav.Link>
+                    <Logout />
+                  </Nav.Link>
+                </>
+              ) : (
+                <Nav.Link>
                   <Link
                     to="/signin"
                     className={generateLinkClassName("/signin")}
@@ -91,8 +116,8 @@ const Navtag = () => {
                   >
                     <Login />
                   </Link>
-                )}
-              </Nav.Link>
+                </Nav.Link>
+              )}
               <Nav.Link className="href-style">
                 <Link
                   to="/register"
@@ -100,24 +125,6 @@ const Navtag = () => {
                   onClick={() => handleLinkClick("/register")}
                 >
                   회원가입
-                </Link>
-              </Nav.Link>
-              <Nav.Link className="href-style">
-                <Link
-                  to="/chatting"
-                  className={generateLinkClassName("/chatting")}
-                  onClick={() => handleLinkClick("/chatting")}
-                >
-                  채팅하기
-                </Link>
-              </Nav.Link>
-              <Nav.Link className="href-style">
-                <Link
-                  to="/profile"
-                  className={generateLinkClassName("/profile")}
-                  onClick={() => handleLinkClick("/profile")}
-                >
-                  로그인 시 나의 정보 표출
                 </Link>
               </Nav.Link>
               <NavDropdown
@@ -135,6 +142,7 @@ const Navtag = () => {
                     사용법
                   </Link>
                 </NavDropdown.Item>
+
                 <NavDropdown.Item>
                   <Link to="/contact" className="href-style">
                     contact us

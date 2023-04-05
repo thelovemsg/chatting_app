@@ -9,7 +9,8 @@ import FooterContainer from "./container/FooterContainer";
 import Register from "./component/Register";
 import Home from "./component/Home";
 
-import ChattingRoom from "./component/main/ChattingRoom";
+// import ChattingRoom from "./component/main/ChattingRoom";
+import Friends from "./component/chatting/Friends";
 import ScrollButtons from "./component/utility/ScrollButtons";
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/chatting" element={<ChattingRoom />} />
+          <Route path="/friends" element={<Friends />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
         <ScrollButtons />

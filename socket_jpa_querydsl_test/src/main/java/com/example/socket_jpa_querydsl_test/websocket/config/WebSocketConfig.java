@@ -41,7 +41,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
      */
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        //새로운 STOMP endpoint 를 등록. client는 여기에 접속할거임.
+        //새로운 STOMP endpoint 를 등록. client는 여기에 접속할거임.   
         registry.addEndpoint("/chat-websocket").setAllowedOriginPatterns("*").withSockJS();
     }
 

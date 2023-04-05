@@ -7,26 +7,52 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 
+import java.security.Principal;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+
 @Controller
 @Slf4j
 public class ChatEndpoint {
 
     private final SimpMessagingTemplate messagingTemplate;
+    private final Map<String, Set<Principal>> roomUserMapping = new ConcurrentHashMap<>();
 
     public ChatEndpoint(SimpMessagingTemplate messagingTemplate) {
         this.messagingTemplate = messagingTemplate;
     }
 
-    @MessageMapping("/chat")
-    @SendTo("/topic/messages")
-    public String handleChatMessage(String message) {
-        log.info("message = {}", message);
-        return message;
+    @MessageMapping("/chat/{roomId}/join")
+    public void join(@DestinationVariable String roomId, Principal principal) {
+        roomUserMapping.putIfAbsent(roomId, ConcurrentHashMap.newKeySet());
+        roomUserMapping.get(roomId).add(principal);
+
+        int userCount = roomUserMapping.get(roomId).size();
+        messagingTemplate.convertAndSend("/topic/chat/" + roomId + "/userCount", userCount);
     }
 
-    @MessageMapping("/private.chat/{userId}")
-    public void sendPrivateMessage(@DestinationVariable String userId, String message) {
-        log.info("message = {}", message);
-        messagingTemplate.convertAndSend("/user/" + userId + "/queue/chat", message);
+    @MessageMapping("/chat/{roomId}/leave")
+    public void leave(@DestinationVariable String roomId, Principal principal) {
+        Set<Principal> users = roomUserMapping.get(roomId);
+        if(users != null) {
+            users.remove(principal);
+            int userCount = users.size();
+            messagingTemplate.convertAndSend("/topic/chat/" + roomId + "/userCount", userCount);
+        }
     }
+
+    @MessageMapping("/chat/{roomId}")
+    @SendTo("/topic/messages/{roomId}")
+    public String handleChatMessage(@DestinationVariable String roomId, String message, Principal principal) {
+        Set<Principal> users = roomUserMapping.get(roomId);
+        if (users != null && users.contains(principal)) {
+            log.info("Room: {}, message: {}", roomId, message);
+            return message;
+        } else {
+            log.warn("User {} attempted to send a message to room {} without being a member", principal.getName(), roomId);
+            return null;
+        }
+    }
+
 }

@@ -1,10 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import SockJS from "sockjs-client";
 import { Client } from "@stomp/stompjs";
-import {
-  StyledErrorMsg,
-  StyledErrorMSg,
-} from "../../styled-components/StyledForm";
+import { StyledErrorMsg } from "../../styled-components/StyledForm";
 
 const ChattingRoom = () => {
   const [messages, setMessages] = useState([]);
