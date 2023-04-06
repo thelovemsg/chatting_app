@@ -36,7 +36,7 @@ public class FileStorageService {
 
     public String store(MultipartFile file) {
         try {
-//        String userFolderPath = "user-files/" + userId;
+//        String userFolderPath = "user-fileEntities/" + userId;
 
             String fileName = StringUtils.cleanPath(file.getOriginalFilename());
             Path userStorageLocation  = this.storageLocation.resolve(fileName);
@@ -74,15 +74,15 @@ public class FileStorageService {
     public Resource load(String fileName) {
         try {
 
-            // Retrieve the File entity from the database using the fileName
-            File fileEntity = fileRepository.findByFileName(fileName);
-            if (fileEntity == null) {
-                throw new RuntimeException("File not found: " + fileName);
+            // Retrieve the FileEntity entity from the database using the fileName
+            File file = fileRepository.findByFileName(fileName);
+            if (file == null) {
+                throw new RuntimeException("FileEntity not found: " + fileName);
             }
 
-            String userFolderPath = fileEntity.getMember() != null ?
-                    "user-files/" + fileEntity.getMember().getId()
-                        : "user-files/";
+            String userFolderPath = file.getMember() != null ?
+                    "user-fileEntities/" + file.getMember().getId()
+                        : "user-fileEntities/";
 
 //            Path userStorageLocation  = Paths.get(userFolderPath).toAbsolutePath().normalize();
 //            Path userStorageLocation  = this.storageLocation.resolve(userFolderPath);
@@ -91,10 +91,10 @@ public class FileStorageService {
             if (resource.exists()) {
                 return resource;
             } else {
-                throw new RuntimeException("File not found: " + fileName);
+                throw new RuntimeException("FileEntity not found: " + fileName);
             }
         } catch (MalformedURLException e) {
-            throw new RuntimeException("File not found: " + fileName, e);
+            throw new RuntimeException("FileEntity not found: " + fileName, e);
         }
     }
 

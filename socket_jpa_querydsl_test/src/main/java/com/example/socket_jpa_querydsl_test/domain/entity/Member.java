@@ -57,6 +57,7 @@ public class Member extends BaseEntity implements Serializable {
     private List<Address> addresses = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    @Builder.Default
     private List<File> files = new ArrayList<>();
 
     public void addAddress(Address address){

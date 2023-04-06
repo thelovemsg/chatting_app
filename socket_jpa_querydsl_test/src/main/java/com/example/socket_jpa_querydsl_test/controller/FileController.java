@@ -18,7 +18,7 @@ public class FileController {
     @PostMapping
     public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) {
         String fileName = fileStorageService.store(file);
-        return ResponseEntity.ok("File uploaded successfully: " + fileName);
+        return ResponseEntity.ok("FileEntity uploaded successfully: " + fileName);
     }
 
     @GetMapping("/{fileName:.+}")
@@ -32,6 +32,6 @@ public class FileController {
     @DeleteMapping("/{fileName:.+}")
     public ResponseEntity<String> deleteFile(@PathVariable String fileName) {
         fileStorageService.delete(fileName);
-        return ResponseEntity.ok("File deleted successfully: " + fileName);
+        return ResponseEntity.ok("FileEntity deleted successfully: " + fileName);
     }
 }

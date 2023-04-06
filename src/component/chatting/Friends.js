@@ -9,26 +9,29 @@ import {
 import {
   StyleFontAwesomeIcon,
   StyledChattingScreen,
-  StyledChattingScreenIcons,
+  StyledChattingScreenIconsTop,
   StyledChattingScreenLeft,
   StyledChattingScreenRight,
   StyledTopicComponent,
 } from "../../styled-components/StyledForm";
+import MyProfile from "./MyProfile";
 
 const Friends = () => {
   return (
     <StyledChattingScreen>
       <StyledChattingScreenLeft>
-        <StyledChattingScreenIcons>
+        <StyledChattingScreenIconsTop>
           <StyleFontAwesomeIcon icon={faUser} />
           <StyleFontAwesomeIcon icon={faCommentDots} />
           <StyleFontAwesomeIcon icon={faBell} />
-        </StyledChattingScreenIcons>
+        </StyledChattingScreenIconsTop>
       </StyledChattingScreenLeft>
       <StyledChattingScreenRight>
-        <StyledTopicComponent />
-        <StyledTopicComponent />
-        <StyledTopicComponent />
+        <div className="custom_align">
+          <MyProfile></MyProfile>
+          <StyledTopicComponent></StyledTopicComponent>
+          <StyledTopicComponent></StyledTopicComponent>
+        </div>
       </StyledChattingScreenRight>
     </StyledChattingScreen>
   );

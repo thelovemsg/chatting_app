@@ -1,17 +1,11 @@
+/* Variables */
+
 :root {
   --main-text-color-head: #fafabe;
   --main-danger-color: red;
 }
 
-body::-webkit-scrollbar {
-  display: none;
-}
-
-body {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
+/* Typography */
 a {
   text-decoration-line: none !important;
 }
@@ -22,6 +16,22 @@ a {
   text-align: cenbter;
 }
 
+.href-style {
+  text-decoration: none;
+  text-align: center;
+}
+
+/* Scrollbar */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Navigation */
 .navbar-toggler {
   background-color: var(--main-text-color-head) !important;
 }
@@ -44,21 +54,18 @@ a.dropdown-item {
   margin: auto;
 }
 
-.href-style {
-  text-decoration: none;
-  text-align: center;
-}
-
+/* Buttons */
 .btn {
   margin-left: 10px !important;
   margin-right: 10px !important;
 }
 
+/* Footer */
 .footer-height {
   height: 10% !important;
 }
 
-/*ModalTest*/
+/* Modal */
 .MyModal {
   background: rgba(0, 0, 0, 0.25);
   position: fixed;
@@ -78,7 +85,6 @@ a.dropdown-item {
   height: auto;
 }
 
-/*주소 입력*/
 .postmodal {
   background: rgba(0, 0, 0, 0.25);
   position: fixed;
@@ -89,6 +95,7 @@ a.dropdown-item {
   width: 80%;
 }
 
+/* Carousel */
 .carousel {
   background-color: #584c33;
 }
@@ -118,18 +125,16 @@ a.dropdown-item {
   margin-bottom: 10vh;
 }
 
+/* Display */
 .display-none {
   display: none !important;
-}
-
-.display-none {
-  display: none;
 }
 
 .display-inline-block {
   display: inline-block;
 }
 
+/* Chat */
 .chat-main {
   text-align: center;
   max-width: 600px;
@@ -155,4 +160,51 @@ a.dropdown-item {
   padding: 10px 15px;
   font-size: 14px;
   cursor: pointer;
+}
+
+/* MyProfile */
+
+.intro-label {
+  font-size: 25px;
+}
+
+.my-profile-intro {
+  width: 90px;
+  height: 90px;
+  border-radius: 33px;
+}
+
+.my-profile-intro:hover {
+  cursor: pointer;
+}
+
+.display-flex-items {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+}
+
+/* options */
+.custom-mt-20 {
+  margin-top: 20px;
+}
+
+.custom-ml-20 {
+  margin-left: 20px;
+}
+
+.custom-mt-5 {
+  margin-top: 5px;
+}
+
+.profile-label {
+  font-weight: bold;
+}
+
+.profile-description {
+  font-size: 0.9em;
+}
+
+.profile-background-color:hover {
+  background-color: black;
 }

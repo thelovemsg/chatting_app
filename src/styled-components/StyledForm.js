@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Form } from "react-bootstrap";
 import styled from "styled-components";
-import TopicComponent from "../component/chatting/StyledTopicTag";
+import TopicComponent from "../component/chatting/TopicComponent";
 
 export const StyledForm = styled(Form)`
   margin-top: 5vw;
@@ -103,16 +103,19 @@ export const StyledChattingScreen = styled("div")`
 `;
 
 export const StyledChattingScreenLeft = styled("div")`
-  width: 15%;
+  margin-left: 5%;
+  width: 10%;
   height: 100%;
-  background-color: green;
+  background-color: #d2d2d2;
   border-top-left-radius: 5px 5px;
   border-bottom-left-radius: 5px 5px;
+  border: 1px solid #dcdcdc;
   float: left;
+  box-shadow: 5px 5px 5px 2px gray;
 `;
 
-export const StyledChattingScreenIcons = styled("div")`
-  padding: 3px;
+export const StyledChattingScreenIconsTop = styled("div")`
+  padding: 10px;
   margin: auto;
   text-align: center;
 `;
@@ -125,12 +128,15 @@ export const StyleFontAwesomeIcon = styled(FontAwesomeIcon)`
 `;
 
 export const StyledChattingScreenRight = styled("div")`
-  width: 85%;
+  margin-right: 5%;
+  width: 80%;
   height: 100%;
-  background-color: black;
+  background-color: white;
   border-top-right-radius: 5px 5px;
   border-bottom-right-radius: 5px 5px;
   float: right;
+  box-shadow: 5px 5px 5px 2px gray;
+  border: 1px solid #dcdcdc;
 `;
 
 export const StyledTopicComponent = styled(TopicComponent)`

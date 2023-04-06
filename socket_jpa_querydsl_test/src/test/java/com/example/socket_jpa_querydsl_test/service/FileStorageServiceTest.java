@@ -50,7 +50,7 @@ public class FileStorageServiceTest {
         assertNotNull(loadedFile);
         assertTrue(loadedFile.exists());
 
-        // Compare the content of the original and loaded files
+        // Compare the content of the original and loaded fileEntities
         assertArrayEquals(file.getBytes(), Files.readAllBytes(loadedFile.getFile().toPath()));
     }
 

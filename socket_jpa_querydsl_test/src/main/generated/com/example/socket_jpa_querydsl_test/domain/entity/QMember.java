@@ -53,6 +53,8 @@ public class QMember extends EntityPathBase<Member> {
 
     public final StringPath phoneNumber = createString("phoneNumber");
 
+    public final StringPath user_own_id = createString("user_own_id");
+
     public QMember(String variable) {
         super(Member.class, forVariable(variable));
     }
