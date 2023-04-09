@@ -3,6 +3,9 @@
 :root {
   --main-text-color-head: #fafabe;
   --main-danger-color: red;
+  --main-underline-color: #f3eae8;
+  --main-white-color: white;
+  --main-friend-right-tag-hover-color: #e5e5e5;
 }
 
 /* Typography */
@@ -209,5 +212,63 @@ a.dropdown-item {
 }
 
 .profile-background-color:hover {
-  background-color: black;
+  background-color: var(--main-friend-right-tag-hover-color);
+}
+
+/* accordion */
+.custom-accordion {
+  border-radius: 0 !important;
+  margin-bottom: 5px;
+  border-bottom: 1px soild black;
+}
+
+.custom-accordion .accordion-header {
+  border-radius: 0 !important;
+  background-color: #f8f9fa; /* Set your desired background color here */
+  outline: none !important;
+  border-bottom: none !important;
+}
+
+.custom-accordion .accordion-button {
+  border-radius: 0 !important;
+  background-color: transparent;
+  border: none !important;
+  border-bottom-right-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+.custom-accordion .accordion-button:focus {
+  box-shadow: none !important;
+}
+
+.custom-accordion .card {
+  border: none !important;
+}
+
+.accordion-button:not(.collapsed) {
+  color: black !important;
+  box-shadow: none !important;
+  background-color: var(--main-white-color) !important;
+}
+
+.accordion-body {
+  margin-left: 20px !important;
+}
+
+.accordion-item {
+  border: 0px !important;
+}
+
+.accordion-item:last-of-type {
+  border-bottom-right-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+.accordion-item:first-of-type {
+  border-top-right-radius: 0 !important;
+  border-top-left-radius: 0 !important;
+}
+
+.underline {
+  border-bottom: 1px solid var(--main-underline-color);
 }

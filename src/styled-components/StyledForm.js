@@ -1,7 +1,7 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button, Form } from "react-bootstrap";
-import styled from "styled-components";
-import TopicComponent from "../component/chatting/TopicComponent";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Button, Form } from 'react-bootstrap';
+import styled from 'styled-components';
+import TopicComponent from '../component/chatting/TopicComponent';
 
 export const StyledForm = styled(Form)`
   margin-top: 5vw;
@@ -22,7 +22,7 @@ export const StyledLoginForm = styled(Form)`
   }
 `;
 
-export const StyledGroup = styled("div")`
+export const StyledGroup = styled('div')`
   padding: 10px;
   @media (min-width: 768px) {
     display: flex;
@@ -32,7 +32,7 @@ export const StyledGroup = styled("div")`
   }
 `;
 
-export const StyledLabel = styled("label")`
+export const StyledLabel = styled('label')`
   text-align: left;
   margin-bottom: 10px;
   @media (min-width: 768px) {
@@ -41,7 +41,7 @@ export const StyledLabel = styled("label")`
   }
 `;
 
-export const StyledMsgLabel = styled("label")`
+export const StyledMsgLabel = styled('label')`
   text-align: left;
   margin-bottom: 10px;
   margin-right: 10px !important;
@@ -56,7 +56,7 @@ export const StyledMsgLabel = styled("label")`
   }
 `;
 
-export const StyledMessage = styled("label")`
+export const StyledMessage = styled('label')`
   width: 200px;
   text-align: center;
   @media (max-width: 768px) {
@@ -70,7 +70,7 @@ export const StyledButton = styled(Button)`
   }
 `;
 
-export const StyledValidationCheck = styled("div")`
+export const StyledValidationCheck = styled('div')`
   margin: auto;
   text-align: center;
   color: red;
@@ -82,7 +82,7 @@ export const StyledLangButton = styled(Button)`
   padding-right: 10px;
 `;
 
-export const StyledErrorMsg = styled("div")`
+export const StyledErrorMsg = styled('div')`
   color: red;
   width: 50%;
   margin: auto;
@@ -91,8 +91,8 @@ export const StyledErrorMsg = styled("div")`
   border-radius: 18px;
 `;
 
-/***** Friends.js styles *****/
-export const StyledChattingScreen = styled("div")`
+/* Friends.js styles */
+export const StyledChattingScreen = styled('div')`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -104,12 +104,12 @@ export const StyledChattingScreen = styled("div")`
   }
 
   @media (max-height: 1350px) {
-    height: 580px;
+    height: 83vh;
     margin-bottom: 50px;
   }
 `;
 
-export const StyledChattingScreenLeft = styled("div")`
+export const StyledChattingScreenLeft = styled('div')`
   flex-shrink: 0;
   width: 80px;
   height: 90%;
@@ -119,7 +119,7 @@ export const StyledChattingScreenLeft = styled("div")`
   border: 1px solid #dcdcdc;
   box-shadow: 5px 5px 5px 2px gray;
 `;
-export const StyledChattingScreenIconsTop = styled("div")`
+export const StyledChattingScreenIconsTop = styled('div')`
   padding: 10px;
   margin: auto;
   text-align: center;
@@ -130,17 +130,18 @@ export const StyleFontAwesomeIcon = styled(FontAwesomeIcon)`
   width: 20px;
   height: 20px;
   &:hover {
-    background: #CACFD2;
+    background: #cacfd2;
     cursor: pointer;
     border-radius: 15px;
   }
 `;
 
-export const StyledChattingScreenRight = styled("div")`
+export const StyledChattingScreenRight = styled('div')`
   flex-grow: 1;
   min-width: 0;
   max-width: 800px; // Adjust this value to your desired maximum width
   height: 90%;
+  padding: 20px;
   background-color: white;
   border-top-right-radius: 5px 5px;
   border-bottom-right-radius: 5px 5px;

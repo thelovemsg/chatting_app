@@ -38,7 +38,6 @@ export const userSlice = createSlice({
       state.loginDone = false;
     },
     LOG_OUT_FAILURE: (state, action) => {
-      console.log("LOG_OUT_FAILURE :: ", state);
       // api 통신시 에러와 에러메시지 받음. default 처리
       state.logoutHandling = false;
       state.logoutError = {

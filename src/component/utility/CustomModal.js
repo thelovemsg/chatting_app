@@ -11,7 +11,6 @@ const CustomModal = ({ show, title, message, onClose, onAction }) => {
   const handleActionClick = async () => {
     setIsLoading(true);
     if (onAction) {
-      console.log("action working!!");
       await onAction();
       setIsLoading(false);
     }

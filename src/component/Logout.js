@@ -1,34 +1,34 @@
 // In your other component file
 
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import CustomModal from "../component/utility/CustomModal";
-import { LOG_OUT_REQUEST } from "../reducers/user";
-import { Trans } from "react-i18next";
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import CustomModal from '../component/utility/CustomModal'
+import { LOG_OUT_REQUEST } from '../reducers/user'
+import { Trans } from 'react-i18next'
 
 const Logout = () => {
-  const dispatch = useDispatch();
-  const { loginError } = useSelector((state) => state.user);
+  const dispatch = useDispatch()
+  const { loginError } = useSelector(state => state.user)
 
   const handleLogoutAction = async () => {
-    dispatch(LOG_OUT_REQUEST());
-  };
+    dispatch(LOG_OUT_REQUEST())
+  }
 
   useEffect(() => {
     if (loginError != null) {
-      setShowModal(false);
+      setShowModal(false)
     }
-  }, [loginError]);
+  }, [loginError])
 
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false)
 
   const handleShowModal = () => {
-    setShowModal(true);
-  };
+    setShowModal(true)
+  }
 
   const handleCloseModal = () => {
-    setShowModal(false);
-  };
+    setShowModal(false)
+  }
 
   return (
     <>
@@ -43,7 +43,7 @@ const Logout = () => {
         onAction={handleLogoutAction}
       />
     </>
-  );
-};
+  )
+}
 
-export default Logout;
+export default Logout
