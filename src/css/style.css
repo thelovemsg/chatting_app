@@ -62,6 +62,7 @@ a.dropdown-item {
 
 /* Footer */
 .footer-height {
+  margin-top: 10px !important;
   height: 10% !important;
 }
 
@@ -166,6 +167,8 @@ a.dropdown-item {
 
 .intro-label {
   font-size: 25px;
+  margin-top: 10px;
+  margin-left: 10px;
 }
 
 .my-profile-intro {

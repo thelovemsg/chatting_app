@@ -12,6 +12,7 @@ import Home from "./component/Home";
 // import ChattingRoom from "./component/main/ChattingRoom";
 import Friends from "./component/chatting/Friends";
 import ScrollButtons from "./component/utility/ScrollButtons";
+import { useEffect } from "react";
 
 function App() {
   return (

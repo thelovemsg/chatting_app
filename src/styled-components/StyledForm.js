@@ -91,29 +91,34 @@ export const StyledErrorMsg = styled("div")`
   border-radius: 18px;
 `;
 
-/***** 프로필 *****/
+/***** Friends.js styles *****/
 export const StyledChattingScreen = styled("div")`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  height: 80vh;
   margin: auto;
-  width: 50vw;
-  height: 83vh;
-  padding: 20px;
   @media (max-width: 1350px) {
     width: 500px;
+  }
+
+  @media (max-height: 1350px) {
+    height: 580px;
+    margin-bottom: 50px;
   }
 `;
 
 export const StyledChattingScreenLeft = styled("div")`
-  margin-left: 5%;
-  width: 10%;
-  height: 100%;
+  flex-shrink: 0;
+  width: 80px;
+  height: 90%;
   background-color: #d2d2d2;
   border-top-left-radius: 5px 5px;
   border-bottom-left-radius: 5px 5px;
   border: 1px solid #dcdcdc;
-  float: left;
   box-shadow: 5px 5px 5px 2px gray;
 `;
-
 export const StyledChattingScreenIconsTop = styled("div")`
   padding: 10px;
   margin: auto;
@@ -122,19 +127,23 @@ export const StyledChattingScreenIconsTop = styled("div")`
 
 export const StyleFontAwesomeIcon = styled(FontAwesomeIcon)`
   padding: 20px;
-  margin-top: 20px;
-  width: 30%;
-  height: 30%;
+  width: 20px;
+  height: 20px;
+  &:hover {
+    background: #CACFD2;
+    cursor: pointer;
+    border-radius: 15px;
+  }
 `;
 
 export const StyledChattingScreenRight = styled("div")`
-  margin-right: 5%;
-  width: 80%;
-  height: 100%;
+  flex-grow: 1;
+  min-width: 0;
+  max-width: 800px; // Adjust this value to your desired maximum width
+  height: 90%;
   background-color: white;
   border-top-right-radius: 5px 5px;
   border-bottom-right-radius: 5px 5px;
-  float: right;
   box-shadow: 5px 5px 5px 2px gray;
   border: 1px solid #dcdcdc;
 `;

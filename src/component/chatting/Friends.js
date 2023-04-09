@@ -1,9 +1,8 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUser,
-  faComments,
   faCommentDots,
   faBell,
+  faEllipsis,
 } from "@fortawesome/free-solid-svg-icons";
 
 import {
@@ -12,9 +11,13 @@ import {
   StyledChattingScreenIconsTop,
   StyledChattingScreenLeft,
   StyledChattingScreenRight,
-  StyledTopicComponent,
 } from "../../styled-components/StyledForm";
 import MyProfile from "./MyProfile";
+import MutiProfile from "./MutiProfile";
+import BirthdayFriend from "./BirthdayFriend";
+import UpdateFriend from "./UpdateFriend";
+import FriendsItem from "./FriendItem";
+import Accordion from 'react-bootstrap/Accordion';
 
 const Friends = () => {
   return (
@@ -24,14 +27,23 @@ const Friends = () => {
           <StyleFontAwesomeIcon icon={faUser} />
           <StyleFontAwesomeIcon icon={faCommentDots} />
           <StyleFontAwesomeIcon icon={faBell} />
+          <StyleFontAwesomeIcon icon={faEllipsis} />
         </StyledChattingScreenIconsTop>
       </StyledChattingScreenLeft>
       <StyledChattingScreenRight>
-        <div className="custom_align">
-          <MyProfile></MyProfile>
-          <StyledTopicComponent></StyledTopicComponent>
-          <StyledTopicComponent></StyledTopicComponent>
-        </div>
+        <MyProfile></MyProfile>
+        <Accordion>
+          <Accordion.Item eventKey="0">
+            <Accordion.Header>Accordion Item #1</Accordion.Header>
+            <Accordion.Body>
+              testf
+            </Accordion.Body>
+          </Accordion.Item>
+        </Accordion>
+        <MutiProfile></MutiProfile>
+        <BirthdayFriend></BirthdayFriend>
+        <UpdateFriend></UpdateFriend>
+        <FriendsItem></FriendsItem>
       </StyledChattingScreenRight>
     </StyledChattingScreen>
   );
