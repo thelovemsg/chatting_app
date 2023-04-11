@@ -16,6 +16,7 @@ import MyProfile from './MyProfile';
 import MutiProfile from './MutiProfile';
 import BirthdayFriend from './BirthdayFriend';
 import UpdatedFriend from './UpdateFriend';
+import FriendsItem from './FriendsItem';
 
 const Friends = () => (
   <StyledChattingScreen>
@@ -32,9 +33,8 @@ const Friends = () => (
       <MutiProfile />
       <BirthdayFriend />
       <UpdatedFriend />
-      {/* <FriendsItem /> */}
+      <FriendsItem />
     </StyledChattingScreenRight>
   </StyledChattingScreen>
 );
-
 export default Friends;

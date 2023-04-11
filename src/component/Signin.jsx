@@ -4,16 +4,16 @@ import {
   OverlayTrigger,
   Spinner,
   Tooltip,
-} from "react-bootstrap";
+} from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   StyledButton,
   StyledGroup,
   StyledLabel,
   StyledLoginForm,
   StyledValidationCheck,
-} from "../styled-components/StyledForm";
-import { useDispatch, useSelector } from "react-redux";
-import { LOG_IN_REQUEST } from "../reducers/user";
+} from '../styled-components/StyledForm';
+import { LOG_IN_REQUEST } from '../reducers/user';
 
 const Signin = () => {
   const dispatch = useDispatch();
@@ -58,7 +58,7 @@ const Signin = () => {
           {loginHandling ? (
             <Spinner animation="border" variant="info" className="mt-2" />
           ) : (
-            ""
+            ''
           )}
         </ButtonToolbar>
         <StyledButton variant="primary" type="submit">

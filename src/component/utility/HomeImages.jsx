@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import Carousel from "react-bootstrap/Carousel";
-import { Trans } from "react-i18next";
+import React, { useState } from 'react';
+import Carousel from 'react-bootstrap/Carousel';
+import { Trans } from 'react-i18next';
 
-function ControlledCarousel() {
+const ControlledCarousel = () => {
   const [index, setIndex] = useState(0);
 
   const handleSelect = (selectedIndex, e) => {
@@ -53,6 +53,6 @@ function ControlledCarousel() {
       </Carousel.Item>
     </Carousel>
   );
-}
+};
 
 export default ControlledCarousel;

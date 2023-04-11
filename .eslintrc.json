@@ -21,6 +21,10 @@
   },
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
+    "no-param-reassign": [
+      "error",
+      { "props": true, "ignorePropertyModificationsFor": ["state"] }
+    ],
     "react/react-in-jsx-scope": "off",
     "react/function-component-definition": [
       2,
@@ -34,7 +38,7 @@
     ],
     "indent": "off",
     "linebreak-style": ["error", "unix"],
-    "quotes": ["error", "single"],
+    "quotes": ["off", "single"],
     "semi": ["error", "always"],
     "no-extra-semi": "error",
     "no-tabs": ["error", { "allowIndentationTabs": true }]

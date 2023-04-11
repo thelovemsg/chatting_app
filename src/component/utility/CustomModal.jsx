@@ -1,8 +1,8 @@
-import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
-import { Spinner } from "react-bootstrap";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import { Spinner } from 'react-bootstrap';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 const CustomModal = ({ show, title, message, onClose, onAction }) => {
   const { logoutDone } = useSelector((state) => state.user);
@@ -39,19 +39,19 @@ const CustomModal = ({ show, title, message, onClose, onAction }) => {
         {isLoading ? (
           <Spinner animation="border" variant="info" className="mt-2" />
         ) : (
-          ""
+          ''
         )}
         <Button
           variant="primary"
           onClick={handleActionClick}
-          style={{ width: "80px" }}
+          style={{ width: '80px' }}
         >
           Yes
         </Button>
         <Button
           variant="secondary"
           onClick={handleActionClose}
-          style={{ width: "80px" }}
+          style={{ width: '80px' }}
         >
           Close
         </Button>

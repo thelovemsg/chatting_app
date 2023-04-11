@@ -1,11 +1,17 @@
 // api.js
-import { BASE_URL } from "./EnvUtils";
-import axios from "axios";
+import axios from 'axios';
+import { BASE_URL } from './EnvUtils';
 
-export const findMemberByTarget = async (name, value) => {
+const findMemberByTarget = async (name, value) => {
   const response = await axios.post(`${BASE_URL}/findMemberByTarget`, {
     name,
     value,
   });
   return response?.data;
 };
+
+const api = {
+  findMemberByTarget,
+};
+
+export default api;

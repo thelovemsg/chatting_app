@@ -1,4 +1,6 @@
-import { Form } from "react-bootstrap";
+import { Form } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import {
   StyledButton,
   StyledForm,
@@ -6,17 +8,16 @@ import {
   StyledLabel,
   StyledMsgLabel,
   StyledValidationCheck,
-} from "../styled-components/StyledForm";
-import { useDispatch, useSelector } from "react-redux";
-import { REGISTER_REQUEST } from "../reducers/user";
-import AddressPopup from "./address/AddressPopup";
-import useRegister from "../hooks/useRegister";
-import { useTranslation } from "react-i18next";
+} from '../styled-components/StyledForm';
+import { REGISTER_REQUEST } from '../reducers/user';
+import AddressPopup from './address/AddressPopup';
+import useRegister from '../hooks/useRegister';
+
 const Register = () => {
   const { t } = useTranslation();
   const {
-    enroll_company,
-    setEnroll_company,
+    enrollCompany,
+    setEnrollCompany,
     validationStatus,
     phoneNumber,
     emailValidationMsg,
@@ -35,10 +36,10 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const { email, nickname, phoneNumber } = validationStatus;
+    const { emailCheck, nicknameCheck, phoneNumberCheck } = validationStatus;
 
-    if (!email || !nickname || !phoneNumber) {
-      alert(`${t("register.errorFound")}`);
+    if (!emailCheck || !nicknameCheck || !phoneNumberCheck) {
+      alert(`${t('register.errorFound')}`);
       return;
     }
 
@@ -63,7 +64,7 @@ const Register = () => {
         {emailValidationMsg ? (
           <StyledMsgLabel>{emailValidationMsg}</StyledMsgLabel>
         ) : (
-          ""
+          ''
         )}
         <Form.Control
           type="email"
@@ -82,7 +83,7 @@ const Register = () => {
         {nicknameValidationMsg ? (
           <StyledMsgLabel>{nicknameValidationMsg}</StyledMsgLabel>
         ) : (
-          ""
+          ''
         )}
         <Form.Control
           type="text"
@@ -98,7 +99,7 @@ const Register = () => {
         {passwordRegexMsg ? (
           <StyledMsgLabel>{passwordRegexMsg}</StyledMsgLabel>
         ) : (
-          ""
+          ''
         )}
         <Form.Control
           type="password"
@@ -114,7 +115,7 @@ const Register = () => {
         {passwordMismatchMsg ? (
           <StyledMsgLabel>{passwordMismatchMsg}</StyledMsgLabel>
         ) : (
-          ""
+          ''
         )}
         <Form.Control
           type="password"
@@ -130,7 +131,7 @@ const Register = () => {
         {phoneNumberValidationMsg ? (
           <StyledMsgLabel>{phoneNumberValidationMsg}</StyledMsgLabel>
         ) : (
-          ""
+          ''
         )}
         <Form.Control
           type="text"
@@ -145,9 +146,9 @@ const Register = () => {
       <StyledGroup>
         <StyledLabel>Address 1</StyledLabel>
         <AddressPopup
-          enroll_company={enroll_company}
-          setEnroll_company={setEnroll_company}
-        ></AddressPopup>
+          enrollCompany={enrollCompany}
+          setEnrollCompany={setEnrollCompany}
+        />
       </StyledGroup>
       <StyledGroup className="mb-3">
         <StyledLabel>Address 2</StyledLabel>
@@ -159,7 +160,7 @@ const Register = () => {
         />
       </StyledGroup>
       <StyledValidationCheck>
-        {registerError ? <StyledMsgLabel>{registerError}</StyledMsgLabel> : ""}
+        {registerError ? <StyledMsgLabel>{registerError}</StyledMsgLabel> : ''}
       </StyledValidationCheck>
       <StyledGroup className="justify-content-center">
         <StyledButton variant="primary" type="submit">

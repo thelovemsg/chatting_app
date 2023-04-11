@@ -1,26 +1,26 @@
-import React, { useState, useEffect, useRef } from "react";
-import SockJS from "sockjs-client";
-import { Client } from "@stomp/stompjs";
-import { StyledErrorMsg } from "../../styled-components/StyledForm";
+import React, { useState, useEffect, useRef } from 'react';
+import SockJS from 'sockjs-client';
+import { Client } from '@stomp/stompjs';
+import { StyledErrorMsg } from '../../styled-components/StyledForm';
 
 const ChattingRoom = () => {
   const [messages, setMessages] = useState([]);
-  const [input, setInput] = useState("");
-  const [errorMsg, setErrorMsg] = useState("");
+  const [input, setInput] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
   const clientRef = useRef(null);
 
   useEffect(() => {
     clientRef.current = new Client({
       webSocketFactory: () =>
-        new SockJS("http://localhost:9090/chat-websocket"),
+        new SockJS('http://localhost:9090/chat-websocket'),
     });
 
-    clientRef.current.onConnect = (frame) => {
-      clientRef.current.subscribe("/topic/messages", (message) => {
+    clientRef.current.onConnect = () => {
+      clientRef.current.subscribe('/topic/messages', (message) => {
         setMessages((prevMessages) => [...prevMessages, message.body]);
       });
       // Subscribe to the /queue/errors destination
-      clientRef.current.subscribe("/queue/errors", handleError);
+      clientRef.current.subscribe('/queue/errors', handleError);
     };
 
     clientRef.current.onWebSocketClose = (event) => {
@@ -43,8 +43,8 @@ const ChattingRoom = () => {
 
   const sendMessage = () => {
     if (input && clientRef.current.connected) {
-      clientRef.current.publish({ destination: "/app/chat", body: input });
-      setInput("");
+      clientRef.current.publish({ destination: '/app/chat', body: input });
+      setInput('');
     }
   };
 
@@ -56,14 +56,14 @@ const ChattingRoom = () => {
           <p key={index}>{message}</p>
         ))}
       </div>
-      {errorMsg ? <StyledErrorMsg>{errorMsg}</StyledErrorMsg> : ""}
+      {errorMsg ? <StyledErrorMsg>{errorMsg}</StyledErrorMsg> : ''}
       <input
         type="text"
         value={input}
         className="chat-input"
         onChange={(e) => setInput(e.target.value)}
         onKeyUp={(e) => {
-          if (e.key === "Enter") {
+          if (e.key === 'Enter') {
             sendMessage();
           }
         }}

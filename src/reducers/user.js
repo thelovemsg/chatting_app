@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 export const userSlice = createSlice({
-  name: "user",
+  name: 'user',
   initialState: {
     loginHandling: false,
     loginDone: false,
@@ -16,6 +16,7 @@ export const userSlice = createSlice({
   reducers: {
     LOG_IN_REQUEST: (state) => {
       state.loginHandling = true;
+      return state;
     },
     LOG_IN_SUCCESS: (state) => {
       state.loginHandling = false;

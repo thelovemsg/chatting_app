@@ -1,8 +1,8 @@
-import { configureStore, applyMiddleware } from "@reduxjs/toolkit";
-import { userReducer } from "../reducers/user";
-import createSagaMiddleware from "redux-saga";
-import rootSaga from "../saga/index";
-import logger from "../Logger/MyLogger";
+import { configureStore } from '@reduxjs/toolkit';
+import createSagaMiddleware from 'redux-saga';
+import { userReducer } from '../reducers/user';
+import rootSaga from '../saga/index';
+import logger from '../Logger/MyLogger';
 
 const saga = createSagaMiddleware();
 const store = configureStore({

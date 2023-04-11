@@ -1,26 +1,12 @@
-export function throttle(func, wait) {
-  let context, args, prevArgs, argsChanged, result;
+export default function throttle(func, wait) {
   let previous = 0;
 
-  return function () {
-    let now, remaining;
-    if (wait) {
-      now = Date.now();
-      remaining = wait - (now - previous);
-    }
-    context = this;
-    args = arguments;
-    argsChanged = JSON.stringify(args) !== JSON.stringify(prevArgs);
-    prevArgs = { ...args };
-
-    if (argsChanged || (wait && remaining <= 0)) {
-      if (wait) {
-        previous = now;
-      }
-      result = func.apply(context, args);
-      context = args = null;
-    }
-
-    return result;
+  return function (...args) {
+    // Use rest parameters instead of 'arguments'
+    const now = Date.now();
+    const remaining = wait - (now - previous);
+    if (remaining > 0) return;
+    previous = now;
+    func.apply(this, args); // Use 'args' instead of 'arguments'
   };
 }
