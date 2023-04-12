@@ -18,7 +18,6 @@ const Post = ({ company, setcompany }) => {
       }
       fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
     }
-
     setcompany({
       ...company,
       address: fullAddress,

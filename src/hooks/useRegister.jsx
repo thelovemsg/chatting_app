@@ -11,7 +11,7 @@ import api from '../function/ApiUtils';
 const useRegister = () => {
   const { t } = useTranslation();
 
-  const [enrollCompany, setEntrollCompany] = useState({
+  const [enrollCompany, setEnrollCompany] = useState({
     address: '',
   });
 
@@ -128,7 +128,7 @@ const useRegister = () => {
 
   return {
     enrollCompany,
-    setEntrollCompany,
+    setEnrollCompany,
     validationStatus,
     phoneNumber,
     emailValidationMsg,

@@ -1,7 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button, Form } from 'react-bootstrap';
 import styled from 'styled-components';
-import TopicComponent from '../component/chatting/TopicComponent';
 
 export const StyledForm = styled(Form)`
   margin-top: 5vw;
@@ -20,6 +19,16 @@ export const StyledLoginForm = styled(Form)`
     margin-top: 10vh;
     margin-bottom: 20vh;
   }
+`;
+
+export const StyledLogoutButton = styled(Button)`
+  margin: 0px 0px;
+  color: none;
+  background-color: none !important;
+  border: none;
+  active-color: none;
+  padding: 0px;
+  font-size: 0.97em;
 `;
 
 export const StyledGroup = styled('div')`
@@ -119,10 +128,37 @@ export const StyledChattingScreenLeft = styled('div')`
   border: 1px solid #dcdcdc;
   box-shadow: 5px 5px 5px 2px gray;
 `;
+
 export const StyledChattingScreenIconsTop = styled('div')`
   padding: 10px;
   margin: auto;
   text-align: center;
+`;
+
+export const StyledChattingIntroLabel = styled('div')`
+  font-size: 25px;
+  margin-top: 10px;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const StyledChattingItem = styled('div')`
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  &:hover {
+    background-color: var(--main-friend-right-tag-hover-color);
+  }
+`;
+
+export const StyledChattingItemNoPadding = styled('div')`
+  display: flex;
+  align-items: center;
+  &:hover {
+    background-color: var(--main-friend-right-tag-hover-color);
+  }
 `;
 
 export const StyleFontAwesomeIcon = styled(FontAwesomeIcon)`
@@ -147,8 +183,19 @@ export const StyledChattingScreenRight = styled('div')`
   border-bottom-right-radius: 5px 5px;
   box-shadow: 5px 5px 5px 2px gray;
   border: 1px solid #dcdcdc;
-`;
-
-export const StyledTopicComponent = styled(TopicComponent)`
-  padding: 10px;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #2f3542;
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 1.5px solid transparent;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: grey;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+  }
 `;

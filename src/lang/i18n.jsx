@@ -16,6 +16,13 @@ i18n
       en: {
         translation: {
           // 번역본 쓸 공간
+          navbar: {
+            home: 'home',
+            login: 'login',
+            chatting: 'chatting',
+            profile: 'profile',
+            register: 'register',
+          },
           description: {
             part1: 'Edit src/App.js and save to reload.',
             part2: 'Learn React',
@@ -46,6 +53,13 @@ i18n
       ko: {
         translation: {
           // 번역본 쓸 공간
+          navbar: {
+            home: '홈으로',
+            login: '로그인',
+            chatting: '채팅하기',
+            profile: '프로필',
+            register: '회원가입',
+          },
           description: {
             part1: 'src/App.js를 편집하고 저장하여 다시 로드합니다.',
             part2: 'React 배우러가기',

@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import { Spinner } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 
 const CustomModal = ({ show, title, message, onClose, onAction }) => {
   const { logoutDone } = useSelector((state) => state.user);
@@ -58,6 +59,18 @@ const CustomModal = ({ show, title, message, onClose, onAction }) => {
       </Modal.Footer>
     </Modal>
   );
+};
+
+CustomModal.propTypes = {
+  show: PropTypes.bool.isRequired,
+  title: PropTypes.string.isRequired,
+  message: PropTypes.string.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onAction: PropTypes.func,
+};
+
+CustomModal.defaultProps = {
+  onAction: null,
 };
 
 export default CustomModal;

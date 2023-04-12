@@ -5,7 +5,7 @@ import { Trans } from 'react-i18next';
 const ControlledCarousel = () => {
   const [index, setIndex] = useState(0);
 
-  const handleSelect = (selectedIndex, e) => {
+  const handleSelect = (selectedIndex) => {
     setIndex(selectedIndex);
   };
 
@@ -30,7 +30,6 @@ const ControlledCarousel = () => {
           src="./img/lion.png"
           alt="Second slide"
         />
-
         <Carousel.Caption>
           <h3 className="carousel-caption">
             <Trans i18nKey="carousel.carousel_image_2_title" />

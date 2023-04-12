@@ -1,16 +1,15 @@
-import { useCallback, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import { useTranslation, Trans } from 'react-i18next'; // 1. react-i18next import
+import classNames from 'classnames';
 import Login from './Login';
 import Logout from './Logout';
-import { useTranslation, Trans } from 'react-i18next'; // 1. react-i18next import
 import { StyledLangButton } from '../styled-components/StyledForm';
-import { useState } from 'react';
-import classNames from 'classnames';
 
 const Navtag = () => {
   const navigate = useNavigate();
@@ -32,23 +31,38 @@ const Navtag = () => {
     navigate(path);
   };
 
-  const generateLinkClassName = (path) => {
-    return classNames('color-yellow-first', 'href-style', {
+  const generateLinkClassName = (path) =>
+    classNames('color-yellow-first', 'href-style', {
       'active-link': activeLink === path,
     });
-  };
 
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
+
+  useEffect(() => {
+    const handleLanguageChange = () => {
+      setActiveLink('');
+    };
+
+    i18n.on('languageChanged', handleLanguageChange);
+
+    return () => {
+      i18n.off('languageChanged', handleLanguageChange);
+    };
+  }, [i18n]);
+
+  const handleLanguageChange = (lng) => {
+    i18n.changeLanguage(lng);
+  };
 
   return (
     <div id="header">
       <Navbar bg="dark" expand="lg" className="color-yellow-first">
         <Container>
-          <Navbar.Brand className="color-yellow-first">
+          <Navbar.Brand className="color-yellow-first d-flex align-items-center">
             <Link to="/home" className="color-yellow-first href-style">
               각카호 채팅
             </Link>
-            <Link>
+            <div>
               {Object.keys(lngs).map((lng) => (
                 <StyledLangButton
                   key={lng}
@@ -57,27 +71,27 @@ const Navtag = () => {
                       i18n.resolvedLanguage === lng ? 'bold' : 'normal',
                   }}
                   variant="secondary"
-                  onClick={() => i18n.changeLanguage(lng)}
+                  onClick={() => handleLanguageChange(lng)}
                 >
                   {' '}
                   {lngs[lng].nativeName}
                 </StyledLangButton>
               ))}
-            </Link>
+            </div>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse
             id="basic-navbar-nav"
             className="justify-content-end color-yellow-first"
           >
-            <Nav className="color-yellow-first">
+            <Nav className="color-yellow-first nav-container">
               <Nav.Link className="href-style">
                 <Link
                   to="/home"
                   className={generateLinkClassName('/home')}
                   onClick={() => handleLinkClick('/home')}
                 >
-                  홈화면
+                  <Trans i18nKey="navbar.home" />
                 </Link>
               </Nav.Link>
               {loginDone ? (
@@ -88,7 +102,7 @@ const Navtag = () => {
                       className={generateLinkClassName('/friends')}
                       onClick={() => handleLinkClick('/friends')}
                     >
-                      채팅하기
+                      <Trans i18nKey="navbar.chatting" />
                       {/* 채팅하기는 로그인 해야만 되도록 하자.
                   만일 로그인이 안됫으면? 로그인 화면으로 안내한 후에 다시 채팅방으로 와야함. */}
                     </Link>
@@ -99,7 +113,7 @@ const Navtag = () => {
                       className={generateLinkClassName('/profile')}
                       onClick={() => handleLinkClick('/profile')}
                     >
-                      프로필
+                      <Trans i18nKey="navbar.profile" />
                       {/* 프로필도 로그인 한 후에 표출 */}
                     </Link>
                   </Nav.Link>
@@ -124,7 +138,7 @@ const Navtag = () => {
                   className={generateLinkClassName('/register')}
                   onClick={() => handleLinkClick('/register')}
                 >
-                  회원가입
+                  <Trans i18nKey="navbar.register" />
                 </Link>
               </Nav.Link>
               <NavDropdown

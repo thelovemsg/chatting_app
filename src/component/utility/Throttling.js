@@ -1,7 +1,7 @@
 export default function throttle(func, wait) {
   let previous = 0;
 
-  return function (...args) {
+  return function throttledFunction(...args) {
     // Use rest parameters instead of 'arguments'
     const now = Date.now();
     const remaining = wait - (now - previous);

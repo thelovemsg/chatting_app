@@ -24,6 +24,11 @@ a {
   text-align: center;
 }
 
+.nav-container {
+  display: flex;
+  align-items: center;
+}
+
 /* Scrollbar */
 body::-webkit-scrollbar {
   display: none;
@@ -168,16 +173,10 @@ a.dropdown-item {
 
 /* MyProfile */
 
-.intro-label {
-  font-size: 25px;
-  margin-top: 10px;
-  margin-left: 10px;
-}
-
 .my-profile-intro {
-  width: 90px;
-  height: 90px;
-  border-radius: 33px;
+  width: 70px;
+  height: 70px;
+  border-radius: 25px;
 }
 
 .my-profile-intro:hover {
@@ -195,8 +194,16 @@ a.dropdown-item {
   margin-top: 20px;
 }
 
+.custom-mr-30 {
+  margin-right: 30px;
+}
+
 .custom-ml-20 {
   margin-left: 20px;
+}
+
+.custom-ml-30 {
+  margin-left: 30px;
 }
 
 .custom-mt-5 {
@@ -249,10 +256,6 @@ a.dropdown-item {
   color: black !important;
   box-shadow: none !important;
   background-color: var(--main-white-color) !important;
-}
-
-.accordion-body {
-  margin-left: 20px !important;
 }
 
 .accordion-item {
