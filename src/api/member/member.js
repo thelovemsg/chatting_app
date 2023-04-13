@@ -1,10 +1,16 @@
-import axios from "axios";
+import axios from 'axios';
 
 export const memberJoinApi = async (user) => {
+  console.log('memberJoinApi :: ', user);
+  let response;
   try {
-    const response = await axios.post("http://localhost:9090/memberSave", user);
-    return response.data;
+    response = await axios.post('memberSave', user);
   } catch (error) {
-    throw error;
+    console.log(error);
   }
+  return response;
+};
+
+export const test = async (love) => {
+  console.log(love);
 };

@@ -49,12 +49,13 @@ export const userSlice = createSlice({
       state.registerHandling = true;
     },
     REGISTER_SUCCESS: (state) => {
+      console.log('REGISTER_SUCCESS :: ', state);
       state.registerHandling = false;
       state.registerError = null;
     },
     REGISTER_FAILURE: (state, action) => {
-      console.log(action);
       // api 통신시 에러와 에러메시지 받음. default 처리
+      console.log('REGISTER_FAILURE :: ', action.payload);
       state.registerHandling = false;
       state.registerError = action.payload.message;
     },

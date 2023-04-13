@@ -16,24 +16,37 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
     private final AddressRepository addressRepository;
+    private static final String EMAIL_CHECK = "emailCheck";
+    private static final String NICKNAME_CHECK = "nicknameCheck";
+    private static final String PHONE_NUMBER_CHECK = "phoneNumberCheck";
+    private static final String EMAIL = "email";
+    private static final String NICKNAME = "email";
+    private static final String PHONE_NUMBER = "email";
 
     public Member getMember(String name, String password){
         return memberRepository.getMemberByNameAndPassword(name, password);
     }
 
     public String findExistMember(MemberDto memberDto){
-        String result = null;
-        switch(memberDto.getName()){
-            case "email" :
-                result = findDuplicateFieldName(memberDto.getValue(), null, null);
-                break;
-            case "nickname":
-                result = findDuplicateFieldName(null, memberDto.getValue(), null);
-                break;
-            case "phoneNumber":
-                result = findDuplicateFieldName(null, null, memberDto.getValue());
+        String result = findDuplicateFieldName(memberDto.getValue(), null, null);
+
+        if(result == null){
+            return null;
         }
-        return result;
+
+        switch(memberDto.getName()){
+            case EMAIL_CHECK :
+                if(result.equals(EMAIL))
+                    return EMAIL_CHECK;
+            case NICKNAME_CHECK:
+                if(result.equals(NICKNAME));
+                    return NICKNAME_CHECK;
+            case PHONE_NUMBER_CHECK:
+                if(result.equals(PHONE_NUMBER));
+                    return PHONE_NUMBER_CHECK;
+            default:
+                throw new RuntimeException("there's no proper error. please check again");
+        }
     }
 
     public Long getMemberCount() {
@@ -68,6 +81,7 @@ public class MemberService {
         }
 
         return null;
+
     }
 
 }

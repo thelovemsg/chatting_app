@@ -38,6 +38,10 @@ const Register = () => {
 
     const { emailCheck, nicknameCheck, phoneNumberCheck } = validationStatus;
 
+    console.log('emailCheck :: ', emailCheck);
+    console.log('nicknameCheck :: ', nicknameCheck);
+    console.log('phoneNumberCheck :: ', phoneNumberCheck);
+
     if (!emailCheck || !nicknameCheck || !phoneNumberCheck) {
       alert(`${t('register.errorFound')}`);
       return;

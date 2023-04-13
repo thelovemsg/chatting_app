@@ -11,9 +11,7 @@ import api from '../function/ApiUtils';
 const useRegister = () => {
   const { t } = useTranslation();
 
-  const [enrollCompany, setEnrollCompany] = useState({
-    address: '',
-  });
+  const [enrollCompany, setEnrollCompany] = useState({ address: '' });
 
   const [validationStatus, setValidationStatus] = useState({
     emailCheck: false,
@@ -21,12 +19,12 @@ const useRegister = () => {
     phoneNumberCheck: false,
   });
 
+  const [passwordRegexMsg, setPasswordRegexMsg] = useState('');
+  const [passwordMismatchMsg, setPasswordMismatchMsg] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [emailValidationMsg, setEmailValidationMsg] = useState('');
   const [nicknameValidationMsg, setNicknameValidationMsg] = useState('');
   const [phoneNumberValidationMsg, setPhoneNumberValidationMsg] = useState('');
-  const [passwordRegexMsg, setPasswordRegexMsg] = useState('');
-  const [passwordMismatchMsg, setPasswordMismatchMsg] = useState('');
 
   const handlePhoneNumberFormat = useCallback((e) => {
     const { value } = e.target;
@@ -81,7 +79,7 @@ const useRegister = () => {
 
   const handleEmailValidation = async (value) => {
     const errorMsg = await handleValidation(
-      'email',
+      'emailCheck',
       value,
       isValidEmail,
       'checkEmail'
@@ -91,7 +89,7 @@ const useRegister = () => {
 
   const handlePhoneNumberValidation = async (value) => {
     const errorMsg = await handleValidation(
-      'phoneNumber',
+      'phoneNumberCheck',
       value,
       isValidPhoneNumber,
       'wrongPhoneNumberFormat'
@@ -101,7 +99,7 @@ const useRegister = () => {
 
   const handleNicknameValidation = async (value) => {
     const errorMsg = await handleValidation(
-      'nickname',
+      'nicknameCheck',
       value,
       () => value.length > 0,
       'nicknameEmpty'

@@ -36,6 +36,7 @@ function* logOut(action) {
 function* userRegister(action) {
   try {
     // const result = yield call(logInAPI);
+    console.log('userRegister :: ', action.payload);
     const data = yield call(memberJoinApi, action.payload);
     if (data.status === 'BAD_REQUEST') {
       throw new Error(data.message);
