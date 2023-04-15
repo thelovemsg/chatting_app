@@ -2,29 +2,24 @@ package com.example.socket_jpa_querydsl_test.domain.entity;
 
 import com.example.socket_jpa_querydsl_test.domain.status.ChattingRoomStatus;
 import jakarta.persistence.*;
-import org.hibernate.annotations.GenericGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import static jakarta.persistence.EnumType.STRING;
 
 @Entity
+@AttributeOverride(name = "id", column = @Column(name = "chatting_room_id"))
 public class ChattingRoom extends BaseEntity {
 
-    @Id
-    @GeneratedValue(generator = "custom-id")
-    @GenericGenerator(name = "custom-id", strategy = "com.example.socket_jpa_querydsl_test.config.CustomIdGenerator")
-    @Column(name = "chatting_room_id")
-    private String id;
-
-    @Column(name = "name", columnDefinition = "default")
+    @Column(name = "name")
     private String name;
 
     @Column(name = "password")
     private String password;
 
-    @Column(name = "status")
+    @Column(name = "chatting_room_status")
     @Enumerated(STRING)
     private ChattingRoomStatus status;
 
@@ -39,6 +34,17 @@ public class ChattingRoom extends BaseEntity {
     public void removeHashtag(Hashtag hashtag) {
         hashtags.remove(hashtag);
         hashtag.setChattingRoom(null);
+    }
+
+    private String generateDefaultName() {
+        return UUID.randomUUID().toString().replace("-", "");
+    }
+
+    @PrePersist
+    public void onPrePersist() {
+        if (name == null) {
+            name = generateDefaultName();
+        }
     }
 
 }

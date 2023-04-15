@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDateTime;
 
@@ -14,17 +13,11 @@ import static jakarta.persistence.FetchType.LAZY;
 
 @Entity
 @Builder
-@Table(name = "file")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class File {
-
-    @Id
-    @GeneratedValue(generator = "custom-id")
-    @GenericGenerator(name = "custom-id", strategy = "com.example.socket_jpa_querydsl_test.config.CustomIdGenerator")
-    @Column(name = "file_id")
-    private String id;
+@AttributeOverride(name = "id", column = @Column(name = "file_id"))
+public class File extends BaseEntity{
 
     @Column(nullable = false, name = "file_name")
     private String fileName;

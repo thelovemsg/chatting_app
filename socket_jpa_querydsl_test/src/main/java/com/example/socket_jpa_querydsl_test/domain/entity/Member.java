@@ -25,14 +25,8 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-//@ToString(exclude = "addresses")
+@AttributeOverride(name = "id", column = @Column(name = "member_id"))
 public class Member extends BaseEntity implements Serializable {
-
-    @Id
-    @GeneratedValue(generator = "custom-id")
-    @GenericGenerator(name = "custom-id", strategy = "com.example.socket_jpa_querydsl_test.config.CustomIdGenerator")
-    @Column(name = "member_id")
-    private String id;
 
     @Column(name = "email")
     private String email;
@@ -65,6 +59,29 @@ public class Member extends BaseEntity implements Serializable {
 
     public void addAddress(Address address){
         addresses.add(address);
+    }
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<BlockMember> blockingMembers;
+
+    @OneToMany(mappedBy = "memberTarget", cascade = CascadeType.ALL)
+    private List<BlockMember> blockedMembers;
+
+    /**
+     * @param blockMember
+     * @descriptionn soft delete.
+     * If you use orphanRemoval to delete related datas, it will really delete data in your table.
+     * We're already using 'flag' column to check whether data is deleted or not.
+     * So, we need to make new method for this.
+     */
+    public void removeBlockMember(BlockMember blockMember) {
+        if (blockingMembers.contains(blockMember)) {
+            blockMember.setFlag(true);
+            blockingMembers.remove(blockMember);
+        } else if (blockedMembers.contains(blockMember)) {
+            blockMember.setFlag(true);
+            blockedMembers.remove(blockMember);
+        }
     }
 
     public static Member createMember(MemberSaveDto memberSaveDto){
