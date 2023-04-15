@@ -2,6 +2,9 @@
 
 ## 사용중인 react 기술
 
+## ERD 설계
+https://www.notion.so/2023-04-15-98fc69e81e464f3682e01adcbfe0fa27
+
 ### 1. 다국어 처리 기능 - react-i18next
   참고 사이트 
   https://locize.com/blog/react-i18next/#why-i18next
