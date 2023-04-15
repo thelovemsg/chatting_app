@@ -57,7 +57,7 @@ public class FileStorageService {
                     .storedFileName(UUID.randomUUID().toString())
                     .fileSize(file.getSize())
                     .fileType(file.getContentType())
-                    .uploadTimestamp(LocalDateTime.now())
+                    .uploadTime(LocalDateTime.now())
                     .description("먼가 필요할거 같은데 우선 테스트")
                     .build();
 
