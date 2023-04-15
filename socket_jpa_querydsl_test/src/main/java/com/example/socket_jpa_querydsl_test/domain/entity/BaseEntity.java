@@ -26,8 +26,7 @@ public abstract class BaseEntity {
     @Column(name = "lastModifiedBy", nullable = false, columnDefinition = "varchar(255) default 'ADMIN'")
     private String lastModifiedBy  = "ADMIN";
 
-    @Column(name = "flag", columnDefinition = "BOOLEAN")
-    @ColumnDefault("true")
-    private int flag;
+    @Column(name = "flag", nullable = false)
+    private boolean flag = true;
 
 }

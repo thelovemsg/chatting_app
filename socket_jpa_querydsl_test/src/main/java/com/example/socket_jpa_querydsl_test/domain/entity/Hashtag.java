@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import static jakarta.persistence.FetchType.LAZY;
 
@@ -15,7 +16,10 @@ import static jakarta.persistence.FetchType.LAZY;
 @NoArgsConstructor
 public class Hashtag extends BaseEntity {
 
-    @Id @GeneratedValue(strategy = GenerationType.UUID)
+    @Id
+    @GeneratedValue(generator = "custom-id")
+    @GenericGenerator(name = "custom-id", strategy = "com.example.socket_jpa_querydsl_test.config.CustomIdGenerator")
+    @Column(name = "hashtag_id")
     private String id;
 
     private String content;

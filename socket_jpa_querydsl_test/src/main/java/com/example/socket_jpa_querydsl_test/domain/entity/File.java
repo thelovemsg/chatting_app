@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDateTime;
 
@@ -19,27 +20,31 @@ import static jakarta.persistence.FetchType.LAZY;
 @Getter
 public class File {
 
-    @Id @GeneratedValue(strategy = GenerationType.UUID)
+    @Id
+    @GeneratedValue(generator = "custom-id")
+    @GenericGenerator(name = "custom-id", strategy = "com.example.socket_jpa_querydsl_test.config.CustomIdGenerator")
     @Column(name = "file_id")
     private String id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "file_name")
     private String fileName;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "stored_file_name")
     private String storedFileName;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "file_size")
     private Long fileSize;
 
-    @Column(nullable = false)
-    private String contentType;
+    @Column(nullable = false, name = "file_type")
+    private String fileType;
 
-    private LocalDateTime uploadTimestamp;
+    @Column(nullable = false, name = "upload_time")
+    private LocalDateTime uploadTime;
 
-    private LocalDateTime deleteTimeStamp;
+    @Column(nullable = false, name = "delete_time")
+    private LocalDateTime deleteTime;
 
-    @Column
+    @Column(name = "description")
     private String description;
 
     @JsonIgnore

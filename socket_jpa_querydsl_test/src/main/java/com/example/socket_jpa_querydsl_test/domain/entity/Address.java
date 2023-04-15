@@ -4,13 +4,13 @@ import com.example.socket_jpa_querydsl_test.domain.status.AddressStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
 import static jakarta.persistence.EnumType.STRING;
-import static jakarta.persistence.FetchType.*;
+import static jakarta.persistence.FetchType.LAZY;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
@@ -18,9 +18,11 @@ import static jakarta.persistence.FetchType.*;
 @NoArgsConstructor
 @Data
 @ToString(exclude = "member")
-public class Address extends BaseEntity{
+public class  Address extends BaseEntity{
 
-    @Id @GeneratedValue(strategy = GenerationType.UUID)
+    @Id
+    @GeneratedValue(generator = "custom-id")
+    @GenericGenerator(name = "custom-id", strategy = "com.example.socket_jpa_querydsl_test.config.CustomIdGenerator")
     @Column(name = "address_id")
     private String id;
 
@@ -40,6 +42,7 @@ public class Address extends BaseEntity{
     private LocalDateTime regDate;
 
     @Enumerated(STRING)
+    @Column(name = "addressStatus")
     private AddressStatus addressStatus = AddressStatus.ETC;
 
 }

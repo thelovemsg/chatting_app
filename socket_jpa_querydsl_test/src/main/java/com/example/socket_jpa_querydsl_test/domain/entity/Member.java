@@ -6,6 +6,7 @@ import com.example.socket_jpa_querydsl_test.api.dto.entity.MemberSaveDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -27,7 +28,9 @@ import java.util.List;
 //@ToString(exclude = "addresses")
 public class Member extends BaseEntity implements Serializable {
 
-    @Id @GeneratedValue(strategy = GenerationType.UUID)
+    @Id
+    @GeneratedValue(generator = "custom-id")
+    @GenericGenerator(name = "custom-id", strategy = "com.example.socket_jpa_querydsl_test.config.CustomIdGenerator")
     @Column(name = "member_id")
     private String id;
 
@@ -43,7 +46,7 @@ public class Member extends BaseEntity implements Serializable {
     @Column(name = "user_own_id")
     private String user_own_id;
 
-    @Column(name = "phoneNumber")
+    @Column(name = "phone_number")
     private String phoneNumber;
 
     @JsonIgnore
