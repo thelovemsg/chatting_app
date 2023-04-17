@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Button, Form } from 'react-bootstrap';
+import { Accordion, Button, Form } from 'react-bootstrap';
 import styled from 'styled-components';
 
 export const StyledForm = styled(Form)`
@@ -197,5 +197,29 @@ export const StyledChattingScreenRight = styled('div')`
     background-color: grey;
     border-radius: 10px;
     box-shadow: inset 0px 0px 5px white;
+  }
+`;
+
+export const StyledAccordionBody = styled(Accordion.Body)`
+  padding: 5px 0px 5px 20px !important;
+  margin-left: 10px;
+`;
+
+export const StyledAccordionBodyMultiProfile = styled(Accordion.Body)`
+  padding: 5px 0px 5px 20px !important;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+`;
+
+export const StyledFontAwesomeIconPlus = styled(FontAwesomeIcon)`
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+  border-radius: 15px;
+  padding: 5px;
+  border-color: #dccecb;
+  &:hover {
+    /* Add hover styles here, e.g., change background color, border color, etc. */
   }
 `;

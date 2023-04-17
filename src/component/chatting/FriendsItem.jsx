@@ -1,14 +1,17 @@
 import { Accordion } from 'react-bootstrap';
-import { faker } from '@faker-js/faker';
+import { useMemo } from 'react';
 import { StyledChattingItemNoPadding } from '../../styled-components/StyledForm';
+import createRandomUser from '../utility/FakeUser';
 
 const FriendsItem = () => {
-  const fakeImages = Array.from({ length: 10 }, () => faker.image.imageUrl());
+  const fakeUsers = useMemo(() =>
+    Array.from({ length: 10 }, () => createRandomUser())
+  );
   return (
     <Accordion defaultActiveKey="0" className="custom-accordion underline">
       <Accordion.Item eventKey="0">
         <Accordion.Header>Friend</Accordion.Header>
-        {fakeImages.map((image, index) => (
+        {fakeUsers.map((user, index) => (
           <StyledChattingItemNoPadding>
             <Accordion.Body
               style={{
@@ -19,14 +22,14 @@ const FriendsItem = () => {
               }}
             >
               <img
-                src={image}
+                src={user.avatar}
                 alt={`Friend ${index + 1}`}
                 className="my-profile-intro"
               />
               <div className="custom-ml-30">
-                <div className="profile-label">MSG(선준)</div>
+                <div className="profile-label">{user.username}</div>
                 <div className="profile-description custom-mt-5">
-                  여기에 뭐가 들어가야해요
+                  {`${user.userId} ${user.email}`}
                 </div>
               </div>
             </Accordion.Body>

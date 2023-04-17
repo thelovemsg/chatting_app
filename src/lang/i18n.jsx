@@ -48,6 +48,9 @@ i18n
               '최소 8 자, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자 필요',
             errorFound: 'please check input datas',
           },
+          friend: {
+            multi_profile: 'Multi Profile',
+          },
         },
       },
       ko: {
@@ -83,6 +86,9 @@ i18n
             passwordRegexCheck:
               '최소 8 자, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자 필요',
             errorFound: '입력 값을 확인해 주세요',
+          },
+          friend: {
+            multi_profile: '멀티 프로필',
           },
         },
       },

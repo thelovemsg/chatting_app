@@ -1,12 +1,13 @@
 import Accordion from 'react-bootstrap/Accordion';
+import { StyledAccordionBody } from '../../styled-components/StyledForm';
 
 const BirthdayFriend = () => (
   <Accordion defaultActiveKey="0" className="custom-accordion underline">
     <Accordion.Item eventKey="0">
       <Accordion.Header>BirthdayFriend</Accordion.Header>
-      <Accordion.Body>
+      <StyledAccordionBody>
         <div>BirthdayFriend test...</div>
-      </Accordion.Body>
+      </StyledAccordionBody>
     </Accordion.Item>
   </Accordion>
 );
