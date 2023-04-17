@@ -24,6 +24,10 @@ public class QMember extends EntityPathBase<Member> {
 
     public final ListPath<Address, QAddress> addresses = this.<Address, QAddress>createList("addresses", Address.class, QAddress.class, PathInits.DIRECT2);
 
+    public final ListPath<BlockMember, QBlockMember> blockedMembers = this.<BlockMember, QBlockMember>createList("blockedMembers", BlockMember.class, QBlockMember.class, PathInits.DIRECT2);
+
+    public final ListPath<BlockMember, QBlockMember> blockingMembers = this.<BlockMember, QBlockMember>createList("blockingMembers", BlockMember.class, QBlockMember.class, PathInits.DIRECT2);
+
     //inherited
     public final StringPath createdBy = _super.createdBy;
 
@@ -35,9 +39,10 @@ public class QMember extends EntityPathBase<Member> {
     public final ListPath<File, QFile> files = this.<File, QFile>createList("files", File.class, QFile.class, PathInits.DIRECT2);
 
     //inherited
-    public final NumberPath<Integer> flag = _super.flag;
+    public final BooleanPath flag = _super.flag;
 
-    public final StringPath id = createString("id");
+    //inherited
+    public final StringPath id = _super.id;
 
     //inherited
     public final StringPath lastModifiedBy = _super.lastModifiedBy;
@@ -53,7 +58,7 @@ public class QMember extends EntityPathBase<Member> {
 
     public final StringPath phoneNumber = createString("phoneNumber");
 
-    public final StringPath user_own_id = createString("user_own_id");
+    public final StringPath userOwnId = createString("userOwnId");
 
     public QMember(String variable) {
         super(Member.class, forVariable(variable));

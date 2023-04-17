@@ -7,11 +7,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Entity
 @AttributeOverride(name = "id", column = @Column(name = "profile_id"))
 public class Profile extends BaseEntity{
+
+    @Column(name = "content")
+    private String content;
 
 }

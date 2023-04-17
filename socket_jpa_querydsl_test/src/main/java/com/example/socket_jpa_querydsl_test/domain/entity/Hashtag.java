@@ -9,13 +9,14 @@ import lombok.Setter;
 import static jakarta.persistence.FetchType.LAZY;
 
 @Entity
-@Table(name = "hashtags")
+@Table(name = "hashtag")
 @Getter
 @Setter
 @NoArgsConstructor
 @AttributeOverride(name = "id", column = @Column(name = "hashtag_id"))
 public class Hashtag extends BaseEntity {
 
+    @Column(name = "content")
     private String content;
 
     @ManyToOne(fetch = LAZY)

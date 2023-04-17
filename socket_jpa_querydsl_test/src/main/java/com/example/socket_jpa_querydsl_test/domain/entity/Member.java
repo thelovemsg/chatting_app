@@ -1,23 +1,24 @@
 package com.example.socket_jpa_querydsl_test.domain.entity;
 
+import com.example.socket_jpa_querydsl_test.api.dto.entity.MemberSaveDto;
 import com.example.socket_jpa_querydsl_test.domain.status.AddressStatus;
 import com.example.socket_jpa_querydsl_test.domain.utils.PasswordConverter;
-import com.example.socket_jpa_querydsl_test.api.dto.entity.MemberSaveDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@EqualsAndHashCode(callSuper = true)
 @Table(uniqueConstraints =
     {
         @UniqueConstraint(columnNames = {"nickname"}),
-        @UniqueConstraint(columnNames = {"phoneNumber"}),
+        @UniqueConstraint(columnNames = {"phone_number"}),
         @UniqueConstraint(columnNames = {"email"})
     }
 )
@@ -38,7 +39,7 @@ public class Member extends BaseEntity implements Serializable {
     private String nickname;
 
     @Column(name = "user_own_id")
-    private String user_own_id;
+    private String userOwnId;
 
     @Column(name = "phone_number")
     private String phoneNumber;

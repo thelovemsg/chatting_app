@@ -11,34 +11,26 @@ import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
- * QFile is a Querydsl query type for File
+ * QBlockMember is a Querydsl query type for BlockMember
  */
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
-public class QFile extends EntityPathBase<File> {
+public class QBlockMember extends EntityPathBase<BlockMember> {
 
-    private static final long serialVersionUID = -218236434L;
+    private static final long serialVersionUID = -636070699L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
-    public static final QFile file = new QFile("file");
+    public static final QBlockMember blockMember = new QBlockMember("blockMember");
 
     public final QBaseEntity _super = new QBaseEntity(this);
+
+    public final DateTimePath<java.time.LocalDateTime> blockDate = createDateTime("blockDate", java.time.LocalDateTime.class);
 
     //inherited
     public final StringPath createdBy = _super.createdBy;
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
-
-    public final DateTimePath<java.time.LocalDateTime> deleteTime = createDateTime("deleteTime", java.time.LocalDateTime.class);
-
-    public final StringPath description = createString("description");
-
-    public final StringPath fileName = createString("fileName");
-
-    public final NumberPath<Long> fileSize = createNumber("fileSize", Long.class);
-
-    public final StringPath fileType = createString("fileType");
 
     //inherited
     public final BooleanPath flag = _super.flag;
@@ -51,32 +43,31 @@ public class QFile extends EntityPathBase<File> {
 
     public final QMember member;
 
+    public final QMember memberTarget;
+
     //inherited
     public final DateTimePath<java.time.LocalDateTime> modifiedDate = _super.modifiedDate;
 
-    public final StringPath storedFileName = createString("storedFileName");
-
-    public final DateTimePath<java.time.LocalDateTime> uploadTime = createDateTime("uploadTime", java.time.LocalDateTime.class);
-
-    public QFile(String variable) {
-        this(File.class, forVariable(variable), INITS);
+    public QBlockMember(String variable) {
+        this(BlockMember.class, forVariable(variable), INITS);
     }
 
-    public QFile(Path<? extends File> path) {
+    public QBlockMember(Path<? extends BlockMember> path) {
         this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QFile(PathMetadata metadata) {
+    public QBlockMember(PathMetadata metadata) {
         this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QFile(PathMetadata metadata, PathInits inits) {
-        this(File.class, metadata, inits);
+    public QBlockMember(PathMetadata metadata, PathInits inits) {
+        this(BlockMember.class, metadata, inits);
     }
 
-    public QFile(Class<? extends File> type, PathMetadata metadata, PathInits inits) {
+    public QBlockMember(Class<? extends BlockMember> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.member = inits.isInitialized("member") ? new QMember(forProperty("member")) : null;
+        this.memberTarget = inits.isInitialized("memberTarget") ? new QMember(forProperty("memberTarget")) : null;
     }
 
 }

@@ -23,7 +23,9 @@ public class QBaseEntity extends EntityPathBase<BaseEntity> {
 
     public final DateTimePath<java.time.LocalDateTime> createdDate = createDateTime("createdDate", java.time.LocalDateTime.class);
 
-    public final NumberPath<Integer> flag = createNumber("flag", Integer.class);
+    public final BooleanPath flag = createBoolean("flag");
+
+    public final StringPath id = createString("id");
 
     public final StringPath lastModifiedBy = createString("lastModifiedBy");
 

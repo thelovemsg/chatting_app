@@ -35,9 +35,10 @@ public class QHashtag extends EntityPathBase<Hashtag> {
     public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
 
     //inherited
-    public final NumberPath<Integer> flag = _super.flag;
+    public final BooleanPath flag = _super.flag;
 
-    public final StringPath id = createString("id");
+    //inherited
+    public final StringPath id = _super.id;
 
     //inherited
     public final StringPath lastModifiedBy = _super.lastModifiedBy;
