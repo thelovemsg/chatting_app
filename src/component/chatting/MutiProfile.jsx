@@ -1,14 +1,17 @@
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import Accordion from 'react-bootstrap/Accordion';
 import { Trans } from 'react-i18next';
-import { Button, Modal } from 'react-bootstrap';
-import { useState, useMemo } from 'react';
-import Draggable from 'react-draggable';
+// import { Button } from 'react-bootstrap';
+import React, { useState, useMemo } from 'react';
+// import Draggable from 'react-draggable';
+// import { propTypes } from 'react-bootstrap/esm/Image';
+// import Resizable from 'resizable';
 import createRandomUser from '../utility/FakeUser';
 import {
   StyledAccordionBodyMultiProfile,
   StyledFontAwesomeIconPlus,
 } from '../../styled-components/StyledForm';
+import DraggableModal from '../utilComponent/DraggableModal';
 
 const MutiProfile = () => {
   /*
@@ -19,18 +22,6 @@ const MutiProfile = () => {
    * TODO
    * use useMemo hook in order to get avatars of user just one time.
    */
-
-  const DraggableDialog = useMemo(
-    ({ className, style, children, ...props }) => (
-      <div
-        className={className}
-        style={{ ...style, pointerEvents: 'none' }}
-        {...props}
-      >
-        {children}
-      </div>
-    )
-  );
 
   const fakeUsers = useMemo(
     () => Array.from({ length: 2 }, () => createRandomUser()),
@@ -59,9 +50,10 @@ const MutiProfile = () => {
           <StyledAccordionBodyMultiProfile>
             {fakeUsers.map((user, index) => (
               <button
+                key={`${user.userId}`}
                 className="avatar-button"
                 onClick={() => handleAvatarClick(user.avatar)}
-                aria-label={`Friend ${index + 1}`}
+                aria-label={`Friend ${index + 1} ${user.userId}`}
                 style={{
                   border: 'none',
                   background: 'transparent',
@@ -71,7 +63,7 @@ const MutiProfile = () => {
               >
                 <img
                   src={user.avatar}
-                  alt={`Friend ${index + 1}`}
+                  alt={`Friend ${index + 9000} ${user.userId}`}
                   className="profile-others"
                 />
               </button>
@@ -82,27 +74,26 @@ const MutiProfile = () => {
           </StyledAccordionBodyMultiProfile>
         </Accordion.Item>
       </Accordion>
-      <Draggable>
-        <Modal
-          show={showModal}
-          onHide={handleCloseModal}
-          dialogAs={DraggableDialog}
+      <DraggableModal show={showModal}>
+        <div className="modal-header">
+          <h5 className="modal-title">Avatar</h5>
+          <button
+            type="button"
+            className="btn-close"
+            onClick={handleCloseModal}
+            aria-label="hidden"
+          />
+        </div>
+        <div
+          className="modal-body"
+          style={{ margin: 'auto', textAlign: 'center' }}
         >
-          <Modal.Header closeButton>
-            <Modal.Title>Avatar</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            {selectedAvatar && (
-              <img src={selectedAvatar} alt="Selected Avatar" />
-            )}
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleCloseModal}>
-              Close
-            </Button>
-          </Modal.Footer>
-        </Modal>
-      </Draggable>
+          <div style={{ height: '60%' }}>test1</div>
+          {selectedAvatar && <img src={selectedAvatar} alt="Selected Avatar" />}
+          <div>상태명 드러감</div>
+        </div>
+        <div className="modal-footer">test</div>
+      </DraggableModal>
     </>
   );
 };

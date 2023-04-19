@@ -1,42 +1,70 @@
 import { Accordion } from 'react-bootstrap';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { StyledChattingItemNoPadding } from '../../styled-components/StyledForm';
 import createRandomUser from '../utility/FakeUser';
+import DraggableModal from '../utilComponent/DraggableModal';
+import DraggableModalContent from '../utilComponent/DraggableModalContent';
 
 const FriendsItem = () => {
-  const fakeUsers = useMemo(() =>
-    Array.from({ length: 10 }, () => createRandomUser())
+  const fakeUsers = useMemo(
+    () => Array.from({ length: 10 }, () => createRandomUser()),
+    []
   );
+
+  const [selectedUser, setSelectedUser] = useState(null);
+
+  const handleAvatarClick = (user) => {
+    setSelectedUser(user);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedUser(null);
+  };
+
   return (
-    <Accordion defaultActiveKey="0" className="custom-accordion underline">
-      <Accordion.Item eventKey="0">
-        <Accordion.Header>Friend</Accordion.Header>
-        {fakeUsers.map((user, index) => (
-          <StyledChattingItemNoPadding>
-            <Accordion.Body
-              style={{
-                marginLeft: '0px',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <img
-                src={user.avatar}
-                alt={`Friend ${index + 1}`}
-                className="my-profile-intro"
-              />
-              <div className="custom-ml-30">
-                <div className="profile-label">{user.username}</div>
-                <div className="profile-description custom-mt-5">
-                  {`${user.userId} ${user.email}`}
+    <>
+      <Accordion defaultActiveKey="0" className="custom-accordion underline">
+        <Accordion.Item eventKey="0">
+          <Accordion.Header>Friend</Accordion.Header>
+          {fakeUsers.map((user, index) => (
+            <StyledChattingItemNoPadding key={user.userId}>
+              <Accordion.Body
+                style={{
+                  marginLeft: '0px',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <img
+                  src={user.avatar}
+                  alt={`Friend ${index + 1}`}
+                  onClick={() => handleAvatarClick(user)}
+                  className="my-profile-intro"
+                  aria-hidden="true"
+                />
+                <div className="custom-ml-30">
+                  <div className="profile-label">{user.username}</div>
+                  <div className="profile-description custom-mt-5">
+                    {`${user.userId} ${user.email}`}
+                  </div>
                 </div>
-              </div>
-            </Accordion.Body>
-          </StyledChattingItemNoPadding>
-        ))}
-      </Accordion.Item>
-    </Accordion>
+              </Accordion.Body>
+            </StyledChattingItemNoPadding>
+          ))}
+        </Accordion.Item>
+      </Accordion>
+      {selectedUser && (
+        <DraggableModal show>
+          <DraggableModalContent
+            handleCloseModal={handleCloseModal}
+            userInfo={selectedUser}
+            stateContent="상태명 드러감"
+            footerContent="test"
+          />
+        </DraggableModal>
+      )}
+    </>
   );
 };
 

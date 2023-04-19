@@ -2,6 +2,7 @@ package com.example.socket_jpa_querydsl_test.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,6 +14,7 @@ import static jakarta.persistence.FetchType.LAZY;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @AttributeOverride(name = "id", column = @Column(name = "hashtag_id"))
 public class Hashtag extends BaseEntity {
 

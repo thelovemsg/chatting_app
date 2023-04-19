@@ -9,10 +9,11 @@ import java.time.LocalDateTime;
 import static jakarta.persistence.FetchType.LAZY;
 
 @Entity
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
 @EqualsAndHashCode(callSuper=false)
 @AttributeOverride(name = "id", column = @Column(name = "file_id"))
 public class File extends BaseEntity{

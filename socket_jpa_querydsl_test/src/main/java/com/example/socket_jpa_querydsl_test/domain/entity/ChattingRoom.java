@@ -2,6 +2,10 @@ package com.example.socket_jpa_querydsl_test.domain.entity;
 
 import com.example.socket_jpa_querydsl_test.domain.status.ChattingRoomStatus;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +14,10 @@ import java.util.UUID;
 import static jakarta.persistence.EnumType.STRING;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @AttributeOverride(name = "id", column = @Column(name = "chatting_room_id"))
 public class ChattingRoom extends BaseEntity {
 

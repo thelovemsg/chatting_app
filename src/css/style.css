@@ -104,6 +104,34 @@ a.dropdown-item {
   width: 80%;
 }
 
+.modal-backdrop {
+  --bs-backdrop-bg: none !important;
+  /* opacity: 0.5; */
+  --bs-backdrop-opacity: none !important;
+}
+
+.draggable-modal-content {
+  background-color: #d2d2d2 !important; /* or any color you prefer */
+}
+
+.modal-open {
+  overflow: visible;
+}
+
+.draggable-model-background {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1040;
+}
+
+.modal-header {
+  border-bottom: none !important;
+}
+
 /* Carousel */
 .carousel {
   background-color: #584c33;
