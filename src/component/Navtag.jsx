@@ -85,62 +85,50 @@ const Navtag = () => {
             className="justify-content-end color-yellow-first"
           >
             <Nav className="color-yellow-first nav-container">
-              <Nav.Link className="href-style">
-                <Link
-                  to="/home"
-                  className={generateLinkClassName('/home')}
-                  onClick={() => handleLinkClick('/home')}
-                >
-                  <Trans i18nKey="navbar.home" />
-                </Link>
-              </Nav.Link>
+              <Link
+                to="/home"
+                className={generateLinkClassName('/home')}
+                onClick={() => handleLinkClick('/home')}
+              >
+                <Trans i18nKey="navbar.home" />
+              </Link>
               {loginDone ? (
                 <>
-                  <Nav.Link className="href-style">
-                    <Link
-                      to="/friends"
-                      className={generateLinkClassName('/friends')}
-                      onClick={() => handleLinkClick('/friends')}
-                    >
-                      <Trans i18nKey="navbar.chatting" />
-                      {/* 채팅하기는 로그인 해야만 되도록 하자.
+                  <Link
+                    to="/friends"
+                    className={generateLinkClassName('/friends')}
+                    onClick={() => handleLinkClick('/friends')}
+                  >
+                    <Trans i18nKey="navbar.chatting" />
+                    {/* 채팅하기는 로그인 해야만 되도록 하자.
                   만일 로그인이 안됫으면? 로그인 화면으로 안내한 후에 다시 채팅방으로 와야함. */}
-                    </Link>
-                  </Nav.Link>
-                  <Nav.Link className="href-style">
-                    <Link
-                      to="/profile"
-                      className={generateLinkClassName('/profile')}
-                      onClick={() => handleLinkClick('/profile')}
-                    >
-                      <Trans i18nKey="navbar.profile" />
-                      {/* 프로필도 로그인 한 후에 표출 */}
-                    </Link>
-                  </Nav.Link>
-                  <Nav.Link>
-                    <Logout />
-                  </Nav.Link>
+                  </Link>
+                  <Link
+                    to="/profile"
+                    className={generateLinkClassName('/profile')}
+                    onClick={() => handleLinkClick('/profile')}
+                  >
+                    <Trans i18nKey="navbar.profile" />
+                    {/* 프로필도 로그인 한 후에 표출 */}
+                  </Link>
+                  <Logout />
                 </>
               ) : (
-                <Nav.Link>
-                  <Link
-                    to="/signin"
-                    className={generateLinkClassName('/signin')}
-                    onClick={() => handleLinkClick('/signin')}
-                  >
-                    <Login />
-                  </Link>
-                </Nav.Link>
-              )}
-              <Nav.Link className="href-style">
                 <Link
-                  to="/register"
-                  className={generateLinkClassName('/register')}
-                  onClick={() => handleLinkClick('/register')}
+                  to="/signin"
+                  className={generateLinkClassName('/signin')}
+                  onClick={() => handleLinkClick('/signin')}
                 >
-                  <Trans i18nKey="navbar.register" />
+                  <Login />
                 </Link>
-              </Nav.Link>
+              )}
+              <Link
+                to="/register"
+                className={generateLinkClassName('/register')}
+                onClick={() => handleLinkClick('/register')}
+              >
+                <Trans i18nKey="navbar.register" />
+              </Link>
               <NavDropdown
                 title="Dropdown"
                 id="basic-nav-dropdown"

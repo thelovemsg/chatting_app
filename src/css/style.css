@@ -132,6 +132,10 @@ a.dropdown-item {
   border-bottom: none !important;
 }
 
+.pointer:hover {
+  cursor: pointer;
+}
+
 /* Carousel */
 .carousel {
   background-color: #584c33;
@@ -160,6 +164,13 @@ a.dropdown-item {
 
 .carousel-caption {
   margin-bottom: 10vh;
+}
+
+.carousel-modal-content {
+  background-color: white;
+  border: none;
+  width: 100%;
+  max-width: none;
 }
 
 /* Display */

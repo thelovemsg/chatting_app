@@ -29,12 +29,4 @@ public class Hashtag extends BaseEntity {
     @Column(name = "sequence")
     private Integer seq;
 
-    public Hashtag(String content, ChattingRoom chattingRoom, Integer seq) {
-        this.content = content;
-        this.chattingRoom = chattingRoom;
-        this.seq = seq;
-    }
-
-    public void setChattingRoom(com.example.socket_jpa_querydsl_test.domain.entity.ChattingRoom chattingRoom) {
-    }
 }
