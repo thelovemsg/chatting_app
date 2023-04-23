@@ -25,6 +25,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-websocket'
     implementation 'org.springframework.boot:spring-boot-starter-validation:2.4.0'
     implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
+    // https://mvnrepository.com/artifact/com.github.f4b6a3/tsid-creator
+    implementation group: 'com.github.f4b6a3', name: 'tsid-creator', version: '5.2.3'
 
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'com.h2database:h2'
