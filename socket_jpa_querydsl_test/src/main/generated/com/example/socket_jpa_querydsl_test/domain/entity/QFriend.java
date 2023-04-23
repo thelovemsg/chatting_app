@@ -40,7 +40,7 @@ public class QFriend extends EntityPathBase<Friend> {
     public final StringPath fromMemberId = createString("fromMemberId");
 
     //inherited
-    public final StringPath id = _super.id;
+    public final NumberPath<Long> id = _super.id;
 
     //inherited
     public final StringPath lastModifiedBy = _super.lastModifiedBy;

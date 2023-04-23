@@ -25,7 +25,7 @@ public class QBaseEntity extends EntityPathBase<BaseEntity> {
 
     public final BooleanPath flag = createBoolean("flag");
 
-    public final StringPath id = createString("id");
+    public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final StringPath lastModifiedBy = createString("lastModifiedBy");
 

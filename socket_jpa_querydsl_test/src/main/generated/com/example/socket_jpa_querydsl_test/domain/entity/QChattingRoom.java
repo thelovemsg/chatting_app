@@ -34,7 +34,7 @@ public class QChattingRoom extends EntityPathBase<ChattingRoom> {
     public final ListPath<Hashtag, QHashtag> hashtags = this.<Hashtag, QHashtag>createList("hashtags", Hashtag.class, QHashtag.class, PathInits.DIRECT2);
 
     //inherited
-    public final StringPath id = _super.id;
+    public final NumberPath<Long> id = _super.id;
 
     //inherited
     public final StringPath lastModifiedBy = _super.lastModifiedBy;

@@ -21,7 +21,7 @@ public abstract class BaseEntity {
     @GeneratedValue(generator = "custom-id")
     @GenericGenerator(name = "custom-id", strategy = "com.example.socket_jpa_querydsl_test.config.CustomIdGenerator")
     @Column(name = "id")
-    protected String id;
+    protected Long id;
 
     @CreatedDate
     @Column(name = "createdDate")

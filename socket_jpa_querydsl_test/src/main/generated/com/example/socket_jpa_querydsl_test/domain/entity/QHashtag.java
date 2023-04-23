@@ -38,7 +38,7 @@ public class QHashtag extends EntityPathBase<Hashtag> {
     public final BooleanPath flag = _super.flag;
 
     //inherited
-    public final StringPath id = _super.id;
+    public final NumberPath<Long> id = _super.id;
 
     //inherited
     public final StringPath lastModifiedBy = _super.lastModifiedBy;
