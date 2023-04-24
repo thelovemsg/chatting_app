@@ -30,6 +30,9 @@ public class QFile extends EntityPathBase<File> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
 
+    //inherited
+    public final BooleanPath deleted = _super.deleted;
+
     public final DateTimePath<java.time.LocalDateTime> deleteTime = createDateTime("deleteTime", java.time.LocalDateTime.class);
 
     public final StringPath description = createString("description");
@@ -39,9 +42,6 @@ public class QFile extends EntityPathBase<File> {
     public final NumberPath<Long> fileSize = createNumber("fileSize", Long.class);
 
     public final StringPath fileType = createString("fileType");
-
-    //inherited
-    public final BooleanPath flag = _super.flag;
 
     //inherited
     public final NumberPath<Long> id = _super.id;

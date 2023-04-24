@@ -37,7 +37,7 @@ public class QAddress extends EntityPathBase<Address> {
     public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
 
     //inherited
-    public final BooleanPath flag = _super.flag;
+    public final BooleanPath deleted = _super.deleted;
 
     //inherited
     public final NumberPath<Long> id = _super.id;

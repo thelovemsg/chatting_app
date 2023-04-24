@@ -1,6 +1,9 @@
 package com.example.socket_jpa_querydsl_test.domain.entity;
 
 import com.example.socket_jpa_querydsl_test.domain.status.ChattingRoomStatus;
+import com.example.socket_jpa_querydsl_test.domain.utils.PasswordConverter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.github.f4b6a3.tsid.TsidCreator;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,7 +27,9 @@ public class ChattingRoom extends BaseEntity {
     @Column(name = "name")
     private String name;
 
+    @JsonIgnore
     @Column(name = "password")
+    @Convert(converter = PasswordConverter.class)
     private String password;
 
     @Column(name = "chatting_room_status")
@@ -44,14 +49,13 @@ public class ChattingRoom extends BaseEntity {
         hashtag.setChattingRoom(null);
     }
 
-    private String generateDefaultName() {
-        return UUID.randomUUID().toString().replace("-", "");
-    }
-
     @PrePersist
     public void onPrePersist() {
         if (name == null) {
-            name = generateDefaultName();
+            name = "CHATTING_ROOM_" + TsidCreator.getTsid().toLong();
+        }
+        if (password == null) {
+            password = "OPEN"; // Set the default password value here
         }
     }
 

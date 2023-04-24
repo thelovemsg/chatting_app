@@ -3,6 +3,7 @@ package com.example.socket_jpa_querydsl_test.domain.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Where;
 
 import java.time.LocalDateTime;
 
@@ -33,7 +34,7 @@ public class File extends BaseEntity{
     @Column(nullable = false, name = "upload_time")
     private LocalDateTime uploadTime;
 
-    @Column(nullable = false, name = "delete_time")
+    @Column(name = "delete_time")
     private LocalDateTime deleteTime;
 
     @Column(name = "description")

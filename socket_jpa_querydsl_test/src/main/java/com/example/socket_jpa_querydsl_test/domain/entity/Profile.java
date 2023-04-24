@@ -6,12 +6,14 @@ import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Where;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @AttributeOverride(name = "id", column = @Column(name = "profile_id"))
+@Where(clause = "deleted = false")
 public class Profile extends BaseEntity{
 
     @Column(name = "content")

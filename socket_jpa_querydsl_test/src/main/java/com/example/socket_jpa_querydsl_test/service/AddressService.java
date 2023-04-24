@@ -17,7 +17,7 @@ public class AddressService {
         return addressRepository.save(address);
     }
 
-    public List<Address> findAddresses(String memberId){
+    public List<Address> findAddresses(Long memberId){
         return addressRepository.findAllByMemberId(memberId);
     }
 

@@ -35,7 +35,7 @@ public class QFriend extends EntityPathBase<Friend> {
     public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
 
     //inherited
-    public final BooleanPath flag = _super.flag;
+    public final BooleanPath deleted = _super.deleted;
 
     public final StringPath fromMemberId = createString("fromMemberId");
 

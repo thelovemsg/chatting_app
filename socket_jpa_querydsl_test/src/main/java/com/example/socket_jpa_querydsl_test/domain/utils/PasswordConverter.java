@@ -27,4 +27,5 @@ public class PasswordConverter implements AttributeConverter<String, String> {
     public String encode(String password){
         return EncryptionUtils.encrypt(password, envData.getENCRYPTION_KEY());
     }
+
 }

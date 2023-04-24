@@ -2,6 +2,7 @@ package com.example.socket_jpa_querydsl_test.service;
 
 import com.example.socket_jpa_querydsl_test.domain.entity.File;
 import com.example.socket_jpa_querydsl_test.repository.FileRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -37,7 +38,6 @@ public class FileStorageService {
     public String store(MultipartFile file) {
         try {
 //        String userFolderPath = "user-fileEntities/" + userId;
-
             String fileName = StringUtils.cleanPath(file.getOriginalFilename());
             Path userStorageLocation  = this.storageLocation.resolve(fileName);
 
@@ -73,7 +73,6 @@ public class FileStorageService {
 
     public Resource load(String fileName) {
         try {
-
             // Retrieve the FileEntity entity from the database using the fileName
             File file = fileRepository.findByFileName(fileName);
             if (file == null) {

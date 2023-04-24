@@ -4,6 +4,7 @@ import com.example.socket_jpa_querydsl_test.domain.status.AddressStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Where;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;

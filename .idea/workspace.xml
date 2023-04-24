@@ -2,20 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8cebb3be-31b2-4eec-a345-a24764aba0d6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/component/chatting/ImageWithLabel.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/chatting/MyProfile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/socket_jpa_querydsl_test/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/socket_jpa_querydsl_test/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/generated/com/example/socket_jpa_querydsl_test/domain/entity/QMember.java" beforeDir="false" afterPath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/generated/com/example/socket_jpa_querydsl_test/domain/entity/QMember.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/java/com/example/socket_jpa_querydsl_test/controller/FileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/java/com/example/socket_jpa_querydsl_test/controller/FileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/java/com/example/socket_jpa_querydsl_test/InitDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/java/com/example/socket_jpa_querydsl_test/InitDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/java/com/example/socket_jpa_querydsl_test/annotation/Column.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/java/com/example/socket_jpa_querydsl_test/domain/entity/ChattingRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/java/com/example/socket_jpa_querydsl_test/domain/entity/ChattingRoom.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/java/com/example/socket_jpa_querydsl_test/domain/entity/File.java" beforeDir="false" afterPath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/java/com/example/socket_jpa_querydsl_test/domain/entity/File.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/java/com/example/socket_jpa_querydsl_test/domain/entity/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/java/com/example/socket_jpa_querydsl_test/domain/entity/Member.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/java/com/example/socket_jpa_querydsl_test/domain/entity/MemberChattingRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/java/com/example/socket_jpa_querydsl_test/domain/entity/MemberChattingRoom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/java/com/example/socket_jpa_querydsl_test/domain/utils/PasswordConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/java/com/example/socket_jpa_querydsl_test/domain/utils/PasswordConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/java/com/example/socket_jpa_querydsl_test/repository/AddressRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/java/com/example/socket_jpa_querydsl_test/repository/AddressRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/java/com/example/socket_jpa_querydsl_test/service/AddressService.java" beforeDir="false" afterPath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/java/com/example/socket_jpa_querydsl_test/service/AddressService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/java/com/example/socket_jpa_querydsl_test/service/FileStorageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/java/com/example/socket_jpa_querydsl_test/service/FileStorageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/test/java/com/example/socket_jpa_querydsl_test/service/FileStorageServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/socket_jpa_querydsl_test/src/test/java/com/example/socket_jpa_querydsl_test/service/FileStorageServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/chatting/Friends.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/chatting/Friends.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/chatting/StyledTopicTag.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/chatting/TopicComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styled-components/StyledForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styled-components/StyledForm.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,10 +29,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/IntelliJ_IDEA/myproject/chatting_app/socket_jpa_querydsl_test",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "D:\\IntelliJ_IDEA\\myproject\\chatting_app\\node_modules\\prettier",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -45,7 +48,11 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1680616741127</updated>
+      <workItem from="1682339096804" duration="192000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>

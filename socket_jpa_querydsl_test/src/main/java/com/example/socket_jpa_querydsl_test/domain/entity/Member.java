@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Where;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -77,10 +78,10 @@ public class Member extends BaseEntity implements Serializable {
      */
     public void removeBlockMember(BlockMember blockMember) {
         if (blockingMembers.contains(blockMember)) {
-            blockMember.setFlag(true);
+            blockMember.delete();
             blockingMembers.remove(blockMember);
         } else if (blockedMembers.contains(blockMember)) {
-            blockMember.setFlag(true);
+            blockMember.delete();
             blockedMembers.remove(blockMember);
         }
     }

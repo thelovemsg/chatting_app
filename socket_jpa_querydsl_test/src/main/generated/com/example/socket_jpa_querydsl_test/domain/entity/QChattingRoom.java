@@ -29,7 +29,7 @@ public class QChattingRoom extends EntityPathBase<ChattingRoom> {
     public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
 
     //inherited
-    public final BooleanPath flag = _super.flag;
+    public final BooleanPath deleted = _super.deleted;
 
     public final ListPath<Hashtag, QHashtag> hashtags = this.<Hashtag, QHashtag>createList("hashtags", Hashtag.class, QHashtag.class, PathInits.DIRECT2);
 

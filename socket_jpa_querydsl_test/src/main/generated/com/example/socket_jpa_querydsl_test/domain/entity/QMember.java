@@ -34,12 +34,12 @@ public class QMember extends EntityPathBase<Member> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
 
+    //inherited
+    public final BooleanPath deleted = _super.deleted;
+
     public final StringPath email = createString("email");
 
     public final ListPath<File, QFile> files = this.<File, QFile>createList("files", File.class, QFile.class, PathInits.DIRECT2);
-
-    //inherited
-    public final BooleanPath flag = _super.flag;
 
     //inherited
     public final NumberPath<Long> id = _super.id;
