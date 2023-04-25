@@ -5,10 +5,7 @@ import com.example.socket_jpa_querydsl_test.domain.utils.PasswordConverter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.f4b6a3.tsid.TsidCreator;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +18,7 @@ import static jakarta.persistence.EnumType.STRING;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString(exclude = "password")
 @AttributeOverride(name = "id", column = @Column(name = "chatting_room_id"))
 public class ChattingRoom extends BaseEntity {
 
@@ -34,7 +32,7 @@ public class ChattingRoom extends BaseEntity {
 
     @Column(name = "chatting_room_status")
     @Enumerated(STRING)
-    private ChattingRoomStatus status;
+    private ChattingRoomStatus status = ChattingRoomStatus.OPEN;
 
     @OneToMany(mappedBy = "chattingRoom", cascade = CascadeType.ALL)
     private List<Hashtag> hashtags = new ArrayList<>();
@@ -52,11 +50,15 @@ public class ChattingRoom extends BaseEntity {
     @PrePersist
     public void onPrePersist() {
         if (name == null) {
-            name = "CHATTING_ROOM_" + TsidCreator.getTsid().toLong();
+            name = "CR_" + TsidCreator.getTsid().toLong();
         }
         if (password == null) {
             password = "OPEN"; // Set the default password value here
         }
+    }
+
+    public void changeStatus(ChattingRoomStatus status) {
+        this.status = status;
     }
 
 }

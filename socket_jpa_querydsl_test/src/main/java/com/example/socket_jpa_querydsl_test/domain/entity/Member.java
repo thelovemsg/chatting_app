@@ -5,10 +5,7 @@ import com.example.socket_jpa_querydsl_test.domain.status.AddressStatus;
 import com.example.socket_jpa_querydsl_test.domain.utils.PasswordConverter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.Where;
 
 import java.io.Serializable;
@@ -23,10 +20,12 @@ import java.util.List;
         @UniqueConstraint(columnNames = {"email"})
     }
 )
-@Data
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = "password")
 @AttributeOverride(name = "id", column = @Column(name = "member_id"))
 public class Member extends BaseEntity implements Serializable {
 
@@ -56,6 +55,7 @@ public class Member extends BaseEntity implements Serializable {
     private List<Address> addresses = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+
     @Builder.Default
     private List<File> files = new ArrayList<>();
 

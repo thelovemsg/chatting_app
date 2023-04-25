@@ -46,6 +46,10 @@ public class QMemberChattingRoom extends EntityPathBase<MemberChattingRoom> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> modifiedDate = _super.modifiedDate;
 
+    public final EnumPath<com.example.socket_jpa_querydsl_test.domain.status.FlagStatus> roomStatus = createEnum("roomStatus", com.example.socket_jpa_querydsl_test.domain.status.FlagStatus.class);
+
+    public final EnumPath<com.example.socket_jpa_querydsl_test.domain.status.FlagStatus> withdrawalStatus = createEnum("withdrawalStatus", com.example.socket_jpa_querydsl_test.domain.status.FlagStatus.class);
+
     public QMemberChattingRoom(String variable) {
         this(MemberChattingRoom.class, forVariable(variable), INITS);
     }
