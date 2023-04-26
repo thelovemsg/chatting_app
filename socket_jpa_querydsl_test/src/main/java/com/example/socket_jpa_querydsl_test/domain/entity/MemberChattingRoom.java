@@ -23,25 +23,48 @@ public class MemberChattingRoom extends BaseEntity{
     @JoinColumn(name = "chatting_room_id")
     private ChattingRoom chattingRoom;
 
+    /**
+     * When user get out of the chatting room,
+     * the column "withdrawalStatus" should be updated as YES.
+     */
     @Column(name = "withdrawal_status")
     private FlagStatus withdrawalStatus = FlagStatus.NO;
 
+    /**
+     * When the room is closed by owner,
+     * the column "roomStatus" should be updated as YES.
+     */
     @Column(name = "room_closed")
-    private FlagStatus roomStatus = FlagStatus.NO;
+    private FlagStatus isRoomClosed = FlagStatus.NO;
 
-    public static MemberChattingRoom createMemberChattingRoom(ChattingRoom chattingRoom, Member member) {
-        MemberChattingRoom memberChattingRoom = new MemberChattingRoom();
-        memberChattingRoom.setMember(member);
-        memberChattingRoom.setChattingRoom(chattingRoom);
-        return memberChattingRoom;
-    }
+    /**
+     * When the room is closed by website manager for some reasons,
+     * the column "isExpired" should be updated as YES.
+     * (Or for some room that they don't use any more for too long time)
+     */
+    @Column(name = "is_expired")
+    private FlagStatus isExpired = FlagStatus.NO;
+
+    @Column(name = "description")
+    private String description;
 
     public void withdrawMember() {
         this.withdrawalStatus = FlagStatus.YES;
     }
 
+    public void expireRoom() {
+        this.isExpired = FlagStatus.YES;
+    }
+
     public void closeRoom() {
-        this.roomStatus = FlagStatus.YES;
+        this.isRoomClosed = FlagStatus.YES;
+    }
+
+    public static MemberChattingRoom joinMemberToChattingRoom(Member member, ChattingRoom chattingRoom) {
+        MemberChattingRoom memberChattingRoom = new MemberChattingRoom();
+        memberChattingRoom.setMember(member);
+        memberChattingRoom.setChattingRoom(chattingRoom);
+        return memberChattingRoom;
     }
 
 

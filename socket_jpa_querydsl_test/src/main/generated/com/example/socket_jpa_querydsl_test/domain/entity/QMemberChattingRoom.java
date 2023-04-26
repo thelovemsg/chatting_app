@@ -35,8 +35,14 @@ public class QMemberChattingRoom extends EntityPathBase<MemberChattingRoom> {
     //inherited
     public final BooleanPath deleted = _super.deleted;
 
+    public final StringPath description = createString("description");
+
     //inherited
     public final NumberPath<Long> id = _super.id;
+
+    public final EnumPath<com.example.socket_jpa_querydsl_test.domain.status.FlagStatus> isExpired = createEnum("isExpired", com.example.socket_jpa_querydsl_test.domain.status.FlagStatus.class);
+
+    public final EnumPath<com.example.socket_jpa_querydsl_test.domain.status.FlagStatus> isRoomClosed = createEnum("isRoomClosed", com.example.socket_jpa_querydsl_test.domain.status.FlagStatus.class);
 
     //inherited
     public final StringPath lastModifiedBy = _super.lastModifiedBy;
@@ -45,8 +51,6 @@ public class QMemberChattingRoom extends EntityPathBase<MemberChattingRoom> {
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> modifiedDate = _super.modifiedDate;
-
-    public final EnumPath<com.example.socket_jpa_querydsl_test.domain.status.FlagStatus> roomStatus = createEnum("roomStatus", com.example.socket_jpa_querydsl_test.domain.status.FlagStatus.class);
 
     public final EnumPath<com.example.socket_jpa_querydsl_test.domain.status.FlagStatus> withdrawalStatus = createEnum("withdrawalStatus", com.example.socket_jpa_querydsl_test.domain.status.FlagStatus.class);
 

@@ -9,4 +9,6 @@ import java.util.stream.Stream;
 @Repository
 public interface MemberChattingRoomRepository extends JpaRepository<MemberChattingRoom, Long> {
     Stream<MemberChattingRoom> getMemberChattingRoomByMemberId(Long id);
+    Stream<MemberChattingRoom> getMemberChattingRoomInValidStatus();
+    Stream<MemberChattingRoom> getMemberChattingRoomByChattingRoomId(Long id);
 }

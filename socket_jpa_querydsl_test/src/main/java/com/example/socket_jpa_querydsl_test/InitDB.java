@@ -76,7 +76,6 @@ public class InitDB {
             ChattingRoom chattingRoom = new ChattingRoom();
             chattingRoom.setName(name);
             chattingRoom.setPassword(password);
-            chattingRoom.setStatus(ChattingRoomStatus.OPEN);
             return chattingRoom;
         }
 

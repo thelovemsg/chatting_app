@@ -7,6 +7,7 @@ import com.github.f4b6a3.tsid.TsidCreator;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -32,10 +33,13 @@ public class ChattingRoom extends BaseEntity {
 
     @Column(name = "chatting_room_status")
     @Enumerated(STRING)
-    private ChattingRoomStatus status = ChattingRoomStatus.OPEN;
+    private ChattingRoomStatus isClosed = ChattingRoomStatus.OPEN;
 
     @OneToMany(mappedBy = "chattingRoom", cascade = CascadeType.ALL)
     private List<Hashtag> hashtags = new ArrayList<>();
+
+    @Column(name = "room_expiration_date")
+    private LocalDateTime roomExpirationDate;
 
     public void addHashtag(Hashtag hashtag) {
         hashtags.add(hashtag);
@@ -57,8 +61,16 @@ public class ChattingRoom extends BaseEntity {
         }
     }
 
-    public void changeStatus(ChattingRoomStatus status) {
-        this.status = status;
+    public boolean isRoomActive() {
+        return isClosed == ChattingRoomStatus.OPEN && (roomExpirationDate == null || LocalDateTime.now().isBefore(roomExpirationDate));
+    }
+
+    public void changeStatus(ChattingRoomStatus isClosed) {
+        this.isClosed = isClosed;
+    }
+
+    public void expireRoom() {
+        this.roomExpirationDate = LocalDateTime.now();
     }
 
 }
