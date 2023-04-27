@@ -1,5 +1,6 @@
 package com.example.socket_jpa_querydsl_test.domain.entity;
 
+import com.example.socket_jpa_querydsl_test.domain.status.FlagStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,6 +12,8 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+
+import static jakarta.persistence.EnumType.*;
 
 @Getter
 @Setter
@@ -38,11 +41,12 @@ public abstract class BaseEntity {
     @Column(name = "lastModifiedBy", nullable = false, columnDefinition = "varchar(255) default 'ADMIN'")
     private String lastModifiedBy  = "ADMIN";
 
-    @Column(name = "deleted", nullable = false)
-    private boolean deleted = Boolean.TRUE;
+    @Column(name = "deleted")
+    @Enumerated(STRING)
+    private FlagStatus isDeleted = FlagStatus.NO;
 
     public void delete(){
-        deleted = false;
+        isDeleted = FlagStatus.YES;
     }
 
 }

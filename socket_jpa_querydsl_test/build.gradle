@@ -27,6 +27,8 @@ dependencies {
     implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
     // https://mvnrepository.com/artifact/com.github.f4b6a3/tsid-creator
     implementation group: 'com.github.f4b6a3', name: 'tsid-creator', version: '5.2.3'
+    // https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-api
+    implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.5'
 
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'com.h2database:h2'

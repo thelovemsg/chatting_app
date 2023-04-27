@@ -23,9 +23,9 @@ public class QBaseEntity extends EntityPathBase<BaseEntity> {
 
     public final DateTimePath<java.time.LocalDateTime> createdDate = createDateTime("createdDate", java.time.LocalDateTime.class);
 
-    public final BooleanPath deleted = createBoolean("deleted");
-
     public final NumberPath<Long> id = createNumber("id", Long.class);
+
+    public final EnumPath<com.example.socket_jpa_querydsl_test.domain.status.FlagStatus> isDeleted = createEnum("isDeleted", com.example.socket_jpa_querydsl_test.domain.status.FlagStatus.class);
 
     public final StringPath lastModifiedBy = createString("lastModifiedBy");
 

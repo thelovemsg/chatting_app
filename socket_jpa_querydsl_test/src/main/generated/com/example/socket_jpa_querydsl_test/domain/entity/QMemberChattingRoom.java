@@ -32,13 +32,13 @@ public class QMemberChattingRoom extends EntityPathBase<MemberChattingRoom> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
 
-    //inherited
-    public final BooleanPath deleted = _super.deleted;
-
     public final StringPath description = createString("description");
 
     //inherited
     public final NumberPath<Long> id = _super.id;
+
+    //inherited
+    public final EnumPath<com.example.socket_jpa_querydsl_test.domain.status.FlagStatus> isDeleted = _super.isDeleted;
 
     public final EnumPath<com.example.socket_jpa_querydsl_test.domain.status.FlagStatus> isExpired = createEnum("isExpired", com.example.socket_jpa_querydsl_test.domain.status.FlagStatus.class);
 

@@ -62,6 +62,11 @@ a.dropdown-item {
   margin: auto;
 }
 
+.navbar-nav > .href-style {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
 /* Buttons */
 .btn {
   margin-left: 10px !important;

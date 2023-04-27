@@ -10,7 +10,6 @@ import lombok.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import static jakarta.persistence.EnumType.STRING;
 
@@ -19,6 +18,7 @@ import static jakarta.persistence.EnumType.STRING;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+//@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString(exclude = "password")
 @AttributeOverride(name = "id", column = @Column(name = "chatting_room_id"))
 public class ChattingRoom extends BaseEntity {
@@ -38,8 +38,8 @@ public class ChattingRoom extends BaseEntity {
     @OneToMany(mappedBy = "chattingRoom", cascade = CascadeType.ALL)
     private List<Hashtag> hashtags = new ArrayList<>();
 
-    @Column(name = "room_expiration_date")
-    private LocalDateTime roomExpirationDate;
+    @Column(name = "room_expire_date")
+    private LocalDateTime roomExpireDate;
 
     public void addHashtag(Hashtag hashtag) {
         hashtags.add(hashtag);
@@ -57,12 +57,12 @@ public class ChattingRoom extends BaseEntity {
             name = "CR_" + TsidCreator.getTsid().toLong();
         }
         if (password == null) {
-            password = "OPEN"; // Set the default password value here
+            password = "OPEN"; // Se t the default password value here
         }
     }
 
     public boolean isRoomActive() {
-        return isClosed == ChattingRoomStatus.OPEN && (roomExpirationDate == null || LocalDateTime.now().isBefore(roomExpirationDate));
+        return isClosed == ChattingRoomStatus.OPEN && (roomExpireDate == null || LocalDateTime.now().isBefore(roomExpireDate));
     }
 
     public void changeStatus(ChattingRoomStatus isClosed) {
@@ -70,7 +70,14 @@ public class ChattingRoom extends BaseEntity {
     }
 
     public void expireRoom() {
-        this.roomExpirationDate = LocalDateTime.now();
+        this.roomExpireDate = LocalDateTime.now();
+    }
+
+    public static ChattingRoom createChattingRoom(String name, String password) {
+        ChattingRoom chattingRoom = new ChattingRoom();
+        chattingRoom.setName(name);
+        chattingRoom.setPassword(password);
+        return chattingRoom;
     }
 
 }

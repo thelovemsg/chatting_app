@@ -11,6 +11,8 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import static com.example.socket_jpa_querydsl_test.domain.entity.MemberChattingRoom.*;
+
 @Component
 @RequiredArgsConstructor
 public class InitDB {
@@ -28,7 +30,7 @@ public class InitDB {
     static class InitService {
         private final EntityManager em;
         public void initDb1() {
-            Member member = createMember("test1@naver.com", "testbot1", "samenicknam1","01011112222", "password12341");
+            Member member = createMember("test3@naver.com", "testbot3", "samenicknam3","01011112223", "password1234");
             em.persist(member);
 
             Address address = createAddress("address1", "address2");
@@ -37,7 +39,7 @@ public class InitDB {
         }
 
         public void initDb2() {
-            Member member = createMember("test2@naver.com", "testbot2", "samenicknam2", "01022223333", "password12342");
+            Member member = createMember("test2@naver.com", "testbot2", "samenicknam2", "01022223333", "password1234");
             em.persist(member);
 
             Address address = createAddress("address11_1", "address22_1");
@@ -47,11 +49,26 @@ public class InitDB {
             Address address1 = createAddress("address11_2", "address22_2");
             address1.setMember(member);
             em.persist(address1);
-        }
 
-        public void initDb3() {
+            Member member1 = createMember("test1@naver.com", "testbot1", "samenicknam1", "01022223311", "password1234");
+            em.persist(member1);
+
+            Address address2 = createAddress("address11_11", "address22_11");
+            address.setMember(member1);
+            em.persist(address2);
+
+            Address address3 = createAddress("address11_22", "address22_22");
+            address1.setMember(member1);
+            em.persist(address3);
+
             ChattingRoom testRoom = createChattingRoom("test_room", "1234");
-            MemberChattingRoom memberChattingRoom = new MemberChattingRoom();
+            em.persist(testRoom);
+
+            var memberChattingRoom = joinMemberToChattingRoom(member, testRoom);
+            em.persist(memberChattingRoom);
+
+            var memberChattingRoom1 = joinMemberToChattingRoom(member1, testRoom);
+            em.persist(memberChattingRoom1);
 
         }
 

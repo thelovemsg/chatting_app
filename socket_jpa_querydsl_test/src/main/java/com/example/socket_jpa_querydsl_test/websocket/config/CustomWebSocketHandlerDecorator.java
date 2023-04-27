@@ -13,7 +13,6 @@ public class CustomWebSocketHandlerDecorator extends WebSocketHandlerDecorator {
         super(delegate);
     }
 
-
     @Override
     public void handleTransportError(WebSocketSession session, Throwable exception) throws Exception {
         // Log the error

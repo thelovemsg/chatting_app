@@ -30,9 +30,6 @@ public class QFile extends EntityPathBase<File> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
 
-    //inherited
-    public final BooleanPath deleted = _super.deleted;
-
     public final DateTimePath<java.time.LocalDateTime> deleteTime = createDateTime("deleteTime", java.time.LocalDateTime.class);
 
     public final StringPath description = createString("description");
@@ -45,6 +42,9 @@ public class QFile extends EntityPathBase<File> {
 
     //inherited
     public final NumberPath<Long> id = _super.id;
+
+    //inherited
+    public final EnumPath<com.example.socket_jpa_querydsl_test.domain.status.FlagStatus> isDeleted = _super.isDeleted;
 
     //inherited
     public final StringPath lastModifiedBy = _super.lastModifiedBy;

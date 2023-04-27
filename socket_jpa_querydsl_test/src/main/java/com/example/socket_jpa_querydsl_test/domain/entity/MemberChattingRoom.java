@@ -4,6 +4,7 @@ import com.example.socket_jpa_querydsl_test.domain.status.FlagStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
+import static jakarta.persistence.EnumType.*;
 import static jakarta.persistence.FetchType.LAZY;
 
 @AllArgsConstructor
@@ -28,6 +29,7 @@ public class MemberChattingRoom extends BaseEntity{
      * the column "withdrawalStatus" should be updated as YES.
      */
     @Column(name = "withdrawal_status")
+    @Enumerated(STRING)
     private FlagStatus withdrawalStatus = FlagStatus.NO;
 
     /**
@@ -35,6 +37,7 @@ public class MemberChattingRoom extends BaseEntity{
      * the column "roomStatus" should be updated as YES.
      */
     @Column(name = "room_closed")
+    @Enumerated(STRING)
     private FlagStatus isRoomClosed = FlagStatus.NO;
 
     /**
@@ -43,6 +46,7 @@ public class MemberChattingRoom extends BaseEntity{
      * (Or for some room that they don't use any more for too long time)
      */
     @Column(name = "is_expired")
+    @Enumerated(STRING)
     private FlagStatus isExpired = FlagStatus.NO;
 
     @Column(name = "description")
@@ -60,12 +64,16 @@ public class MemberChattingRoom extends BaseEntity{
         this.isRoomClosed = FlagStatus.YES;
     }
 
+//    public void joinMemberToChattingRoom(Member member, ChattingRoom chattingRoom){
+//        this.setMember(member);
+//        this.setChattingRoom(chattingRoom);
+//    }
+
     public static MemberChattingRoom joinMemberToChattingRoom(Member member, ChattingRoom chattingRoom) {
         MemberChattingRoom memberChattingRoom = new MemberChattingRoom();
         memberChattingRoom.setMember(member);
         memberChattingRoom.setChattingRoom(chattingRoom);
         return memberChattingRoom;
     }
-
 
 }

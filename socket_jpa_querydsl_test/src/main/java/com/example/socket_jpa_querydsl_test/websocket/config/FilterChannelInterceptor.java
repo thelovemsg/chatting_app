@@ -33,13 +33,13 @@ public class FilterChannelInterceptor implements ChannelInterceptor {
 
     @Override
     public void afterSendCompletion(Message<?> message, MessageChannel channel, boolean sent, Exception ex) {
-        log.info("afterSendCompletion mssage={} channel={}", message, channel);
+        log.info("afterSendCompletion message={} channel={}", message, channel);
         ChannelInterceptor.super.afterSendCompletion(message, channel, sent, ex);
     }
 
     @Override
     public void postSend(Message<?> message, MessageChannel channel, boolean sent) {
-        log.info("postSend mssage={} channel={}", message, channel);
+        log.info("postSend message={} channel={}", message, channel);
         ChannelInterceptor.super.postSend(message, channel, sent);
     }
 

@@ -21,6 +21,7 @@ public class MemberController {
     public Long getMemberCnt() {
         return memberService.getMemberCount();
     }
+
     @GetMapping("/member")
     public Member getMember(@RequestParam String name, @RequestParam String password) {
         return memberService.getMember(name, password);

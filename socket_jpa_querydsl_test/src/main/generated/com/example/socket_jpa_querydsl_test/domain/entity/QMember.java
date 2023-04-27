@@ -2,7 +2,6 @@ package com.example.socket_jpa_querydsl_test.domain.entity;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;
@@ -35,15 +34,15 @@ public class QMember extends EntityPathBase<Member> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
 
-    //inherited
-    public final BooleanPath deleted = _super.deleted;
-
     public final StringPath email = createString("email");
 
     public final ListPath<File, QFile> files = this.<File, QFile>createList("files", File.class, QFile.class, PathInits.DIRECT2);
 
     //inherited
     public final NumberPath<Long> id = _super.id;
+
+    //inherited
+    public final EnumPath<com.example.socket_jpa_querydsl_test.domain.status.FlagStatus> isDeleted = _super.isDeleted;
 
     //inherited
     public final StringPath lastModifiedBy = _super.lastModifiedBy;

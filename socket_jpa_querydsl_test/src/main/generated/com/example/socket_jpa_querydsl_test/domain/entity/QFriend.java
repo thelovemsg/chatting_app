@@ -34,13 +34,13 @@ public class QFriend extends EntityPathBase<Friend> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
 
-    //inherited
-    public final BooleanPath deleted = _super.deleted;
-
     public final StringPath fromMemberId = createString("fromMemberId");
 
     //inherited
     public final NumberPath<Long> id = _super.id;
+
+    //inherited
+    public final EnumPath<com.example.socket_jpa_querydsl_test.domain.status.FlagStatus> isDeleted = _super.isDeleted;
 
     //inherited
     public final StringPath lastModifiedBy = _super.lastModifiedBy;
