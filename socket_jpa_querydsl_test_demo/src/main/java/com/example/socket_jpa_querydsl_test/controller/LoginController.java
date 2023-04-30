@@ -1,9 +1,13 @@
 package com.example.socket_jpa_querydsl_test.controller;
 
-import com.example.socket_jpa_querydsl_test.api.dto.entity.MemberLoginDto;
-import com.example.socket_jpa_querydsl_test.api.dto.response.MemberResponseDto;
+import com.example.socket_jpa_querydsl_test.api.dto.entity.MemberLoginRequestDto;
+import com.example.socket_jpa_querydsl_test.domain.utils.TokenInfo;
+import com.example.socket_jpa_querydsl_test.service.MemberService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,15 +17,22 @@ import static com.example.socket_jpa_querydsl_test.api.CustomResponseUtils.custo
 import static com.example.socket_jpa_querydsl_test.api.CustomResponseUtils.getErrorMessage;
 
 @RestController
+@RequiredArgsConstructor
 public class LoginController {
 
-    @PostMapping("/login")
-    public ResponseEntity<String> loginMember(@Valid @RequestBody MemberLoginDto memberLoginDto, BindingResult result) {
-        if(result.hasErrors()){
-            throw new IllegalArgumentException(getErrorMessage(result));
-        }
+    private final MemberService memberService;
 
-        return customResponse("success");
+    @PostMapping("/login")
+    public TokenInfo loginMember(@Valid @RequestBody MemberLoginRequestDto memberLoginRequestDto, BindingResult result) {
+        String email = memberLoginRequestDto.getEmail();
+        String password = memberLoginRequestDto.getPassword();
+        TokenInfo tokenInfo = memberService.login(email, password);
+        return tokenInfo;
+    }
+
+    @PostMapping("/test")
+    public String test() {
+        return "success";
     }
 
 }

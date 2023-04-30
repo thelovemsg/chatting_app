@@ -28,7 +28,7 @@ public class MemberApiController {
             throw new IllegalArgumentException(getErrorMessage(result));
         }
 
-        Member member = Member.createMember(memberSaveDto);
+        Member member = new Member().createMember(memberSaveDto);
         member = memberService.saveMember(member);
         return customResponse(new MemberResponseDto(member));
     }
@@ -37,6 +37,5 @@ public class MemberApiController {
     public ResponseEntity<MemberResponseDto> findMemberByEmail(@RequestBody MemberDto memberDto){
         return customResponse(memberService.findExistMember(memberDto));
     }
-
 
 }

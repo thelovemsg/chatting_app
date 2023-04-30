@@ -40,6 +40,7 @@ logging:
       # jpa hibernate가 생성하는 sql이 로거를 통해서 찍히도록 하는 설정
     org.hibernate.SQL: debug
     org.hibernate.type: trace # 실제 들어가는 파라미터값 찍어주는 설정
+    org.springframework.security: DEBUG
 password:
   encryption_key: thelovemsg-secret-key
   algorithm: AES
@@ -47,3 +48,6 @@ password:
 file:
   storage:
     location:  D://IntelliJ_IDEA//fileEntities
+jwt:
+  secret: a914de38e72c11eda05b0242ac1200039382aceee73111eda05b0242ac120003
+  expiration: 200000

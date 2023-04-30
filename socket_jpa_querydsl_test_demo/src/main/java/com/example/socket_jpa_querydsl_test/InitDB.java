@@ -1,9 +1,7 @@
 package com.example.socket_jpa_querydsl_test;
 
-import com.example.socket_jpa_querydsl_test.domain.entity.Address;
-import com.example.socket_jpa_querydsl_test.domain.entity.ChattingRoom;
-import com.example.socket_jpa_querydsl_test.domain.entity.Member;
-import com.example.socket_jpa_querydsl_test.domain.entity.MemberChattingRoom;
+import com.example.socket_jpa_querydsl_test.config.security.MemberRoleEnum;
+import com.example.socket_jpa_querydsl_test.domain.entity.*;
 import com.example.socket_jpa_querydsl_test.domain.status.ChattingRoomStatus;
 import jakarta.annotation.PostConstruct;
 import jakarta.persistence.EntityManager;
@@ -19,7 +17,6 @@ public class InitDB {
     public void init() {
         initService.initDb1();
         initService.initDb2();
-//        initService.initDb3();
     }
 
     @Component
@@ -28,17 +25,31 @@ public class InitDB {
     static class InitService {
         private final EntityManager em;
         public void initDb1() {
-            Member member = createMember("test1@naver.com", "testbot1", "samenicknam1","01011112222", "password12341");
+
+            Member member = createMember("test1@naver.com", "testbot1", "samenicknam1","01011112222", "password1234");
             em.persist(member);
+
+            MemberRole memberRole = new MemberRole();
+            memberRole.setMember(member);
+            member.getMemberRoles().add(memberRole);
+            em.persist(memberRole);
 
             Address address = createAddress("address1", "address2");
             address.setMember(member);
             em.persist(address);
+
+
         }
 
         public void initDb2() {
-            Member member = createMember("test2@naver.com", "testbot2", "samenicknam2", "01022223333", "password12342");
+
+            Member member = createMember("test2@naver.com", "testbot2", "samenicknam2", "01022223333", "password1234");
             em.persist(member);
+
+            MemberRole memberRole = new MemberRole();
+            memberRole.setMember(member);
+            member.getMemberRoles().add(memberRole);
+            em.persist(memberRole);
 
             Address address = createAddress("address11_1", "address22_1");
             address.setMember(member);
@@ -47,9 +58,7 @@ public class InitDB {
             Address address1 = createAddress("address11_2", "address22_2");
             address1.setMember(member);
             em.persist(address1);
-        }
 
-        public void initDb3() {
             ChattingRoom testRoom = createChattingRoom("test_room", "1234");
             MemberChattingRoom memberChattingRoom = new MemberChattingRoom();
 

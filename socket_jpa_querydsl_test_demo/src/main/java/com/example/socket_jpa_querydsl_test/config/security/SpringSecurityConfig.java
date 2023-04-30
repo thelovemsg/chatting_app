@@ -1,8 +1,9 @@
 package com.example.socket_jpa_querydsl_test.config.security;
 
-import com.example.socket_jpa_querydsl_test.config.security.filter.CustomAuthenticationFilter;
-import com.example.socket_jpa_querydsl_test.config.security.provider.CustomAuthenticationProvider;
-import com.example.socket_jpa_querydsl_test.config.security.serivce.CustomMemberDetailService;
+import com.example.socket_jpa_querydsl_test.config.security.filter.JwtAuthenticationFilter;
+import com.example.socket_jpa_querydsl_test.config.security.provider.JwtTokenProvider;
+import com.example.socket_jpa_querydsl_test.domain.entity.RoleEnum;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -10,8 +11,7 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
@@ -23,21 +23,25 @@ import java.util.Collections;
 
 @Configuration
 @EnableMethodSecurity(prePostEnabled = true)
+@RequiredArgsConstructor
 public class SpringSecurityConfig {
 
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
+    private final JwtTokenProvider jwtTokenProvider;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.cors().and()
+     http.httpBasic().disable()
             .csrf().disable()
-            .authorizeRequests()
-            .anyRequest().authenticated()
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
-            .addFilterBefore(loginProcessingFilter(), UsernamePasswordAuthenticationFilter.class);
+            .authorizeRequests(registry -> {
+                registry.requestMatchers("/", "/error", "/users", "user/login/**", "/login*").permitAll()
+                        .requestMatchers("/test").hasRole(RoleEnum.USER.toString())
+//                            .requestMatchers("/messages").hasRole("MANAGER")
+//                            .requestMatchers("/config").hasRole("ADMIN")
+                        .anyRequest().authenticated();
+            })
+            .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
@@ -55,28 +59,6 @@ public class SpringSecurityConfig {
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
-    }
-
-    @Bean
-    public AuthenticationProvider authenticationProvider() {
-        return new CustomAuthenticationProvider();
-    }
-
-    @Bean
-    CustomMemberDetailService customUserDetailsService() {
-        return new CustomMemberDetailService();
-    }
-
-    @Bean
-    public AuthenticationManager authenticationManager() {
-        return new ProviderManager(Collections.singletonList(authenticationProvider()));
-    }
-
-    @Bean
-    public CustomAuthenticationFilter loginProcessingFilter() {
-        CustomAuthenticationFilter filter = new CustomAuthenticationFilter();
-        filter.setAuthenticationManager(authenticationManager());
-        return filter;
     }
 
 }

@@ -1,11 +1,17 @@
 package com.example.socket_jpa_querydsl_test.service;
 
 import com.example.socket_jpa_querydsl_test.api.dto.entity.MemberDto;
+import com.example.socket_jpa_querydsl_test.config.security.provider.JwtTokenProvider;
 import com.example.socket_jpa_querydsl_test.domain.entity.Member;
 import com.example.socket_jpa_querydsl_test.domain.entity.QMember;
+import com.example.socket_jpa_querydsl_test.domain.utils.TokenInfo;
 import com.example.socket_jpa_querydsl_test.repository.AddressRepository;
 import com.example.socket_jpa_querydsl_test.repository.MemberRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +21,8 @@ import java.util.List;
 public class MemberService {
 
     private final MemberRepository memberRepository;
+    private final AuthenticationManagerBuilder authenticationManagerBuilder;
+    private final JwtTokenProvider jwtTokenProvider;
     private final AddressRepository addressRepository;
     private static final String EMAIL_CHECK = "emailCheck";
     private static final String NICKNAME_CHECK = "nicknameCheck";
@@ -22,6 +30,22 @@ public class MemberService {
     private static final String EMAIL = "email";
     private static final String NICKNAME = "email";
     private static final String PHONE_NUMBER = "email";
+
+    @Transactional
+    public TokenInfo login(String email, String password) {
+        // 1. Login ID/PW 를 기반으로 Authentication 객체 생성
+        // 이때 authentication 는 인증 여부를 확인하는 authenticated 값이 false
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(email, password);
+
+        // 2. 실제 검증 (사용자 비밀번호 체크)이 이루어지는 부분
+        // authenticate 매서드가 실행될 때 CustomUserDetailsService 에서 만든 loadUserByUsername 메서드가 실행
+        Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+
+        // 3. 인증 정보를 기반으로 JWT 토큰 생성
+        TokenInfo tokenInfo = jwtTokenProvider.generateToken(authentication);
+
+        return tokenInfo;
+    }
 
     public Member getMember(String name, String password){
         return memberRepository.getMemberByNameAndPassword(name, password);

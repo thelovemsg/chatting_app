@@ -47,6 +47,8 @@ public class QMember extends EntityPathBase<Member> {
     //inherited
     public final StringPath lastModifiedBy = _super.lastModifiedBy;
 
+    public final ListPath<MemberRole, QMemberRole> memberRoles = this.<MemberRole, QMemberRole>createList("memberRoles", MemberRole.class, QMemberRole.class, PathInits.DIRECT2);
+
     //inherited
     public final DateTimePath<java.time.LocalDateTime> modifiedDate = _super.modifiedDate;
 
@@ -57,8 +59,6 @@ public class QMember extends EntityPathBase<Member> {
     public final StringPath password = createString("password");
 
     public final StringPath phoneNumber = createString("phoneNumber");
-
-    public final EnumPath<com.example.socket_jpa_querydsl_test.config.security.MemberRoleEnum> role = createEnum("role", com.example.socket_jpa_querydsl_test.config.security.MemberRoleEnum.class);
 
     public final StringPath userOwnId = createString("userOwnId");
 

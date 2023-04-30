@@ -2,39 +2,40 @@ package com.example.socket_jpa_querydsl_test.config.security.serivce;
 
 import com.example.socket_jpa_querydsl_test.domain.entity.Member;
 import com.example.socket_jpa_querydsl_test.repository.MemberRepository;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service("userDetailsService")
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class CustomMemberDetailService implements UserDetailsService {
 
-    @Autowired
-    private MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Member member = memberRepository.getMemberByEmail(username);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        return memberRepository.getMemberByEmail(email)
+            .map(this::createUserDetails)
+                .orElseThrow(() -> new UsernameNotFoundException("UsernameNotFoundException"));
+    }
 
-        if(member == null){
-            throw new UsernameNotFoundException("UsernameNotFoundException");
-        }
+    // 해당하는 User 의 데이터가 존재한다면 UserDetails 객체로 만들어서 리턴
+    private UserDetails createUserDetails(Member member) {
+        List<String> roles = member.getMemberRoles().stream()
+                .map(memberRole -> memberRole.getRoleEnum().toString())
+                .collect(Collectors.toList());
 
-        List<GrantedAuthority> roles = new ArrayList<>();
-        roles.add(new SimpleGrantedAuthority(member.getRole().toString()));
-
-        MemberContext accountContext = new MemberContext(member, roles);
-
-        return accountContext;
+        return User.builder()
+                .username(member.getEmail())
+                .password(member.getPassword())
+                .roles(roles.toArray(new String[0]))
+                .build();
     }
 }

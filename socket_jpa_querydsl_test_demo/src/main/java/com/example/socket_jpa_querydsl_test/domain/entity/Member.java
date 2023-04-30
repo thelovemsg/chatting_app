@@ -7,12 +7,18 @@ import com.example.socket_jpa_querydsl_test.domain.utils.PasswordConverterUtil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static jakarta.persistence.EnumType.*;
+import static jakarta.persistence.FetchType.*;
 
 @Entity
 @Table(uniqueConstraints =
@@ -51,6 +57,9 @@ public class Member extends BaseEntity implements Serializable {
     @Convert(converter = PasswordConverterUtil.class)
     private String password;
 
+    @OneToMany(mappedBy = "member", fetch = LAZY)
+    private List<MemberRole> memberRoles = new ArrayList<>();
+
 //    @JsonIgnore
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     @Builder.Default
@@ -71,10 +80,6 @@ public class Member extends BaseEntity implements Serializable {
     @OneToMany(mappedBy = "memberTarget", cascade = CascadeType.ALL)
     private List<BlockMember> blockedMembers;
 
-    @Column(name = "member_role")
-    @Enumerated(STRING)
-    private MemberRoleEnum role = MemberRoleEnum.COMMON;
-
     /**
      * @param blockMember
      * @descriptionn soft delete.
@@ -92,7 +97,7 @@ public class Member extends BaseEntity implements Serializable {
         }
     }
 
-    public static Member createMember(MemberSaveDto memberSaveDto){
+    public Member createMember(MemberSaveDto memberSaveDto){
         Address address = new Address();
         address.setAddress1(memberSaveDto.getAddress1());
         address.setAddress2(memberSaveDto.getAddress2());
@@ -101,15 +106,20 @@ public class Member extends BaseEntity implements Serializable {
         List<Address> addresses = new ArrayList<>();
         addresses.add(address);
 
+        MemberRole memberRole = new MemberRole();
+        memberRoles.add(memberRole);
+
         return new Member()
                 .builder()
                 .name(memberSaveDto.getName())
                 .nickname(memberSaveDto.getNickname())
                 .email(memberSaveDto.getEmail())
                 .addresses(addresses)
+                .memberRoles(memberRoles)
                 .password(memberSaveDto.getPassword())
                 .phoneNumber(memberSaveDto.getPhoneNumber())
                 .build();
     }
+
 
 }
