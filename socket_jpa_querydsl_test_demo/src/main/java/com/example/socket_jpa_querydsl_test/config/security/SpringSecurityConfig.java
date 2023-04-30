@@ -1,52 +1,43 @@
 package com.example.socket_jpa_querydsl_test.config.security;
 
-import jakarta.servlet.DispatcherType;
+import com.example.socket_jpa_querydsl_test.config.security.filter.CustomAuthenticationFilter;
+import com.example.socket_jpa_querydsl_test.config.security.provider.CustomAuthenticationProvider;
+import com.example.socket_jpa_querydsl_test.config.security.serivce.CustomMemberDetailService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 @Configuration
-@EnableMethodSecurity
+@EnableMethodSecurity(prePostEnabled = true)
 public class SpringSecurityConfig {
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+//    @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//        http.csrf().disable().cors().disable()
-//                .authorizeHttpRequests(request -> request
-//                        .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
-//                        .anyRequest().authenticated()	// 어떠한 요청이라도 인증필요
-//                )
-//                .logout(Customizer.withDefaults());	// 로그아웃은 기본설정으로 (/logout으로 인증해제)
-//        http
-//                .authorizeRequests(registry -> {
-//                    registry.antMatchers("/", "/users", "user/login/**", "/login*").permitAll()
-//                            .antMatchers("/mypage").hasRole("USER")
-//                            .antMatchers("/messages").hasRole("MANAGER")
-//                            .antMatchers("/config").hasRole("ADMIN")
-//                            .anyRequest().authenticated();
-//
-//                });
         http.cors().and()
             .csrf().disable()
             .authorizeRequests()
             .anyRequest().authenticated()
             .and()
-            .formLogin();  // Enable form-based login
+            .addFilterBefore(loginProcessingFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
@@ -64,6 +55,28 @@ public class SpringSecurityConfig {
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
+    }
+
+    @Bean
+    public AuthenticationProvider authenticationProvider() {
+        return new CustomAuthenticationProvider();
+    }
+
+    @Bean
+    CustomMemberDetailService customUserDetailsService() {
+        return new CustomMemberDetailService();
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager() {
+        return new ProviderManager(Collections.singletonList(authenticationProvider()));
+    }
+
+    @Bean
+    public CustomAuthenticationFilter loginProcessingFilter() {
+        CustomAuthenticationFilter filter = new CustomAuthenticationFilter();
+        filter.setAuthenticationManager(authenticationManager());
+        return filter;
     }
 
 }

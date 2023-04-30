@@ -16,7 +16,7 @@ import static com.example.socket_jpa_querydsl_test.api.CustomResponseUtils.getEr
 public class LoginController {
 
     @PostMapping("/login")
-    public ResponseEntity<String> loginMember(@Valid @RequestBody MemberLoginDto memberLoginDtoo, BindingResult result) {
+    public ResponseEntity<String> loginMember(@Valid @RequestBody MemberLoginDto memberLoginDto, BindingResult result) {
         if(result.hasErrors()){
             throw new IllegalArgumentException(getErrorMessage(result));
         }
