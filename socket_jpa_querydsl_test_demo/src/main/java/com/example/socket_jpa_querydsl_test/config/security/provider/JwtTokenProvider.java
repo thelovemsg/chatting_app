@@ -105,4 +105,51 @@ public class JwtTokenProvider {
             return e.getClaims();
         }
     }
+
+    // A method to generate a new access token using a refresh token
+    public String refreshToken(String refreshToken) {
+        // Here you would look up the refresh token in the database, verify that it is
+        // valid and associated with the user, and then generate a new access token.
+        // For this example, I'll assume that you have a method validateRefreshToken
+        // that performs this validation and returns the user's username if the refresh
+        // token is valid.
+        String username = validateRefreshToken(refreshToken);
+
+        // Now you can generate a new access token for the user. You'll need a method
+        // to load the user's details given their username.
+        UserDetails userDetails = loadUserByUsername(username);
+
+        // Create a new authentication token
+        Authentication authentication = new UsernamePasswordAuthenticationToken(
+                userDetails, null, userDetails.getAuthorities());
+
+        // Generate a new access token
+        return generateToken(authentication).getAccessToken();
+    }
+
+    // Method to validate the refresh token
+    private String validateRefreshToken(String refreshToken) {
+        // Here you would look up the refresh token in the database and verify that
+        // it is valid and associated with the user. If the token is valid, return
+        // the user's username. For this example, I'll assume that the refresh token
+        // is valid and return a hardcoded username.
+        //
+        // In a real application, you should implement this method to validate the
+        // refresh token against your database and return the associated user's
+        // username.
+        return "user@example.com";
+    }
+
+    // Method to load the user's details given their username
+    private UserDetails loadUserByUsername(String username) {
+        // Here you would load the user's details from your database and return a
+        // UserDetails object. For this example, I'll return a hardcoded user with
+        // a single authority.
+        //
+        // In a real application, you should implement this method to load the user's
+        // details from your database.
+        List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
+        return new User(username, "", authorities);
+    }
+
 }

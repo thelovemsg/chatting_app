@@ -38,7 +38,6 @@ public class InitDB {
             address.setMember(member);
             em.persist(address);
 
-
         }
 
         public void initDb2() {
@@ -47,6 +46,7 @@ public class InitDB {
             em.persist(member);
 
             MemberRole memberRole = new MemberRole();
+            memberRole.setRoleEnum(RoleEnum.MANAGER);
             memberRole.setMember(member);
             member.getMemberRoles().add(memberRole);
             em.persist(memberRole);

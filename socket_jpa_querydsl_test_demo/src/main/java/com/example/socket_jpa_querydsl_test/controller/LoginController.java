@@ -1,6 +1,8 @@
 package com.example.socket_jpa_querydsl_test.controller;
 
 import com.example.socket_jpa_querydsl_test.api.dto.entity.MemberLoginRequestDto;
+import com.example.socket_jpa_querydsl_test.api.dto.request.RefreshTokenRequest;
+import com.example.socket_jpa_querydsl_test.config.security.provider.JwtTokenProvider;
 import com.example.socket_jpa_querydsl_test.domain.utils.TokenInfo;
 import com.example.socket_jpa_querydsl_test.service.MemberService;
 import jakarta.validation.Valid;
@@ -20,6 +22,7 @@ import static com.example.socket_jpa_querydsl_test.api.CustomResponseUtils.getEr
 @RequiredArgsConstructor
 public class LoginController {
 
+    private final JwtTokenProvider jwtTokenProvider;
     private final MemberService memberService;
 
     @PostMapping("/login")
@@ -30,9 +33,11 @@ public class LoginController {
         return tokenInfo;
     }
 
-    @PostMapping("/test")
-    public String test() {
-        return "success";
+    @PostMapping("/refresh_token")
+    public ResponseEntity<?> refreshToken(@RequestBody RefreshTokenRequest request) {
+//        String refreshToken = request.getRefreshToken();
+//        String accessToken = jwtTokenProvider.refreshToken(refreshToken);
+//        return ResponseEntity.ok(new TokenResponse(accessToken));
+        return null;
     }
-
 }

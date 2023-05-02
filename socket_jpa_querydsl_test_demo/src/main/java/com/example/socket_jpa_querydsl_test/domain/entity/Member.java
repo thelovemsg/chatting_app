@@ -2,6 +2,7 @@ package com.example.socket_jpa_querydsl_test.domain.entity;
 
 import com.example.socket_jpa_querydsl_test.api.dto.entity.MemberSaveDto;
 import com.example.socket_jpa_querydsl_test.config.security.MemberRoleEnum;
+import com.example.socket_jpa_querydsl_test.domain.entity.security.RefreshToken;
 import com.example.socket_jpa_querydsl_test.domain.status.AddressStatus;
 import com.example.socket_jpa_querydsl_test.domain.utils.PasswordConverterUtil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -57,7 +58,7 @@ public class Member extends BaseEntity implements Serializable {
     @Convert(converter = PasswordConverterUtil.class)
     private String password;
 
-    @OneToMany(mappedBy = "member", fetch = LAZY)
+    @OneToMany(mappedBy = "member", fetch = EAGER)
     private List<MemberRole> memberRoles = new ArrayList<>();
 
 //    @JsonIgnore
@@ -66,7 +67,6 @@ public class Member extends BaseEntity implements Serializable {
     private List<Address> addresses = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-
     @Builder.Default
     private List<File> files = new ArrayList<>();
 
@@ -79,6 +79,9 @@ public class Member extends BaseEntity implements Serializable {
 
     @OneToMany(mappedBy = "memberTarget", cascade = CascadeType.ALL)
     private List<BlockMember> blockedMembers;
+
+    @OneToOne(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private RefreshToken refreshToken;
 
     /**
      * @param blockMember

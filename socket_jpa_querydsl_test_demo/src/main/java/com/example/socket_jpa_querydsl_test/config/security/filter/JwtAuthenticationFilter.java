@@ -1,25 +1,18 @@
 package com.example.socket_jpa_querydsl_test.config.security.filter;
 
-import com.example.socket_jpa_querydsl_test.config.security.LoginRequest;
 import com.example.socket_jpa_querydsl_test.config.security.provider.JwtTokenProvider;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.GenericFilterBean;
 
 import java.io.IOException;
-import java.util.Collections;
 
 /**
  * Spring Security doesn't automatically handle JSON login requests by default.

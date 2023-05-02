@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 @SpringBootTest
 @Transactional
-class MemberChattingRoomCustomRepositoryTest {
+class ChattingRoomJoinTest {
 
     @Autowired
     private MemberRepository memberRepository;
