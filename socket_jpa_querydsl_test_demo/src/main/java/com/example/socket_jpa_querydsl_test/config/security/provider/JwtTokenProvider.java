@@ -148,8 +148,9 @@ public class JwtTokenProvider {
         //
         // In a real application, you should implement this method to load the user's
         // details from your database.
-        List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
-        return new User(username, "", authorities);
+//        List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
+//        return new User(username, "", authorities);
+        return null;
     }
 
 }
