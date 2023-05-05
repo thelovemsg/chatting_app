@@ -1,4 +1,4 @@
-package com.example.socket_jpa_querydsl_test.repository;
+package com.example.socket_jpa_querydsl_test.repository.member;
 
 import com.example.socket_jpa_querydsl_test.domain.entity.MemberChattingRoom;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -11,6 +11,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 @Getter
 @Setter
@@ -25,13 +26,11 @@ public abstract class BaseEntity {
     @Column(name = "id")
     protected Long id;
 
-    @CreatedDate
     @Column(name = "createdDate")
-    private LocalDateTime createdDate;
+    private ZonedDateTime createdDate = ZonedDateTime.now();
 
-    @LastModifiedDate
     @Column(name = "modifiedDate")
-    private LocalDateTime modifiedDate;
+    private ZonedDateTime modifiedDate = ZonedDateTime.now();
 
     @Column(name = "createdBy", nullable = false, columnDefinition = "varchar(255) default 'ADMIN'")
     private String createdBy = "ADMIN";

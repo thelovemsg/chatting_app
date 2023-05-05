@@ -30,7 +30,7 @@ public class QBlockMember extends EntityPathBase<BlockMember> {
     public final StringPath createdBy = _super.createdBy;
 
     //inherited
-    public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
+    public final DateTimePath<java.time.ZonedDateTime> createdDate = _super.createdDate;
 
     //inherited
     public final BooleanPath deleted = _super.deleted;
@@ -46,7 +46,7 @@ public class QBlockMember extends EntityPathBase<BlockMember> {
     public final QMember memberTarget;
 
     //inherited
-    public final DateTimePath<java.time.LocalDateTime> modifiedDate = _super.modifiedDate;
+    public final DateTimePath<java.time.ZonedDateTime> modifiedDate = _super.modifiedDate;
 
     public QBlockMember(String variable) {
         this(BlockMember.class, forVariable(variable), INITS);
@@ -66,8 +66,8 @@ public class QBlockMember extends EntityPathBase<BlockMember> {
 
     public QBlockMember(Class<? extends BlockMember> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.member = inits.isInitialized("member") ? new QMember(forProperty("member")) : null;
-        this.memberTarget = inits.isInitialized("memberTarget") ? new QMember(forProperty("memberTarget")) : null;
+        this.member = inits.isInitialized("member") ? new QMember(forProperty("member"), inits.get("member")) : null;
+        this.memberTarget = inits.isInitialized("memberTarget") ? new QMember(forProperty("memberTarget"), inits.get("memberTarget")) : null;
     }
 
 }

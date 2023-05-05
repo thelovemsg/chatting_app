@@ -30,7 +30,7 @@ public class QMemberChattingRoom extends EntityPathBase<MemberChattingRoom> {
     public final StringPath createdBy = _super.createdBy;
 
     //inherited
-    public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
+    public final DateTimePath<java.time.ZonedDateTime> createdDate = _super.createdDate;
 
     //inherited
     public final BooleanPath deleted = _super.deleted;
@@ -50,7 +50,7 @@ public class QMemberChattingRoom extends EntityPathBase<MemberChattingRoom> {
     public final QMember member;
 
     //inherited
-    public final DateTimePath<java.time.LocalDateTime> modifiedDate = _super.modifiedDate;
+    public final DateTimePath<java.time.ZonedDateTime> modifiedDate = _super.modifiedDate;
 
     public final EnumPath<com.example.socket_jpa_querydsl_test.domain.status.FlagStatus> withdrawalStatus = createEnum("withdrawalStatus", com.example.socket_jpa_querydsl_test.domain.status.FlagStatus.class);
 
@@ -73,7 +73,7 @@ public class QMemberChattingRoom extends EntityPathBase<MemberChattingRoom> {
     public QMemberChattingRoom(Class<? extends MemberChattingRoom> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.chattingRoom = inits.isInitialized("chattingRoom") ? new QChattingRoom(forProperty("chattingRoom")) : null;
-        this.member = inits.isInitialized("member") ? new QMember(forProperty("member")) : null;
+        this.member = inits.isInitialized("member") ? new QMember(forProperty("member"), inits.get("member")) : null;
     }
 
 }

@@ -16,7 +16,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.UUID;
 
 @Service
@@ -57,7 +59,7 @@ public class FileStorageService {
                     .storedFileName(UUID.randomUUID().toString())
                     .fileSize(file.getSize())
                     .fileType(file.getContentType())
-                    .uploadTime(LocalDateTime.now())
+                    .uploadTime(ZonedDateTime.now())
                     .description("먼가 필요할거 같은데 우선 테스트")
                     .build();
 

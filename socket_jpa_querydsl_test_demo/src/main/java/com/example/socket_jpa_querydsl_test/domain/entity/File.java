@@ -6,6 +6,7 @@ import lombok.*;
 import org.hibernate.annotations.Where;
 
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 import static jakarta.persistence.FetchType.LAZY;
 
@@ -32,10 +33,10 @@ public class File extends BaseEntity{
     private String fileType;
 
     @Column(nullable = false, name = "upload_time")
-    private LocalDateTime uploadTime;
+    private ZonedDateTime uploadTime;
 
     @Column(name = "delete_time")
-    private LocalDateTime deleteTime;
+    private ZonedDateTime deleteTime;
 
     @Column(name = "description")
     private String description;

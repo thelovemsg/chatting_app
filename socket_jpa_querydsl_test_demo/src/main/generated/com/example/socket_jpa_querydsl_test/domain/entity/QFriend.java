@@ -32,7 +32,7 @@ public class QFriend extends EntityPathBase<Friend> {
     public final StringPath createdBy = _super.createdBy;
 
     //inherited
-    public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
+    public final DateTimePath<java.time.ZonedDateTime> createdDate = _super.createdDate;
 
     //inherited
     public final BooleanPath deleted = _super.deleted;
@@ -48,7 +48,7 @@ public class QFriend extends EntityPathBase<Friend> {
     public final QMember member;
 
     //inherited
-    public final DateTimePath<java.time.LocalDateTime> modifiedDate = _super.modifiedDate;
+    public final DateTimePath<java.time.ZonedDateTime> modifiedDate = _super.modifiedDate;
 
     public final StringPath toMemberId = createString("toMemberId");
 
@@ -70,7 +70,7 @@ public class QFriend extends EntityPathBase<Friend> {
 
     public QFriend(Class<? extends Friend> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.member = inits.isInitialized("member") ? new QMember(forProperty("member")) : null;
+        this.member = inits.isInitialized("member") ? new QMember(forProperty("member"), inits.get("member")) : null;
     }
 
 }

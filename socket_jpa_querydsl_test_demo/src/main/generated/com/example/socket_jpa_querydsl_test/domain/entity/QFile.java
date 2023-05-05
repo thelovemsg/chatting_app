@@ -28,12 +28,12 @@ public class QFile extends EntityPathBase<File> {
     public final StringPath createdBy = _super.createdBy;
 
     //inherited
-    public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
+    public final DateTimePath<java.time.ZonedDateTime> createdDate = _super.createdDate;
 
     //inherited
     public final BooleanPath deleted = _super.deleted;
 
-    public final DateTimePath<java.time.LocalDateTime> deleteTime = createDateTime("deleteTime", java.time.LocalDateTime.class);
+    public final DateTimePath<java.time.ZonedDateTime> deleteTime = createDateTime("deleteTime", java.time.ZonedDateTime.class);
 
     public final StringPath description = createString("description");
 
@@ -52,11 +52,11 @@ public class QFile extends EntityPathBase<File> {
     public final QMember member;
 
     //inherited
-    public final DateTimePath<java.time.LocalDateTime> modifiedDate = _super.modifiedDate;
+    public final DateTimePath<java.time.ZonedDateTime> modifiedDate = _super.modifiedDate;
 
     public final StringPath storedFileName = createString("storedFileName");
 
-    public final DateTimePath<java.time.LocalDateTime> uploadTime = createDateTime("uploadTime", java.time.LocalDateTime.class);
+    public final DateTimePath<java.time.ZonedDateTime> uploadTime = createDateTime("uploadTime", java.time.ZonedDateTime.class);
 
     public QFile(String variable) {
         this(File.class, forVariable(variable), INITS);
@@ -76,7 +76,7 @@ public class QFile extends EntityPathBase<File> {
 
     public QFile(Class<? extends File> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.member = inits.isInitialized("member") ? new QMember(forProperty("member")) : null;
+        this.member = inits.isInitialized("member") ? new QMember(forProperty("member"), inits.get("member")) : null;
     }
 
 }

@@ -3,23 +3,31 @@ package com.example.socket_jpa_querydsl_test.domain.entity.security;
 import com.example.socket_jpa_querydsl_test.domain.entity.BaseEntity;
 import com.example.socket_jpa_querydsl_test.domain.entity.Member;
 import jakarta.persistence.*;
-import lombok.Getter;
+import lombok.*;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @Entity
 @Table(name = "refresh_tokens")
 @Getter
 @AttributeOverride(name = "id", column = @Column(name = "refresh_token_id"))
+@NoArgsConstructor
+@AllArgsConstructor
 public class RefreshToken extends BaseEntity {
 
-    @Column(nullable = false)
+    @Column(name = "token", nullable = false)
     private String token;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @Column(nullable = false)
-    private LocalDateTime expiryDate;
+    @Column(name = "expire_date", nullable = false)
+    private Instant expiryDate;
+
+
+    public RefreshToken createRefreshToken(String refreshToken, Member member, Instant instant){
+        return new RefreshToken(refreshToken, member, instant);
+    }
+
 }

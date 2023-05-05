@@ -28,7 +28,7 @@ public class QMemberRole extends EntityPathBase<MemberRole> {
     public final StringPath createdBy = _super.createdBy;
 
     //inherited
-    public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
+    public final DateTimePath<java.time.ZonedDateTime> createdDate = _super.createdDate;
 
     //inherited
     public final BooleanPath deleted = _super.deleted;
@@ -42,7 +42,7 @@ public class QMemberRole extends EntityPathBase<MemberRole> {
     public final QMember member;
 
     //inherited
-    public final DateTimePath<java.time.LocalDateTime> modifiedDate = _super.modifiedDate;
+    public final DateTimePath<java.time.ZonedDateTime> modifiedDate = _super.modifiedDate;
 
     public final EnumPath<RoleEnum> roleEnum = createEnum("roleEnum", RoleEnum.class);
 
@@ -64,7 +64,7 @@ public class QMemberRole extends EntityPathBase<MemberRole> {
 
     public QMemberRole(Class<? extends MemberRole> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.member = inits.isInitialized("member") ? new QMember(forProperty("member")) : null;
+        this.member = inits.isInitialized("member") ? new QMember(forProperty("member"), inits.get("member")) : null;
     }
 
 }
