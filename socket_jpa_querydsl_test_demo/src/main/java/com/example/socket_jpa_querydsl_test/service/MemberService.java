@@ -4,6 +4,7 @@ import com.example.socket_jpa_querydsl_test.api.dto.entity.MemberDto;
 import com.example.socket_jpa_querydsl_test.config.security.provider.JwtTokenProvider;
 import com.example.socket_jpa_querydsl_test.domain.entity.Member;
 import com.example.socket_jpa_querydsl_test.domain.entity.QMember;
+import com.example.socket_jpa_querydsl_test.domain.utils.SimpleTokenInfo;
 import com.example.socket_jpa_querydsl_test.domain.utils.TokenInfo;
 import com.example.socket_jpa_querydsl_test.repository.AddressRepository;
 import com.example.socket_jpa_querydsl_test.repository.member.MemberRepository;
@@ -46,6 +47,7 @@ public class MemberService {
 
         return tokenInfo;
     }
+
 
     public Member getMember(String name, String password){
         return memberRepository.getMemberByNameAndPassword(name, password);

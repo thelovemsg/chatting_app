@@ -27,6 +27,7 @@ import java.time.Instant;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -37,12 +38,12 @@ public class JwtTokenProvider {
 
     private final RefreshTokenRepository refreshTokenRepository;
 
-
     public JwtTokenProvider(@Value("${jwt.secret}") String secretKey, RefreshTokenRepository refreshTokenRepository) {
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         this.key = Keys.hmacShaKeyFor(keyBytes);
         this.refreshTokenRepository = refreshTokenRepository;
     }
+
 
     // 유저 정보를 가지고 AccessToken, RefreshToken 을 생성하는 메서드
     public TokenInfo generateToken(Authentication authentication) {
@@ -52,8 +53,8 @@ public class JwtTokenProvider {
                 .collect(Collectors.joining(","));
 
         long now = (new Date()).getTime();
-        Date accessTokenExpireDate = new Date(now + 8640000);
-        Date refreshTokenExpireDate = new Date(now + 86400000);
+        Date accessTokenExpireDate = new Date(1800);
+        Date refreshTokenExpireDate = new Date(now + 604800);
 
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
         Long memberId = userDetails.getMemberId();
@@ -62,7 +63,8 @@ public class JwtTokenProvider {
         String accessToken = Jwts.builder()
                 .setSubject(authentication.getName())
                 .claim("auth", authorities)
-                .claim("id", memberId)
+                .claim("id", memberId) // set the least of information of user
+                .setIssuedAt(new Date(now))
                 .setExpiration(accessTokenExpireDate)
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
@@ -70,6 +72,8 @@ public class JwtTokenProvider {
         // Refresh Token 생성
         String refreshToken = Jwts.builder()
                 .setExpiration(refreshTokenExpireDate)
+                .claim("id", memberId) // set the least of information of user
+                .setIssuedAt(new Date(now))
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
 
@@ -148,50 +152,44 @@ public class JwtTokenProvider {
     }
 
     // A method to generate a new access token using a refresh token
-    public String refreshToken(String refreshToken) {
-        // Here you would look up the refresh token in the database, verify that it is
-        // valid and associated with the user, and then generate a new access token.
-        // For this example, I'll assume that you have a method validateRefreshToken
-        // that performs this validation and returns the user's username if the refresh
-        // token is valid.
-        String username = validateRefreshToken(refreshToken);
+    public String refreshAccessToken(String refreshToken) {
+        // Step 1: Check if the refresh token exists in the database
+        Optional<RefreshToken> refreshTokenOpt = refreshTokenRepository.findByToken(refreshToken);
+        if (refreshTokenOpt.isEmpty()) {
+            throw new JwtTokenInvalidException("Invalid refresh token");
+        }
 
-        // Now you can generate a new access token for the user. You'll need a method
-        // to load the user's details given their username.
-        UserDetails userDetails = loadUserByUsername(username);
+        RefreshToken storedRefreshToken = refreshTokenOpt.get();
 
-        // Create a new authentication token
-        Authentication authentication = new UsernamePasswordAuthenticationToken(
-                userDetails, null, userDetails.getAuthorities());
+        // Step 2: Check if the refresh token is expired
+        if (storedRefreshToken.getExpiryDate().isBefore(Instant.now())) {
+            throw new JwtTokenExpiredException("Expired refresh token");
+        }
 
-        // Generate a new access token
-        return generateToken(authentication).getAccessToken();
+        // Step 3: Validate the refresh token using the `validateToken` method
+        Claims claims = parseClaims(refreshToken);
+
+        // If all validations pass, create and return a new access token
+        String newAccessToken = createAccessToken(storedRefreshToken.getMember(), claims);
+        return newAccessToken;
     }
 
-    // Method to validate the refresh token
-    private String validateRefreshToken(String refreshToken) {
-        // Here you would look up the refresh token in the database and verify that
-        // it is valid and associated with the user. If the token is valid, return
-        // the user's username. For this example, I'll assume that the refresh token
-        // is valid and return a hardcoded username.
-        //
-        // In a real application, you should implement this method to validate the
-        // refresh token against your database and return the associated user's
-        // username.
-        return "user@example.com";
+    public String createAccessToken(Member member, Claims claims) {
+        // Generate a new access token with the necessary claims and expiration
+        long now = (new Date()).getTime();
+        Date accessTokenExpireDate = new Date(now + 8640000); // or any other expiration time
+
+        String accessToken = Jwts.builder()
+                .setSubject(claims.getSubject())
+                .claim("auth", claims.get("auth"))
+                .claim("id", member.getId())
+                .setIssuedAt(new Date(now))
+                .setExpiration(accessTokenExpireDate)
+                .signWith(key, SignatureAlgorithm.HS256)
+                .compact();
+
+        return accessToken;
     }
 
-    // Method to load the user's details given their username
-    private UserDetails loadUserByUsername(String username) {
-        // Here you would load the user's details from your database and return a
-        // UserDetails object. For this example, I'll return a hardcoded user with
-        // a single authority.
-        //
-        // In a real application, you should implement this method to load the user's
-        // details from your database.
-//        List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
-//        return new User(username, "", authorities);
-        return null;
-    }
 
 }

@@ -6,16 +6,17 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
 
 import java.nio.charset.Charset;
 import java.util.stream.Collectors;
 
 public class CustomResponseUtils {
-    public static <T> ResponseEntity customResponse(T data){
+
+    public static <T> ResponseEntity<ApiResponse<T>> createJsonResponseWithStatus(T data, String message, HttpStatus status) {
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(new MediaType("application","json", Charset.forName("UTF-8")));
-        return new ResponseEntity(data, headers, HttpStatus.OK);
+        headers.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
+        ApiResponse<T> response = new ApiResponse<>("success", message, data);
+        return new ResponseEntity<>(response, headers, status);
     }
 
     /**
@@ -29,7 +30,6 @@ public class CustomResponseUtils {
         return fieldError.getField() + fieldError.getDefaultMessage();
     }
 
-
     /**
      *
      * @param result
@@ -42,6 +42,5 @@ public class CustomResponseUtils {
                 .map(error -> String.format("%s %s", error.getField(), error.getDefaultMessage()))
                 .collect(Collectors.joining(", "));
     }
-
 
 }

@@ -67,14 +67,6 @@ public class MemberTest {
             });
         }
 
-//        memberService.saveMember(member1);
-
-//        Address address = new Address();
-//        address.setAddress1("주소1");
-//        address.setAddress2("주소2");
-
-//        Member member = memberService.saveMember();
-//        Assertions.assertThat()
     }
 
     @DisplayName("save member")
@@ -93,7 +85,5 @@ public class MemberTest {
         address.setAddress2("address2");
         address.setMember(member);
         addressService.saveAddress(address);
-
-
     }
 }
