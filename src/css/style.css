@@ -13,6 +13,14 @@ a {
   text-decoration-line: none !important;
 }
 
+.w-40{
+  width: 150px;
+}
+
+.text-align-center{
+  text-align: center
+}
+
 .active-link {
   font-weight: bold;
   font-style: italic;

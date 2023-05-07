@@ -17,11 +17,18 @@ i18n
         translation: {
           // 번역본 쓸 공간
           navbar: {
+            logoName: 'Chat Chat',
             home: 'home',
             login: 'login',
             chatting: 'chatting',
             profile: 'profile',
             register: 'register',
+            dropdown: {
+              name: 'See more',
+              explain: 'Explanation',
+              howtouse: 'How to use',
+              contactus: 'Contact us',
+            },
           },
           description: {
             part1: 'Edit src/App.js and save to reload.',
@@ -39,14 +46,27 @@ i18n
               "If you don't like it, just give me any feedback!",
           },
           register: {
-            checkEmail: 'Check email',
-            wrongPhoneNumberFormat: 'Wrong phone number format',
-            nicknameEmpty: 'Nickname cannot be empty',
-            alreadyExists: 'already exists',
-            passwordMismatch: "Password doesn't match",
-            passwordRegexCheck:
-              '최소 8 자, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자 필요',
-            errorFound: 'please check input datas',
+            emailAddress: 'Email Address',
+            password: 'Password',
+            passwordCheck: 'Password Check',
+            tellphoneNumber: 'Tellephone Number',
+            address1: 'Address',
+            address2: 'Address Detail',
+            name: 'Name',
+            nickname: 'Nickname',
+            tryLogin: 'Try Login!',
+            trySignIn: 'Try SignIn!',
+            findPassword: 'Find password!',
+            validation: {
+              checkEmail: 'Check email',
+              wrongPhoneNumberFormat: 'Wrong phone number format',
+              nicknameEmpty: 'Nickname cannot be empty',
+              alreadyExists: 'already exists',
+              passwordMismatch: "Password doesn't match",
+              passwordRegexCheck:
+                '최소 8 자, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자 필요',
+              errorFound: 'please check input datas',
+            },
           },
           friend: {
             multi_profile: 'Multi Profile',
@@ -57,11 +77,18 @@ i18n
         translation: {
           // 번역본 쓸 공간
           navbar: {
+            logoName: '챗 챗',
             home: '홈으로',
             login: '로그인',
             chatting: '채팅하기',
             profile: '프로필',
             register: '회원가입',
+            dropdown: {
+              name: '더보기',
+              explain: '설명',
+              howtouse: '사용방법',
+              contactus: '연락처',
+            },
           },
           description: {
             part1: 'src/App.js를 편집하고 저장하여 다시 로드합니다.',
@@ -78,14 +105,27 @@ i18n
               '마음에 안드신다면, 어떤 피드백이든 주세요!',
           },
           register: {
-            checkEmail: '이메일을 확인하세요',
-            wrongPhoneNumberFormat: '잘못된 전화번호 형식',
-            nicknameEmpty: '별명을 입력해주세요',
-            alreadyExists: '이 이미 존재합니다',
-            passwordMismatch: '비밀번호가 일치하지 않습니다.',
-            passwordRegexCheck:
-              '최소 8 자, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자 필요',
-            errorFound: '입력 값을 확인해 주세요',
+            emailAddress: '이메일 주소',
+            password: '비밀번호',
+            passwordCheck: '비밀번호 확인',
+            tellphoneNumber: '휴대전화번호',
+            address1: '주소',
+            address2: '상세 주소',
+            name: '이름',
+            nickname: '닉네임',
+            tryLogin: '로그인하기!',
+            trySignIn: '회원가입하기!',
+            findPassword: '비밀번호 찾기!',
+            validation: {
+              checkEmail: '이메일을 확인하세요',
+              wrongPhoneNumberFormat: '잘못된 전화번호 형식',
+              nicknameEmpty: '별명을 입력해주세요',
+              alreadyExists: '이 이미 존재합니다',
+              passwordMismatch: '비밀번호가 일치하지 않습니다.',
+              passwordRegexCheck:
+                '최소 8 자, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자 필요',
+              errorFound: '입력 값을 확인해 주세요',
+            },
           },
           friend: {
             multi_profile: '멀티 프로필',

@@ -1,7 +1,7 @@
 // AddressPopup.js
 import React, { useState } from 'react';
 import PropTypes from 'prop-types'; // Import PropTypes
-import { Form } from 'react-bootstrap';
+import { StyledInputForm } from 'styled-components/StyledForm';
 import Post from './Post';
 
 const AddressPopup = ({ enrollCompany, setEnrollCompany }) => {
@@ -12,7 +12,7 @@ const AddressPopup = ({ enrollCompany, setEnrollCompany }) => {
   const { address } = enrollCompany;
   return (
     <>
-      <Form.Control
+      <StyledInputForm
         className="mb-3 w-40"
         type="text"
         placeholder="Address"

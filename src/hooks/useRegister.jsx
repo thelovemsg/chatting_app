@@ -57,7 +57,7 @@ const useRegister = () => {
     const password = e.target.form.password.value;
     const passwordCheck = e.target.form.passwordCheck.value;
     if (password !== passwordCheck) {
-      setPasswordMismatchMsg(`${t('register.passwordMismatch')}`);
+      setPasswordMismatchMsg(`${t('register.validation.passwordMismatch')}`);
     } else {
       setPasswordMismatchMsg();
     }
@@ -66,12 +66,12 @@ const useRegister = () => {
   const handleValidation = async (name, value, validator, errorMsgKey) => {
     if (!validator(value)) {
       setValidationStatus({ ...validationStatus, [name]: false });
-      return t(`register.${errorMsgKey}`);
+      return t(`register.validation.${errorMsgKey}`);
     }
     const response = await api.findMemberByTarget(name, value);
     if (response === name) {
       setValidationStatus({ ...validationStatus, [name]: false });
-      return `${response} ${t('register.alreadyExists')}`;
+      return `${response} ${t('register.validation.alreadyExists')}`;
     }
     setValidationStatus({ ...validationStatus, [name]: true });
     return '';
