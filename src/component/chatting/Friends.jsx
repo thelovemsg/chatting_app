@@ -11,7 +11,7 @@ import {
   StyledChattingScreenIconsTop,
   StyledChattingScreenLeft,
   StyledChattingScreenRight,
-} from '../../styled-components/StyledForm';
+} from 'styled-components/StyledForm';
 import MyProfile from './MyProfile';
 import MutiProfile from './MutiProfile';
 import BirthdayFriend from './BirthdayFriend';

@@ -12,8 +12,8 @@ import {
   StyledLabel,
   StyledLoginForm,
   StyledValidationCheck,
-} from '../styled-components/StyledForm';
-import { LOG_IN_REQUEST } from '../reducers/user';
+} from 'styled-components/StyledForm';
+import { LOG_IN_REQUEST } from 'reducers/user';
 
 const Signin = () => {
   const dispatch = useDispatch();

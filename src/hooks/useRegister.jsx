@@ -5,8 +5,8 @@ import {
   isValidEmail,
   isValidPassword,
   isValidPhoneNumber,
-} from '../function/ValidationUtils';
-import api from '../function/ApiUtils';
+} from 'function/ValidationUtils';
+import api from 'function/ApiUtils';
 
 const useRegister = () => {
   const { t } = useTranslation();

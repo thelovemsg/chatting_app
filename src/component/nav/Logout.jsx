@@ -3,8 +3,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Trans } from 'react-i18next';
-import CustomModal from './utilComponent/CustomModal';
-import { LOG_OUT_REQUEST } from '../reducers/user';
+import CustomModal from 'component/utilComponent/CustomModal';
+import { LOG_OUT_REQUEST } from 'reducers/user';
 
 const Logout = () => {
   const dispatch = useDispatch();

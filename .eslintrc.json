@@ -9,6 +9,18 @@
   "settings": {
     "react": {
       "version": "detect"
+    },
+    "import/resolver": {
+      "alias": {
+        "map": [
+          ["component", "./src/component"],
+          ["reducers", "./src/reducers"],
+          ["hooks", "./src/hooks"],
+          ["function", "./src/function"],
+          ["styled-components", "./src/styled-components"]
+        ],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
     }
   },
   "parser": "@typescript-eslint/parser",

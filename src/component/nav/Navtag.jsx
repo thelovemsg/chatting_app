@@ -9,7 +9,7 @@ import { useTranslation, Trans } from 'react-i18next'; // 1. react-i18next impor
 import classNames from 'classnames';
 import Login from './Login';
 import Logout from './Logout';
-import { StyledLangButton } from '../styled-components/StyledForm';
+import { StyledLangButton } from 'styled-components/StyledForm';
 
 const Navtag = () => {
   const navigate = useNavigate();

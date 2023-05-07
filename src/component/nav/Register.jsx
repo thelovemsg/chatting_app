@@ -8,10 +8,10 @@ import {
   StyledLabel,
   StyledMsgLabel,
   StyledValidationCheck,
-} from '../styled-components/StyledForm';
-import { REGISTER_REQUEST } from '../reducers/user';
-import AddressPopup from './address/AddressPopup';
-import useRegister from '../hooks/useRegister';
+} from 'styled-components/StyledForm';
+import { REGISTER_REQUEST } from 'reducers/user';
+import AddressPopup from 'component/address/AddressPopup';
+import useRegister from 'hooks/useRegister';
 
 const Register = () => {
   const { t } = useTranslation();

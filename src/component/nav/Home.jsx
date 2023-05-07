@@ -1,4 +1,4 @@
-import HomeImages from './utilComponent/HomeImages';
+import HomeImages from 'component/utilComponent/HomeImages';
 
 const Home = () => (
   <div style={{ height: '81vh' }}>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../../css/scrollButtons.css';
-import throttle from '../utility/Throttling';
+import throttle from 'component/utility/Throttling';
 
 const ScrollButtons = () => {
   const [visible, setVisible] = useState(false);

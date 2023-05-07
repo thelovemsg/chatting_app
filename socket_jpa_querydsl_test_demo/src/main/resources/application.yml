@@ -47,7 +47,8 @@ password:
   transformation: AES/ECB/PKCS5Padding
 file:
   storage:
-    location:  D://IntelliJ_IDEA//fileEntities
+#    location:  D://IntelliJ_IDEA//fileEntities
+    location: C://work//miniproject//files
 jwt:
   secret: a914de38e72c11eda05b0242ac1200039382aceee73111eda05b0242ac120003
   expiration: 200000

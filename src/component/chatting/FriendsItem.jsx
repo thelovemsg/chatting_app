@@ -1,9 +1,9 @@
 import { Accordion } from 'react-bootstrap';
 import { useMemo, useState } from 'react';
-import { StyledChattingItemNoPadding } from '../../styled-components/StyledForm';
-import createRandomUser from '../utility/FakeUser';
-import DraggableModal from '../utilComponent/DraggableModal';
-import DraggableModalContent from '../utilComponent/DraggableModalContent';
+import { StyledChattingItemNoPadding } from 'styled-components/StyledForm';
+import createRandomUser from 'component/utility/FakeUser';
+import DraggableModal from 'component/utilComponent/DraggableModal';
+import DraggableModalContent from 'component/utilComponent/DraggableModalContent';
 
 const FriendsItem = () => {
   const fakeUsers = useMemo(

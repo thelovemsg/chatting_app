@@ -1,5 +1,5 @@
 import { all, call, delay, fork, put, takeLatest } from 'redux-saga/effects';
-import { memberJoinApi } from '../api/member/member';
+import { memberJoinApi } from 'api/member/member';
 import {
   LOG_IN_FAILURE,
   LOG_IN_SUCCESS,
@@ -7,7 +7,7 @@ import {
   LOG_OUT_SUCCESS,
   REGISTER_SUCCESS,
   REGISTER_FAILURE,
-} from '../reducers/user';
+} from 'reducers/user';
 
 function* logIn(action) {
   try {

@@ -2,16 +2,16 @@ import './App.css';
 import './css/style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Signin from './component/Signin';
-import Contact from './component/Contact';
-import FooterContainer from './container/FooterContainer';
-import Register from './component/Register';
-import Home from './component/Home';
+import Signin from 'component/nav/Signin';
+import Contact from 'component/nav/Contact';
+import FooterContainer from 'container/FooterContainer';
+import Register from 'component/nav/Register';
+import Home from 'component/nav/Home';
 
 // import ChattingRoom from "./component/main/ChattingRoom";
-import Friends from './component/chatting/Friends';
-import ScrollButtons from './component/utilComponent/ScrollButtons';
-import Navtag from './component/Navtag';
+import Friends from 'component/chatting/Friends';
+import ScrollButtons from 'component/utilComponent/ScrollButtons';
+import Navtag from 'component/nav/Navtag';
 
 const App = () => (
   <BrowserRouter>
