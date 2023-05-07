@@ -1,10 +1,10 @@
-import { Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 import {
   StyledButton,
   StyledForm,
   StyledGroup,
+  StyledInputForm,
   StyledLabel,
   StyledMsgLabel,
   StyledValidationCheck,
@@ -60,32 +60,33 @@ const Register = () => {
   return (
     <StyledForm onSubmit={handleSubmit}>
       <StyledGroup className="mb-3">
-        <StyledLabel>Email address</StyledLabel>
-        {emailValidationMsg ? (
-          <StyledMsgLabel>{emailValidationMsg}</StyledMsgLabel>
-        ) : (
-          ''
-        )}
-        <Form.Control
+        <StyledLabel>
+          <Trans i18nKey="register.emailAddress" />
+        </StyledLabel>
+        <StyledInputForm
           type="email"
           name="email"
           placeholder="Enter email"
           required
           onBlur={handleValidationBlur}
         />
-      </StyledGroup>
-      <StyledGroup className="mb-3">
-        <StyledLabel>Name</StyledLabel>
-        <Form.Control type="text" name="name" placeholder="name" required />
-      </StyledGroup>
-      <StyledGroup className="mb-3">
-        <StyledLabel>Nickname</StyledLabel>
-        {nicknameValidationMsg ? (
-          <StyledMsgLabel>{nicknameValidationMsg}</StyledMsgLabel>
+        {emailValidationMsg ? (
+          <StyledMsgLabel>{emailValidationMsg}</StyledMsgLabel>
         ) : (
           ''
         )}
-        <Form.Control
+      </StyledGroup>
+      <StyledGroup className="mb-3">
+        <StyledLabel>
+          <Trans i18nKey="register.name" />
+        </StyledLabel>
+        <StyledInputForm type="text" name="name" placeholder="name" required />
+      </StyledGroup>
+      <StyledGroup className="mb-3">
+        <StyledLabel>
+          <Trans i18nKey="register.nickname" />
+        </StyledLabel>
+        <StyledInputForm
           type="text"
           name="nickname"
           autoComplete="username"
@@ -93,15 +94,17 @@ const Register = () => {
           onBlur={handleValidationBlur}
           required
         />
-      </StyledGroup>
-      <StyledGroup className="mb-3">
-        <StyledLabel>Password</StyledLabel>
-        {passwordRegexMsg ? (
-          <StyledMsgLabel>{passwordRegexMsg}</StyledMsgLabel>
+        {nicknameValidationMsg ? (
+          <StyledMsgLabel>{nicknameValidationMsg}</StyledMsgLabel>
         ) : (
           ''
         )}
-        <Form.Control
+      </StyledGroup>
+      <StyledGroup className="mb-3">
+        <StyledLabel>
+          <Trans i18nKey="register.password" />
+        </StyledLabel>
+        <StyledInputForm
           type="password"
           name="password"
           autoComplete="new-password"
@@ -109,15 +112,17 @@ const Register = () => {
           onChange={handlePasswordRegex}
           required
         />
-      </StyledGroup>
-      <StyledGroup className="mb-3">
-        <StyledLabel>Password Check</StyledLabel>
-        {passwordMismatchMsg ? (
-          <StyledMsgLabel>{passwordMismatchMsg}</StyledMsgLabel>
+        {passwordRegexMsg ? (
+          <StyledMsgLabel>{passwordRegexMsg}</StyledMsgLabel>
         ) : (
           ''
         )}
-        <Form.Control
+      </StyledGroup>
+      <StyledGroup className="mb-3">
+        <StyledLabel>
+          <Trans i18nKey="register.passwordCheck" />
+        </StyledLabel>
+        <StyledInputForm
           type="password"
           name="passwordCheck"
           autoComplete="new-password"
@@ -125,15 +130,17 @@ const Register = () => {
           onChange={handlePasswordValidation}
           required
         />
-      </StyledGroup>
-      <StyledGroup className="mb-3">
-        <StyledLabel>Phone Number</StyledLabel>
-        {phoneNumberValidationMsg ? (
-          <StyledMsgLabel>{phoneNumberValidationMsg}</StyledMsgLabel>
+        {passwordMismatchMsg ? (
+          <StyledMsgLabel>{passwordMismatchMsg}</StyledMsgLabel>
         ) : (
           ''
         )}
-        <Form.Control
+      </StyledGroup>
+      <StyledGroup className="mb-3">
+        <StyledLabel>
+          <Trans i18nKey="register.tellphoneNumber" />
+        </StyledLabel>
+        <StyledInputForm
           type="text"
           name="phoneNumber"
           placeholder="phone number"
@@ -142,17 +149,26 @@ const Register = () => {
           onBlur={handleValidationBlur}
           required
         />
+        {phoneNumberValidationMsg ? (
+          <StyledMsgLabel>{phoneNumberValidationMsg}</StyledMsgLabel>
+        ) : (
+          ''
+        )}
       </StyledGroup>
       <StyledGroup>
-        <StyledLabel>Address 1</StyledLabel>
+        <StyledLabel>
+          <Trans i18nKey="register.address1" />
+        </StyledLabel>
         <AddressPopup
           enrollCompany={enrollCompany}
           setEnrollCompany={setEnrollCompany}
         />
       </StyledGroup>
       <StyledGroup className="mb-3">
-        <StyledLabel>Address 2</StyledLabel>
-        <Form.Control
+        <StyledLabel>
+          <Trans i18nKey="register.address2" />
+        </StyledLabel>
+        <StyledInputForm
           type="text"
           name="address2"
           placeholder="detailed address"
@@ -162,12 +178,12 @@ const Register = () => {
       <StyledValidationCheck>
         {registerError ? <StyledMsgLabel>{registerError}</StyledMsgLabel> : ''}
       </StyledValidationCheck>
-      <StyledGroup className="justify-content-center">
-        <StyledButton variant="primary" type="submit">
-          Try Signin!
+      <StyledGroup className="text-align-center">
+        <StyledButton variant="primary" type="submit" className="w-40">
+          <Trans i18nKey="register.trySignIn" />
         </StyledButton>
-        <StyledButton variant="secondary" type="submit">
-          Find Password
+        <StyledButton variant="secondary" type="submit" className="w-40">
+          <Trans i18nKey="register.findPassword" />
         </StyledButton>
       </StyledGroup>
     </StyledForm>

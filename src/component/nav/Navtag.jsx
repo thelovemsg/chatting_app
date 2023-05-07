@@ -7,9 +7,9 @@ import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation, Trans } from 'react-i18next'; // 1. react-i18next import
 import classNames from 'classnames';
+import { StyledLangButton } from 'styled-components/StyledForm';
 import Login from './Login';
 import Logout from './Logout';
-import { StyledLangButton } from 'styled-components/StyledForm';
 
 const Navtag = () => {
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ const Navtag = () => {
       'active-link': activeLink === path,
     });
 
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const handleLanguageChange = () => {
@@ -51,7 +51,9 @@ const Navtag = () => {
   }, [i18n]);
 
   const handleLanguageChange = (lng) => {
-    i18n.changeLanguage(lng);
+    i18n.changeLanguage(lng).then(() => {
+      window.location.reload();
+    });
   };
 
   return (
@@ -60,7 +62,7 @@ const Navtag = () => {
         <Container>
           <Navbar.Brand className="color-yellow-first d-flex align-items-center">
             <Link to="/home" className="color-yellow-first href-style">
-              각카호 채팅
+              <Trans i18nKey="navbar.logoName" />
             </Link>
             <div>
               {Object.keys(lngs).map((lng) => (
@@ -130,24 +132,23 @@ const Navtag = () => {
                 <Trans i18nKey="navbar.register" />
               </Link>
               <NavDropdown
-                title="Dropdown"
+                title={t('navbar.dropdown.name')}
                 id="basic-nav-dropdown"
                 className="color-yellow-first href-style"
               >
                 <NavDropdown.Item>
                   <Link to="explain" className="href-style">
-                    설명
+                    <Trans i18nKey="navbar.dropdown.explain" />
                   </Link>
                 </NavDropdown.Item>
                 <NavDropdown.Item>
                   <Link to="/meeting" className="href-style">
-                    사용법
+                    <Trans i18nKey="navbar.dropdown.howtouse" />
                   </Link>
                 </NavDropdown.Item>
-
                 <NavDropdown.Item>
                   <Link to="/contact" className="href-style">
-                    contact us
+                    <Trans i18nKey="navbar.dropdown.contactus" />
                   </Link>
                 </NavDropdown.Item>
               </NavDropdown>
