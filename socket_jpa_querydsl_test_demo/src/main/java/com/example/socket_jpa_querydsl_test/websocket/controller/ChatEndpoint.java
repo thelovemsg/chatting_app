@@ -29,8 +29,13 @@ public class ChatEndpoint {
         roomUserMapping.get(roomId).add(principal);
 
         int userCount = roomUserMapping.get(roomId).size();
+        /**
+         *  When the join method is called,
+         *  this line sends the updated user count to the /topic/chat/{roomId}/userCount topic.
+         */
         messagingTemplate.convertAndSend("/topic/chat/" + roomId + "/userCount", userCount);
     }
+
 
     @MessageMapping("/chat/{roomId}/leave")
     public void leave(@DestinationVariable String roomId, Principal principal) {

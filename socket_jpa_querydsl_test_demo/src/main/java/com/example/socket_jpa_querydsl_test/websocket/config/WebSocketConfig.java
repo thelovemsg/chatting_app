@@ -27,8 +27,30 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
      */
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
+        /**
+         * This line enables a simple, in-memory message broker with the specified destination prefixes ("/topic" and "/queue").
+         * The broker is responsible for forwarding messages to clients that have subscribed to a matching destination.
+         * The "/topic" prefix is typically used for broadcasting messages to multiple clients,
+         * while "/queue" is often used for point-to-point messaging.
+         */
         config.enableSimpleBroker("/topic", "/queue");
+
+
+        /**
+         * This line configures the destination prefix for messages that should be processed by the application
+         * (i.e., handled by @MessageMapping-annotated methods in your controllers).
+         * When a client sends a message with a destination starting with "/app",
+         * the server will route it to the corresponding @MessageMapping-annotated method in your application.
+         */
         config.setApplicationDestinationPrefixes("/app");
+
+        /**
+         * This line configures the destination prefix for user-specific messages.
+         * When a client sends a message with a destination starting with "/user",
+         * the server will route it to the appropriate user session.
+         * This is useful for sending private messages to a specific user or sending messages to a user across multiple sessions
+         * (e.g., if the user is connected from multiple devices).
+         */
         config.setUserDestinationPrefix("/user");
     }
 
@@ -38,6 +60,30 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
      * client와 server간에 communication 메커니즘을 제공한다.
      *
      * @param registry
+     * @description
+     * In the WebSocketConfig class, you have registered a STOMP endpoint
+     * ("/chat-websocket") with the registerStompEndpoints method.
+     * Clients can connect to this endpoint to establish a WebSocket connection.
+     *
+     * The configureMessageBroker method defines destination prefixes for the message broker
+     * ("/topic" and "/queue") and application ("/app").
+     * The /app prefix is used for routing messages to the
+     * MessageMapping-annotated methods in your controllers.
+     * The /topic and /queue prefixes are used by the message broker to send messages to
+     * clients that have subscribed to a matching destination.
+     * The /user prefix is used for user-specific messages.
+     *
+     * With this configuration, clients can connect to the server,
+     * subscribe to topics, and send messages to the designated destinations.
+     * The MessageMapping-annotated methods in your controllers will
+     * handle these messages and perform the required actions,
+     * such as updating the user count, sending chat messages to the correct room, and so on.
+     *
+     * For example, when a client sends a message to /app/chat/{roomId}/join,
+     * the join method in the ChatEndpoint class will be invoked, and it will
+     * update the user count and broadcast the updated count to the
+     * /topic/chat/{roomId}/userCount topic. Clients that have subscribed
+     * to this topic will receive the updated user count.
      */
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {

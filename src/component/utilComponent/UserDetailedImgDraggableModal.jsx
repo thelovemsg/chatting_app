@@ -33,7 +33,11 @@ UserDetailedImgDraggableModal.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
-  style: PropTypes.object,
+  style: PropTypes.objectOf(PropTypes.object),
+};
+
+UserDetailedImgDraggableModal.defaultProps = {
+  style: '',
 };
 
 export default UserDetailedImgDraggableModal;

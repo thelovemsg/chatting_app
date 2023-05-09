@@ -10,6 +10,10 @@ import org.springframework.messaging.support.GenericMessage;
 import java.nio.charset.StandardCharsets;
 
 @Slf4j
+/**
+ * This class, FilterChannelInterceptor, is an implementation of the ChannelInterceptor interface.
+ * It is responsible for intercepting and processing messages before they are sent to the client.
+ */
 public class FilterChannelInterceptor implements ChannelInterceptor {
 
     private final BadWordsUtils badWordsUtils;
