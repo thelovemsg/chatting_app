@@ -1,5 +1,9 @@
-# chatting_app - 웹소켓을 기반으로한 채팅 앱 제작기
+# chatting_app - 채팅 앱 제작기
 
+title 변경 이유
+- spring web socekt은 in-memory message broker 인데, 한계점이 많다.
+- 허나, 다른 메시지 브로커에 대한 지식이 부족하기 때문에 초창기에는 spring web socekt을 사용할 것이며, 추후에 다른 메시지 브로커를 적용할 것이다.
+ 2023-05-09
 ## 사용중인 react 기술
 
 ## ERD 설계
