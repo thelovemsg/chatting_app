@@ -19,7 +19,9 @@ In addition, this process often involves a lot of communication and collaboratio
 
 Once the requirements are understood, a developer can then start designing and implementing the system. This involves making decisions about what technologies to use, how to structure the code, and how to handle different scenarios.
 
-So yes, a lot of a developer's time is spent on tasks other than just writing code. But all these tasks are essential for building a successful software system.```
+So yes, a lot of a developer's time is spent on tasks other than just writing code. But all these tasks are essential for building a successful software system.
+```
+
 ## 사용중인 react 기술
 
 ## ERD 설계
