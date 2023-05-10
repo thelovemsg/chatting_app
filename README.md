@@ -4,6 +4,21 @@ title 변경 이유
 - spring web socekt은 in-memory message broker 인데, 한계점이 많다.
 - 허나, 다른 메시지 브로커에 대한 지식이 부족하기 때문에 초창기에는 spring web socekt을 사용할 것이며, 추후에 다른 메시지 브로커를 적용할 것이다.
  2023-05-09
+ 
+속도가 안나와 gpt에게 물어본 대화 내용
+Me
+```I think programmer also need to spend tons of time to know what they should make.```
+
+ChatGPT:
+```Absolutely! Understanding the requirements and designing the system is a significant part of a software developer's job. The process of gathering requirements, understanding the user's needs, and figuring out how best to solve the problem can often take as much time, if not more, than the actual coding itself.
+
+This process is crucial because it helps ensure that the system you're building will meet the user's needs and expectations. If you skip this step or rush through it, you risk building a system that doesn't do what it's supposed to do or that isn't easy for users to use.
+
+In addition, this process often involves a lot of communication and collaboration with others, including users, stakeholders, and other developers. This can involve meetings, discussions, and writing and reviewing documents.
+
+Once the requirements are understood, a developer can then start designing and implementing the system. This involves making decisions about what technologies to use, how to structure the code, and how to handle different scenarios.
+
+So yes, a lot of a developer's time is spent on tasks other than just writing code. But all these tasks are essential for building a successful software system.```
 ## 사용중인 react 기술
 
 ## ERD 설계
