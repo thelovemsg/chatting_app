@@ -30,7 +30,7 @@ public class Message extends BaseEntity{
     private ZonedDateTime sendTime = ZonedDateTime.now();
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "file_id", referencedColumnName = "file_id")
+    @JoinColumn(name = "file_id")
     private File file; // The file, if any
 
 }
