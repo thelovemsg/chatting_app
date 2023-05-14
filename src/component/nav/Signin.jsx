@@ -22,8 +22,11 @@ const Signin = () => {
   const { loginHandling } = useSelector((state) => state.user);
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    dispatch(LOG_IN_REQUEST(formData));
+    const data = {
+      email: e.target.email.value,
+      password: e.target.password.value,
+    };
+    dispatch(LOG_IN_REQUEST(data));
   };
 
   const tooltip = (

@@ -26,6 +26,7 @@ const ChattingRoom = ({ roomId }) => {
   };
 
   useEffect(() => {
+    console.log('testset!!!');
     clientRef.current = new Client({
       webSocketFactory: () =>
         new SockJS('http://localhost:9090/chat-websocket'),
@@ -44,12 +45,14 @@ const ChattingRoom = ({ roomId }) => {
       );
 
       clientRef.current.subscribe('/queue/errors', handleError);
+      console.log('handleError :: ', handleError);
 
       // Join the room
       clientRef.current.publish({ destination: `/app/chat/${roomId}/join` });
     };
 
     clientRef.current.onWebSocketClose = (event) => {
+      console.log('event :: ', event);
       if (event.wasClean === false) {
         setErrorMsg(event.reason);
       }

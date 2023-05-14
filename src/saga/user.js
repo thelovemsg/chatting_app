@@ -1,5 +1,4 @@
 import { all, call, delay, fork, put, takeLatest } from 'redux-saga/effects';
-import { memberJoinApi } from 'api/member/member';
 import {
   LOG_IN_FAILURE,
   LOG_IN_SUCCESS,
@@ -8,11 +7,13 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAILURE,
 } from 'reducers/user';
+import { memberJoinApi, memberLoginApi } from '../api/member/member';
 
 function* logIn(action) {
   try {
-    console.log('logIn action in saga/user.js :: ', action.payload);
-    // const result = yield call(logInAPI);
+    // console.log('logIn action in saga/user.js :: ', action.payload);
+    const result = yield call(memberLoginApi, action.payload);
+    console.log(result);
     yield delay(1000);
     yield put(LOG_IN_SUCCESS());
   } catch (err) {

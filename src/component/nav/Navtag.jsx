@@ -61,7 +61,10 @@ const Navtag = () => {
       <Navbar bg="dark" expand="lg" className="color-yellow-first">
         <Container>
           <Navbar.Brand className="color-yellow-first d-flex align-items-center">
-            <Link to="/home" className="color-yellow-first href-style">
+            <Link
+              to="/home"
+              className="color-yellow-first href-style logo-width"
+            >
               <Trans i18nKey="navbar.logoName" />
             </Link>
             <div>
@@ -111,6 +114,14 @@ const Navtag = () => {
                     onClick={() => handleLinkClick('/profile')}
                   >
                     <Trans i18nKey="navbar.profile" />
+                    {/* 프로필도 로그인 한 후에 표출 */}
+                  </Link>
+                  <Link
+                    to="/chattingTest"
+                    className={generateLinkClassName('/chattingTest')}
+                    onClick={() => handleLinkClick('/chattingTest')}
+                  >
+                    <Trans i18nKey="navbar.chattingTest" />
                     {/* 프로필도 로그인 한 후에 표출 */}
                   </Link>
                   <Logout />

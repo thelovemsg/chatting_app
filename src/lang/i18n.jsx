@@ -23,6 +23,7 @@ i18n
             chatting: 'chatting',
             profile: 'profile',
             register: 'register',
+            chattingTest: 'chatting room test',
             dropdown: {
               name: 'See more',
               explain: 'Explanation',
@@ -83,6 +84,7 @@ i18n
             chatting: '채팅하기',
             profile: '프로필',
             register: '회원가입',
+            chattingTest: '채팅방 테스트',
             dropdown: {
               name: '더보기',
               explain: '설명',

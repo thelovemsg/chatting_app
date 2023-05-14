@@ -31,13 +31,13 @@ public class SpringSecurityConfig {
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
             .authorizeRequests(registry -> {
-                registry.requestMatchers("/","/memberSave", "/error", "/users", "user/login/**", "/login*" ,"/refreshToken").permitAll()
+                registry.requestMatchers("/","/memberSave", "/error", "/users", "user/login/**", "/login" ,"/refreshToken").permitAll()
                         .requestMatchers("/test").hasRole(RoleEnum.USER.toString())
 //                            .requestMatchers("/messages").hasRole("MANAGER")
 //                            .requestMatchers("/config").hasRole("ADMIN")
                         .anyRequest().authenticated();
             })
-            .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
+            .addFilterAfter(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
