@@ -1,25 +1,18 @@
 package com.example.socket_jpa_querydsl_test.domain.entity;
 
 import com.example.socket_jpa_querydsl_test.api.dto.entity.MemberSaveDto;
-import com.example.socket_jpa_querydsl_test.config.security.MemberRoleEnum;
 import com.example.socket_jpa_querydsl_test.domain.entity.security.RefreshToken;
 import com.example.socket_jpa_querydsl_test.domain.status.AddressStatus;
 import com.example.socket_jpa_querydsl_test.domain.utils.PasswordConverterUtil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import static jakarta.persistence.EnumType.*;
-import static jakarta.persistence.FetchType.*;
+import static jakarta.persistence.FetchType.EAGER;
 
 @Entity
 @Table(uniqueConstraints =

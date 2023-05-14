@@ -1,4 +1,4 @@
-import Footer from '../component/nav/Footer';
+import Footer from 'component/nav/Footer';
 
 const FooterContainer = () => <Footer />;
 

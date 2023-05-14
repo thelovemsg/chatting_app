@@ -34,7 +34,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     /**
      * STOMP 엔드포인트의 역할 담당.
-     * STOMP는 WebSocket의 위에서 작동하는 simple messagin protocol이다.
+     * STOMP는 WebSocket의 위에서 작동하는 simple messaging protocol이다.
      * client와 server간에 communication 메커니즘을 제공한다.
      *
      * @param registry

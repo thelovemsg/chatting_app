@@ -9,6 +9,17 @@ const ChattingRoom = () => {
   const [errorMsg, setErrorMsg] = useState('');
   const clientRef = useRef(null);
 
+  /**
+   * TODO:
+   * Make test chatting app
+   * 1. Click chatting room nav 
+   * 2. Get room id
+   * 3. Make sure who is in this room, how many of user is using, 
+   * and i'm the reader or writer.
+   * 4. chat each other.
+   *  
+   */
+
   useEffect(() => {
     clientRef.current = new Client({
       webSocketFactory: () =>

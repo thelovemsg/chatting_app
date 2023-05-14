@@ -17,7 +17,8 @@
           ["reducers", "./src/reducers"],
           ["hooks", "./src/hooks"],
           ["function", "./src/function"],
-          ["styled-components", "./src/styled-components"]
+          ["styled-components", "./src/styled-components"],
+          ["container/FooterContainer", "./container/FooterContainer"]
         ],
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }

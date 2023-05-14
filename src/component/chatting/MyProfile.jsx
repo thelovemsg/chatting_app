@@ -7,10 +7,10 @@ import React, { useState, useMemo } from 'react';
 import {
   StyledChattingIntroLabel,
   StyledChattingItem,
-} from '../../styled-components/StyledForm';
-import DraggableModal from '../utilComponent/DraggableModal';
-import DraggableModalContent from '../utilComponent/DraggableModalContent';
-import createRandomUser from '../utility/FakeUser';
+} from 'styled-components/StyledForm';
+import DraggableModal from 'component/utilComponent/DraggableModal';
+import DraggableModalContent from 'component/utilComponent/DraggableModalContent';
+import createRandomUser from 'component/utility/FakeUser';
 
 const MyProfile = () => {
   const fakeUser = useMemo(() => createRandomUser(), []);
