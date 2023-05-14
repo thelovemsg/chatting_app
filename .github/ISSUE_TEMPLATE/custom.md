@@ -7,8 +7,8 @@ assignees: ''
 
 ---
 
-## objective
+## Objective
 >
-## detailed work content
-- []
-## note
+## Detailed work content
+- 
+## Note
