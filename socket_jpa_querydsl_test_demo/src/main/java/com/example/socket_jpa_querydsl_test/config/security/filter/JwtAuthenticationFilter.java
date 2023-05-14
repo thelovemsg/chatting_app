@@ -1,6 +1,5 @@
 package com.example.socket_jpa_querydsl_test.config.security.filter;
 
-import ch.qos.logback.core.util.ContentTypeUtil;
 import com.example.socket_jpa_querydsl_test.api.util.JsonUtil;
 import com.example.socket_jpa_querydsl_test.config.customenum.ContentType;
 import com.example.socket_jpa_querydsl_test.config.exception.*;
@@ -9,6 +8,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -64,10 +64,21 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
     }
 
     // Request Header 에서 토큰 정보 추출
+//    private String resolveToken(HttpServletRequest request) {
+//        String bearerToken = request.getHeader("Authorization");
+//        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer")) {
+//            return bearerToken.substring(7);
+//        }
+//        return null;
+//    }
     private String resolveToken(HttpServletRequest request) {
-        String bearerToken = request.getHeader("Authorization");
-        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer")) {
-            return bearerToken.substring(7);
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("accessToken")) {
+                    return cookie.getValue();
+                }
+            }
         }
         return null;
     }

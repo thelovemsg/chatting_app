@@ -4,6 +4,9 @@ import com.example.socket_jpa_querydsl_test.domain.status.FlagStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static jakarta.persistence.FetchType.LAZY;
 
 @AllArgsConstructor
