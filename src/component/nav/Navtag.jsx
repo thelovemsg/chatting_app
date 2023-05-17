@@ -116,14 +116,6 @@ const Navtag = () => {
                     <Trans i18nKey="navbar.profile" />
                     {/* 프로필도 로그인 한 후에 표출 */}
                   </Link>
-                  <Link
-                    to="/chattingTest"
-                    className={generateLinkClassName('/chattingTest')}
-                    onClick={() => handleLinkClick('/chattingTest')}
-                  >
-                    <Trans i18nKey="navbar.chattingTest" />
-                    {/* 프로필도 로그인 한 후에 표출 */}
-                  </Link>
                   <Logout />
                 </>
               ) : (
@@ -141,6 +133,14 @@ const Navtag = () => {
                 onClick={() => handleLinkClick('/register')}
               >
                 <Trans i18nKey="navbar.register" />
+              </Link>
+              <Link
+                to="/chattingTest"
+                className={generateLinkClassName('/chattingTest')}
+                onClick={() => handleLinkClick('/chattingTest')}
+              >
+                <Trans i18nKey="navbar.chattingTest" />
+                {/* 프로필도 로그인 한 후에 표출 */}
               </Link>
               <NavDropdown
                 title={t('navbar.dropdown.name')}

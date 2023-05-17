@@ -18,10 +18,6 @@
           ["hooks", "./src/hooks"],
           ["function", "./src/function"],
           ["styled-components", "./src/styled-components"],
-<<<<<<< HEAD
-=======
-          ["api/member/member", "../api/member/member"],
->>>>>>> 577e1b7e7ae506f344c9c5319c599c70f9505b97
           ["container/FooterContainer", "./container/FooterContainer"]
         ],
         "extensions": [".js", ".jsx", ".ts", ".tsx"]

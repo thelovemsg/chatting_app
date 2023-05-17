@@ -10,7 +10,7 @@ import {
 } from 'styled-components/StyledForm';
 import DraggableModal from 'component/utilComponent/DraggableModal';
 import DraggableModalContent from 'component/utilComponent/DraggableModalContent';
-import createRandomUser from 'component/utility/FakeUser';
+import { createRandomUser } from 'component/utility/FakeUser';
 
 const MyProfile = () => {
   const fakeUser = useMemo(() => createRandomUser(), []);

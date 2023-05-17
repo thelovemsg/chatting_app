@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
 import { useMemo, useState } from 'react';
 import { Carousel } from 'react-bootstrap';
-import createRandomUser from 'component/utility/FakeUser';
+import { createRandomUser } from 'component/utility/FakeUser';
 import CarouselModal from './CarouselModal';
 
 const DraggableModalContent = ({

@@ -1,7 +1,7 @@
 import { Accordion } from 'react-bootstrap';
 import { useMemo, useState } from 'react';
 import { StyledChattingItemNoPadding } from 'styled-components/StyledForm';
-import createRandomUser from 'component/utility/FakeUser';
+import { createRandomUser } from 'component/utility/FakeUser';
 import DraggableModal from 'component/utilComponent/DraggableModal';
 import DraggableModalContent from 'component/utilComponent/DraggableModalContent';
 

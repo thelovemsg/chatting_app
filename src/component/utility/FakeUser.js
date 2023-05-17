@@ -1,7 +1,7 @@
 // ESM
 import { faker } from '@faker-js/faker';
 
-export default function createRandomUser() {
+export function createRandomUser() {
   return {
     userId: faker.datatype.uuid(),
     username: faker.internet.userName(),
@@ -9,6 +9,19 @@ export default function createRandomUser() {
     avatar: faker.image.avatar(),
     password: faker.internet.password(),
     birthdate: faker.date.birthdate(),
+    registeredAt: faker.date.past(),
+  };
+}
+
+export function createRandomChatMessage(senderId, receiverId) {
+  return {
+    userId: faker.datatype.uuid(),
+    username: faker.internet.userName(),
+    senderId,
+    receiverId,
+    email: faker.internet.email(),
+    avatar: faker.image.avatar(),
+    content: faker.lorem.sentence(),
     registeredAt: faker.date.past(),
   };
 }

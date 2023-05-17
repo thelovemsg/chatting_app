@@ -202,8 +202,7 @@ a.dropdown-item {
 /* Chat */
 .chat-main {
   text-align: center;
-  max-width: 600px;
-  margin: 30px auto;
+  margin: 30px;
 }
 
 .chat-window {
@@ -211,7 +210,23 @@ a.dropdown-item {
   border: 1px solid #ccc;
   padding: 20px;
   overflow-y: auto;
-  max-height: 400px;
+  max-height: 500px;
+  min-width: 600px;
+  max-width: 1500px;
+  margin: auto;
+}
+
+.chat-profile-img {
+  width: 70px;
+  height: 70px;
+}
+
+.user-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 30%;
+  margin-right: 20px;
+  margin-left: 10px;
 }
 
 .chat-input {
@@ -225,6 +240,134 @@ a.dropdown-item {
   padding: 10px 15px;
   font-size: 14px;
   cursor: pointer;
+}
+
+.bubble-left {
+  position: relative;
+  background: #e8e123;
+  margin: 10px;
+  color: #0a0a0a;
+  font-family: Arial;
+  font-size: 19px;
+  max-width: 70%;
+  box-shadow: 6px 6px 5px 0px #a3a3a3;
+  text-align: center;
+  border-radius: 10px;
+  padding: 15px; /* Adjust this to your liking */
+  border: #030303 solid 2px;
+  word-wrap: break-word;
+  top: 20px;
+  margin-left: 20px;
+}
+
+.bubble-left:after {
+  top: auto;
+  bottom: 20;
+  content: '';
+  position: absolute;
+  display: block;
+  width: 0;
+  z-index: 1;
+  border-style: solid;
+  border-width: 0 20px 20px 0;
+  border-color: transparent #e8e123 transparent transparent;
+  top: 98%;
+  left: -20px;
+  margin-top: -50px;
+}
+
+.bubble-left:before {
+  top: auto;
+  bottom: 20;
+  content: '';
+  position: absolute;
+  width: 0;
+  z-index: 0;
+  border-style: solid;
+  border-width: 0 25px 25px 0;
+  border-color: transparent #030303 transparent transparent;
+  top: 95%;
+  left: -25px;
+  margin-top: -50px;
+  display: block;
+}
+
+.bubble-right {
+  top: auto;
+  bottom: 0;
+  margin-right: 10px;
+  position: relative;
+  background: #70d2d4;
+  color: #0a0a0a;
+  font-family: Arial;
+  font-size: 19px;
+  box-shadow: -6px 4px 5px 0px #a3a3a3;
+  text-align: center;
+  max-width: 70%;
+  border-radius: 10px;
+  padding: 15px; /* Adjust this to your liking */
+  border: #030303 solid 2px;
+  word-wrap: break-word;
+}
+
+.bubble-right:after {
+  top: auto;
+  bottom: 0;
+  content: '';
+  position: absolute;
+  display: block;
+  width: 0;
+  z-index: 1;
+  border-style: solid;
+  border-width: 20px 20px 0 0;
+  border-color: #70d2d4 transparent transparent transparent;
+  top: 35%;
+  right: -20px;
+  margin-top: -10px;
+}
+
+.bubble-right:before {
+  content: '';
+  position: absolute;
+  width: 0;
+  z-index: 0;
+  border-style: solid;
+  border-width: 22px 22px 0 0;
+  border-color: #030303 transparent transparent transparent;
+  top: 35%;
+  right: -24px;
+  margin-top: -12px;
+  display: block;
+}
+
+.bubble-left-container,
+.bubble-right-container {
+  display: flex;
+  align-items: center;
+}
+
+.bubble-left-container {
+  justify-content: flex-start; /* Align items to the left */
+}
+
+.bubble-right-container {
+  justify-content: flex-end; /* Align items to the right */
+}
+
+.bubble-left-container img,
+.bubble-right-container img {
+  margin-right: 10px; /* Add some space between the image and the text */
+}
+
+.time-left {
+  text-align: left;
+  margin-left: 100px;
+  margin-top: 25px;
+}
+
+.time-right {
+  text-align: right;
+  margin-right: 20px;
 }
 
 /* MyProfile */

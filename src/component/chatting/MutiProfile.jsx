@@ -6,7 +6,7 @@ import React, { useState, useMemo } from 'react';
 // import Draggable from 'react-draggable';
 // import { propTypes } from 'react-bootstrap/esm/Image';
 // import Resizable from 'resizable';
-import createRandomUser from '../utility/FakeUser';
+import { createRandomUser } from '../utility/FakeUser';
 import {
   StyledAccordionBodyMultiProfile,
   StyledFontAwesomeIconPlus,

@@ -17,6 +17,7 @@ const ChattingRoom = () => {
         ? createRandomChatMessage(currentUserId, anotherUserId)
         : createRandomChatMessage(anotherUserId, currentUserId)
     );
+    console.log('Test', randomMessages);
     setMessages(randomMessages);
   }, []); // add these dependencies to the effect
 
@@ -29,8 +30,12 @@ const ChattingRoom = () => {
   return (
     <div className="chat-main">
       <div className="chat-window">
-        {messages.map((message) => (
-          <div className="message-wrapper" key={`${message.id}`}>
+        {messages.map((message, index) => (
+          <div
+            className="message-wrapper"
+            key={`${message.userId + index + 1}`}
+          >
+            {message.id}
             <div
               className={
                 message.senderId === currentUserId
@@ -39,8 +44,15 @@ const ChattingRoom = () => {
               }
             >
               {message.senderId === currentUserId && (
-                <img src={`${message.avatar}`} alt="face" />
+                <img
+                  src={`${message.avatar}`}
+                  className="user-avatar"
+                  alt="face"
+                />
               )}
+              {/* {message.senderId !== currentUserId && (
+                <div className="message-time-left">2023년 10월 10일</div>
+              )} */}
               <p
                 className={
                   message.senderId === currentUserId
@@ -52,6 +64,13 @@ const ChattingRoom = () => {
                 }}
               />
             </div>
+            <p
+              className={
+                message.senderId === currentUserId ? 'time-left' : 'time-right'
+              }
+            >
+              test
+            </p>
           </div>
         ))}
       </div>
