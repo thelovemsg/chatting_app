@@ -206,7 +206,7 @@ a.dropdown-item {
 }
 
 .chat-window {
-  background-color: #f2f2f2;
+  background-color: #e1f5fe;
   border: 1px solid #ccc;
   padding: 20px;
   overflow-y: auto;
@@ -214,6 +214,18 @@ a.dropdown-item {
   min-width: 600px;
   max-width: 1500px;
   margin: auto;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.chat-window::-webkit-scrollbar {
+  width: 20px;
+  margin: auto;
+}
+
+.chat-window::-webkit-scrollbar-thumb {
+  background: #dbdbdb;
+  border-radius: 10px;
 }
 
 .chat-profile-img {
@@ -225,15 +237,37 @@ a.dropdown-item {
   width: 50px;
   height: 50px;
   border-radius: 30%;
+  border: 1px solid rgb(218, 217, 209);
   margin-right: 20px;
   margin-left: 10px;
 }
 
-.chat-input {
-  width: 80%;
-  padding: 10px 15px;
-  margin: 20px 0;
+.chat-textarea {
+  width: 100%;
+  min-width: 600px;
   box-sizing: border-box;
+  resize: none;
+  min-width: 600px;
+  max-width: 1500px;
+  height: 150px;
+  border-top: 0px;
+  border: 1px solid rgb(218, 217, 209);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.chat-textarea::-webkit-scrollbar {
+  width: 20px;
+  margin: auto;
+}
+
+.chat-textarea::-webkit-scrollbar-thumb {
+  background: #dbdbdb;
+  border-radius: 10px;
+}
+
+.chat-textarea:focus {
+  outline: none;
 }
 
 .chat-send-button {
@@ -245,10 +279,9 @@ a.dropdown-item {
 .bubble-left {
   position: relative;
   background: #e8e123;
-  margin: 10px;
   color: #0a0a0a;
   font-family: Arial;
-  font-size: 19px;
+  font-size: 15px;
   max-width: 70%;
   box-shadow: 6px 6px 5px 0px #a3a3a3;
   text-align: center;
@@ -256,10 +289,8 @@ a.dropdown-item {
   padding: 15px; /* Adjust this to your liking */
   border: #030303 solid 2px;
   word-wrap: break-word;
-  top: 20px;
-  margin-left: 20px;
 }
-
+/*
 .bubble-left:after {
   top: auto;
   bottom: 20;
@@ -271,7 +302,7 @@ a.dropdown-item {
   border-style: solid;
   border-width: 0 20px 20px 0;
   border-color: transparent #e8e123 transparent transparent;
-  top: 98%;
+  top: 110%;
   left: -20px;
   margin-top: -50px;
 }
@@ -286,11 +317,12 @@ a.dropdown-item {
   border-style: solid;
   border-width: 0 25px 25px 0;
   border-color: transparent #030303 transparent transparent;
-  top: 95%;
+  top: 105%;
   left: -25px;
   margin-top: -50px;
   display: block;
 }
+*/
 
 .bubble-right {
   top: auto;
@@ -300,7 +332,7 @@ a.dropdown-item {
   background: #70d2d4;
   color: #0a0a0a;
   font-family: Arial;
-  font-size: 19px;
+  font-size: 15px;
   box-shadow: -6px 4px 5px 0px #a3a3a3;
   text-align: center;
   max-width: 70%;
@@ -309,7 +341,7 @@ a.dropdown-item {
   border: #030303 solid 2px;
   word-wrap: break-word;
 }
-
+/*
 .bubble-right:after {
   top: auto;
   bottom: 0;
@@ -339,18 +371,15 @@ a.dropdown-item {
   margin-top: -12px;
   display: block;
 }
-
-.bubble-left-container,
-.bubble-right-container {
-  display: flex;
-  align-items: center;
-}
+*/
 
 .bubble-left-container {
+  display: flex;
   justify-content: flex-start; /* Align items to the left */
 }
 
 .bubble-right-container {
+  display: flex;
   justify-content: flex-end; /* Align items to the right */
 }
 
@@ -360,16 +389,40 @@ a.dropdown-item {
 }
 
 .time-left {
+  position: relative;
   text-align: left;
-  margin-left: 100px;
-  margin-top: 25px;
+  margin-left: 80px;
+  margin-top: 10px;
+  top: -15px;
+  margin-bottom: 0px;
 }
 
 .time-right {
+  position: relative;
   text-align: right;
   margin-right: 20px;
+  top: -15px;
+  margin-bottom: 0px;
 }
 
+.chat-options {
+  margin: auto;
+  width: 80%;
+  min-width: 600px;
+  max-width: 1500px;
+  height: 30px;
+}
+
+.file-icon {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.bubble-left-with-file {
+  background: #70d2d4;
+  color: #0a0a0a;
+}
 /* MyProfile */
 
 .my-profile-intro {

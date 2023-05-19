@@ -1,5 +1,7 @@
 import { createRandomChatMessage } from 'component/utility/FakeUser';
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFolderOpen } from '@fortawesome/free-solid-svg-icons';
 import '../../css/style.css';
 
 const ChattingRoom = () => {
@@ -17,24 +19,53 @@ const ChattingRoom = () => {
         ? createRandomChatMessage(currentUserId, anotherUserId)
         : createRandomChatMessage(anotherUserId, currentUserId)
     );
-    console.log('Test', randomMessages);
     setMessages(randomMessages);
   }, []); // add these dependencies to the effect
 
-  const sendMessage = () => {
+  const sendMessage = (content, hasFile = false) => {
     const newMessage = createRandomChatMessage(currentUserId, anotherUserId);
-    newMessage.content = input;
-    setMessages([...messages, newMessage]);
+    const check = !!content;
+    if (check) {
+      newMessage.content = content;
+      newMessage.hasFile = hasFile;
+      setMessages([...messages, newMessage]);
+      if (content === input) {
+        setInput('');
+      }
+    }
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    const files = Array.from(e.dataTransfer.files);
+    if (files.length) {
+      const confirmSend = window.confirm(
+        'Do you really want to send this file?'
+      );
+      if (confirmSend) {
+        // send the message with file
+        sendMessage(files[0].name, true);
+      }
+    }
+  };
+
+  const getBubbleClassName = (message) => {
+    if (message.senderId === currentUserId) {
+      return message.hasFile ? 'bubble-left-with-file' : 'bubble-left';
+    }
+
+    return 'bubble-right';
   };
 
   return (
     <div className="chat-main">
       <div className="chat-window">
         {messages.map((message, index) => (
-          <div
-            className="message-wrapper"
-            key={`${message.userId + index + 1}`}
-          >
+          <div key={`${message.userId + index + 1}`}>
             {message.id}
             <div
               className={
@@ -43,24 +74,22 @@ const ChattingRoom = () => {
                   : 'bubble-right-container'
               }
             >
-              {message.senderId === currentUserId && (
-                <img
-                  src={`${message.avatar}`}
-                  className="user-avatar"
-                  alt="face"
-                />
+              <div>
+                {message.senderId === currentUserId && (
+                  <img
+                    src={`${message.avatar}`}
+                    className="user-avatar"
+                    alt="face"
+                  />
+                )}
+              </div>
+              {message.hasFile && (
+                <FontAwesomeIcon icon={faFolderOpen} className="file-icon" />
               )}
-              {/* {message.senderId !== currentUserId && (
-                <div className="message-time-left">2023년 10월 10일</div>
-              )} */}
               <p
-                className={
-                  message.senderId === currentUserId
-                    ? 'bubble-left'
-                    : 'bubble-right'
-                }
+                className={getBubbleClassName(message)}
                 dangerouslySetInnerHTML={{
-                  __html: message.content.replace(/\n/g, '<br />'),
+                  __html: (message.content || '').replace(/\n/g, '<br />'),
                 }}
               />
             </div>
@@ -69,25 +98,32 @@ const ChattingRoom = () => {
                 message.senderId === currentUserId ? 'time-left' : 'time-right'
               }
             >
-              test
+              시분초 들어갈 예정
             </p>
           </div>
         ))}
       </div>
-      <input
-        type="text"
+      <textarea
         value={input}
-        className="chat-input"
+        className="chat-textarea"
+        onDragOver={handleDragOver}
+        onDrop={handleDrop}
         onChange={(e) => setInput(e.target.value)}
         onKeyUp={(e) => {
-          if (e.key === 'Enter') {
+          if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
             sendMessage();
           }
         }}
       />
-      <button className="chat-send-button" type="button" onClick={sendMessage}>
-        Send
-      </button>
+      <div className="chat-options">
+        <div>test</div>
+        <div>
+          <button type="button" onClick={sendMessage}>
+            Send
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
