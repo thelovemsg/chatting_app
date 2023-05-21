@@ -55,5 +55,10 @@ public class LoginTest {
                         .andExpect(status().is4xxClientError());
     }
 
+    @Test
+    @DisplayName("로그인 여부를 판별")
+    public void isUserLogin() {
+
+    }
 
 }

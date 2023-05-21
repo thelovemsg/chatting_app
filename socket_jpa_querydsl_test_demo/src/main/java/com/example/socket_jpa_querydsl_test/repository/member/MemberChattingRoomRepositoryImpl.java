@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static com.example.socket_jpa_querydsl_test.domain.entity.QMemberChattingRoom.memberChattingRoom;
@@ -44,6 +45,16 @@ public class MemberChattingRoomRepositoryImpl extends SimpleJpaRepository<Member
         return queryFactory.selectFrom(memberChattingRoom)
                 .where(memberChattingRoom.chattingRoom.id.eq(id))
                 .fetch().stream();
+    }
+
+    @Override
+    public int getMemberChattingRoomTotalCnt(Long chattingRoomId) {
+        return queryFactory.selectFrom(memberChattingRoom)
+                .where(memberChattingRoom.chattingRoom.id.eq(chattingRoomId)
+                        , memberChattingRoom.withdrawalStatus.eq(NO)
+                        , memberChattingRoom.isRoomClosed.eq(NO)
+                        , memberChattingRoom.isExpired.eq(NO))
+                            .fetch().stream().distinct().collect(Collectors.toList()).size();
     }
 
 }

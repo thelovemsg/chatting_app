@@ -7,7 +7,11 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAILURE,
 } from 'reducers/user';
-import { memberJoinApi, memberLoginApi } from '../api/member/member';
+import {
+  memberJoinApi,
+  memberLoginApi,
+  memberLogoutApi,
+} from '../api/member/member';
 
 function* logIn(action) {
   try {
@@ -23,10 +27,10 @@ function* logIn(action) {
 
 function* logOut(action) {
   try {
-    console.log('logout action in saga/user.js :: ', action.payload);
-    // const result = yield call(logInAPI);
-    yield delay(1000);
-    // throw new Error("tesitng");
+    console.log('logout before...');
+    const result = yield call(memberLogoutApi, action.payload);
+    console.log('result :: ', result);
+    console.log('logout after...');
     yield put(LOG_OUT_SUCCESS());
   } catch (err) {
     console.error('error occur!');

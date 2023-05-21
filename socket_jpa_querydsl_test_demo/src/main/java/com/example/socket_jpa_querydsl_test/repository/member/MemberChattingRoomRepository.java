@@ -11,4 +11,5 @@ public interface MemberChattingRoomRepository extends JpaRepository<MemberChatti
     Stream<MemberChattingRoom> getMemberChattingRoomByMemberId(Long id);
     Stream<MemberChattingRoom> getMemberChattingRoomInValidStatus();
     Stream<MemberChattingRoom> getMemberChattingRoomByChattingRoomId(Long id);
+    int getMemberChattingRoomTotalCnt(Long chattingRoomId);
 }

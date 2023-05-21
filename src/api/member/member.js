@@ -21,6 +21,16 @@ export const memberLoginApi = async (data) => {
   return response;
 };
 
+export const memberLogoutApi = async () => {
+  let response;
+  try {
+    response = await axios.get('logout');
+  } catch (error) {
+    console.log(error);
+  }
+  return response;
+};
+
 export const test = async (love) => {
   console.log(love);
 };

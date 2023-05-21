@@ -35,7 +35,6 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
          */
         config.enableSimpleBroker("/topic", "/queue");
 
-
         /**
          * This line configures the destination prefix for messages that should be processed by the application
          * (i.e., handled by @MessageMapping-annotated methods in your controllers).

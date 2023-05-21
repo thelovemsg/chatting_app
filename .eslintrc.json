@@ -18,7 +18,9 @@
           ["hooks", "./src/hooks"],
           ["function", "./src/function"],
           ["styled-components", "./src/styled-components"],
-          ["container/FooterContainer", "./container/FooterContainer"]
+          ["api/member/member", "../api/member/member"],
+          ["container/FooterContainer", "../../container/FooterContainer"],
+          ["component/main/AppLayout", "./component/main/AppLayout"]
         ],
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }

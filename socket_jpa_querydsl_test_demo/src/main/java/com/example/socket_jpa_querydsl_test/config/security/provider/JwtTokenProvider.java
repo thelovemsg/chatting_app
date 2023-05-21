@@ -53,7 +53,7 @@ public class JwtTokenProvider {
                 .collect(Collectors.joining(","));
 
         long now = (new Date()).getTime();
-        Date accessTokenExpireDate = new Date(1800);
+        Date accessTokenExpireDate = new Date(300);
         Date refreshTokenExpireDate = new Date(now + 604800);
 
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();

@@ -1,5 +1,5 @@
 import { createRandomChatMessage } from 'component/utility/FakeUser';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFolderOpen } from '@fortawesome/free-solid-svg-icons';
 import '../../css/style.css';
@@ -24,7 +24,9 @@ const ChattingRoom = () => {
 
   const sendMessage = (content, hasFile = false) => {
     const newMessage = createRandomChatMessage(currentUserId, anotherUserId);
+    console.log('newMessage :: ', newMessage);
     const check = !!content;
+    console.log('content :: ', content);
     if (check) {
       newMessage.content = content;
       newMessage.hasFile = hasFile;
@@ -61,9 +63,26 @@ const ChattingRoom = () => {
     return 'bubble-right';
   };
 
+  const chatWindowRef = useRef(null);
+
+  useEffect(() => {
+    const setChatWindowHeight = () => {
+      if (chatWindowRef.current) {
+        chatWindowRef.current.style.maxHeight = `${window.innerHeight * 0.5}px`;
+      }
+    };
+
+    setChatWindowHeight();
+    window.addEventListener('resize', setChatWindowHeight);
+
+    return () => {
+      window.removeEventListener('resize', setChatWindowHeight);
+    };
+  }, []);
+
   return (
     <div className="chat-main">
-      <div className="chat-window">
+      <div className="chat-window" ref={chatWindowRef}>
         {messages.map((message, index) => (
           <div key={`${message.userId + index + 1}`}>
             {message.id}
@@ -89,7 +108,10 @@ const ChattingRoom = () => {
               <p
                 className={getBubbleClassName(message)}
                 dangerouslySetInnerHTML={{
-                  __html: (message.content || '').replace(/\n/g, '<br />'),
+                  __html:
+                    typeof message.content === 'string'
+                      ? message.content.replace(/\n/g, '<br />')
+                      : '',
                 }}
               />
             </div>
@@ -103,23 +125,29 @@ const ChattingRoom = () => {
           </div>
         ))}
       </div>
-      <textarea
-        value={input}
-        className="chat-textarea"
-        onDragOver={handleDragOver}
-        onDrop={handleDrop}
-        onChange={(e) => setInput(e.target.value)}
-        onKeyUp={(e) => {
-          if (e.key === 'Enter' && !e.shiftKey) {
-            e.preventDefault();
-            sendMessage();
-          }
-        }}
-      />
+      <div className="chat-textarea-box">
+        <textarea
+          value={input}
+          className="chat-textarea"
+          onDragOver={handleDragOver}
+          onDrop={handleDrop}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyUp={(e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+              e.preventDefault();
+              sendMessage(input);
+            }
+          }}
+        />
+      </div>
       <div className="chat-options">
-        <div>test</div>
+        <div className="chat-options-buttons">
+          <div className="ml-10 mr-10">예정1</div>
+          <div className="ml-10 mr-10">예정2</div>
+          <div className="ml-10 mr-10">예정3</div>
+        </div>
         <div>
-          <button type="button" onClick={sendMessage}>
+          <button type="button" onClick={() => sendMessage(input)}>
             Send
           </button>
         </div>

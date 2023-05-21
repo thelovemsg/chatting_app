@@ -79,6 +79,8 @@ const Signin = () => {
               <Trans i18nKey="register.findPassword" />
             </StyledButton>
           </OverlayTrigger>
+          <div>id : test1@naver.com</div>
+          <div>password : password1234</div>
         </StyledGroup>
       </StyledForm>
     </StyledContainer>
