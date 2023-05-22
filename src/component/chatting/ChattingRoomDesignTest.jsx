@@ -24,9 +24,7 @@ const ChattingRoom = () => {
 
   const sendMessage = (content, hasFile = false) => {
     const newMessage = createRandomChatMessage(currentUserId, anotherUserId);
-    console.log('newMessage :: ', newMessage);
     const check = !!content;
-    console.log('content :: ', content);
     if (check) {
       newMessage.content = content;
       newMessage.hasFile = hasFile;

@@ -12,9 +12,12 @@ public class Message {
     private String message;
     private Object data;
 
+    public static final String LOGOUT_SUCCESS = "Logout successful!";
+
     public Message() {
         this.status = StatusEnum.BAD_REQUEST;
         this.data = null;
         this.message = null;
     }
+
 }

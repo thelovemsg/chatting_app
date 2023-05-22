@@ -13,6 +13,7 @@ import Navtag from 'component/nav/Navtag';
 import ChattingRoomDesignTest from 'component/chatting/ChattingRoomDesignTest';
 import ChattingRoom from 'component/chatting/ChattingRoom';
 import FooterContainer from './container/FooterContainer';
+import RoutesWrapper from './RoutesWrapper';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -29,16 +30,18 @@ const App = () => {
   return (
     <BrowserRouter>
       <Navtag />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/signin" element={<Signin />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/chattingRoom" element={<ChattingRoom />} />
-        <Route path="/chattingTest" element={<ChattingRoomDesignTest />} />
-        <Route path="/friends" element={<Friends />} />
-        <Route path="/contact" element={<Contact />} />
-      </Routes>
+      <RoutesWrapper>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/signin" element={<Signin />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/chattingRoom" element={<ChattingRoom />} />
+          <Route path="/chattingTest" element={<ChattingRoomDesignTest />} />
+          <Route path="/friends" element={<Friends />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </RoutesWrapper>
       {/* <ScrollButtons /> */}
       <FooterContainer />
       <div id="popupDom" />

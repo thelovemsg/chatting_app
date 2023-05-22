@@ -47,6 +47,7 @@ public class JwtTokenProvider {
 
     // 유저 정보를 가지고 AccessToken, RefreshToken 을 생성하는 메서드
     public TokenInfo generateToken(Authentication authentication) {
+        log.info("generateToken...");
         // 권한 가져오기
         String authorities = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
@@ -88,6 +89,7 @@ public class JwtTokenProvider {
 
     // JWT 토큰을 복호화하여 토큰에 들어있는 정보를 꺼내는 메서드
     public Authentication getAuthentication(String accessToken) {
+        log.info("getAuthentication");
         // 토큰 복호화
         Claims claims = parseClaims(accessToken);
 
@@ -116,6 +118,7 @@ public class JwtTokenProvider {
      * when it's expired. For this, return value must be changed!
      */
     public void validateToken(String token) {
+        log.info("validateToken");
         try {
             Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
         } catch (io.jsonwebtoken.security.SecurityException | MalformedJwtException e) {
@@ -134,6 +137,7 @@ public class JwtTokenProvider {
     }
 
     private Claims parseClaims(String accessToken) {
+        log.info("parseClaims...");
         try {
             return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(accessToken).getBody();
         } catch (ExpiredJwtException e) {
@@ -142,6 +146,7 @@ public class JwtTokenProvider {
     }
 
     private void saveRefreshToken(String refreshToken, Long memberId) {
+        log.info("saveRefreshToken...");
         Member member = new Member();
         member.setId(memberId);
 
@@ -175,6 +180,7 @@ public class JwtTokenProvider {
     }
 
     public String createAccessToken(Member member, Claims claims) {
+        log.info("createAccessToken...");
         // Generate a new access token with the necessary claims and expiration
         long now = (new Date()).getTime();
         Date accessTokenExpireDate = new Date(now + 8640000); // or any other expiration time
@@ -191,5 +197,8 @@ public class JwtTokenProvider {
         return accessToken;
     }
 
+    public void invalidateToken(String token) {
+        // If you're storing tokens (e.g., in a database or cache), remove the token
+    }
 
 }

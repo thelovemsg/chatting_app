@@ -1,5 +1,6 @@
 package com.example.socket_jpa_querydsl_test.config.security;
 
+import com.example.socket_jpa_querydsl_test.config.security.custom.CustomLogoutSuccessHandler;
 import com.example.socket_jpa_querydsl_test.config.security.filter.JwtAuthenticationFilter;
 import com.example.socket_jpa_querydsl_test.config.security.provider.JwtTokenProvider;
 import com.example.socket_jpa_querydsl_test.domain.entity.RoleEnum;
@@ -23,6 +24,7 @@ import java.util.Arrays;
 public class SpringSecurityConfig {
 
     private final JwtTokenProvider jwtTokenProvider;
+    private final CustomLogoutSuccessHandler customLogoutSuccessHandler;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -38,10 +40,17 @@ public class SpringSecurityConfig {
 //                            .requestMatchers("/config").hasRole("ADMIN")
                         .anyRequest().authenticated();
             })
+            .logout()
+            .logoutUrl("/logout")
+            .logoutSuccessHandler(customLogoutSuccessHandler)
+            .deleteCookies("accessToken", "refreshToken")
+            .invalidateHttpSession(true)
+            .and()
             .addFilterAfter(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
+
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
