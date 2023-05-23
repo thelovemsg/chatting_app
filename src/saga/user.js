@@ -1,5 +1,6 @@
 import { all, call, delay, fork, put, takeLatest } from 'redux-saga/effects';
 import {
+  LOG_IN_CHECK_DONE,
   LOG_IN_FAILURE,
   LOG_IN_SUCCESS,
   LOG_OUT_FAILURE,
@@ -11,7 +12,20 @@ import {
   memberJoinApi,
   memberLoginApi,
   memberLogoutApi,
+  memberLoginCheckApi,
 } from '../api/member/member';
+
+function* loginCheck() {
+  try {
+    console.log('loginCheck in saga/users');
+    const result = yield call(memberLoginCheckApi);
+    console.log('loginCheck result', result);
+  } catch (error) {
+    console.log(error);
+  } finally {
+    yield put(LOG_IN_CHECK_DONE());
+  }
+}
 
 function* logIn(action) {
   try {
@@ -19,6 +33,8 @@ function* logIn(action) {
     const result = yield call(memberLoginApi, action.payload);
     console.log(result);
     yield delay(1000);
+    // LOG_IN_SUCCESS 시 특별한 page 접속 권한 정보를 미리 저장해줘서 페이지 이동때마다
+    // 이것을 체크
     yield put(LOG_IN_SUCCESS());
   } catch (err) {
     yield put(LOG_IN_FAILURE());
@@ -53,6 +69,10 @@ function* userRegister(action) {
   }
 }
 
+function* watchLoginCheck() {
+  yield takeLatest('user/LOG_IN_CHECK_REQUEST', loginCheck);
+}
+
 function* watchLogIn() {
   yield takeLatest('user/LOG_IN_REQUEST', logIn);
 }
@@ -66,5 +86,10 @@ function* watchRegister() {
 }
 
 export default function* userSaga() {
-  yield all([fork(watchLogIn), fork(watchLogOut), fork(watchRegister)]);
+  yield all([
+    fork(watchLoginCheck),
+    fork(watchLogIn),
+    fork(watchLogOut),
+    fork(watchRegister),
+  ]);
 }

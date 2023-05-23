@@ -1,5 +1,6 @@
 package com.example.socket_jpa_querydsl_test.config.security;
 
+import com.example.socket_jpa_querydsl_test.config.security.custom.CustomAccessDeniedHandler;
 import com.example.socket_jpa_querydsl_test.config.security.custom.CustomLogoutSuccessHandler;
 import com.example.socket_jpa_querydsl_test.config.security.filter.JwtAuthenticationFilter;
 import com.example.socket_jpa_querydsl_test.config.security.provider.JwtTokenProvider;
@@ -17,14 +18,25 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 @EnableMethodSecurity(prePostEnabled = true)
 @RequiredArgsConstructor
 public class SpringSecurityConfig {
 
+    private static final List<String> PERMIT_ALL_ENDPOINTS = Arrays.asList(
+            "/", "/loginCheck", "/memberSave", "/error", "/users",
+            "/user/login/**", "/login", "/logout", "/refreshToken"
+    );
+
+    private static final List<String> USER_ROLE_ENDPOINTS = Arrays.asList(
+            "/test"
+    );
+
     private final JwtTokenProvider jwtTokenProvider;
     private final CustomLogoutSuccessHandler customLogoutSuccessHandler;
+    private final CustomAccessDeniedHandler customAccessDeniedHandler;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -33,20 +45,23 @@ public class SpringSecurityConfig {
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
             .authorizeRequests(registry -> {
-                registry.requestMatchers("/","/memberSave", "/error", "/users", "user/login/**"
-                                        , "/login", "/logout" ,"/refreshToken").permitAll()
-                        .requestMatchers("/test").hasRole(RoleEnum.USER.toString())
+                registry.requestMatchers(PERMIT_ALL_ENDPOINTS.toArray(new String[0])).permitAll()
+                        .requestMatchers(USER_ROLE_ENDPOINTS.toArray(new String[0]))
+                        .hasRole(RoleEnum.USER.toString())
 //                            .requestMatchers("/messages").hasRole("MANAGER")
 //                            .requestMatchers("/config").hasRole("ADMIN")
                         .anyRequest().authenticated();
             })
             .logout()
-            .logoutUrl("/logout")
-            .logoutSuccessHandler(customLogoutSuccessHandler)
-            .deleteCookies("accessToken", "refreshToken")
-            .invalidateHttpSession(true)
-            .and()
-            .addFilterAfter(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
+                .logoutUrl("/logout")
+                .logoutSuccessHandler(customLogoutSuccessHandler)
+                .deleteCookies("accessToken", "refreshToken")
+                .invalidateHttpSession(true)
+                .and()
+                .addFilterAfter(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class)
+             .exceptionHandling(exception -> {
+                 exception.accessDeniedHandler(customAccessDeniedHandler);
+             });
 
         return http.build();
     }

@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFolderOpen } from '@fortawesome/free-solid-svg-icons';
 import '../../css/style.css';
+import returnCurrentDate from '../utility/DateUtil';
 
 const ChattingRoom = () => {
   const [messages, setMessages] = useState([]);
@@ -28,6 +29,7 @@ const ChattingRoom = () => {
     if (check) {
       newMessage.content = content;
       newMessage.hasFile = hasFile;
+      newMessage.timestamp = new Date();
       setMessages([...messages, newMessage]);
       if (content === input) {
         setInput('');
@@ -118,7 +120,7 @@ const ChattingRoom = () => {
                 message.senderId === currentUserId ? 'time-left' : 'time-right'
               }
             >
-              시분초 들어갈 예정
+              {returnCurrentDate(message.timestamp)}
             </p>
           </div>
         ))}

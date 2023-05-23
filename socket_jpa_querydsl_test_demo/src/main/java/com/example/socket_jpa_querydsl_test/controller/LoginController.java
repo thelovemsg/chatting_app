@@ -53,17 +53,21 @@ public class LoginController {
         return createJsonResponseWithStatus("", "success", HttpStatus.OK);
     }
 
-    @PostMapping("/loginCheck")
+    @GetMapping("/loginCheck")
     public ResponseEntity<ApiResponse<String>> loginCheck(HttpServletRequest request, HttpServletResponse response) {
         log.info("request :: {}", request);
         log.info("response :: {}", response);
+        Cookie[] myCookies = request.getCookies();
+
+        // do something to check authorization hierarchy in pages.
+
         return createJsonResponseWithStatus("", "success", HttpStatus.OK);
     }
 
     @GetMapping("/logout")
     public ResponseEntity<ApiResponse<String>> logout(HttpServletResponse response) {
-        response.addCookie(new Cookie("accessToken", null));
-        response.addCookie(new Cookie("refreshToken", null));
+//        response.addCookie(new Cookie("accessToken", null));
+//        response.addCookie(new Cookie("refreshToken", null));
         return createJsonResponseWithStatus("", "success", HttpStatus.OK);
     }
 

@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 export const userSlice = createSlice({
   name: 'user',
   initialState: {
+    loginChecking: false,
     loginHandling: false,
     loginDone: false,
     logoutHandling: false,
@@ -12,8 +13,16 @@ export const userSlice = createSlice({
     registerHandling: false,
     registerDone: false,
     registerError: null,
+    accessPermission: null,
   },
   reducers: {
+    LOG_IN_CHECK_REQUEST: (state) => {
+      console.log('login check request...');
+      state.loginChecking = true;
+    },
+    LOG_IN_CHECK_DONE: (state) => {
+      state.loginChecking = false;
+    },
     LOG_IN_REQUEST: (state) => {
       state.loginHandling = true;
     },
@@ -64,6 +73,8 @@ export const userSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
+  LOG_IN_CHECK_REQUEST,
+  LOG_IN_CHECK_DONE,
   LOG_IN_REQUEST,
   LOG_IN_SUCCESS,
   LOG_IN_FAILURE,

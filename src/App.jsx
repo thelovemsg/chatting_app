@@ -1,7 +1,6 @@
 import './App.css';
 import './css/style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Signin from 'component/nav/Signin';
 import Contact from 'component/nav/Contact';
@@ -12,19 +11,20 @@ import Home from 'component/nav/Home';
 import Navtag from 'component/nav/Navtag';
 import ChattingRoomDesignTest from 'component/chatting/ChattingRoomDesignTest';
 import ChattingRoom from 'component/chatting/ChattingRoom';
+import { useDispatch, useSelector } from 'react-redux';
+// import { LOG_IN_CHECK_REQUEST } from 'reducers/user';
+// import { useEffect } from 'react';
+import { useEffect } from 'react';
+import { LOG_IN_CHECK_REQUEST } from 'reducers/user';
 import FooterContainer from './container/FooterContainer';
 import RoutesWrapper from './RoutesWrapper';
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const dispatch = useDispatch();
+  const { loginChecking } = useSelector((state) => state.user);
   useEffect(() => {
-    console.log(`before - ${isLoggedIn}`);
-    setIsLoggedIn(true);
-  }, []);
-
-  useEffect(() => {
-    console.log(`after - ${isLoggedIn}`);
+    console.log(loginChecking);
+    dispatch(LOG_IN_CHECK_REQUEST({}));
   }, []);
 
   return (

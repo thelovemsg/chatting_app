@@ -19,6 +19,7 @@ export function createRandomChatMessage(senderId, receiverId) {
     username: faker.internet.userName(),
     senderId,
     receiverId,
+    timestamp: new Date(),
     email: faker.internet.email(),
     avatar: faker.image.avatar(),
     content: faker.lorem.sentence(),

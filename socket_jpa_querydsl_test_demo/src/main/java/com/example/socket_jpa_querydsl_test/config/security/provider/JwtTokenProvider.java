@@ -47,15 +47,14 @@ public class JwtTokenProvider {
 
     // 유저 정보를 가지고 AccessToken, RefreshToken 을 생성하는 메서드
     public TokenInfo generateToken(Authentication authentication) {
-        log.info("generateToken...");
         // 권한 가져오기
         String authorities = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(","));
 
         long now = (new Date()).getTime();
-        Date accessTokenExpireDate = new Date(300);
-        Date refreshTokenExpireDate = new Date(now + 604800);
+        Date accessTokenExpireDate = new Date(now + 60*60*1000);
+        Date refreshTokenExpireDate = new Date(now + 60*60*60*1000);
 
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
         Long memberId = userDetails.getMemberId();
@@ -72,9 +71,9 @@ public class JwtTokenProvider {
 
         // Refresh Token 생성
         String refreshToken = Jwts.builder()
-                .setExpiration(refreshTokenExpireDate)
                 .claim("id", memberId) // set the least of information of user
                 .setIssuedAt(new Date(now))
+                .setExpiration(refreshTokenExpireDate)
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
 
