@@ -26,7 +26,7 @@ import java.util.List;
 public class SpringSecurityConfig {
 
     private static final List<String> PERMIT_ALL_ENDPOINTS = Arrays.asList(
-            "/", "/loginCheck", "/memberSave", "/error", "/users",
+            "/", "/memberSave", "/error", "/users",
             "/user/login/**", "/login", "/logout", "/refreshToken"
     );
 
@@ -45,9 +45,11 @@ public class SpringSecurityConfig {
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
             .authorizeRequests(registry -> {
-                registry.requestMatchers(PERMIT_ALL_ENDPOINTS.toArray(new String[0])).permitAll()
+                registry
+                        .requestMatchers(PERMIT_ALL_ENDPOINTS.toArray(new String[0])).permitAll()
                         .requestMatchers(USER_ROLE_ENDPOINTS.toArray(new String[0]))
                         .hasRole(RoleEnum.USER.toString())
+                        .requestMatchers("/loginCheck").permitAll()
 //                            .requestMatchers("/messages").hasRole("MANAGER")
 //                            .requestMatchers("/config").hasRole("ADMIN")
                         .anyRequest().authenticated();

@@ -53,7 +53,7 @@ public class JwtTokenProvider {
                 .collect(Collectors.joining(","));
 
         long now = (new Date()).getTime();
-        Date accessTokenExpireDate = new Date(now + 60*60*1000);
+        Date accessTokenExpireDate = new Date(now);
         Date refreshTokenExpireDate = new Date(now + 60*60*60*1000);
 
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
@@ -85,7 +85,7 @@ public class JwtTokenProvider {
                 .refreshToken(refreshToken)
                 .build();
     }
-
+    
     // JWT 토큰을 복호화하여 토큰에 들어있는 정보를 꺼내는 메서드
     public Authentication getAuthentication(String accessToken) {
         log.info("getAuthentication");
@@ -196,8 +196,17 @@ public class JwtTokenProvider {
         return accessToken;
     }
 
-    public void invalidateToken(String token) {
-        // If you're storing tokens (e.g., in a database or cache), remove the token
+    public boolean isValidToken(String token) {
+        try {
+            Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
+            return true;
+        } catch (JwtException | IllegalArgumentException e) {
+            return false;
+        }
     }
 
+    public String generateAccessToken(String refreshToken) {
+        // 별도 작업 필요
+        return null;
+    }
 }

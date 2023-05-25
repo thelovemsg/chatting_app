@@ -3,6 +3,7 @@ package com.example.socket_jpa_querydsl_test.controller;
 import com.example.socket_jpa_querydsl_test.api.ApiResponse;
 import com.example.socket_jpa_querydsl_test.api.CustomResponseUtils;
 import com.example.socket_jpa_querydsl_test.api.dto.entity.MemberLoginRequestDto;
+import com.example.socket_jpa_querydsl_test.config.security.provider.JwtTokenProvider;
 import com.example.socket_jpa_querydsl_test.domain.utils.TokenInfo;
 import com.example.socket_jpa_querydsl_test.service.MemberService;
 import jakarta.servlet.http.Cookie;
@@ -13,11 +14,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import static com.example.socket_jpa_querydsl_test.api.CustomResponseUtils.*;
 
@@ -27,6 +27,7 @@ import static com.example.socket_jpa_querydsl_test.api.CustomResponseUtils.*;
 public class LoginController {
 
     private final MemberService memberService;
+    private final JwtTokenProvider jwtTokenProvider;
 
     @PostMapping("/login")
     public ResponseEntity<ApiResponse<String>> loginMember(@Valid @RequestBody MemberLoginRequestDto memberLoginRequestDto, BindingResult result, HttpServletResponse response) {
@@ -54,14 +55,22 @@ public class LoginController {
     }
 
     @GetMapping("/loginCheck")
-    public ResponseEntity<ApiResponse<String>> loginCheck(HttpServletRequest request, HttpServletResponse response) {
-        log.info("request :: {}", request);
-        log.info("response :: {}", response);
-        Cookie[] myCookies = request.getCookies();
+    public ResponseEntity<ApiResponse<String>> loginCheck(@RequestHeader(value = "Authorization", required = false) String authHeader,
+                                                          @CookieValue(value = "refreshToken", required = false) String refreshToken) {
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            String token = authHeader.substring(7);
+            boolean isValid = jwtTokenProvider.isValidToken(token);
+            if (isValid) {
+                return createJsonResponseWithStatus("You are logged in", "success", HttpStatus.OK);
+            } else if (refreshToken != null && jwtTokenProvider.isValidToken(refreshToken)) {
+                String newToken = jwtTokenProvider.generateAccessToken(refreshToken);
+                // add generateAccessToken for new access token.
 
-        // do something to check authorization hierarchy in pages.
-
-        return createJsonResponseWithStatus("", "success", HttpStatus.OK);
+                // You should also set this new token in the response headers or cookie as per your design
+                return createJsonResponseWithStatus("You are logged in", "success", HttpStatus.OK);
+            }
+        }
+        return createJsonResponseWithStatus("You are not logged in", "failure", HttpStatus.UNAUTHORIZED);
     }
 
     @GetMapping("/logout")

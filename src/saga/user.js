@@ -20,6 +20,12 @@ function* loginCheck() {
     console.log('loginCheck in saga/users');
     const result = yield call(memberLoginCheckApi);
     console.log('loginCheck result', result);
+    /*
+    TODO:
+      여기서 어떤 결과가 왓는지에 따라 isLoginDone 처리를 바꿔야함. 
+      전달 결과를 이제 저장해놓고, 권한 페이지가 걸려있으면 팅겨내야함.
+
+    */
   } catch (error) {
     console.log(error);
   } finally {

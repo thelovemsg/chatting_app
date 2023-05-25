@@ -14,7 +14,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.util.StringUtils;
 import org.springframework.web.filter.GenericFilterBean;
 
 import java.io.IOException;
@@ -30,33 +29,46 @@ import java.io.IOException;
 public class JwtAuthenticationFilter extends GenericFilterBean {
 
     private final JwtTokenProvider jwtTokenProvider;
+    private final String ACCESS_TOKEN = "accessToken";
+    private final String REFRESH_TOKEN = "refreshToken";
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException, ServletException {
 
         // 1. Request Header 에서 JWT 토큰 추출
-        String token = resolveToken((HttpServletRequest) request);
+        String token = resolveToken((HttpServletRequest) request, ACCESS_TOKEN);
 
         try {
             if (token != null) {
                 jwtTokenProvider.validateToken(token);
-                // 토큰이 유효할 경우 토큰에서 Authentication 객체를 가지고 와서 SecurityContext 에 저장
+                // token is valid, set the authentication for the context
                 Authentication authentication = jwtTokenProvider.getAuthentication(token);
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
         } catch (JwtTokenExpiredException e) {
-            // Handle token expiration: issue a new access token using the refresh token
-            var httpResponse = (HttpServletResponse) response;
-            httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            httpResponse.setContentType(ContentType.JSON.getContentType());
+            // Handle token expiration: issue a new access token using the refresh token\
 
-            ErrorMessage errorMessage = new ErrorMessage("Access token expired. Please use your refresh token to request a new access token.", "109");
-            httpResponse.getWriter().write(JsonUtil.toJson(errorMessage));
-            httpResponse.getWriter().flush();
-            return;
-        } catch (JwtTokenInvalidException | JwtTokenUnsupportedException | JwtTokenEmptyClaimsException e) {
-            // Handle other JWT token errors, e.g., invalid, unsupported or empty claims tokens
-            // You can return an error response to the client or just log the error.
+            String refreshToken = resolveToken((HttpServletRequest) request, REFRESH_TOKEN);
+            if (jwtTokenProvider.isValidToken(refreshToken)) {
+                // refresh token is valid, use it to create a new access token
+                String newAccessToken = jwtTokenProvider.refreshAccessToken(refreshToken);
+                // Set new access token in the http-only cookie
+                Cookie newAccessTokenCookie = new Cookie("accessToken", newAccessToken);
+                newAccessTokenCookie.setHttpOnly(true);
+                ((HttpServletResponse) response).addCookie(newAccessTokenCookie);
+                // Set the new authentication for the context
+                Authentication authentication = jwtTokenProvider.getAuthentication(newAccessToken);
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+            } else {
+                // Refresh token is also expired/invalid, need re-authentication
+                var httpResponse = (HttpServletResponse) response;
+                httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                httpResponse.setContentType(ContentType.JSON.getContentType());
+                ErrorMessage errorMessage = new ErrorMessage("Refresh token expired. Please re-authenticate.", "110");
+                httpResponse.getWriter().write(JsonUtil.toJson(errorMessage));
+                httpResponse.getWriter().flush();
+                return;
+            }
         }
 
         // 2. validateToken 으로 토큰 유효성 검사
@@ -71,15 +83,16 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
 //        }
 //        return null;
 //    }
-    private String resolveToken(HttpServletRequest request) {
+    private String resolveToken(HttpServletRequest request, String targetCookie) {
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("accessToken")) {
+                if (cookie.getName().equals(targetCookie)) {
                     return cookie.getValue();
                 }
             }
         }
         return null;
     }
+
 }
