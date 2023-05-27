@@ -55,21 +55,23 @@ public class LoginController {
     }
 
     @GetMapping("/loginCheck")
-    public ResponseEntity<ApiResponse<String>> loginCheck(@RequestHeader(value = "Authorization", required = false) String authHeader,
-                                                          @CookieValue(value = "refreshToken", required = false) String refreshToken) {
-        if (authHeader != null && authHeader.startsWith("Bearer ")) {
-            String token = authHeader.substring(7);
-            boolean isValid = jwtTokenProvider.isValidToken(token);
-            if (isValid) {
-                return createJsonResponseWithStatus("You are logged in", "success", HttpStatus.OK);
-            } else if (refreshToken != null && jwtTokenProvider.isValidToken(refreshToken)) {
-                String newToken = jwtTokenProvider.generateAccessToken(refreshToken);
-                // add generateAccessToken for new access token.
-
-                // You should also set this new token in the response headers or cookie as per your design
-                return createJsonResponseWithStatus("You are logged in", "success", HttpStatus.OK);
-            }
-        }
+    public ResponseEntity<ApiResponse<String>> loginCheck(
+             @CookieValue(value = "accessToken", required = false) String accessToken
+            ,@CookieValue(value = "refreshToken", required = false) String refreshToken) {
+        log.info("login Check ttes...");
+//        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+//            String token = authHeader.substring(7);
+//            boolean isValid = jwtTokenProvider.isValidToken(token);
+//            if (isValid) {
+//                return createJsonResponseWithStatus("You are logged in", "success", HttpStatus.OK);
+//            } else if (refreshToken != null && jwtTokenProvider.isValidToken(refreshToken)) {
+//                String newToken = jwtTokenProvider.generateAccessToken(refreshToken);
+//                // add generateAccessToken for new access token.
+//
+//                // You should also set this new token in the response headers or cookie as per your design
+//                return createJsonResponseWithStatus("You are logged in", "success", HttpStatus.OK);
+//            }
+//        }
         return createJsonResponseWithStatus("You are not logged in", "failure", HttpStatus.UNAUTHORIZED);
     }
 

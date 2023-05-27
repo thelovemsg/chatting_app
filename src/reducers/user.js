@@ -3,6 +3,9 @@ import { createSlice } from '@reduxjs/toolkit';
 export const userSlice = createSlice({
   name: 'user',
   initialState: {
+    loginCheckHandling: false,
+    loginCheckSuccess: false,
+    loginCheckFailure: null,
     loginChecking: false,
     loginHandling: false,
     loginDone: false,
@@ -17,8 +20,19 @@ export const userSlice = createSlice({
   },
   reducers: {
     LOG_IN_CHECK_REQUEST: (state) => {
-      console.log('login check request...');
-      state.loginChecking = true;
+      state.loginCheckHandling = true;
+    },
+    LOG_IN_CHECK_FAILURE: (state, action) => {
+      state.loginCheckFailure = {
+        code: action.payload.code,
+        message: action.payload.message,
+      };
+      state.loginCheckHandling = false;
+    },
+    LOG_IN_CHECK_SUCCESS: (state) => {
+      state.loginCheckHandling = false;
+      state.loginCheckSuccess = true;
+      state.loginDone = true;
     },
     LOG_IN_CHECK_DONE: (state) => {
       state.loginChecking = false;
@@ -58,7 +72,6 @@ export const userSlice = createSlice({
       state.registerHandling = true;
     },
     REGISTER_SUCCESS: (state) => {
-      console.log('REGISTER_SUCCESS :: ', state);
       state.registerHandling = false;
       state.registerError = null;
     },
@@ -74,7 +87,8 @@ export const userSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const {
   LOG_IN_CHECK_REQUEST,
-  LOG_IN_CHECK_DONE,
+  LOG_IN_CHECK_FAILURE,
+  LOG_IN_CHECK_SUCCESS,
   LOG_IN_REQUEST,
   LOG_IN_SUCCESS,
   LOG_IN_FAILURE,

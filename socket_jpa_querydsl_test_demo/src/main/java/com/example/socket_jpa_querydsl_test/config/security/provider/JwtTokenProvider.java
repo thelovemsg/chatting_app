@@ -53,7 +53,7 @@ public class JwtTokenProvider {
                 .collect(Collectors.joining(","));
 
         long now = (new Date()).getTime();
-        Date accessTokenExpireDate = new Date(now);
+        Date accessTokenExpireDate = new Date(now + 60*60*1000);
         Date refreshTokenExpireDate = new Date(now + 60*60*60*1000);
 
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
@@ -65,7 +65,7 @@ public class JwtTokenProvider {
                 .claim("auth", authorities)
                 .claim("id", memberId) // set the least of information of user
                 .setIssuedAt(new Date(now))
-                .setExpiration(accessTokenExpireDate)
+                .setExpiration(new Date(now + 30 * 1000))
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
 
@@ -73,7 +73,7 @@ public class JwtTokenProvider {
         String refreshToken = Jwts.builder()
                 .claim("id", memberId) // set the least of information of user
                 .setIssuedAt(new Date(now))
-                .setExpiration(refreshTokenExpireDate)
+                .setExpiration(new Date(now))
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
 
@@ -87,7 +87,7 @@ public class JwtTokenProvider {
     }
     
     // JWT 토큰을 복호화하여 토큰에 들어있는 정보를 꺼내는 메서드
-    public Authentication getAuthentication(String accessToken) {
+    public String getAuthentication(String accessToken) {
         log.info("getAuthentication");
         // 토큰 복호화
         Claims claims = parseClaims(accessToken);
@@ -96,15 +96,7 @@ public class JwtTokenProvider {
             throw new RuntimeException("권한 정보가 없는 토큰입니다.");
         }
 
-        // 클레임에서 권한 정보 가져오기
-        Collection<? extends GrantedAuthority> authorities =
-                Arrays.stream(claims.get("auth").toString().split(","))
-                        .map(SimpleGrantedAuthority::new)
-                        .collect(Collectors.toList());
-
-        // UserDetails 객체를 만들어서 Authentication 리턴
-        UserDetails principal = new User(claims.getSubject(), "", authorities);
-        return new UsernamePasswordAuthenticationToken(principal, "", authorities);
+        return (String) claims.get("auth");
     }
 
     /**

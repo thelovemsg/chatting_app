@@ -1,12 +1,13 @@
 import { all, call, delay, fork, put, takeLatest } from 'redux-saga/effects';
 import {
-  LOG_IN_CHECK_DONE,
   LOG_IN_FAILURE,
   LOG_IN_SUCCESS,
   LOG_OUT_FAILURE,
   LOG_OUT_SUCCESS,
   REGISTER_SUCCESS,
   REGISTER_FAILURE,
+  LOG_IN_CHECK_SUCCESS,
+  LOG_IN_CHECK_FAILURE,
 } from 'reducers/user';
 import {
   memberJoinApi,
@@ -24,12 +25,12 @@ function* loginCheck() {
     TODO:
       여기서 어떤 결과가 왓는지에 따라 isLoginDone 처리를 바꿔야함. 
       전달 결과를 이제 저장해놓고, 권한 페이지가 걸려있으면 팅겨내야함.
-
     */
+    yield put(LOG_IN_CHECK_SUCCESS());
   } catch (error) {
-    console.log(error);
-  } finally {
-    yield put(LOG_IN_CHECK_DONE());
+    yield put(
+      LOG_IN_CHECK_FAILURE({ code: 'test', error: error.response.data.message })
+    );
   }
 }
 
