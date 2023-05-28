@@ -6,7 +6,7 @@ const RoutesWrapper = ({ children }) => {
   const location = useLocation();
 
   useEffect(() => {
-    console.log(location);
+    console.log('my location : ', location);
   }, [location]);
 
   return children;

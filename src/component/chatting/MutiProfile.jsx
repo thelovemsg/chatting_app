@@ -1,17 +1,15 @@
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import Accordion from 'react-bootstrap/Accordion';
 import { Trans } from 'react-i18next';
-// import { Button } from 'react-bootstrap';
 import React, { useState, useMemo } from 'react';
-// import Draggable from 'react-draggable';
-// import { propTypes } from 'react-bootstrap/esm/Image';
-// import Resizable from 'resizable';
+import DraggableModalContent from 'component/utilComponent/DraggableModalContent';
+import NewMultiProfileModalContent from 'component/utilComponent/NewMultiProfileModalContent';
+import DraggableModal from '../utilComponent/DraggableModal';
 import { createRandomUser } from '../utility/FakeUser';
 import {
   StyledAccordionBodyMultiProfile,
   StyledFontAwesomeIconPlus,
 } from '../../styled-components/StyledForm';
-import DraggableModal from '../utilComponent/DraggableModal';
 
 const MutiProfile = () => {
   /*
@@ -29,15 +27,24 @@ const MutiProfile = () => {
   );
 
   const [showModal, setShowModal] = useState(false);
-  const [selectedAvatar, setSelectedAvatar] = useState(null);
+  const [showNewForm, setShowNewForm] = useState(false);
+  // const [selectedAvatar, setSelectedAvatar] = useState(null);
 
-  const handleAvatarClick = (avatar) => {
-    setSelectedAvatar(avatar);
+  const handleAvatarClick = () => {
+    // setSelectedAvatar(avatar);
     setShowModal(true);
   };
 
   const handleCloseModal = () => {
     setShowModal(false);
+  };
+
+  const handleAddNewProfile = () => {
+    setShowNewForm(true);
+  };
+
+  const handleCloseForm = () => {
+    setShowNewForm(false);
   };
 
   return (
@@ -64,35 +71,46 @@ const MutiProfile = () => {
                 <img
                   src={user.avatar}
                   alt={`Friend ${index + 9000} ${user.userId}`}
-                  className="profile-others"
+                  className="multi-profile-others"
                 />
+                <div className="multi-profile-name">test</div>
               </button>
             ))}
             {/* 여기 item들이 hover이벤트가 먹어야함. */}
-            <StyledFontAwesomeIconPlus icon={faPlus} />
-            <div>test</div>
+            <button
+              className="avatar-button"
+              onClick={() => handleAddNewProfile('new')}
+              style={{
+                border: 'none',
+                background: 'transparent',
+                padding: 0,
+              }}
+              type="button"
+            >
+              <StyledFontAwesomeIconPlus
+                icon={faPlus}
+                className="multi-profile-add-button"
+              />
+              <div className="multi-profile-name">만들기</div>
+            </button>
           </StyledAccordionBodyMultiProfile>
         </Accordion.Item>
       </Accordion>
       <DraggableModal show={showModal}>
-        <div className="modal-header">
-          <h5 className="modal-title">Avatar</h5>
-          <button
-            type="button"
-            className="btn-close"
-            onClick={handleCloseModal}
-            aria-label="hidden"
-          />
-        </div>
-        <div
-          className="modal-body"
-          style={{ margin: 'auto', textAlign: 'center' }}
-        >
-          <div style={{ height: '60%' }}>test1</div>
-          {selectedAvatar && <img src={selectedAvatar} alt="Selected Avatar" />}
-          <div>상태명 드러감</div>
-        </div>
-        <div className="modal-footer">test</div>
+        <DraggableModalContent
+          handleCloseModal={handleCloseModal}
+          userInfo={null}
+          stateContent="상태명 드러감"
+          footerContent="test"
+        />
+      </DraggableModal>
+      <DraggableModal show={showNewForm}>
+        <NewMultiProfileModalContent
+          handleCloseModal={handleCloseForm}
+          userInfo={null}
+          stateContent="상태명 드러감"
+          footerContent="test"
+        />
       </DraggableModal>
     </>
   );

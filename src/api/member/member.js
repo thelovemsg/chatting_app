@@ -11,15 +11,7 @@ export const memberJoinApi = async (user) => {
   return response;
 };
 
-export const memberLoginApi = async (data) => {
-  let response;
-  try {
-    response = await axios.post('login', data);
-  } catch (error) {
-    console.log(error);
-  }
-  return response;
-};
+export const memberLoginApi = async (data) => axios.post('login', data);
 
 export const memberLogoutApi = async () => {
   let response;

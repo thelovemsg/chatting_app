@@ -72,6 +72,9 @@ i18n
           friend: {
             multi_profile: 'Multi Profile',
           },
+          error: {
+            login_check_error: 'Please login.',
+          },
         },
       },
       ko: {
@@ -131,6 +134,9 @@ i18n
           },
           friend: {
             multi_profile: '멀티 프로필',
+          },
+          error: {
+            login_check_error: '로그인을 해 주세요',
           },
         },
       },

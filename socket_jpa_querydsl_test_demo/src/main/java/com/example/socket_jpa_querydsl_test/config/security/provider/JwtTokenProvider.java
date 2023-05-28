@@ -65,7 +65,7 @@ public class JwtTokenProvider {
                 .claim("auth", authorities)
                 .claim("id", memberId) // set the least of information of user
                 .setIssuedAt(new Date(now))
-                .setExpiration(new Date(now + 30 * 1000))
+                .setExpiration(accessTokenExpireDate)
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
 
@@ -73,7 +73,7 @@ public class JwtTokenProvider {
         String refreshToken = Jwts.builder()
                 .claim("id", memberId) // set the least of information of user
                 .setIssuedAt(new Date(now))
-                .setExpiration(new Date(now))
+                .setExpiration(refreshTokenExpireDate)
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
 
@@ -171,7 +171,6 @@ public class JwtTokenProvider {
     }
 
     public String createAccessToken(Member member, Claims claims) {
-        log.info("createAccessToken...");
         // Generate a new access token with the necessary claims and expiration
         long now = (new Date()).getTime();
         Date accessTokenExpireDate = new Date(now + 8640000); // or any other expiration time
@@ -188,17 +187,4 @@ public class JwtTokenProvider {
         return accessToken;
     }
 
-    public boolean isValidToken(String token) {
-        try {
-            Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
-            return true;
-        } catch (JwtException | IllegalArgumentException e) {
-            return false;
-        }
-    }
-
-    public String generateAccessToken(String refreshToken) {
-        // 별도 작업 필요
-        return null;
-    }
 }

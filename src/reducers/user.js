@@ -32,7 +32,6 @@ export const userSlice = createSlice({
     LOG_IN_CHECK_SUCCESS: (state) => {
       state.loginCheckHandling = false;
       state.loginCheckSuccess = true;
-      state.loginDone = true;
     },
     LOG_IN_CHECK_DONE: (state) => {
       state.loginChecking = false;
@@ -46,6 +45,8 @@ export const userSlice = createSlice({
       state.logoutDone = false;
     },
     LOG_IN_FAILURE: (state, action) => {
+      console.log('state ::', state);
+      console.log('action ::', action);
       state.loginHandling = false;
       state.loginError = {
         code: action.payload.code,
@@ -59,6 +60,7 @@ export const userSlice = createSlice({
       state.logoutHandling = false;
       state.logoutDone = true;
       state.loginDone = false;
+      state.loginCheckSuccess = false;
     },
     LOG_OUT_FAILURE: (state, action) => {
       // api 통신시 에러와 에러메시지 받음. default 처리

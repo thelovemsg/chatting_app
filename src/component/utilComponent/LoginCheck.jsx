@@ -10,13 +10,11 @@ const LoginCheck = () => {
   const loginCheckError = useSelector((state) => state.user.loginCheckFailure);
 
   useEffect(() => {
-    console.log('LOG_IN_CHECK_REQUEST start!!');
     dispatch(LOG_IN_CHECK_REQUEST({}));
   }, [dispatch]);
 
   useEffect(() => {
-    if (loginCheckError) {
-      console.log(loginCheckError);
+    if (loginCheckError?.message) {
       alert(t('error.login_check_error'));
       navigate('/signin');
     }

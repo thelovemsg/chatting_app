@@ -6,7 +6,7 @@ import { Carousel } from 'react-bootstrap';
 import { createRandomUser } from 'component/utility/FakeUser';
 import CarouselModal from './CarouselModal';
 
-const DraggableModalContent = ({
+const NewMultiProfileModalContent = ({
   handleCloseModal,
   userInfo,
   stateContent,
@@ -75,12 +75,12 @@ const DraggableModalContent = ({
   );
 };
 
-export default DraggableModalContent;
+export default NewMultiProfileModalContent;
 
 /**
  * the reason why we should use TypeScript!!
  */
-DraggableModalContent.propTypes = {
+NewMultiProfileModalContent.propTypes = {
   handleCloseModal: PropTypes.func.isRequired,
   userInfo: PropTypes.shape({
     userId: PropTypes.string,
