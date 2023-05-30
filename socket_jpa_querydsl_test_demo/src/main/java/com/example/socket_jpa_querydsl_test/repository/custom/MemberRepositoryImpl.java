@@ -24,4 +24,10 @@ public class MemberRepositoryImpl implements MemberRepositoryCustom{
     public List<Member> findAllMemberList() {
         return queryFactory.selectFrom(member).fetch();
     }
+
+    @Override
+    public Member findMemberByEmail(String email) {
+        return queryFactory.selectFrom(member).where(member.email.eq(email)).fetchOne();
+    }
+
 }

@@ -1,8 +1,7 @@
 package com.example.socket_jpa_querydsl_test;
 
-import com.example.socket_jpa_querydsl_test.config.security.MemberRoleEnum;
 import com.example.socket_jpa_querydsl_test.domain.entity.*;
-import com.example.socket_jpa_querydsl_test.domain.status.ChattingRoomStatus;
+import com.example.socket_jpa_querydsl_test.repository.chatting.ChattingRoomRepository;
 import jakarta.annotation.PostConstruct;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -12,11 +11,13 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class InitDB {
+
     private final InitService initService;
+    private final ChattingRoomRepository chattingRoomRepository;
+
     @PostConstruct
     public void init() {
         initService.initDb1();
-        initService.initDb2();
     }
 
     @Component
@@ -26,42 +27,43 @@ public class InitDB {
         private final EntityManager em;
         public void initDb1() {
 
-            Member member = createMember("test1@naver.com", "testbot1", "samenicknam1","01011112222", "password1234");
-            em.persist(member);
+            Member memberA = createMember("test1@naver.com", "testbot1", "samenicknam1","01011112222", "password1234");
+            em.persist(memberA);
 
-            MemberRole memberRole = new MemberRole();
-            memberRole.setMember(member);
-            member.getMemberRoles().add(memberRole);
-            em.persist(memberRole);
+            Member memberB = createMember("test2@naver.com", "testbot2", "samenicknam2", "01022223333", "password1234");
+            em.persist(memberB);
 
-            Address address = createAddress("address1", "address2");
-            address.setMember(member);
-            em.persist(address);
+            MemberRole memberRoleA = new MemberRole();
+            memberRoleA.setMember(memberA);
+            memberA.getMemberRoles().add(memberRoleA);
+            em.persist(memberRoleA);
 
-        }
+            MemberRole memberRoleB = new MemberRole();
+            memberRoleB.setRoleEnum(RoleEnum.MANAGER);
+            memberRoleB.setMember(memberB);
+            memberB.getMemberRoles().add(memberRoleB);
+            em.persist(memberRoleB);
 
-        public void initDb2() {
+            Address addressA = createAddress("address1", "address2");
+            addressA.setMember(memberA);
+            em.persist(addressA);
 
-            Member member = createMember("test2@naver.com", "testbot2", "samenicknam2", "01022223333", "password1234");
-            em.persist(member);
+            Address addressB = createAddress("address11_1", "address22_1");
+            addressA.setMember(memberB);
+            em.persist(addressB);
 
-            MemberRole memberRole = new MemberRole();
-            memberRole.setRoleEnum(RoleEnum.MANAGER);
-            memberRole.setMember(member);
-            member.getMemberRoles().add(memberRole);
-            em.persist(memberRole);
-
-            Address address = createAddress("address11_1", "address22_1");
-            address.setMember(member);
-            em.persist(address);
-
-            Address address1 = createAddress("address11_2", "address22_2");
-            address1.setMember(member);
-            em.persist(address1);
+            Address addressC = createAddress("address11_2", "address22_2");
+            addressC.setMember(memberB);
+            em.persist(addressC);
 
             ChattingRoom testRoom = createChattingRoom("test_room", "1234");
-            MemberChattingRoom memberChattingRoom = new MemberChattingRoom();
+            em.persist(testRoom);
 
+            MemberChattingRoom memberChattingRoomA = MemberChattingRoom.joinMemberToChattingRoom(memberA, testRoom);
+            em.persist(memberChattingRoomA);
+
+            MemberChattingRoom memberChattingRoomB = MemberChattingRoom.joinMemberToChattingRoom(memberB, testRoom);
+            em.persist(memberChattingRoomB);
         }
 
         private Address createAddress(String address1, String address2) {

@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface MemberRepositoryCustom {
     List<Member> findAllMemberList();
+    Member findMemberByEmail(String email);
 }

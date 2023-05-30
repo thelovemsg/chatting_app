@@ -2,7 +2,7 @@ package com.example.socket_jpa_querydsl_test.service;
 
 import com.example.socket_jpa_querydsl_test.domain.entity.ChattingRoom;
 import com.example.socket_jpa_querydsl_test.domain.entity.Hashtag;
-import com.example.socket_jpa_querydsl_test.repository.member.ChattingRoomRepository;
+import com.example.socket_jpa_querydsl_test.repository.chatting.ChattingRoomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
