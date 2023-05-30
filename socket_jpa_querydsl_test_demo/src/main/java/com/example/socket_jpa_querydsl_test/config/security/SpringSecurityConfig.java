@@ -2,6 +2,7 @@ package com.example.socket_jpa_querydsl_test.config.security;
 
 import com.example.socket_jpa_querydsl_test.config.security.custom.CustomAccessDeniedHandler;
 import com.example.socket_jpa_querydsl_test.config.security.custom.CustomLogoutSuccessHandler;
+import com.example.socket_jpa_querydsl_test.config.security.custom.CustomJwtAuthenticationEntryPoint;
 import com.example.socket_jpa_querydsl_test.config.security.filter.JwtAuthenticationFilter;
 import com.example.socket_jpa_querydsl_test.config.security.provider.JwtTokenProvider;
 import com.example.socket_jpa_querydsl_test.domain.entity.RoleEnum;
@@ -37,12 +38,14 @@ public class SpringSecurityConfig {
     private final JwtTokenProvider jwtTokenProvider;
     private final CustomLogoutSuccessHandler customLogoutSuccessHandler;
     private final CustomAccessDeniedHandler customAccessDeniedHandler;
+    private final CustomJwtAuthenticationEntryPoint customJwtAuthenticationEntryPoint;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
      http.httpBasic().disable()
             .csrf().disable()
-            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
             .authorizeRequests(registry -> {
                 registry
@@ -62,7 +65,9 @@ public class SpringSecurityConfig {
                 .and()
                 .addFilterAfter(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class)
              .exceptionHandling(exception -> {
-                 exception.accessDeniedHandler(customAccessDeniedHandler);
+                 exception
+                     .accessDeniedHandler(customAccessDeniedHandler)
+                     .authenticationEntryPoint(customJwtAuthenticationEntryPoint);
              });
 
         return http.build();

@@ -16,10 +16,22 @@ import {
 } from 'styled-components/StyledForm';
 import { LOG_IN_REQUEST } from 'reducers/user';
 import { Trans } from 'react-i18next';
+import { useEffect } from 'react';
 
 const Signin = () => {
   const dispatch = useDispatch();
-  const { loginHandling } = useSelector((state) => state.user);
+  const { loginHandling, loginError } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    console.log('loginHandling :: ', loginHandling);
+  }, [loginHandling]);
+
+  useEffect(() => {
+    if (loginError?.message) {
+      alert(loginError?.message);
+    }
+  }, [loginError]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {

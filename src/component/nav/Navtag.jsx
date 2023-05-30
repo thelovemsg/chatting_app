@@ -13,7 +13,9 @@ import Logout from './Logout';
 
 const Navtag = () => {
   const navigate = useNavigate();
-  const { loginDone, logoutDone } = useSelector((state) => state.user);
+  const { loginDone, logoutDone, loginCheckSuccess } = useSelector(
+    (state) => state.user
+  );
   const [activeLink, setActiveLink] = useState('');
 
   useEffect(() => {
@@ -97,7 +99,7 @@ const Navtag = () => {
               >
                 <Trans i18nKey="navbar.home" />
               </Link>
-              {loginDone ? (
+              {loginDone || loginCheckSuccess ? (
                 <>
                   <Link
                     to="/friends"

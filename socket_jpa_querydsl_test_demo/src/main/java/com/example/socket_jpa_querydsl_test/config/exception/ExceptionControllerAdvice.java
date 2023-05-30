@@ -21,4 +21,12 @@ public class ExceptionControllerAdvice {
         return new ResponseEntity(message, HttpStatus.OK);
     }
 
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ExceptionHandler(value = Exception.class)
+    public ResponseEntity<Object> handleException(Exception e) {
+        log.error(e.getMessage());
+        Message message = new Message(StatusEnum.UNAUTHORIZED, e.getMessage(), null);
+        return new ResponseEntity<>(message, HttpStatus.OK);
+    }
+
 }

@@ -11,42 +11,30 @@ import Home from 'component/nav/Home';
 import Navtag from 'component/nav/Navtag';
 import ChattingRoomDesignTest from 'component/chatting/ChattingRoomDesignTest';
 import ChattingRoom from 'component/chatting/ChattingRoom';
-import { useDispatch, useSelector } from 'react-redux';
-// import { LOG_IN_CHECK_REQUEST } from 'reducers/user';
-// import { useEffect } from 'react';
-import { useEffect } from 'react';
-import { LOG_IN_CHECK_REQUEST } from 'reducers/user';
 import FooterContainer from './container/FooterContainer';
 import RoutesWrapper from './RoutesWrapper';
+import LoginCheck from './component/utilComponent/LoginCheck';
 
-const App = () => {
-  const dispatch = useDispatch();
-  const { loginChecking } = useSelector((state) => state.user);
-  useEffect(() => {
-    console.log(loginChecking);
-    dispatch(LOG_IN_CHECK_REQUEST({}));
-  }, []);
-
-  return (
-    <BrowserRouter>
-      <Navtag />
-      <RoutesWrapper>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/signin" element={<Signin />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/chattingRoom" element={<ChattingRoom />} />
-          <Route path="/chattingTest" element={<ChattingRoomDesignTest />} />
-          <Route path="/friends" element={<Friends />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </RoutesWrapper>
-      {/* <ScrollButtons /> */}
-      <FooterContainer />
-      <div id="popupDom" />
-    </BrowserRouter>
-  );
-};
+const App = () => (
+  <BrowserRouter>
+    <Navtag />
+    <RoutesWrapper>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/signin" element={<Signin />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/chattingRoom" element={<ChattingRoom />} />
+        <Route path="/chattingTest" element={<ChattingRoomDesignTest />} />
+        <Route path="/friends" element={<Friends />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </RoutesWrapper>
+    <LoginCheck />
+    {/* <ScrollButtons /> */}
+    <FooterContainer />
+    <div id="popupDom" />
+  </BrowserRouter>
+);
 
 export default App;

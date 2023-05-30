@@ -3,6 +3,9 @@ import { createSlice } from '@reduxjs/toolkit';
 export const userSlice = createSlice({
   name: 'user',
   initialState: {
+    loginCheckHandling: false,
+    loginCheckSuccess: false,
+    loginCheckFailure: null,
     loginChecking: false,
     loginHandling: false,
     loginDone: false,
@@ -17,8 +20,18 @@ export const userSlice = createSlice({
   },
   reducers: {
     LOG_IN_CHECK_REQUEST: (state) => {
-      console.log('login check request...');
-      state.loginChecking = true;
+      state.loginCheckHandling = true;
+    },
+    LOG_IN_CHECK_FAILURE: (state, action) => {
+      state.loginCheckFailure = {
+        code: action.payload.code,
+        message: action.payload.message,
+      };
+      state.loginCheckHandling = false;
+    },
+    LOG_IN_CHECK_SUCCESS: (state) => {
+      state.loginCheckHandling = false;
+      state.loginCheckSuccess = true;
     },
     LOG_IN_CHECK_DONE: (state) => {
       state.loginChecking = false;
@@ -32,6 +45,8 @@ export const userSlice = createSlice({
       state.logoutDone = false;
     },
     LOG_IN_FAILURE: (state, action) => {
+      console.log('state ::', state);
+      console.log('action ::', action);
       state.loginHandling = false;
       state.loginError = {
         code: action.payload.code,
@@ -45,6 +60,7 @@ export const userSlice = createSlice({
       state.logoutHandling = false;
       state.logoutDone = true;
       state.loginDone = false;
+      state.loginCheckSuccess = false;
     },
     LOG_OUT_FAILURE: (state, action) => {
       // api 통신시 에러와 에러메시지 받음. default 처리
@@ -58,7 +74,6 @@ export const userSlice = createSlice({
       state.registerHandling = true;
     },
     REGISTER_SUCCESS: (state) => {
-      console.log('REGISTER_SUCCESS :: ', state);
       state.registerHandling = false;
       state.registerError = null;
     },
@@ -74,7 +89,8 @@ export const userSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const {
   LOG_IN_CHECK_REQUEST,
-  LOG_IN_CHECK_DONE,
+  LOG_IN_CHECK_FAILURE,
+  LOG_IN_CHECK_SUCCESS,
   LOG_IN_REQUEST,
   LOG_IN_SUCCESS,
   LOG_IN_FAILURE,
