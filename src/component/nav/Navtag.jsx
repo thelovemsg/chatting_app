@@ -144,6 +144,15 @@ const Navtag = () => {
                 <Trans i18nKey="navbar.chattingTest" />
                 {/* 프로필도 로그인 한 후에 표출 */}
               </Link>
+              <Link
+                to="/friendsTest"
+                className={generateLinkClassName('/friendsTest')}
+                onClick={() => handleLinkClick('/friendsTest')}
+              >
+                프렌드 테스트
+                {/* 채팅하기는 로그인 해야만 되도록 하자.
+                  만일 로그인이 안됫으면? 로그인 화면으로 안내한 후에 다시 채팅방으로 와야함. */}
+              </Link>
               <NavDropdown
                 title={t('navbar.dropdown.name')}
                 id="basic-nav-dropdown"

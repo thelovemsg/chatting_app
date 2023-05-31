@@ -1,7 +1,7 @@
 import { PropTypes } from 'prop-types';
 import Draggable from 'react-draggable';
 
-const DraggableModal = ({ show, children }) =>
+const ProfileModal = ({ show, children, style }) =>
   show && (
     <div className="modal-backdrop show draggable-model-background">
       <div className="modal show d-block" tabIndex="-1">
@@ -9,7 +9,7 @@ const DraggableModal = ({ show, children }) =>
           <div className="modal-dialog">
             <div
               className="modal-content draggable-modal-content"
-              style={{ width: '300px', height: '600px', borderRadius: '5px' }}
+              style={style}
             >
               {children}
             </div>
@@ -19,9 +19,10 @@ const DraggableModal = ({ show, children }) =>
     </div>
   );
 
-DraggableModal.propTypes = {
+ProfileModal.propTypes = {
   show: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
+  style: PropTypes.objectOf(PropTypes.objectOf).isRequired,
 };
 
-export default DraggableModal;
+export default ProfileModal;

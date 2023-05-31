@@ -201,6 +201,7 @@ a.dropdown-item {
 
 .modal-header {
   border-bottom: none !important;
+  padding: 12px !important;
 }
 
 .pointer:hover {
@@ -467,6 +468,10 @@ a.dropdown-item {
 .multi-profile-add-button {
   width: 35px !important;
   height: 35px !important;
+}
+
+.multi-profile-name {
+  margin-top: 10px;
 }
 
 .profile-others:hover {

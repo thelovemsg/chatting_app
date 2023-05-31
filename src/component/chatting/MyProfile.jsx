@@ -8,8 +8,8 @@ import {
   StyledChattingIntroLabel,
   StyledChattingItem,
 } from 'styled-components/StyledForm';
-import DraggableModal from 'component/utilComponent/DraggableModal';
-import DraggableModalContent from 'component/utilComponent/DraggableModalContent';
+import DraggableModal from 'component/utilComponent/ProfileModal';
+import DraggableModalContent from 'component/utilComponent/CommonProfileModalContent';
 import { createRandomUser } from 'component/utility/FakeUser';
 
 const MyProfile = () => {

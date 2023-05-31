@@ -1,9 +1,9 @@
-import { faImage } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
 import { useMemo, useState } from 'react';
 import { Carousel } from 'react-bootstrap';
 import { createRandomUser } from 'component/utility/FakeUser';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 import CarouselModal from './CarouselModal';
 
 const NewMultiProfileModalContent = ({
@@ -26,9 +26,6 @@ const NewMultiProfileModalContent = ({
   return (
     <>
       <div className="modal-header">
-        <h5 className="modal-title">
-          <FontAwesomeIcon icon={faImage} className="pointer" />
-        </h5>
         <button
           type="button"
           className="btn-close"
@@ -36,11 +33,22 @@ const NewMultiProfileModalContent = ({
           aria-label="hidden"
         />
       </div>
+      <div style={{ marginLeft: '30px' }}>멀티프로필 만들기</div>
       <div
         className="modal-body"
         style={{ margin: 'auto', textAlign: 'center' }}
       >
-        <div style={{ height: '60%' }}>test1</div>
+        <div style={{ height: '40%' }}>
+          <FontAwesomeIcon
+            icon={faUser}
+            style={{
+              padding: '30px',
+              height: '70px',
+              backgroundColor: '#5BBBD7',
+              borderRadius: '44px',
+            }}
+          />
+        </div>
         {userInfo?.avatar && (
           <img
             src={userInfo.avatar}

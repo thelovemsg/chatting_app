@@ -4,14 +4,17 @@ import PropTypes from 'prop-types';
 import { useMemo, useState } from 'react';
 import { Carousel } from 'react-bootstrap';
 import { createRandomUser } from 'component/utility/FakeUser';
+import { faGear } from '@fortawesome/free-solid-svg-icons';
 import CarouselModal from './CarouselModal';
 
-const DraggableModalContent = ({
+const CommonProfileModalContent = ({
   handleCloseModal,
   userInfo,
   stateContent,
   footerContent,
 }) => {
+  console.log('ProfileModalContent open ::', userInfo);
+
   const [showCarousel, setShowCarousel] = useState(false);
 
   const fakeUsers = useMemo(
@@ -27,7 +30,12 @@ const DraggableModalContent = ({
     <>
       <div className="modal-header">
         <h5 className="modal-title">
-          <FontAwesomeIcon icon={faImage} className="pointer" />
+          <FontAwesomeIcon
+            icon={faImage}
+            className="pointer"
+            style={{ marginRight: '10px' }}
+          />
+          <FontAwesomeIcon icon={faGear} className="pointer" />
         </h5>
         <button
           type="button"
@@ -40,7 +48,7 @@ const DraggableModalContent = ({
         className="modal-body"
         style={{ margin: 'auto', textAlign: 'center' }}
       >
-        <div style={{ height: '60%' }}>test1</div>
+        <div style={{ height: '55%' }}>test1</div>
         {userInfo?.avatar && (
           <img
             src={userInfo.avatar}
@@ -50,9 +58,12 @@ const DraggableModalContent = ({
             aria-hidden="true"
           />
         )}
+        <div className="multi-profile-name">{userInfo.username}</div>
         <div>{stateContent}</div>
       </div>
-      <div className="modal-footer">{footerContent}</div>
+      <div className="modal-footer" style={{ height: '18%' }}>
+        {footerContent}
+      </div>
       {showCarousel && (
         <CarouselModal show={showCarousel} onHide={handleImageClick}>
           {fakeUsers.map((user, index) => (
@@ -75,12 +86,12 @@ const DraggableModalContent = ({
   );
 };
 
-export default DraggableModalContent;
+export default CommonProfileModalContent;
 
 /**
  * the reason why we should use TypeScript!!
  */
-DraggableModalContent.propTypes = {
+CommonProfileModalContent.propTypes = {
   handleCloseModal: PropTypes.func.isRequired,
   userInfo: PropTypes.shape({
     userId: PropTypes.string,

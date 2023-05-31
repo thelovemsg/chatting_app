@@ -2,9 +2,9 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import Accordion from 'react-bootstrap/Accordion';
 import { Trans } from 'react-i18next';
 import React, { useState, useMemo } from 'react';
-import DraggableModalContent from 'component/utilComponent/DraggableModalContent';
+import CommonProfileModalContent from 'component/utilComponent/CommonProfileModalContent';
 import NewMultiProfileModalContent from 'component/utilComponent/NewMultiProfileModalContent';
-import DraggableModal from '../utilComponent/DraggableModal';
+import ProfileModal from '../utilComponent/ProfileModal';
 import { createRandomUser } from '../utility/FakeUser';
 import {
   StyledAccordionBodyMultiProfile,
@@ -28,10 +28,10 @@ const MutiProfile = () => {
 
   const [showModal, setShowModal] = useState(false);
   const [showNewForm, setShowNewForm] = useState(false);
-  // const [selectedAvatar, setSelectedAvatar] = useState(null);
+  const [selectedUser, setSelectedUser] = useState(null);
 
-  const handleAvatarClick = () => {
-    // setSelectedAvatar(avatar);
+  const handleAvatarClick = (user) => {
+    setSelectedUser(user);
     setShowModal(true);
   };
 
@@ -59,7 +59,7 @@ const MutiProfile = () => {
               <button
                 key={`${user.userId}`}
                 className="avatar-button"
-                onClick={() => handleAvatarClick(user.avatar)}
+                onClick={() => handleAvatarClick(user)}
                 aria-label={`Friend ${index + 1} ${user.userId}`}
                 style={{
                   border: 'none',
@@ -96,22 +96,28 @@ const MutiProfile = () => {
           </StyledAccordionBodyMultiProfile>
         </Accordion.Item>
       </Accordion>
-      <DraggableModal show={showModal}>
-        <DraggableModalContent
+      <ProfileModal
+        show={showModal}
+        style={{ width: '300px', height: '600px' }}
+      >
+        <CommonProfileModalContent
           handleCloseModal={handleCloseModal}
-          userInfo={null}
+          userInfo={selectedUser}
           stateContent="상태명 드러감"
-          footerContent="test"
+          footerContent="버튼 2개 예정"
         />
-      </DraggableModal>
-      <DraggableModal show={showNewForm}>
+      </ProfileModal>
+      <ProfileModal
+        show={showNewForm}
+        style={{ width: '340px', height: '510px' }}
+      >
         <NewMultiProfileModalContent
           handleCloseModal={handleCloseForm}
           userInfo={null}
           stateContent="상태명 드러감"
           footerContent="test"
         />
-      </DraggableModal>
+      </ProfileModal>
     </>
   );
 };
