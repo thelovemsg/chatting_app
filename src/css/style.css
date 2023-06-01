@@ -146,23 +146,55 @@ a.dropdown-item {
 }
 
 /* Modal */
-.MyModal {
-  background: rgba(0, 0, 0, 0.25);
-  position: fixed;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.modal-body {
+  margin: auto;
+  text-align: center;
+  margin-top: 15px;
 }
 
-.MyModal .content {
-  background: white;
-  padding: 1rem;
-  width: 400px;
-  height: auto;
+.profile-modal-input-box {
+  margin-top: 15px;
+  text-align: left;
+  display: flex !important;
+}
+
+.profile-modal-input-content {
+  border: none;
+  outline: none;
+  width: 80%;
+}
+
+.profile-modal-input-content::placeholder {
+  font-size: 13px;
+}
+
+.profile-modal-input-content::focus {
+  outline: none;
+}
+
+.input-container {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
+.input-container::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -9px;
+  width: 100%;
+  border-bottom: 1px solid #d3d3d3;
+}
+
+.input-container:focus-within::after {
+  border-color: black; /* change the color as you want */
+}
+
+.profile-modal-input-counter {
+  width: 20%;
+  text-align: right;
+  font-size: 13px;
 }
 
 .postmodal {
@@ -202,6 +234,10 @@ a.dropdown-item {
 .modal-header {
   border-bottom: none !important;
   padding: 12px !important;
+}
+
+.btn-close {
+  padding: 6px !important;
 }
 
 .pointer:hover {
@@ -465,13 +501,48 @@ a.dropdown-item {
   border-radius: 15px;
 }
 
+.multi-profile-screen {
+  background-color: snow;
+  height: 100%;
+}
+
+.multi-profile-title {
+  margin-left: 30px;
+  font-size: 16px;
+  color: darkgrey;
+}
+
+.multi-profile-set-image {
+  padding: 30px;
+  height: 45px;
+  background-color: #add8e6;
+  border-radius: 43px;
+  border: 1px solid #c0bfbf;
+}
+
+.multi-profile-camera-image {
+  position: relative;
+  margin-left: -30px;
+  padding: 5px;
+  background-color: white;
+  border-radius: 15px;
+  border: 1px solid #c0bfbf;
+}
+
+.multi-profile-info {
+  margin-top: 30px;
+  font-size: 12.5px;
+  color: gray;
+  text-align: left;
+}
+
 .multi-profile-add-button {
   width: 35px !important;
   height: 35px !important;
 }
 
 .multi-profile-name {
-  margin-top: 10px;
+  font-size: 15px;
 }
 
 .profile-others:hover {

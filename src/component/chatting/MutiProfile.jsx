@@ -114,8 +114,6 @@ const MutiProfile = () => {
         <NewMultiProfileModalContent
           handleCloseModal={handleCloseForm}
           userInfo={null}
-          stateContent="상태명 드러감"
-          footerContent="test"
         />
       </ProfileModal>
     </>
