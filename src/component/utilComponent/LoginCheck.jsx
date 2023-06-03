@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { LOG_IN_CHECK_REQUEST } from 'reducers/user';
+import { LOG_IN_CHECK_REQUEST } from 'reducers/login';
 import { t } from 'i18next';
 
 const LoginCheck = () => {

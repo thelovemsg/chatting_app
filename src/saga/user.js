@@ -8,7 +8,7 @@ import {
   REGISTER_FAILURE,
   LOG_IN_CHECK_SUCCESS,
   LOG_IN_CHECK_FAILURE,
-} from 'reducers/user';
+} from 'reducers/login';
 import {
   memberJoinApi,
   memberLoginApi,

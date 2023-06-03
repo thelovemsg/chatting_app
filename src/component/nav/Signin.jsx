@@ -14,7 +14,7 @@ import {
   StyledLabel,
   StyledValidationCheck,
 } from 'styled-components/StyledForm';
-import { LOG_IN_REQUEST } from 'reducers/user';
+import { LOG_IN_REQUEST } from 'reducers/login';
 import { Trans } from 'react-i18next';
 import { useEffect } from 'react';
 

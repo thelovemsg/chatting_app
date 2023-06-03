@@ -9,7 +9,7 @@ import {
   StyledMsgLabel,
   StyledValidationCheck,
 } from 'styled-components/StyledForm';
-import { REGISTER_REQUEST } from 'reducers/user';
+import { REGISTER_REQUEST } from 'reducers/login';
 import AddressPopup from 'component/address/AddressPopup';
 import useRegister from 'hooks/useRegister';
 

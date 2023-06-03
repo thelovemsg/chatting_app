@@ -36,6 +36,12 @@
   },
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
+    "jsx-a11y/label-has-associated-control": [
+      2,
+      {
+        "labelAttributes": ["htmlFor"]
+      }
+    ],
     "react/jsx-props-no-spreading": "off",
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "no-param-reassign": [

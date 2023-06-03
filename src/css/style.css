@@ -162,6 +162,7 @@ a.dropdown-item {
   border: none;
   outline: none;
   width: 80%;
+  background-color: snow !important;
 }
 
 .profile-modal-input-content::placeholder {
@@ -527,6 +528,7 @@ a.dropdown-item {
   background-color: white;
   border-radius: 15px;
   border: 1px solid #c0bfbf;
+  cursor: pointer !important;
 }
 
 .multi-profile-info {
@@ -543,6 +545,20 @@ a.dropdown-item {
 
 .multi-profile-name {
   font-size: 15px;
+}
+
+.multi-profile-true-btn {
+  background-color: #cece0c;
+  width: 80px;
+  height: 40px;
+}
+
+.cancel-btn {
+  background-color: white;
+  border: 1px solid #d7d7b2;
+  width: 80px;
+  height: 40px;
+  margin-left: 10px;
 }
 
 .profile-others:hover {

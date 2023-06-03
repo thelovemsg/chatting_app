@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { Carousel } from 'react-bootstrap';
 import { createRandomUser } from 'component/utility/FakeUser';
 import { faCamera, faUser } from '@fortawesome/free-solid-svg-icons';
@@ -10,13 +10,23 @@ const NewMultiProfileModalContent = ({ handleCloseModal, userInfo }) => {
   const [showCarousel, setShowCarousel] = useState(false);
   const [nameInput, setNameInput] = useState('');
   const [descriptionInput, setDescriptionInput] = useState('');
+  const imageInput = useRef(null);
 
   const fakeUsers = useMemo(
     () => Array.from({ length: 1 }, () => createRandomUser()),
     []
   );
 
+  const addMultiProfile = () => {
+    console.log('add!');
+    console.log('nameInput ::', nameInput);
+    console.log('descriptionInput ::', descriptionInput);
+
+    // add in RDBMS
+  };
+
   const handleImageClick = () => {
+    imageInput.current.click();
     setShowCarousel(!showCarousel);
   };
 
@@ -26,6 +36,18 @@ const NewMultiProfileModalContent = ({ handleCloseModal, userInfo }) => {
 
   const handleDescriptionInput = (event) => {
     setDescriptionInput(event.target.value);
+  };
+
+  const handleProfileImgUpload = (event) => {
+    console.log(event.target.files[0]);
+    // You now have access to the file object
+    // You can add your image processing logic here
+    /*
+      Process
+      1. call API
+      2. add Multi profile
+      3. show multi profile in multi profile section.
+    */
   };
 
   return (
@@ -42,20 +64,21 @@ const NewMultiProfileModalContent = ({ handleCloseModal, userInfo }) => {
       <div className="modal-body">
         <div style={{ height: '40%', margin: 'auto' }}>
           <FontAwesomeIcon icon={faUser} className="multi-profile-set-image" />
-          <FontAwesomeIcon
-            icon={faCamera}
-            className="multi-profile-camera-image"
+          <label htmlFor="fileInput">
+            <FontAwesomeIcon
+              icon={faCamera}
+              className="multi-profile-camera-image"
+            />
+          </label>
+          <input
+            id="fileInput"
+            type="file"
+            accept="image/jpg,impge/png,image/jpeg,image/gif"
+            style={{ display: 'none' }}
+            onChange={handleProfileImgUpload}
+            ref={imageInput}
           />
         </div>
-        {userInfo?.avatar && (
-          <img
-            src={userInfo.avatar}
-            alt="Selected Avatar"
-            className="pointer"
-            onClick={() => handleImageClick()}
-            aria-hidden="true"
-          />
-        )}
         <div style={{ width: '100%' }}>
           <div className="profile-modal-input-box">
             <div className="input-container">
@@ -88,9 +111,21 @@ const NewMultiProfileModalContent = ({ handleCloseModal, userInfo }) => {
           ID검색은 기본프로필 ID로만 가능하며, 멀티프로필 지정친구는 내 ID검색
           시에 해당 멀티프로필을 보게 됩니다.
         </div>
-        <div style={{ float: 'right', marginTop: '85px' }}>
-          <button type="button">test1</button>
-          <button type="button">test2</button>
+        <div style={{ float: 'right', marginTop: '75px' }}>
+          <button
+            type="button"
+            className="multi-profile-true-btn"
+            onClick={addMultiProfile}
+          >
+            test1
+          </button>
+          <button
+            type="button"
+            className="cancel-btn"
+            onClick={handleCloseModal}
+          >
+            test2
+          </button>
         </div>
       </div>
       {showCarousel && (
