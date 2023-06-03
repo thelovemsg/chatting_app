@@ -3,103 +3,90 @@ import { createSlice } from '@reduxjs/toolkit';
 export const userSlice = createSlice({
   name: 'user',
   initialState: {
-    loginCheckHandling: false,
-    loginCheckSuccess: false,
-    loginCheckFailure: null,
-    loginChecking: false,
-    loginHandling: false,
-    loginDone: false,
-    logoutHandling: false,
-    logoutDone: false,
-    loginError: null,
-    logoutError: null,
-    registerHandling: false,
-    registerDone: false,
-    registerError: null,
-    accessPermission: null,
+    id: null,
+    profile: {
+      loading: false,
+      error: null,
+      success: null,
+      info: null, // might be object
+    },
+    multiProfile: {
+      loading: false,
+      error: null,
+      success: false,
+      list: [],
+    },
   },
   reducers: {
-    LOG_IN_CHECK_REQUEST: (state) => {
-      state.loginCheckHandling = true;
+    SET_USER_PROFILE_INFO: (state, action) => {
+      state.profile.info = {
+        id: action.payload.id,
+      };
     },
-    LOG_IN_CHECK_FAILURE: (state, action) => {
-      state.loginCheckFailure = {
+    REMOVE_USER_PROFILE_INFO: (state) => {
+      state.profile.info = null;
+    },
+    GET_USER_MULTI_PROFILE_INFO_REQUEST: (state) => {
+      state.multiProfile.loading = true;
+    },
+    GET_USER_MULTI_PROFILE_INFO_SUCCESS: (state) => {
+      state.multiProfile.loading = false;
+    },
+    GET_USER_MULTI_PROFILE_INFO_FAILURE: (state) => {
+      state.multiProfile.loading = false;
+    },
+    ADD_USER_MULTI_PROFILE_INFO_REQUEST: (state) => {
+      console.log('ADD_USER_MULTI_PROFILE_INFO_REQUEST reqeust....');
+      state.multiProfile.loading = true;
+    },
+    ADD_USER_MULTI_PROFILE_INFO_SUCCESS: (state, action) => {
+      state.multiProfile.loading = false;
+      state.multiProfile.success = true;
+      state.multiProfile.list.push(action.payload.profile); // push new profile to the list
+    },
+    RESET_ADD_USER_MULTI_PROFILE_INFO_SUCCESS: (state) => {
+      state.multiProfile.success = false;
+    },
+    ADD_USER_MULTI_PROFILE_INFO_FAILURE: (state, action) => {
+      state.multiProfile.loading = false;
+      state.multiProfile.error = {
         code: action.payload.code,
         message: action.payload.message,
       };
-      state.loginCheckHandling = false;
+      state.multiProfile.success = false;
     },
-    LOG_IN_CHECK_SUCCESS: (state) => {
-      state.loginCheckHandling = false;
-      state.loginCheckSuccess = true;
+    REMOVE_USER_MULTI_PROFILE_INFO_REQUEST: (state) => {
+      state.multiProfile.loading = true;
     },
-    LOG_IN_CHECK_DONE: (state) => {
-      state.loginChecking = false;
+    REMOVE_USER_MULTI_PROFILE_INFO_SUCCESS: (state, action) => {
+      state.multiProfile.loading = false;
+      state.multiProfile.success = true;
+      state.multiProfile.list = state.multiProfile.list.filter(
+        (profile) => profile.id !== action.payload.id // remove profile from the list
+      );
     },
-    LOG_IN_REQUEST: (state) => {
-      state.loginHandling = true;
-    },
-    LOG_IN_SUCCESS: (state) => {
-      state.loginHandling = false;
-      state.loginDone = true;
-      state.logoutDone = false;
-    },
-    LOG_IN_FAILURE: (state, action) => {
-      console.log('state ::', state);
-      console.log('action ::', action);
-      state.loginHandling = false;
-      state.loginError = {
+    REMOVE_USER_MULTI_PROFILE_INFO_FAILURE: (state, action) => {
+      state.multiProfile.loading = false;
+      state.multiProfile.success = false;
+      state.multiProfile.error = {
         code: action.payload.code,
         message: action.payload.message,
       };
-    },
-    LOG_OUT_REQUEST: (state) => {
-      state.logoutHandling = true;
-    },
-    LOG_OUT_SUCCESS: (state) => {
-      state.logoutHandling = false;
-      state.logoutDone = true;
-      state.loginDone = false;
-      state.loginCheckSuccess = false;
-    },
-    LOG_OUT_FAILURE: (state, action) => {
-      // api 통신시 에러와 에러메시지 받음. default 처리
-      state.logoutHandling = false;
-      state.logoutError = {
-        code: action.payload.code,
-        message: action.payload.message,
-      };
-    },
-    REGISTER_REQUEST: (state) => {
-      state.registerHandling = true;
-    },
-    REGISTER_SUCCESS: (state) => {
-      state.registerHandling = false;
-      state.registerError = null;
-    },
-    REGISTER_FAILURE: (state, action) => {
-      // api 통신시 에러와 에러메시지 받음. default 처리
-      console.log('REGISTER_FAILURE :: ', action.payload);
-      state.registerHandling = false;
-      state.registerError = action.payload.message;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
 export const {
-  LOG_IN_CHECK_REQUEST,
-  LOG_IN_CHECK_FAILURE,
-  LOG_IN_CHECK_SUCCESS,
-  LOG_IN_REQUEST,
-  LOG_IN_SUCCESS,
-  LOG_IN_FAILURE,
-  LOG_OUT_REQUEST,
-  LOG_OUT_SUCCESS,
-  LOG_OUT_FAILURE,
-  REGISTER_REQUEST,
-  REGISTER_SUCCESS,
-  REGISTER_FAILURE,
+  SET_USER_PROFILE_INFO,
+  REMOVE_USER_PROFILE_INFO,
+  ADD_USER_MULTI_PROFILE_INFO_REQUEST,
+  ADD_USER_MULTI_PROFILE_INFO_SUCCESS,
+  ADD_USER_MULTI_PROFILE_INFO_FAILURE,
+  GET_USER_MULTI_PROFILE_INFO_REQUEST,
+  GET_USER_MULTI_PROFILE_INFO_SUCCESS,
+  GET_USER_MULTI_PROFILE_INFO_FAILURE,
+  RESET_ADD_USER_MULTI_PROFILE_INFO_SUCCESS,
 } = userSlice.actions;
 
 export const userReducer = userSlice.reducer;

@@ -1,11 +1,12 @@
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import Accordion from 'react-bootstrap/Accordion';
 import { Trans } from 'react-i18next';
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import CommonProfileModalContent from 'component/utilComponent/CommonProfileModalContent';
 import NewMultiProfileModalContent from 'component/utilComponent/NewMultiProfileModalContent';
 import ProfileModal from '../utilComponent/ProfileModal';
-import { createRandomUser } from '../utility/FakeUser';
+// import { createRandomUser } from '../utility/FakeUser';
 import {
   StyledAccordionBodyMultiProfile,
   StyledFontAwesomeIconPlus,
@@ -21,10 +22,17 @@ const MutiProfile = () => {
    * use useMemo hook in order to get avatars of user just one time.
    */
 
-  const fakeUsers = useMemo(
-    () => Array.from({ length: 2 }, () => createRandomUser()),
-    []
-  );
+  // const fakeUsers = useMemo(
+  //   () => Array.from({ length: 2 }, () => createRandomUser()),
+  //   []
+  // );
+
+  const { list } = useSelector((state) => state.user.multiProfile);
+
+  useEffect(() => {
+    console.log('change!!!! multiprofile update!!!');
+    console.log(list);
+  }, [list]);
 
   const [showModal, setShowModal] = useState(false);
   const [showNewForm, setShowNewForm] = useState(false);
@@ -55,12 +63,12 @@ const MutiProfile = () => {
             <Trans i18nKey="friend.multi_profile" />
           </Accordion.Header>
           <StyledAccordionBodyMultiProfile>
-            {fakeUsers.map((user, index) => (
+            {list.map((user, index) => (
               <button
-                key={`${user.userId}`}
+                key={`${user?.userId}`}
                 className="avatar-button"
                 onClick={() => handleAvatarClick(user)}
-                aria-label={`Friend ${index + 1} ${user.userId}`}
+                aria-label={`Friend ${index + 1} ${user?.userId}`}
                 style={{
                   border: 'none',
                   background: 'transparent',
@@ -69,8 +77,8 @@ const MutiProfile = () => {
                 type="button"
               >
                 <img
-                  src={user.avatar}
-                  alt={`Friend ${index + 9000} ${user.userId}`}
+                  src={user?.image}
+                  alt={`Friend ${index + 9000} ${user?.userId}`}
                   className="multi-profile-others"
                 />
                 <div className="multi-profile-name">test</div>

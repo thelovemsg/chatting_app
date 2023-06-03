@@ -70,7 +70,11 @@ i18n
             },
           },
           friend: {
-            multi_profile: 'Multi Profile',
+            multiProfile: {
+              title: 'Add Multi Profile',
+              addGuide:
+                "It's only possible to search basic profile ID when others search your ID. And others will see your multi profile (?? 문구 이해가 안됌)",
+            },
           },
           error: {
             login_check_error: 'Please login.',
@@ -133,7 +137,11 @@ i18n
             },
           },
           friend: {
-            multi_profile: '멀티 프로필',
+            multiProfile: {
+              title: '멀티 프로필 만들기',
+              addGuide:
+                'ID검색은 기본프로필 ID로만 가능하며, 멀티프로필 지정친구는 내 ID검색 시에 해당 멀티프로필을 보게 됩니다.',
+            },
           },
           error: {
             login_check_error: '로그인을 해 주세요',
