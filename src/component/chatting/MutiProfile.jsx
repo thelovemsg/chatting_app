@@ -13,15 +13,6 @@ import {
 } from '../../styled-components/StyledForm';
 
 const MutiProfile = () => {
-  /*
-    multi profile은 3개 이상 존재하면 + 버튼은 사라지게 해야함.
-  */
-
-  /**
-   * TODO
-   * use useMemo hook in order to get avatars of user just one time.
-   */
-
   // const fakeUsers = useMemo(
   //   () => Array.from({ length: 2 }, () => createRandomUser()),
   //   []
@@ -104,26 +95,29 @@ const MutiProfile = () => {
           </StyledAccordionBodyMultiProfile>
         </Accordion.Item>
       </Accordion>
-      <ProfileModal
-        show={showModal}
-        style={{ width: '300px', height: '600px' }}
-      >
-        <CommonProfileModalContent
-          handleCloseModal={handleCloseModal}
-          userInfo={selectedUser}
-          stateContent="상태명 드러감"
-          footerContent="버튼 2개 예정"
-        />
-      </ProfileModal>
-      <ProfileModal
-        show={showNewForm}
-        style={{ width: '340px', height: '510px' }}
-      >
-        <NewMultiProfileModalContent
-          handleCloseModal={handleCloseForm}
-          userInfo={null}
-        />
-      </ProfileModal>
+      {showModal && (
+        <ProfileModal
+          show={showModal}
+          style={{ width: '300px', height: '600px' }}
+        >
+          {selectedUser && (
+            <CommonProfileModalContent
+              handleCloseModal={handleCloseModal}
+              userInfo={selectedUser}
+              stateContent="상태명 드러감"
+              footerContent="버튼 2개 예정"
+            />
+          )}
+        </ProfileModal>
+      )}
+      {showNewForm && (
+        <ProfileModal
+          show={showNewForm}
+          style={{ width: '340px', height: '510px' }}
+        >
+          <NewMultiProfileModalContent handleCloseModal={handleCloseForm} />
+        </ProfileModal>
+      )}
     </>
   );
 };

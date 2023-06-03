@@ -26,6 +26,9 @@ export const userSlice = createSlice({
     REMOVE_USER_PROFILE_INFO: (state) => {
       state.profile.info = null;
     },
+    SET_USER_MULTI_PROFILE_STATUS: (state) => {
+      state.multiProfile.success = false;
+    },
     GET_USER_MULTI_PROFILE_INFO_REQUEST: (state) => {
       state.multiProfile.loading = true;
     },
@@ -33,6 +36,7 @@ export const userSlice = createSlice({
       state.multiProfile.loading = false;
     },
     GET_USER_MULTI_PROFILE_INFO_FAILURE: (state) => {
+      console.log('ADD_USER_MULTI_PROFILE_INFO_REQUEST failure....');
       state.multiProfile.loading = false;
     },
     ADD_USER_MULTI_PROFILE_INFO_REQUEST: (state) => {
@@ -40,6 +44,7 @@ export const userSlice = createSlice({
       state.multiProfile.loading = true;
     },
     ADD_USER_MULTI_PROFILE_INFO_SUCCESS: (state, action) => {
+      console.log('ADD_USER_MULTI_PROFILE_INFO_REQUEST success....');
       state.multiProfile.loading = false;
       state.multiProfile.success = true;
       state.multiProfile.list.push(action.payload.profile); // push new profile to the list
@@ -80,6 +85,7 @@ export const userSlice = createSlice({
 export const {
   SET_USER_PROFILE_INFO,
   REMOVE_USER_PROFILE_INFO,
+  SET_USER_MULTI_PROFILE_STATUS,
   ADD_USER_MULTI_PROFILE_INFO_REQUEST,
   ADD_USER_MULTI_PROFILE_INFO_SUCCESS,
   ADD_USER_MULTI_PROFILE_INFO_FAILURE,

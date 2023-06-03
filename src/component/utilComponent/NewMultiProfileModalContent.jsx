@@ -7,18 +7,16 @@ import { Trans } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   ADD_USER_MULTI_PROFILE_INFO_REQUEST,
-  RESET_ADD_USER_MULTI_PROFILE_INFO_SUCCESS,
+  // RESET_ADD_USER_MULTI_PROFILE_INFO_SUCCESS,
 } from '../../reducers/user';
 
-const NewMultiProfileModalContent = ({ handleCloseModal, userInfo }) => {
-  const { id } = useSelector((state) => state.user);
+const NewMultiProfileModalContent = ({ handleCloseModal }) => {
+  // const { id } = useSelector((state) => state.user);
   const { success } = useSelector((state) => state.user.multiProfile);
   console.log(success);
   const [nameInput, setNameInput] = useState('');
   const [descriptionInput, setDescriptionInput] = useState('');
   const [uploadedImage, setUploadedImage] = useState(null);
-
-  console.log('real id of login user : ', id);
 
   const dispatch = useDispatch();
 
@@ -29,10 +27,10 @@ const NewMultiProfileModalContent = ({ handleCloseModal, userInfo }) => {
 
   useEffect(() => {
     console.log('success ::', success);
-    if (success) {
-      handleCloseModal();
-      dispatch(RESET_ADD_USER_MULTI_PROFILE_INFO_SUCCESS());
-    }
+    // if (success) {
+    //   handleCloseModal();
+    //   dispatch(RESET_ADD_USER_MULTI_PROFILE_INFO_SUCCESS());
+    // }
   }, [success]);
 
   const fileInput = useRef(null);
@@ -57,6 +55,7 @@ const NewMultiProfileModalContent = ({ handleCloseModal, userInfo }) => {
   };
 
   const addMultiProfile = () => {
+    console.log('addMultiProfile ::!!!!!');
     /**
      * TODO
      *
@@ -73,10 +72,7 @@ const NewMultiProfileModalContent = ({ handleCloseModal, userInfo }) => {
       image: uploadedImage,
       userId: fakeUsers[0].userId,
     };
-    dispatch({
-      type: ADD_USER_MULTI_PROFILE_INFO_REQUEST,
-      payload: data,
-    });
+    dispatch(ADD_USER_MULTI_PROFILE_INFO_REQUEST(data));
   };
 
   return (
@@ -129,15 +125,6 @@ const NewMultiProfileModalContent = ({ handleCloseModal, userInfo }) => {
             />
           )}
         </div>
-        {userInfo?.avatar && (
-          <img
-            src={userInfo.avatar}
-            alt="Selected Avatar"
-            className="pointer"
-            onClick={() => handleImageClick()}
-            aria-hidden="true"
-          />
-        )}
         <div style={{ width: '100%' }}>
           <div className="profile-modal-input-box">
             <div className="input-container">
@@ -197,10 +184,4 @@ export default NewMultiProfileModalContent;
  */
 NewMultiProfileModalContent.propTypes = {
   handleCloseModal: PropTypes.func.isRequired,
-  userInfo: PropTypes.shape({
-    userId: PropTypes.string,
-    username: PropTypes.string,
-    email: PropTypes.string,
-    avatar: PropTypes.string,
-  }).isRequired,
 };

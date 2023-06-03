@@ -5,15 +5,18 @@ import {
   ADD_USER_MULTI_PROFILE_INFO_FAILURE,
   GET_USER_MULTI_PROFILE_INFO_SUCCESS,
   GET_USER_MULTI_PROFILE_INFO_FAILURE,
-  ADD_USER_MULTI_PROFILE_INFO_REQUEST,
-  GET_USER_MULTI_PROFILE_INFO_REQUEST,
   RESET_ADD_USER_MULTI_PROFILE_INFO_SUCCESS,
+  SET_USER_MULTI_PROFILE_STATUS,
 } from '../reducers/user';
+
+function* setMultiProfileStatus(action) {
+  console.log(action);
+  yield put(SET_USER_MULTI_PROFILE_STATUS());
+}
 
 function* getMultiProfile(action) {
   try {
     const data = yield call(addMultipleProfileApi, action.payload);
-    console.log('data in getMultiProfile saga :: ', data);
     yield put(GET_USER_MULTI_PROFILE_INFO_SUCCESS(data));
   } catch (error) {
     yield put(
@@ -41,15 +44,19 @@ function* addMultiProfile(action) {
   }
 }
 function* watchAddMultiProfile() {
-  yield takeLatest(ADD_USER_MULTI_PROFILE_INFO_REQUEST, addMultiProfile);
+  console.log('addMultiProfile working');
+  yield takeLatest('user/ADD_USER_MULTI_PROFILE_INFO_REQUEST', addMultiProfile);
 }
 
 function* watchGetMultiProfile() {
-  yield takeLatest(GET_USER_MULTI_PROFILE_INFO_REQUEST, getMultiProfile);
+  yield takeLatest('user/GET_USER_MULTI_PROFILE_INFO_REQUEST', getMultiProfile);
 }
 
 function* watchResetMultiProfileAddSuccess() {
-  yield takeLatest(RESET_ADD_USER_MULTI_PROFILE_INFO_SUCCESS);
+  yield takeLatest(
+    RESET_ADD_USER_MULTI_PROFILE_INFO_SUCCESS,
+    setMultiProfileStatus
+  );
 }
 
 export default function* userSaga() {
