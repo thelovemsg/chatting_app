@@ -145,20 +145,20 @@ const NewMultiProfileModalContent = ({ handleCloseModal }) => {
         <div className="multi-profile-info">
           <Trans i18nKey="friend.multiProfile.addGuide" />
         </div>
-        <div style={{ float: 'right', marginTop: '85px' }}>
+        <div className="multi-profile-btns">
           <button
             type="button"
-            className="multi-profile-add-btn"
+            className="multi-profile-btn check"
             onClick={addMultiProfile}
           >
-            test1
+            <Trans i18nKey="default.check" />
           </button>
           <button
             type="button"
-            className="multi-profile-close-btn"
+            className="multi-profile-btn"
             onClick={handleCloseModal}
           >
-            test2
+            <Trans i18nKey="default.cancel" />
           </button>
         </div>
       </div>

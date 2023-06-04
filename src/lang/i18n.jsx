@@ -70,6 +70,7 @@ i18n
             },
           },
           friend: {
+            friend: 'Friend',
             multiProfile: {
               title: 'Add Multi Profile',
               addGuide:
@@ -78,6 +79,13 @@ i18n
           },
           error: {
             login_check_error: 'Please login.',
+          },
+          default: {
+            yes: 'yes',
+            no: 'no',
+            check: 'check',
+            cancel: 'cancel',
+            add: 'Add',
           },
         },
       },
@@ -137,6 +145,7 @@ i18n
             },
           },
           friend: {
+            friend: '친구',
             multiProfile: {
               title: '멀티 프로필 만들기',
               addGuide:
@@ -145,6 +154,13 @@ i18n
           },
           error: {
             login_check_error: '로그인을 해 주세요',
+          },
+          default: {
+            yes: '예',
+            no: '아니오',
+            check: '확인',
+            cancel: '취소',
+            add: '만들기',
           },
         },
       },

@@ -8,7 +8,12 @@ export const userSlice = createSlice({
       loading: false,
       error: null,
       success: null,
-      info: null, // might be object
+      info: {
+        name: '홍길동', // when user login, id and profile will be served by server at first.
+        description: '설명란 설명란 설명란 장영란',
+        mainAvatar: null,
+        avatars: [],
+      }, // might be object
     },
     multiProfile: {
       loading: false,

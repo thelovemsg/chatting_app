@@ -1,4 +1,4 @@
-import { all, call, delay, fork, put, takeLatest } from 'redux-saga/effects';
+import { all, call, fork, put, takeLatest } from 'redux-saga/effects';
 import { addMultipleProfileApi } from '../api/member/profile';
 import {
   ADD_USER_MULTI_PROFILE_INFO_SUCCESS,
@@ -27,7 +27,6 @@ function* addMultiProfile(action) {
   try {
     console.log('something is wrong');
     // const data = yield call(addMultipleProfileApi, action.payload);
-    yield delay(1000);
     yield put(ADD_USER_MULTI_PROFILE_INFO_SUCCESS(action.payload));
     yield put(SET_USER_MULTI_PROFILE_STATUS_TRUE());
   } catch (error) {

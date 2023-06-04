@@ -8,12 +8,15 @@ import {
   StyledChattingIntroLabel,
   StyledChattingItem,
 } from 'styled-components/StyledForm';
-import DraggableModal from 'component/utilComponent/ProfileModal';
-import DraggableModalContent from 'component/utilComponent/CommonProfileModalContent';
 import { createRandomUser } from 'component/utility/FakeUser';
+import { Trans } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import CommonProfileModalContent from 'component/utilComponent/CommonProfileModalContent';
+import ProfileModal from 'component/utilComponent/ProfileModal';
 
 const MyProfile = () => {
   const fakeUser = useMemo(() => createRandomUser(), []);
+  const { profile } = useSelector((state) => state.user);
   const [showModal, setShowModal] = useState(false);
 
   const handleAvatarClick = () => {
@@ -27,7 +30,9 @@ const MyProfile = () => {
   return (
     <div className="underline">
       <StyledChattingIntroLabel>
-        <div style={{ float: 'left' }}>친구</div>
+        <div style={{ float: 'left' }}>
+          <Trans i18nKey="friend.friend" />
+        </div>
         <div style={{ marginRight: '10px' }}>
           <FontAwesomeIcon icon={faMagnifyingGlass} className="custom-mr-30" />
           <FontAwesomeIcon icon={faUserGroup} />
@@ -42,20 +47,27 @@ const MyProfile = () => {
           aria-hidden="true"
         />
         <div className="custom-ml-30">
-          <div className="profile-label">MSG(선준)</div>
-          <div className="profile-description custom-mt-5">
-            여기에 뭐가 들어가야해요
+          <div className="profile-label">{profile.info?.name}</div>
+          <div className="profile-desc  ription custom-mt-5">
+            {profile.info?.description}
           </div>
         </div>
       </StyledChattingItem>
-      <DraggableModal show={showModal}>
-        <DraggableModalContent
-          handleCloseModal={handleCloseModal}
-          userInfo={fakeUser}
-          stateContent="상태명 드러감"
-          footerContent="test"
-        />
-      </DraggableModal>
+      {showModal && (
+        <ProfileModal
+          show={showModal}
+          style={{ width: '300px', height: '600px' }}
+        >
+          {profile?.info && (
+            <CommonProfileModalContent
+              handleCloseModal={handleCloseModal}
+              userInfo={profile.info}
+              stateContent="상태명 드러감"
+              footerContent="버튼 2개 예정"
+            />
+          )}
+        </ProfileModal>
+      )}
     </div>
   );
 };

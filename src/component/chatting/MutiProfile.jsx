@@ -20,15 +20,15 @@ const MutiProfile = () => {
   //   []
   // );
 
-  const { list } = useSelector((state) => state.user.multiProfile);
-
-  useEffect(() => {
-    console.log(list);
-  }, [list]);
-
   const [showModal, setShowModal] = useState(false);
   const [showNewForm, setShowNewForm] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
+  const [profileLength, setProfileLength] = useState(0);
+
+  const { list } = useSelector((state) => state.user.multiProfile);
+  useEffect(() => {
+    setProfileLength(list.length);
+  }, [list]);
 
   const handleAvatarClick = (user) => {
     setSelectedUser(user);
@@ -86,22 +86,26 @@ const MutiProfile = () => {
               </button>
             ))}
             {/* 여기 item들이 hover이벤트가 먹어야함. */}
-            <button
-              className="avatar-button"
-              onClick={() => handleAddNewProfile('new')}
-              style={{
-                border: 'none',
-                background: 'transparent',
-                padding: 0,
-              }}
-              type="button"
-            >
-              <StyledFontAwesomeIconPlus
-                icon={faPlus}
-                className="multi-profile-add-button"
-              />
-              <div className="multi-profile-name">만들기</div>
-            </button>
+            {profileLength < 3 && (
+              <button
+                className="avatar-button"
+                onClick={() => handleAddNewProfile()}
+                style={{
+                  border: 'none',
+                  background: 'transparent',
+                  padding: 0,
+                }}
+                type="button"
+              >
+                <StyledFontAwesomeIconPlus
+                  icon={faPlus}
+                  className="multi-profile-add-button"
+                />
+                <div className="multi-profile-name">
+                  <Trans i18nKey="default.add" />
+                </div>
+              </button>
+            )}
           </StyledAccordionBodyMultiProfile>
         </Accordion.Item>
       </Accordion>
@@ -116,6 +120,9 @@ const MutiProfile = () => {
               userInfo={selectedUser}
               stateContent="상태명 드러감"
               footerContent="버튼 2개 예정"
+              showImageIcon
+              showSettingIcon
+              showDeleteIcon
             />
           )}
         </ProfileModal>
