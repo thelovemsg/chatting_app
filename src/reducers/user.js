@@ -95,4 +95,4 @@ export const {
   RESET_ADD_USER_MULTI_PROFILE_INFO_SUCCESS,
 } = userSlice.actions;
 
-export const loginReducer = userSlice.reducer;
+export const userReducer = userSlice.reducer;
