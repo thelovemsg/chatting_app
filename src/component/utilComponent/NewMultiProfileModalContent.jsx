@@ -7,13 +7,12 @@ import { Trans } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   ADD_USER_MULTI_PROFILE_INFO_REQUEST,
-  // RESET_ADD_USER_MULTI_PROFILE_INFO_SUCCESS,
+  SET_USER_MULTI_PROFILE_STATUS_FALSE_REQUEST,
 } from '../../reducers/user';
 
 const NewMultiProfileModalContent = ({ handleCloseModal }) => {
   // const { id } = useSelector((state) => state.user);
   const { success } = useSelector((state) => state.user.multiProfile);
-  console.log(success);
   const [nameInput, setNameInput] = useState('');
   const [descriptionInput, setDescriptionInput] = useState('');
   const [uploadedImage, setUploadedImage] = useState(null);
@@ -26,11 +25,12 @@ const NewMultiProfileModalContent = ({ handleCloseModal }) => {
   );
 
   useEffect(() => {
-    console.log('success ::', success);
-    // if (success) {
-    //   handleCloseModal();
-    //   dispatch(RESET_ADD_USER_MULTI_PROFILE_INFO_SUCCESS());
-    // }
+    console.log('success :: ', success);
+    if (success) {
+      console.log('이거 닫혀야하는데?');
+      handleCloseModal();
+      dispatch(SET_USER_MULTI_PROFILE_STATUS_FALSE_REQUEST());
+    }
   }, [success]);
 
   const fileInput = useRef(null);
@@ -55,17 +55,6 @@ const NewMultiProfileModalContent = ({ handleCloseModal }) => {
   };
 
   const addMultiProfile = () => {
-    console.log('addMultiProfile ::!!!!!');
-    /**
-     * TODO
-     *
-     * make api to upload multi profile
-     *
-     * Let's assume upload result as success and now you need to upload this to
-     * multi profile section.
-     *
-     */
-    // console.log('id :: ', id);
     const data = {
       name: nameInput,
       description: descriptionInput,

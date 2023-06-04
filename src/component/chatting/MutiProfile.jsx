@@ -1,10 +1,12 @@
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faUser } from '@fortawesome/free-solid-svg-icons';
 import Accordion from 'react-bootstrap/Accordion';
 import { Trans } from 'react-i18next';
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import CommonProfileModalContent from 'component/utilComponent/CommonProfileModalContent';
 import NewMultiProfileModalContent from 'component/utilComponent/NewMultiProfileModalContent';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import shortenWords from 'component/utility/UiUtil';
 import ProfileModal from '../utilComponent/ProfileModal';
 // import { createRandomUser } from '../utility/FakeUser';
 import {
@@ -21,7 +23,6 @@ const MutiProfile = () => {
   const { list } = useSelector((state) => state.user.multiProfile);
 
   useEffect(() => {
-    console.log('change!!!! multiprofile update!!!');
     console.log(list);
   }, [list]);
 
@@ -67,12 +68,21 @@ const MutiProfile = () => {
                 }}
                 type="button"
               >
-                <img
-                  src={user?.image}
-                  alt={`Friend ${index + 9000} ${user?.userId}`}
-                  className="multi-profile-others"
-                />
-                <div className="multi-profile-name">test</div>
+                {user.image ? (
+                  <img
+                    src={user.image}
+                    alt={`Friend ${index + 9000} ${user?.userId}`}
+                    className="multi-profile-others"
+                  />
+                ) : (
+                  <FontAwesomeIcon
+                    icon={faUser}
+                    className="multi-profile-no-image"
+                  />
+                )}
+                <div className="multi-profile-name">
+                  {shortenWords(user.name)}
+                </div>
               </button>
             ))}
             {/* 여기 item들이 hover이벤트가 먹어야함. */}

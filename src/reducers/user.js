@@ -26,7 +26,13 @@ export const userSlice = createSlice({
     REMOVE_USER_PROFILE_INFO: (state) => {
       state.profile.info = null;
     },
-    SET_USER_MULTI_PROFILE_STATUS: (state) => {
+    SET_USER_MULTI_PROFILE_STATUS_FALSE_REQUEST: () => {},
+    SET_USER_MULTI_PROFILE_STATUS_TRUE: (state) => {
+      console.log('SET_USER_MULTI_PROFILE_STATUS here true!');
+      state.multiProfile.success = true;
+    },
+    SET_USER_MULTI_PROFILE_STATUS_FALSE: (state) => {
+      console.log('SET_USER_MULTI_PROFILE_STATUS here false!');
       state.multiProfile.success = false;
     },
     GET_USER_MULTI_PROFILE_INFO_REQUEST: (state) => {
@@ -36,18 +42,16 @@ export const userSlice = createSlice({
       state.multiProfile.loading = false;
     },
     GET_USER_MULTI_PROFILE_INFO_FAILURE: (state) => {
-      console.log('ADD_USER_MULTI_PROFILE_INFO_REQUEST failure....');
       state.multiProfile.loading = false;
     },
     ADD_USER_MULTI_PROFILE_INFO_REQUEST: (state) => {
-      console.log('ADD_USER_MULTI_PROFILE_INFO_REQUEST reqeust....');
       state.multiProfile.loading = true;
     },
     ADD_USER_MULTI_PROFILE_INFO_SUCCESS: (state, action) => {
-      console.log('ADD_USER_MULTI_PROFILE_INFO_REQUEST success....');
+      console.log(action);
       state.multiProfile.loading = false;
       state.multiProfile.success = true;
-      state.multiProfile.list.push(action.payload.profile); // push new profile to the list
+      state.multiProfile.list.push(action.payload); // push new profile to the list
     },
     RESET_ADD_USER_MULTI_PROFILE_INFO_SUCCESS: (state) => {
       state.multiProfile.success = false;
@@ -85,7 +89,9 @@ export const userSlice = createSlice({
 export const {
   SET_USER_PROFILE_INFO,
   REMOVE_USER_PROFILE_INFO,
-  SET_USER_MULTI_PROFILE_STATUS,
+  SET_USER_MULTI_PROFILE_STATUS_TRUE,
+  SET_USER_MULTI_PROFILE_STATUS_FALSE_REQUEST,
+  SET_USER_MULTI_PROFILE_STATUS_FALSE,
   ADD_USER_MULTI_PROFILE_INFO_REQUEST,
   ADD_USER_MULTI_PROFILE_INFO_SUCCESS,
   ADD_USER_MULTI_PROFILE_INFO_FAILURE,

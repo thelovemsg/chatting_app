@@ -502,6 +502,15 @@ a.dropdown-item {
   border-radius: 15px;
 }
 
+.multi-profile-no-image {
+  margin: auto;
+  padding: 7px;
+  width: 33px;
+  height: 33px;
+  border-radius: 15px;
+  border: 1px solid #c0bfbf;
+}
+
 .multi-profile-screen {
   background-color: snow;
   height: 100%;
