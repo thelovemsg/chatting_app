@@ -22,7 +22,11 @@ const ProfileModal = ({ show, children, style }) =>
 ProfileModal.propTypes = {
   show: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
-  style: PropTypes.objectOf(PropTypes.objectOf).isRequired,
+  style: PropTypes.objectOf(PropTypes.string),
+};
+
+ProfileModal.defaultProps = {
+  style: {},
 };
 
 export default ProfileModal;

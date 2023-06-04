@@ -1,28 +1,26 @@
-import { all, call, fork, put, takeLatest } from 'redux-saga/effects';
+import { all, call, delay, fork, put, takeLatest } from 'redux-saga/effects';
+import { addMultipleProfileApi } from '../api/member/profile';
 import {
-  LOG_IN_FAILURE,
-  LOG_IN_SUCCESS,
-  LOG_OUT_FAILURE,
-  LOG_OUT_SUCCESS,
-  REGISTER_SUCCESS,
-  REGISTER_FAILURE,
-  LOG_IN_CHECK_SUCCESS,
-  LOG_IN_CHECK_FAILURE,
-} from 'reducers/login';
-import {
-  memberJoinApi,
-  memberLoginApi,
-  memberLogoutApi,
-  memberLoginCheckApi,
-} from '../api/member/member';
+  ADD_USER_MULTI_PROFILE_INFO_SUCCESS,
+  ADD_USER_MULTI_PROFILE_INFO_FAILURE,
+  GET_USER_MULTI_PROFILE_INFO_SUCCESS,
+  GET_USER_MULTI_PROFILE_INFO_FAILURE,
+  RESET_ADD_USER_MULTI_PROFILE_INFO_SUCCESS,
+  SET_USER_MULTI_PROFILE_STATUS,
+} from '../reducers/user';
 
-function* loginCheck() {
+function* setMultiProfileStatus(action) {
+  console.log(action);
+  yield put(SET_USER_MULTI_PROFILE_STATUS());
+}
+
+function* getMultiProfile(action) {
   try {
-    yield call(memberLoginCheckApi);
-    yield put(LOG_IN_CHECK_SUCCESS());
+    const data = yield call(addMultipleProfileApi, action.payload);
+    yield put(GET_USER_MULTI_PROFILE_INFO_SUCCESS(data));
   } catch (error) {
     yield put(
-      LOG_IN_CHECK_FAILURE({
+      GET_USER_MULTI_PROFILE_INFO_FAILURE({
         code: error.response.data?.code,
         error: error.response.data?.message,
       })
@@ -30,70 +28,41 @@ function* loginCheck() {
   }
 }
 
-function* logIn(action) {
+function* addMultiProfile(action) {
   try {
-    const result = yield call(memberLoginApi, action.payload);
-    console.log('result login ::', result);
-    if (result?.data?.status === 'UNAUTHORIZED') {
-      throw new Error('error');
-    } else {
-      yield put(LOG_IN_SUCCESS());
-    }
-  } catch (err) {
-    console.log('error!!!!!');
+    console.log('something is wrong');
+    // const data = yield call(addMultipleProfileApi, action.payload);
+    yield delay(1000);
+    yield put(ADD_USER_MULTI_PROFILE_INFO_SUCCESS(action.payload));
+  } catch (error) {
     yield put(
-      LOG_IN_FAILURE({
-        code: '101',
-        message: '로그인중 에러 발생!',
+      ADD_USER_MULTI_PROFILE_INFO_FAILURE({
+        code: error.response.data?.code,
+        error: error.response.data?.message,
       })
     );
   }
 }
-
-function* logOut(action) {
-  try {
-    yield call(memberLogoutApi, action.payload);
-    yield put(LOG_OUT_SUCCESS());
-  } catch (err) {
-    yield put(LOG_OUT_FAILURE({ code: err.code, message: err.messsage }));
-  }
+function* watchAddMultiProfile() {
+  console.log('addMultiProfile working');
+  yield takeLatest('user/ADD_USER_MULTI_PROFILE_INFO_REQUEST', addMultiProfile);
 }
 
-function* userRegister(action) {
-  try {
-    // const result = yield call(logInAPI);
-    const data = yield call(memberJoinApi, action.payload);
-    if (data.status === 'BAD_REQUEST') {
-      throw new Error(data.message);
-    }
-    yield put(REGISTER_SUCCESS());
-  } catch (err) {
-    alert(err.message);
-    yield put(REGISTER_FAILURE(err.message));
-  }
+function* watchGetMultiProfile() {
+  yield takeLatest('user/GET_USER_MULTI_PROFILE_INFO_REQUEST', getMultiProfile);
 }
 
-function* watchLoginCheck() {
-  yield takeLatest('user/LOG_IN_CHECK_REQUEST', loginCheck);
-}
-
-function* watchLogIn() {
-  yield takeLatest('user/LOG_IN_REQUEST', logIn);
-}
-
-function* watchLogOut() {
-  yield takeLatest('user/LOG_OUT_REQUEST', logOut);
-}
-
-function* watchRegister() {
-  yield takeLatest('user/REGISTER_REQUEST', userRegister);
+function* watchResetMultiProfileAddSuccess() {
+  yield takeLatest(
+    RESET_ADD_USER_MULTI_PROFILE_INFO_SUCCESS,
+    setMultiProfileStatus
+  );
 }
 
 export default function* userSaga() {
   yield all([
-    fork(watchLoginCheck),
-    fork(watchLogIn),
-    fork(watchLogOut),
-    fork(watchRegister),
+    fork(watchAddMultiProfile),
+    fork(watchGetMultiProfile),
+    fork(watchResetMultiProfileAddSuccess),
   ]);
 }

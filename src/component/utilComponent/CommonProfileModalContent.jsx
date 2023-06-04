@@ -13,8 +13,7 @@ const CommonProfileModalContent = ({
   stateContent,
   footerContent,
 }) => {
-  console.log('ProfileModalContent open ::', userInfo);
-
+  console.log('here is user info@', userInfo);
   const [showCarousel, setShowCarousel] = useState(false);
 
   const fakeUsers = useMemo(

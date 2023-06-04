@@ -1,33 +1,49 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
-import { useMemo, useRef, useState } from 'react';
-import { Carousel } from 'react-bootstrap';
+import { useState, useRef, useMemo, useEffect } from 'react';
 import { createRandomUser } from 'component/utility/FakeUser';
 import { faCamera, faUser } from '@fortawesome/free-solid-svg-icons';
-import CarouselModal from './CarouselModal';
+import { Trans } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  ADD_USER_MULTI_PROFILE_INFO_REQUEST,
+  // RESET_ADD_USER_MULTI_PROFILE_INFO_SUCCESS,
+} from '../../reducers/user';
 
-const NewMultiProfileModalContent = ({ handleCloseModal, userInfo }) => {
-  const [showCarousel, setShowCarousel] = useState(false);
+const NewMultiProfileModalContent = ({ handleCloseModal }) => {
+  // const { id } = useSelector((state) => state.user);
+  const { success } = useSelector((state) => state.user.multiProfile);
+  console.log(success);
   const [nameInput, setNameInput] = useState('');
   const [descriptionInput, setDescriptionInput] = useState('');
-  const imageInput = useRef(null);
+  const [uploadedImage, setUploadedImage] = useState(null);
+
+  const dispatch = useDispatch();
 
   const fakeUsers = useMemo(
     () => Array.from({ length: 1 }, () => createRandomUser()),
     []
   );
 
-  const addMultiProfile = () => {
-    console.log('add!');
-    console.log('nameInput ::', nameInput);
-    console.log('descriptionInput ::', descriptionInput);
+  useEffect(() => {
+    console.log('success ::', success);
+    // if (success) {
+    //   handleCloseModal();
+    //   dispatch(RESET_ADD_USER_MULTI_PROFILE_INFO_SUCCESS());
+    // }
+  }, [success]);
 
-    // add in RDBMS
+  const fileInput = useRef(null);
+
+  const handleFileUpload = (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+    const uploadedImageUrl = URL.createObjectURL(file);
+    setUploadedImage(uploadedImageUrl);
   };
 
   const handleImageClick = () => {
-    imageInput.current.click();
-    setShowCarousel(!showCarousel);
+    fileInput.current.click();
   };
 
   const handleNameInput = (event) => {
@@ -38,16 +54,25 @@ const NewMultiProfileModalContent = ({ handleCloseModal, userInfo }) => {
     setDescriptionInput(event.target.value);
   };
 
-  const handleProfileImgUpload = (event) => {
-    console.log(event.target.files[0]);
-    // You now have access to the file object
-    // You can add your image processing logic here
-    /*
-      Process
-      1. call API
-      2. add Multi profile
-      3. show multi profile in multi profile section.
-    */
+  const addMultiProfile = () => {
+    console.log('addMultiProfile ::!!!!!');
+    /**
+     * TODO
+     *
+     * make api to upload multi profile
+     *
+     * Let's assume upload result as success and now you need to upload this to
+     * multi profile section.
+     *
+     */
+    // console.log('id :: ', id);
+    const data = {
+      name: nameInput,
+      description: descriptionInput,
+      image: uploadedImage,
+      userId: fakeUsers[0].userId,
+    };
+    dispatch(ADD_USER_MULTI_PROFILE_INFO_REQUEST(data));
   };
 
   return (
@@ -60,24 +85,45 @@ const NewMultiProfileModalContent = ({ handleCloseModal, userInfo }) => {
           aria-label="hidden"
         />
       </div>
-      <div className="multi-profile-title">멀티프로필 만들기</div>
+      <div className="multi-profile-title">
+        <Trans i18nKey="friend.multiProfile.title" />
+      </div>
       <div className="modal-body">
         <div style={{ height: '40%', margin: 'auto' }}>
-          <FontAwesomeIcon icon={faUser} className="multi-profile-set-image" />
           <label htmlFor="fileInput">
+            {uploadedImage ? (
+              <img
+                src={uploadedImage}
+                alt="Profile"
+                className="multi-profile-uploaded-image"
+              />
+            ) : (
+              <FontAwesomeIcon
+                icon={faUser}
+                className="multi-profile-set-image"
+              />
+            )}
+            <input
+              type="file"
+              id="fileInput"
+              style={{ display: 'none' }}
+              onChange={handleFileUpload}
+              ref={fileInput}
+            />
+          </label>
+          {uploadedImage ? (
+            <FontAwesomeIcon
+              icon={faCamera}
+              className="multi-profile-added-camera-image"
+              onClick={handleImageClick}
+            />
+          ) : (
             <FontAwesomeIcon
               icon={faCamera}
               className="multi-profile-camera-image"
+              onClick={handleImageClick}
             />
-          </label>
-          <input
-            id="fileInput"
-            type="file"
-            accept="image/jpg,impge/png,image/jpeg,image/gif"
-            style={{ display: 'none' }}
-            onChange={handleProfileImgUpload}
-            ref={imageInput}
-          />
+          )}
         </div>
         <div style={{ width: '100%' }}>
           <div className="profile-modal-input-box">
@@ -108,44 +154,25 @@ const NewMultiProfileModalContent = ({ handleCloseModal, userInfo }) => {
           </div>
         </div>
         <div className="multi-profile-info">
-          ID검색은 기본프로필 ID로만 가능하며, 멀티프로필 지정친구는 내 ID검색
-          시에 해당 멀티프로필을 보게 됩니다.
+          <Trans i18nKey="friend.multiProfile.addGuide" />
         </div>
-        <div style={{ float: 'right', marginTop: '75px' }}>
+        <div style={{ float: 'right', marginTop: '85px' }}>
           <button
             type="button"
-            className="multi-profile-true-btn"
+            className="multi-profile-add-btn"
             onClick={addMultiProfile}
           >
             test1
           </button>
           <button
             type="button"
-            className="cancel-btn"
+            className="multi-profile-close-btn"
             onClick={handleCloseModal}
           >
             test2
           </button>
         </div>
       </div>
-      {showCarousel && (
-        <CarouselModal show={showCarousel} onHide={handleImageClick}>
-          {fakeUsers.map((user, index) => (
-            <Carousel.Item key={user.userId}>
-              <img
-                className="d-block w-100"
-                src={user.avatar}
-                alt={`Slide ${index + 1}`}
-                style={{ height: '300px', width: 'auto' }} // Add this line
-              />
-              <Carousel.Caption>
-                <h3>{`Slide ${index + 1} label`}</h3>
-                <p>{userInfo.username}</p>
-              </Carousel.Caption>
-            </Carousel.Item>
-          ))}
-        </CarouselModal>
-      )}
     </div>
   );
 };
@@ -157,10 +184,4 @@ export default NewMultiProfileModalContent;
  */
 NewMultiProfileModalContent.propTypes = {
   handleCloseModal: PropTypes.func.isRequired,
-  userInfo: PropTypes.shape({
-    userId: PropTypes.string,
-    username: PropTypes.string,
-    email: PropTypes.string,
-    avatar: PropTypes.string,
-  }).isRequired,
 };

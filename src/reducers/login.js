@@ -61,6 +61,7 @@ export const loginSlice = createSlice({
       state.loginCheckSuccess = false;
     },
     LOG_OUT_FAILURE: (state, action) => {
+      // api 통신시 에러와 에러메시지 받음. default 처리
       state.logoutHandling = false;
       state.logoutError = {
         code: action.payload.code,
@@ -75,6 +76,7 @@ export const loginSlice = createSlice({
       state.registerError = null;
     },
     REGISTER_FAILURE: (state, action) => {
+      // api 통신시 에러와 에러메시지 받음. default 처리
       state.registerHandling = false;
       state.registerError = action.payload.message;
     },

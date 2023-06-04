@@ -14,7 +14,7 @@ import Logout from './Logout';
 const Navtag = () => {
   const navigate = useNavigate();
   const { loginDone, logoutDone, loginCheckSuccess } = useSelector(
-    (state) => state.user
+    (state) => state.login
   );
   const [activeLink, setActiveLink] = useState('');
 
