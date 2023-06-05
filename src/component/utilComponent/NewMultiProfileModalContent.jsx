@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   ADD_USER_MULTI_PROFILE_INFO_REQUEST,
   SET_USER_MULTI_PROFILE_STATUS_FALSE_REQUEST,
-} from '../../reducers/user';
+} from '../../reducers/user/userMultiProfile';
 
 const NewMultiProfileModalContent = ({ handleCloseModal }) => {
   // const { id } = useSelector((state) => state.user);

@@ -37,9 +37,8 @@ function* logIn(action) {
     if (result?.data?.status === 'UNAUTHORIZED') {
       throw new Error('error');
     } else {
-      console.log('after user login... :: ', result);
-      yield put(LOG_IN_SUCCESS());
       // yield put(SET_USER_PROFILE())
+      yield put(LOG_IN_SUCCESS());
       // TODO : call SET_USER_ID action
     }
   } catch (err) {

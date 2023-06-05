@@ -123,6 +123,7 @@ const MutiProfile = () => {
               showImageIcon
               showSettingIcon
               showDeleteIcon
+              multiProfileOption
             />
           )}
         </ProfileModal>

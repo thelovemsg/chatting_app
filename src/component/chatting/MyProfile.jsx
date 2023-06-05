@@ -64,6 +64,7 @@ const MyProfile = () => {
               userInfo={profile.info}
               stateContent="상태명 드러감"
               footerContent="버튼 2개 예정"
+              multiProfileOption
             />
           )}
         </ProfileModal>

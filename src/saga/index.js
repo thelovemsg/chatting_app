@@ -1,9 +1,14 @@
 import { all, fork } from 'redux-saga/effects';
 import loginSaga from './login';
-import userSaga from './user';
+import userMultiProfileSaga from './user/userMutliProfile';
+// import userProfileSaga from './user/userProfile';
 
 export function* rootSaga() {
-  yield all([fork(loginSaga), fork(userSaga)]); // all 은 배열 안의 여러 사가를 동시에 실행시켜줍니다.
+  yield all([
+    fork(loginSaga),
+    // fork(userProfileSaga),
+    fork(userMultiProfileSaga),
+  ]); // all 은 배열 안의 여러 사가를 동시에 실행시켜줍니다.
 }
 
 export default rootSaga;
