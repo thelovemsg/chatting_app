@@ -2,8 +2,8 @@ import { Accordion } from 'react-bootstrap';
 import { useMemo, useState } from 'react';
 import { StyledChattingItemNoPadding } from 'styled-components/StyledForm';
 import { createRandomUser } from 'component/utility/FakeUser';
-import DraggableModal from 'component/utilComponent/ProfileModal';
-import DraggableModalContent from 'component/utilComponent/CommonProfileModalContent';
+import ProfileModal from 'component/utilComponent/ProfileModal';
+import CommonProfileModalContent from 'component/utilComponent/CommonProfileModalContent';
 
 const FriendsItem = () => {
   const fakeUsers = useMemo(
@@ -55,14 +55,16 @@ const FriendsItem = () => {
         </Accordion.Item>
       </Accordion>
       {selectedUser && (
-        <DraggableModal show>
-          <DraggableModalContent
+        <ProfileModal show style={{ width: '300px', height: '600px' }}>
+          <CommonProfileModalContent
             handleCloseModal={handleCloseModal}
             userInfo={selectedUser}
             stateContent="상태명 드러감"
-            footerContent="test"
+            showImageIcon
+            showBookmark
+            showProfileRotate
           />
-        </DraggableModal>
+        </ProfileModal>
       )}
     </>
   );

@@ -4,7 +4,7 @@ import { faker } from '@faker-js/faker';
 export function createRandomUser() {
   return {
     userId: faker.datatype.uuid(),
-    username: faker.internet.userName(),
+    name: faker.internet.userName(),
     email: faker.internet.email(),
     avatar: faker.image.avatar(),
     password: faker.internet.password(),
@@ -16,7 +16,7 @@ export function createRandomUser() {
 export function createRandomChatMessage(senderId, receiverId) {
   return {
     userId: faker.datatype.uuid(),
-    username: faker.internet.userName(),
+    name: faker.internet.userName(),
     senderId,
     receiverId,
     timestamp: new Date(),

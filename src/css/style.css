@@ -8,6 +8,8 @@
   --main-white-color: white;
   --main-friend-right-tag-hover-color: #e5e5e5;
   --main-profile-no-image-bg-color: #add8e6;
+  --main-draggable-modal-bg-color: #d2d2d2;
+  --main-icon-hover-color: #e1e0e0;
   --main-friend-border-color: #c0bfbf;
 }
 
@@ -203,7 +205,9 @@ a.dropdown-item {
 }
 
 .draggable-modal-content {
-  background-color: #d2d2d2 !important; /* or any color you prefer */
+  background-color: var(
+    --main-draggable-modal-bg-color
+  ) !important; /* or any color you prefer */
 }
 
 .modal-open {
@@ -229,8 +233,18 @@ a.dropdown-item {
   padding: 6px !important;
 }
 
-.pointer:hover {
+.profile-icon {
+  margin-right: 10px;
+  width: 15px;
+  height: 15px;
+  padding: 7px;
+  border-radius: 15px;
+  border: 1px solid white;
+}
+
+.profile-icon:hover {
   cursor: pointer;
+  background-color: var(--main-icon-hover-color);
 }
 
 /* Carousel */
@@ -630,6 +644,31 @@ a.dropdown-item {
 
 .profile-background-color:hover {
   background-color: var(--main-friend-right-tag-hover-color);
+}
+
+.profile-btns {
+  margin: auto !important;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.profile-btn {
+  border: none;
+  background-color: var(--main-draggable-modal-bg-color) !important;
+  text-align: center;
+  width: 90px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.profile-btn:hover {
+  cursor: pointer;
+  background-color: var(--main-icon-hover-color) !important;
+}
+
+.profile-btn-comment {
+  margin-top: 5px;
+  font-size: 15px;
 }
 
 /* accordion */
