@@ -30,6 +30,7 @@ const CommonProfileModalContent = ({
   multiProfileOption,
 }) => {
   const { success } = useSelector((state) => state.user.multiProfile);
+
   useEffect(() => {
     if (success) handleCloseModal();
   }, [success]);

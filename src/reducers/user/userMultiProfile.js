@@ -48,7 +48,6 @@ export const userMultiProfileSlice = createSlice({
       state.loading = true;
     },
     REMOVE_USER_MULTI_PROFILE_INFO_SUCCESS: (state, action) => {
-      console.log('REMOVE_USER_MULTI_PROFILE_INFO_SUCCESS action :: ', action);
       state.loading = false;
       state.success = true;
       state.list = state.list.filter(

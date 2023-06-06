@@ -7,12 +7,12 @@ import CommonProfileModalContent from 'component/utilComponent/CommonProfileModa
 import NewMultiProfileModalContent from 'component/utilComponent/NewMultiProfileModalContent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import shortenWords from 'component/utility/UiUtil';
-import ProfileModal from '../utilComponent/ProfileModal';
+import ProfileModal from '../../utilComponent/ProfileModal';
 // import { createRandomUser } from '../utility/FakeUser';
 import {
   StyledAccordionBodyMultiProfile,
   StyledFontAwesomeIconPlus,
-} from '../../styled-components/StyledForm';
+} from '../../../styled-components/StyledForm';
 
 const MutiProfile = () => {
   // const fakeUsers = useMemo(

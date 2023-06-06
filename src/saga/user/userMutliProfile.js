@@ -26,7 +26,6 @@ function* getMultiProfile(action) {
 
 function* addMultiProfile(action) {
   try {
-    console.log('something is wrong');
     // const data = yield call(addMultipleProfileApi, action.payload);
     yield put(ADD_USER_MULTI_PROFILE_INFO_SUCCESS(action.payload));
     yield put(SET_USER_MULTI_PROFILE_STATUS_TRUE());
@@ -49,7 +48,6 @@ function* removeMutltiProfile(action) {
 }
 
 function* watchAddMultiProfile() {
-  console.log('addMultiProfile working');
   yield takeLatest(
     'user/multiProfile/ADD_USER_MULTI_PROFILE_INFO_REQUEST',
     addMultiProfile

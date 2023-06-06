@@ -1,26 +1,29 @@
 import {
-  GET_USER_FRIENDS_FAILURE,
-  //   GET_USER_FRIENDS_SUCCESS,
-} from 'reducers/user/userFriends';
+  //   GET_USER_BOOKMARK_FRIENDS_SUCCESS,
+  GET_USER_BOOKMARK_FRIENDS_FAILURE,
+} from 'reducers/user/userBookmarkFriends';
 import { all, fork, put, takeLatest } from 'redux-saga/effects';
 // import { getFriends } from '../../api/member/user/user';
 
 function* getBirthdayFriendsAction(action) {
   try {
-    console.log('getFriendsAction :: ', action);
     // const result = yield call(getBirthdayFriends, action.payload);
     // console.log('getFriendsAction :: ', result);
-    // yield put(GET_USER_FRIENDS_SUCCESS(result.data));
+    // yield put(GET_USER_BOOKMARK_FRIENDS_SUCCESS(result.data));
+    console.log('getBirthdayFriendsAction action ... :: ', action);
   } catch (error) {
     yield put(
-      GET_USER_FRIENDS_FAILURE({ code: error.code, message: error.message })
+      GET_USER_BOOKMARK_FRIENDS_FAILURE({
+        code: error.code,
+        message: error.message,
+      })
     );
   }
 }
 
 function* watchGetBirthdayFriends() {
   yield takeLatest(
-    'user/friends/GET_USER_BIRTHDAY_FRIENDS_REQUEST',
+    'user/friends/GET_USER_BOOKMARK_FRIENDS_REQUEST',
     getBirthdayFriendsAction
   );
 }

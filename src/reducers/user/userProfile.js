@@ -3,11 +3,11 @@ import { createSlice } from '@reduxjs/toolkit';
 export const userProfileSlice = createSlice({
   name: 'user/profile',
   initialState: {
-    id: null,
     loading: false,
     error: null,
     success: null,
     info: {
+      id: '아이디 테스트',
       name: '홍길동', // when user login, id and profile will be served by server at first.
       description: '설명란 설명란 설명란 장영란',
       mainAvatar: null,
@@ -15,19 +15,34 @@ export const userProfileSlice = createSlice({
     }, // might be object
   },
   reducers: {
-    SET_USER_PROFILE_INFO: (state, action) => {
-      state.profile.info = {
+    SET_USER_PROFILE_REQUEST: (state) => {
+      state.loading = true;
+    },
+    SET_USER_PROFILE_SUCCESS: (state, action) => {
+      state.loading = false;
+      state.success = true;
+      state.info = {
         id: action.payload.id,
+        name: action.payload.nickname,
+        description: action.payload.description,
       };
     },
-    REMOVE_USER_PROFILE_INFO: (state) => {
-      state.profile.info = null;
+    SET_USER_PROFILE_FAILURE: (state, action) => {
+      state.loading = false;
+      state.success = false;
+      state.error = {
+        code: action.payload.code,
+        message: action.payload.message,
+      };
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { SET_USER_PROFILE_INFO, REMOVE_USER_PROFILE_INFO } =
-  userProfileSlice.actions;
+export const {
+  SET_USER_PROFILE_REQUEST,
+  SET_USER_PROFILE_SUCCESS,
+  SET_USER_PROFILE_FAILURE,
+} = userProfileSlice.actions;
 
 export const userProfileReducer = userProfileSlice.reducer;

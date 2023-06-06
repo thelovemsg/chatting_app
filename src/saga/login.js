@@ -61,6 +61,9 @@ function* logOut(action) {
 }
 
 function* userRegister(action) {
+  /**
+   * 성공 아니면 전부 다 팅겨내야하는데? 분기문 나중에 다시 확인해야할듯
+   */
   try {
     const data = yield call(memberJoinApi, action.payload);
     if (data.status === 'BAD_REQUEST') {
