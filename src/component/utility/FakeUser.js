@@ -3,7 +3,7 @@ import { faker } from '@faker-js/faker';
 
 export function createRandomUser() {
   return {
-    userId: faker.datatype.uuid(),
+    id: faker.datatype.uuid(),
     name: faker.internet.userName(),
     email: faker.internet.email(),
     avatar: faker.image.avatar(),

@@ -14,7 +14,7 @@ export const userFriendsSlice = createSlice({
     },
     GET_USER_FRIENDS_SUCCESS: (state, action) => {
       state.loading = false;
-      state.list = action.payload?.friends;
+      state.list = action.payload;
     },
     GET_USER_FRIENDS_FAILURE: (state, action) => {
       state.loading = false;

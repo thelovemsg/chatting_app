@@ -25,9 +25,7 @@ const NewMultiProfileModalContent = ({ handleCloseModal }) => {
   );
 
   useEffect(() => {
-    console.log('success :: ', success);
     if (success) {
-      console.log('이거 닫혀야하는데?');
       handleCloseModal();
       dispatch(SET_USER_MULTI_PROFILE_STATUS_FALSE_REQUEST());
     }
@@ -58,7 +56,7 @@ const NewMultiProfileModalContent = ({ handleCloseModal }) => {
     const data = {
       name: nameInput,
       description: descriptionInput,
-      image: uploadedImage,
+      avatar: uploadedImage,
       userId: fakeUsers[0].userId,
     };
     dispatch(ADD_USER_MULTI_PROFILE_INFO_REQUEST(data));

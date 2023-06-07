@@ -1,3 +1,4 @@
+import { createRandomUser } from 'component/utility/FakeUser';
 import {
   //   GET_USER_BOOKMARK_FRIENDS_SUCCESS,
   GET_USER_BOOKMARK_FRIENDS_FAILURE,
@@ -10,6 +11,8 @@ function* getBirthdayFriendsAction(action) {
     // const result = yield call(getBirthdayFriends, action.payload);
     // console.log('getFriendsAction :: ', result);
     // yield put(GET_USER_BOOKMARK_FRIENDS_SUCCESS(result.data));
+    const result = createRandomUser();
+    console.log(result);
     console.log('getBirthdayFriendsAction action ... :: ', action);
   } catch (error) {
     yield put(

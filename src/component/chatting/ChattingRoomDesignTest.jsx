@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFolderOpen } from '@fortawesome/free-solid-svg-icons';
 import '../../css/style.css';
-import returnCurrentDate from '../utility/DateUtil';
+import { returnCurrentDate } from '../utility/DateUtil';
 
 const ChattingRoom = () => {
   const [messages, setMessages] = useState([]);

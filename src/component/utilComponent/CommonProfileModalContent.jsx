@@ -101,9 +101,9 @@ const CommonProfileModalContent = ({
           테스팅 영역입니다.
         </div>
         <div>
-          {userInfo?.image ? (
+          {userInfo?.avatar ? (
             <img
-              src={userInfo.image}
+              src={userInfo.avatar}
               alt="Selected Avatar"
               className="common-profile-img"
               onClick={() => handleImageClick()}
@@ -176,7 +176,7 @@ CommonProfileModalContent.propTypes = {
     email: PropTypes.string,
     name: PropTypes.string,
     description: PropTypes.string,
-    image: imageUrlPropType,
+    avatar: imageUrlPropType,
   }).isRequired,
   stateContent: PropTypes.string.isRequired,
   showImageIcon: PropTypes.bool,

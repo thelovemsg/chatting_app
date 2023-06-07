@@ -1,21 +1,31 @@
 import { Accordion } from 'react-bootstrap';
-import { useMemo, useState } from 'react';
-import { StyledChattingItemNoPadding } from 'styled-components/StyledForm';
-import { createRandomUser } from 'component/utility/FakeUser';
+import { useState } from 'react';
+// import { StyledChattingItemNoPadding } from 'styled-components/StyledForm';
+// import { createRandomUser } from 'component/utility/FakeUser';
 import ProfileModal from 'component/utilComponent/ProfileModal';
 import CommonProfileModalContent from 'component/utilComponent/CommonProfileModalContent';
+import { useSelector } from 'react-redux';
+// import { GET_USER_FRIENDS_REQUEST } from 'reducers/user/userFriends';
 
 const FriendsItem = () => {
-  const fakeUsers = useMemo(
-    () => Array.from({ length: 10 }, () => createRandomUser()),
-    []
-  );
+  // const fakeUsers = useMemo(
+  //   () => Array.from({ length: 10 }, () => createRandomUser()),
+  //   []
+  // );
 
   const [selectedUser, setSelectedUser] = useState(null);
+  // const dispatch = useDispatch();
 
-  const handleAvatarClick = (user) => {
-    setSelectedUser(user);
-  };
+  // useEffect(() => {
+  //   dispatch(GET_USER_FRIENDS_REQUEST());
+  // }, []);
+
+  const { friends } = useSelector((state) => state.user.friends);
+  console.log(friends);
+
+  // const handleAvatarClick = (user) => {
+  //   setSelectedUser(user);
+  // };
 
   const handleCloseModal = () => {
     setSelectedUser(null);
@@ -26,7 +36,8 @@ const FriendsItem = () => {
       <Accordion defaultActiveKey="0" className="custom-accordion underline">
         <Accordion.Item eventKey="0">
           <Accordion.Header>Friend</Accordion.Header>
-          {fakeUsers.map((user, index) => (
+          test 입니다.
+          {/* {fakeUsers.map((user, index) => (
             <StyledChattingItemNoPadding key={user.userId}>
               <Accordion.Body
                 style={{
@@ -51,7 +62,7 @@ const FriendsItem = () => {
                 </div>
               </Accordion.Body>
             </StyledChattingItemNoPadding>
-          ))}
+          ))} */}
         </Accordion.Item>
       </Accordion>
       {selectedUser && (

@@ -9,7 +9,7 @@
   --main-friend-right-tag-hover-color: #e5e5e5;
   --main-profile-no-image-bg-color: #add8e6;
   --main-draggable-modal-bg-color: #d2d2d2;
-  --main-icon-hover-color: #e1e0e0;
+  --main-profile-hover-color: #f7f3f5;
   --main-friend-border-color: #c0bfbf;
 }
 
@@ -231,7 +231,7 @@ a.dropdown-item {
 
 .profile-icon:hover {
   cursor: pointer;
-  background-color: var(--main-icon-hover-color);
+  background-color: var(--main-profile-hover-color);
 }
 
 /* Carousel */
@@ -463,9 +463,9 @@ a.dropdown-item {
 /* MyProfile */
 
 .my-profile-intro {
-  width: 70px;
-  height: 70px;
-  border-radius: 25px;
+  width: 50px;
+  height: 50px;
+  border-radius: 20px;
 }
 
 .my-profile-intro:hover {
@@ -626,8 +626,16 @@ a.dropdown-item {
   margin-top: 20px;
 }
 
+.custom-mr-20 {
+  margin-right: 20px;
+}
+
 .custom-mr-30 {
   margin-right: 30px;
+}
+
+.custom-ml-10 {
+  margin-left: 10px;
 }
 
 .custom-ml-20 {
@@ -642,12 +650,56 @@ a.dropdown-item {
   margin-top: 5px;
 }
 
+.accordion-body {
+  padding: 5px !important;
+}
+
+.accordion-body:hover {
+  cursor: pointer;
+  background-color: var(--main-profile-hover-color);
+}
+
+.birthday-icon {
+  width: 25px;
+  height: 25px;
+  padding: 10px;
+  background-color: #f18ecd;
+  border-radius: 16px;
+  margin-right: 10px;
+}
+
+.birthday-box {
+  display: flex;
+  align-items: center;
+}
+
+.birthday-box:hover {
+  cursor: pointer;
+  background-color: var(--main-profile-hover-color);
+}
+
+.profile-box {
+  display: flex;
+  align-items: center;
+}
+
 .profile-label {
   font-weight: bold;
+  font-size: 0.8em;
 }
 
 .profile-description {
-  font-size: 0.9em;
+  font-size: 0.7em;
+}
+
+.profile-send-present {
+  border: 1px solid var(--main-friend-border-color);
+  border-radius: 10px;
+  font-size: 0.8em;
+}
+
+.profile-send-present:hover {
+  background-color: white;
 }
 
 .profile-background-color:hover {
@@ -671,7 +723,7 @@ a.dropdown-item {
 
 .profile-btn:hover {
   cursor: pointer;
-  background-color: var(--main-icon-hover-color) !important;
+  background-color: var(--main-profile-hover-color) !important;
 }
 
 .profile-btn-comment {
@@ -680,10 +732,9 @@ a.dropdown-item {
 }
 
 /* accordion */
+
 .custom-accordion {
   border-radius: 0 !important;
-  margin-bottom: 5px;
-  border-bottom: 1px soild black;
 }
 
 .custom-accordion .accordion-header {
@@ -709,6 +760,10 @@ a.dropdown-item {
   border: none !important;
 }
 
+.accordion-button {
+  padding: 10px !important;
+}
+
 .accordion-button:not(.collapsed) {
   color: black !important;
   box-shadow: none !important;
@@ -717,6 +772,7 @@ a.dropdown-item {
 
 .accordion-item {
   border: 0px !important;
+  /* border-bottom: 10px !important; */
 }
 
 .accordion-item:last-of-type {
@@ -730,5 +786,6 @@ a.dropdown-item {
 }
 
 .underline {
+  padding-bottom: 5px;
   border-bottom: 1px solid var(--main-underline-color);
 }

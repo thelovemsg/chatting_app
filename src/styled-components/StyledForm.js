@@ -147,6 +147,7 @@ export const StyledChattingItem = styled('div')`
 export const StyledChattingItemNoPadding = styled('div')`
   display: flex;
   align-items: center;
+  width: 100%;
   &:hover {
     background-color: var(--main-friend-right-tag-hover-color);
   }

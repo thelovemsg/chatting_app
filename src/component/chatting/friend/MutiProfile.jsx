@@ -68,9 +68,9 @@ const MutiProfile = () => {
                 }}
                 type="button"
               >
-                {user.image ? (
+                {user.avatar ? (
                   <img
-                    src={user.image}
+                    src={user.avatar}
                     alt={`Friend ${index + 9000} ${user?.userId}`}
                     className="multi-profile-others"
                   />
