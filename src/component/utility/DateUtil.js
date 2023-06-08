@@ -1,4 +1,9 @@
-export function returnCurrentDate(timestamp) {
+/**
+ * 입력한 timestamp를 YYYYMMDD 24HHMISS형식으로 반환
+ * @param {*} timestamp
+ * @returns
+ */
+export function returnDateToYYYYMMDD24HHMISS(timestamp) {
   // convert the timestamp to a Date object
   const date = new Date(timestamp);
 
@@ -16,26 +21,80 @@ export function returnCurrentDate(timestamp) {
 }
 
 /**
- * 입력한 년월일과 현재 날짜와 차이나는 일수를 반환
+ * 입력한 inputDate를 YYYY-MM-DD형식으로 반환
  * @param {*} timestamp
- * @returns 입력 timestamp와 입력 날짜를 계산한 일수 / 입력일의 년월일(YYYMMDD) 반환
+ * @returns
  */
-export function returnDateYYYYMMDD(timestamp, targetDate) {
-  const date = new Date(timestamp);
+export function returnDateToYYYYMMDD(inputDate) {
+  const date = new Date(inputDate);
 
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
   const day = date.getDay();
 
-  // format the time as a string (adjust as needed)
-  const formattedTime = `${year}년 ${month}월 ${day}일`;
+  const formattedTime = `${year}-${month >= 10 ? month : `0${month}`}-${
+    day >= 10 ? day : `0${day}`
+  }`;
 
-  // calculate difference in days
-  const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-  const diffDays = Math.round(Math.abs((date - targetDate) / oneDay));
+  return formattedTime;
+}
 
-  return {
-    YYYYMMDD: formattedTime,
-    difference: diffDays,
-  };
+/**
+ * 입력한 inputDate를 MM월 DD일형식으로 반환
+ * @param {*} inputDate
+ * @param {*} type
+ * @returns
+ */
+export function returnDateToMMDD(inputDate) {
+  const date = new Date(inputDate);
+
+  const month = date.getMonth() + 1;
+  const day = date.getDay();
+
+  const formattedTime = `${month >= 10 ? month : `0${month}`}월 ${
+    day >= 10 ? day : `0${day}일`
+  }`;
+
+  return formattedTime;
+}
+
+/**
+ * 현재 일자를 YYYYMMDD형식으로 반환
+ * @param {*} timestamp
+ * @returns
+ */
+export function returnCurrDateYYYYMMDD() {
+  const date = new Date();
+
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDay();
+
+  const formattedTime = `${year}-${month >= 10 ? month : `0${month}`}-${
+    day >= 10 ? day : `0${day}`
+  }`;
+  return formattedTime;
+}
+
+/**
+ * Compare the birthdate with the current date
+ * @param {string} realBirthdate
+ * @returns {string} Returns 'same' if the dates are the same, 'before' if the birthdate is before the current date, and 'after' if the birthdate is after the current date
+ */
+export function compareWithCurrentDate(realBirthdate) {
+  const birthDate = new Date(realBirthdate);
+  const currentDate = new Date();
+
+  const currentMonth = currentDate.getMonth();
+  const currentDay = currentDate.getDate();
+  const birthMonth = birthDate.getMonth();
+  const birthDay = birthDate.getDate();
+
+  if (currentMonth === birthMonth && currentDay === birthDay) {
+    return 0;
+  }
+  if (currentMonth === birthMonth && currentDay < birthDay) {
+    return -1;
+  }
+  return 1;
 }

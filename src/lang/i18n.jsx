@@ -79,6 +79,7 @@ i18n
             birthday: {
               title: 'friends birthday',
               content: "check your friends' birthday!",
+              friends: 'birthday friend',
             },
           },
           error: {
@@ -158,6 +159,7 @@ i18n
             birthday: {
               title: '생일인 친구',
               content: '생일인 친구를 확인해보세요!',
+              friends: '생일인 친구',
             },
           },
           error: {

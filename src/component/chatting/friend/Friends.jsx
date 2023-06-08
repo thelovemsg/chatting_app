@@ -14,7 +14,7 @@ import {
 } from 'styled-components/StyledForm';
 import MyProfile from './MyProfile';
 import MutiProfile from './MutiProfile';
-import BirthdayFriend from './BirthdayFriend';
+import BirthdayFriend from './birthday/BirthdayFriend';
 import UpdatedFriend from './UpdateFriend';
 import FriendsItem from './FriendsItem';
 

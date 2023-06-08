@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFolderOpen } from '@fortawesome/free-solid-svg-icons';
 import '../../css/style.css';
-import { returnCurrentDate } from '../utility/DateUtil';
+import { returnDateToYYYYMMDD } from '../utility/DateUtil';
 
 const ChattingRoom = () => {
   const [messages, setMessages] = useState([]);
@@ -120,7 +120,7 @@ const ChattingRoom = () => {
                 message.senderId === currentUserId ? 'time-left' : 'time-right'
               }
             >
-              {returnCurrentDate(message.timestamp)}
+              {returnDateToYYYYMMDD(message.timestamp)}
             </p>
           </div>
         ))}

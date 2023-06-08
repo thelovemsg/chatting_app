@@ -3,24 +3,30 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCakeCandles } from '@fortawesome/free-solid-svg-icons';
 import { Trans } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { GET_USER_BIRTHDAY_FRIENDS_REQUEST } from 'reducers/user/userBirthdayFriends';
-import { StyledAccordionBody } from '../../../styled-components/StyledForm';
+import ProfileModal from 'component/utilComponent/ProfileModal';
+import BirthdayFriendsList from 'component/chatting/friend/birthday/BirthdayFriendsList';
+import { StyledAccordionBody } from '../../../../styled-components/StyledForm';
 
 const BirthdayFriend = () => {
   const dispatch = useDispatch();
   const { length } = useSelector((state) => state.user.birthday);
+  const [openBirthdayFrinds, setOpenBirthdayFrinds] = useState(null);
+
   useEffect(() => {
     dispatch(GET_USER_BIRTHDAY_FRIENDS_REQUEST());
   }, [dispatch]);
 
-  const handleAvatarClick = (user) => {
-    // setSelectedUser(user);
-    console.log(user);
-    // const handleCloseModal = () => {
-    //   setSelectedUser(null);
-    // };
+  const handleBirthIconClick = () => {
+    console.log('hello');
+    setOpenBirthdayFrinds(true);
   };
+
+  const handleCloseModal = () => {
+    setOpenBirthdayFrinds(false);
+  };
+
   return (
     <>
       <Accordion defaultActiveKey="0" className="custom-accordion underline">
@@ -32,7 +38,7 @@ const BirthdayFriend = () => {
             <div className="birthday-box">
               <FontAwesomeIcon
                 icon={faCakeCandles}
-                onClick={handleAvatarClick()}
+                onClick={() => handleBirthIconClick()}
                 className="birthday-icon"
               />
               <div className="custom-mr-20">
@@ -43,18 +49,11 @@ const BirthdayFriend = () => {
           </StyledAccordionBody>
         </Accordion.Item>
       </Accordion>
-      {/* {selectedUser && (
-      <ProfileModal show style={{ width: '300px', height: '600px' }}>
-        <CommonProfileModalContent
-          handleCloseModal={handleCloseModal}
-          userInfo={selectedUser}
-          stateContent="상태명 드러감"
-          showImageIcon
-          showBookmark
-          showProfileRotate
-        />
-      </ProfileModal>
-    )} */}
+      {openBirthdayFrinds && (
+        <ProfileModal show style={{ width: '340px', height: '510px' }}>
+          <BirthdayFriendsList handleCloseModal={handleCloseModal} />
+        </ProfileModal>
+      )}
     </>
   );
 };
