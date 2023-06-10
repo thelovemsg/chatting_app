@@ -42,7 +42,7 @@ const MyProfile = () => {
         <img
           src={fakeUser.avatar}
           alt="First slide"
-          className="my-profile-intro"
+          className="main-profile"
           onClick={() => handleAvatarClick()}
           aria-hidden="true"
         />

@@ -51,7 +51,7 @@ const FriendsItem = () => {
                   src={user.avatar}
                   alt={`Friend ${index + 1}`}
                   onClick={() => handleAvatarClick(user)}
-                  className="my-profile-intro"
+                  className="profile-intro"
                   aria-hidden="true"
                 />
                 <div className="custom-ml-30">

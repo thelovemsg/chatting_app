@@ -80,6 +80,10 @@ i18n
               title: 'friends birthday',
               content: "check your friends' birthday!",
               friends: 'birthday friend',
+              before: 'last birthday',
+              current: 'current birthday',
+              after: 'coming birthday',
+              giveGift: 'give gift',
             },
           },
           error: {
@@ -160,6 +164,10 @@ i18n
               title: '생일인 친구',
               content: '생일인 친구를 확인해보세요!',
               friends: '생일인 친구',
+              before: '지난 생일',
+              current: '현재 생일',
+              after: '다가오는 생일',
+              giveGift: '선물하기',
             },
           },
           error: {

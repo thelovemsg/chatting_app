@@ -7,7 +7,21 @@ import { all, fork, put, takeLatest } from 'redux-saga/effects';
 function* getBirthdayFriendsAction(action) {
   console.log('getFriendsAction :: ', action);
   try {
-    const fakeUsers = Array.from({ length: 3 }, () => createRandomUser());
+    const fakeUsers = [];
+
+    fakeUsers.push(createRandomUser(new Date('2023-06-05')));
+    fakeUsers.push(createRandomUser(new Date('2023-06-05')));
+    fakeUsers.push(createRandomUser(new Date('2023-06-06')));
+
+    fakeUsers.push(createRandomUser(new Date('2023-06-10')));
+
+    fakeUsers.push(createRandomUser(new Date('2023-06-11')));
+    fakeUsers.push(createRandomUser(new Date('2023-06-12')));
+
+    fakeUsers.push(createRandomUser(new Date('2023-06-30')));
+    fakeUsers.push(createRandomUser(new Date('2023-06-29')));
+    fakeUsers.push(createRandomUser(new Date('2023-06-30')));
+    fakeUsers.push(createRandomUser(new Date('2023-06-29')));
     // const result = yield call(getBirthdayFriends, action.payload);
     // console.log('getFriendsAction :: ', result);
     yield put(GET_USER_BIRTHDAY_FRIENDS_SUCCESS(fakeUsers));

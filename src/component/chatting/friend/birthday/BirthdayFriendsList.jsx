@@ -1,6 +1,7 @@
 import {
   compareWithCurrentDate,
-  returnDateToMMDD,
+  returnCurrDateYYYYMMDD,
+  returnMMDD,
 } from 'component/utility/DateUtil';
 import PropTypes from 'prop-types';
 import { Trans } from 'react-i18next';
@@ -23,27 +24,81 @@ const BirthdayFriendsList = ({ handleCloseModal }) => {
 
   const groupByDate = (arr) =>
     arr.reduce((acc, val) => {
+      const date = returnCurrDateYYYYMMDD(val.birthdate);
       const accumulator = { ...acc }; // shallow clone of acc
-      (accumulator[val.birthdate] = accumulator[val.birthdate] || []).push(val);
+      (accumulator[date] = accumulator[date] || []).push(val);
       return accumulator;
     }, {});
 
-  const birthdayGroupsBefore = groupByDate(birthdayFriendsBeforeCurrDay);
-  const birthdayGroupsToday = groupByDate(currBirthdayFriends);
-  const birthdayGroupsAfter = groupByDate(birthdayFriendsAfterCurrDay);
+  const sortedGroups = (groups) => {
+    const sortedKeys = Object.keys(groups).sort(
+      (a, b) => new Date(a) - new Date(b)
+    );
+    return sortedKeys.reduce(
+      (acc, key) => ({ ...acc, [key]: groups[key] }),
+      {}
+    );
+  };
+
+  const birthdayGroupsBefore = sortedGroups(
+    groupByDate(birthdayFriendsBeforeCurrDay)
+  );
+
+  const birthdayGroupsToday = sortedGroups(groupByDate(currBirthdayFriends));
+  const birthdayGroupsAfter = sortedGroups(
+    groupByDate(birthdayFriendsAfterCurrDay)
+  );
 
   const renderGroups = (groups) =>
     Object.entries(groups).map(([date, friends]) => (
       <div key={date}>
-        <h2>{returnDateToMMDD(date)}</h2>
-        {friends.map((friend) => (
-          <div key={friend.id}>{friend.name}</div>
+        <div style={{ fontSize: '12px', marginTop: '10px' }}>
+          {returnMMDD(date)}
+        </div>
+        {friends.map((friend, index) => (
+          <div
+            key={friend.id}
+            className="birthday-friend-box"
+            style={{
+              display: 'flex',
+              padding: '10px',
+              paddingLeft: '0px',
+              alignItems: 'center',
+            }}
+          >
+            <img
+              src={friend.avatar}
+              alt={`Friend ${index + 1}`}
+              className="profile-intro"
+              aria-hidden="true"
+            />
+            <div
+              className="custom-ml-30"
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                width: '100%',
+              }}
+            >
+              <div className="profile-label">{friend.name}</div>
+              <div>
+                <button
+                  type="button"
+                  className="give-gift"
+                  onClick={() => alert('나중에 작업할거에요 ㅎ')}
+                >
+                  <Trans i18nKey="friend.birthday.giveGift" />
+                </button>
+              </div>
+            </div>
+          </div>
         ))}
       </div>
     ));
 
   return (
-    <div className="multi-profile-screen">
+    <div className="profile-screen">
       <div className="modal-header">
         <button
           type="button"
@@ -55,12 +110,18 @@ const BirthdayFriendsList = ({ handleCloseModal }) => {
       <div className="multi-profile-title">
         <Trans i18nKey="friend.birthday.friends" />
       </div>
-      <div>
-        <div>지난 생일</div>
+      <div style={{ marginLeft: '10px', padding: '10px' }}>
+        <div style={{ fontWeight: 'bold' }}>
+          <Trans i18nKey="friend.birthday.before" />
+        </div>
         {renderGroups(birthdayGroupsBefore)}
-        <div>오늘 생일</div>
+        <div style={{ fontWeight: 'bold' }}>
+          <Trans i18nKey="friend.birthday.current" />
+        </div>
         {renderGroups(birthdayGroupsToday)}
-        <div>다가오는 생일</div>
+        <div style={{ fontWeight: 'bold' }}>
+          <Trans i18nKey="friend.birthday.after" />
+        </div>
         {renderGroups(birthdayGroupsAfter)}
       </div>
     </div>

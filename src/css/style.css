@@ -7,6 +7,7 @@
   --main-underline-color: #f3eae8;
   --main-white-color: white;
   --main-friend-right-tag-hover-color: #e5e5e5;
+  --main-border-color: #dce1d6;
   --main-profile-no-image-bg-color: #add8e6;
   --main-draggable-modal-bg-color: #d2d2d2;
   --main-profile-hover-color: #f7f3f5;
@@ -217,7 +218,8 @@ a.dropdown-item {
 }
 
 .btn-close {
-  padding: 6px !important;
+  padding: 10px !important;
+  font-size: 10px;
 }
 
 .profile-icon {
@@ -462,13 +464,21 @@ a.dropdown-item {
 }
 /* MyProfile */
 
-.my-profile-intro {
-  width: 50px;
-  height: 50px;
+.main-profile {
+  width: 70px;
+  height: 70px;
   border-radius: 20px;
+  border: 1px solid var(--main-border-color);
 }
 
-.my-profile-intro:hover {
+.profile-intro {
+  width: 45px;
+  height: 45px;
+  border-radius: 15px;
+  border: 1px solid var(--main-border-color);
+}
+
+.profile-intro:hover {
   cursor: pointer;
 }
 
@@ -502,13 +512,17 @@ a.dropdown-item {
   background-color: #add8e6;
 }
 
+.profile-screen {
+  background-color: snow;
+}
+
 .multi-profile-screen {
   background-color: snow;
   height: 100%;
 }
 
 .multi-profile-title {
-  margin-left: 30px;
+  margin-left: 20px;
   font-size: 16px;
   color: darkgrey;
 }
@@ -676,6 +690,22 @@ a.dropdown-item {
 .birthday-box:hover {
   cursor: pointer;
   background-color: var(--main-profile-hover-color);
+}
+
+.birthday-friend-box {
+  cursor: pointer;
+}
+
+.birthday-friend-box:hover {
+  background-color: var(--main-profile-hover-color);
+}
+
+.give-gift {
+  background-color: var(--main-btn-color);
+  border: 1px solid var(--main-border-color) !important;
+  font-size: 11px;
+  border-radius: 10px;
+  padding: 5px;
 }
 
 .profile-box {
