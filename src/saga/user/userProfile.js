@@ -1,13 +1,18 @@
-import { all } from 'axios';
-import { SET_USER_PROFILE_REQUEST } from 'reducers/user/userProfile';
-import { fork, put, takeLatest } from 'redux-saga/effects';
+import { createRandomProfile } from 'component/utility/FakeUser';
+import {
+  SET_USER_PROFILE_FAILURE,
+  SET_USER_PROFILE_SUCCESS,
+} from 'reducers/user/userProfile';
+import { all, fork, put, takeLatest } from 'redux-saga/effects';
 
 function* setProfileAction() {
+  // -- NEED MORE WORK!!! --
   try {
-    console.log('getProfileAction test....');
-    yield put(SET_USER_PROFILE_REQUEST());
+    const user = createRandomProfile();
+    console.log('user :: ', user);
+    yield put(SET_USER_PROFILE_SUCCESS(user));
   } catch (error) {
-    console.log('error occur! ::', error);
+    yield put(SET_USER_PROFILE_FAILURE());
   }
 }
 

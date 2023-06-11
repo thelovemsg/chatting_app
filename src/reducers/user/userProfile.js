@@ -11,11 +11,12 @@ export const userProfileSlice = createSlice({
       name: '홍길동', // when user login, id and profile will be served by server at first.
       description: '설명란 설명란 설명란 장영란',
       mainAvatar: null,
-      avatars: [],
-    }, // might be object
+      avatars: [], // might be object
+    },
   },
   reducers: {
     SET_USER_PROFILE_REQUEST: (state) => {
+      console.log('SET_USER_PROFILE_REQUEST in reducer...');
       state.loading = true;
     },
     SET_USER_PROFILE_SUCCESS: (state, action) => {
@@ -23,8 +24,11 @@ export const userProfileSlice = createSlice({
       state.success = true;
       state.info = {
         id: action.payload.id,
-        name: action.payload.nickname,
+        name: action.payload.name,
+        uploadDate: action.payload.uploadDate,
         description: action.payload.description,
+        mainAvatar: action.payload.mainAvatar, // action.payload.mainAvatar
+        avatars: action.payload.avatars, // action.payload.avatars;
       };
     },
     SET_USER_PROFILE_FAILURE: (state, action) => {

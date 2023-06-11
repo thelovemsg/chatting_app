@@ -30,3 +30,19 @@ export function createRandomChatMessage(senderId, receiverId) {
 export function createRandomUuid() {
   return faker.datatype.uuid();
 }
+
+/**
+ * 이거 ... 테스트로 avatar에도 순서가 있어야 하는데...
+ * 객체 안에 배열로 물어서 들어가는게 맞는거 같음
+ * @returns
+ */
+export function createRandomProfile() {
+  return {
+    id: faker.datatype.uuid(),
+    name: faker.internet.userName(),
+    uploadDate: new Date(),
+    mainAvatar: faker.image.avatar(),
+    description: faker.lorem.sentence(),
+    avatars: [],
+  };
+}

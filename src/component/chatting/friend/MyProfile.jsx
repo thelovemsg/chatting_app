@@ -4,22 +4,31 @@ import {
   faXmark,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import {
   StyledChattingIntroLabel,
   StyledChattingItem,
 } from 'styled-components/StyledForm';
 import { createRandomUser } from 'component/utility/FakeUser';
 import { Trans } from 'react-i18next';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CommonProfileModalContent from 'component/utilComponent/CommonProfileModalContent';
 import ProfileModal from 'component/utilComponent/ProfileModal';
+import { SET_USER_PROFILE_REQUEST } from 'reducers/user/userProfile';
 
 const MyProfile = () => {
   const fakeUser = useMemo(() => createRandomUser(), []);
+
   const { profile } = useSelector((state) => state.user);
   const [showModal, setShowModal] = useState(false);
   const [showSearchbox, setShowSearchBox] = useState(false);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log('SET_USER_PROFILE_REQUEST work! in my profile');
+    dispatch(SET_USER_PROFILE_REQUEST());
+  }, [dispatch]);
 
   const handleSearchbox = () => {
     setShowSearchBox(!showSearchbox);

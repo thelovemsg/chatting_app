@@ -2,10 +2,9 @@ import { createRandomUser } from 'component/utility/FakeUser';
 import { GET_USER_BIRTHDAY_FRIENDS_SUCCESS } from 'reducers/user/userBirthdayFriends';
 import { GET_USER_FRIENDS_FAILURE } from 'reducers/user/userFriends';
 import { all, fork, put, takeLatest } from 'redux-saga/effects';
-// import { getFriends } from '../../api/member/user/user';
 
 function* getBirthdayFriendsAction(action) {
-  console.log('getFriendsAction :: ', action);
+  console.log('action in getBirthdayFriendsAction :: ', action);
   try {
     const fakeUsers = [];
 
