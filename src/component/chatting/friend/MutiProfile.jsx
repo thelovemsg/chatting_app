@@ -15,11 +15,6 @@ import {
 } from '../../../styled-components/StyledForm';
 
 const MutiProfile = () => {
-  // const fakeUsers = useMemo(
-  //   () => Array.from({ length: 2 }, () => createRandomUser()),
-  //   []
-  // );
-
   const [showModal, setShowModal] = useState(false);
   const [showNewForm, setShowNewForm] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
@@ -57,10 +52,10 @@ const MutiProfile = () => {
           <StyledAccordionBodyMultiProfile>
             {list.map((user, index) => (
               <button
-                key={`${user?.userId}`}
+                key={`${user?.id}`}
                 className="avatar-button"
                 onClick={() => handleAvatarClick(user)}
-                aria-label={`Friend ${index + 1} ${user?.userId}`}
+                aria-label={`Friend ${index + 1} ${user?.id}`}
                 style={{
                   border: 'none',
                   background: 'transparent',

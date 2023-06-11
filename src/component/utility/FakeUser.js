@@ -26,3 +26,7 @@ export function createRandomChatMessage(senderId, receiverId) {
     registeredAt: faker.date.past(),
   };
 }
+
+export function createRandomUuid() {
+  return faker.datatype.uuid();
+}

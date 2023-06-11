@@ -29,6 +29,7 @@ const CommonProfileModalContent = ({
   showProfileRotate,
   multiProfileOption,
 }) => {
+  console.log(':: userInfo :: ', userInfo);
   const { success } = useSelector((state) => state.user.multiProfile);
 
   useEffect(() => {

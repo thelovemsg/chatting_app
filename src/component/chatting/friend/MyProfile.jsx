@@ -1,6 +1,7 @@
 import {
   faMagnifyingGlass,
   faUserGroup,
+  faXmark,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState, useMemo } from 'react';
@@ -18,6 +19,15 @@ const MyProfile = () => {
   const fakeUser = useMemo(() => createRandomUser(), []);
   const { profile } = useSelector((state) => state.user);
   const [showModal, setShowModal] = useState(false);
+  const [showSearchbox, setShowSearchBox] = useState(false);
+
+  const handleSearchbox = () => {
+    setShowSearchBox(!showSearchbox);
+  };
+
+  const handleSearchBoxClose = () => {
+    setShowSearchBox(false);
+  };
 
   const handleAvatarClick = () => {
     setShowModal(true);
@@ -30,29 +40,61 @@ const MyProfile = () => {
   return (
     <div className="underline">
       <StyledChattingIntroLabel>
-        <div style={{ float: 'left' }}>
+        <div style={{ fontSize: '0.8em', fontWeight: 'bold' }}>
           <Trans i18nKey="friend.friend" />
         </div>
-        <div style={{ marginRight: '10px' }}>
-          <FontAwesomeIcon icon={faMagnifyingGlass} className="custom-mr-30" />
-          <FontAwesomeIcon icon={faUserGroup} />
+        <div className="custom-mr-10 flex-align-items-center">
+          <FontAwesomeIcon
+            className="cursor-pointer custom-mr-30 w-20 h-30"
+            icon={faMagnifyingGlass}
+            onClick={() => {
+              handleSearchbox();
+            }}
+          />
+          <FontAwesomeIcon
+            icon={faUserGroup}
+            style={{ width: '25px', height: '25px' }}
+            onClick={() => {
+              alert('friend add click!!');
+            }}
+          />
         </div>
       </StyledChattingIntroLabel>
-      <StyledChattingItem>
-        <img
-          src={fakeUser.avatar}
-          alt="First slide"
-          className="main-profile"
-          onClick={() => handleAvatarClick()}
-          aria-hidden="true"
-        />
-        <div className="custom-ml-30">
-          <div className="profile-label">{profile.info?.name}</div>
-          <div className="profile-desc  ription custom-mt-5">
-            {profile.info?.description}
+      <div>
+        {showSearchbox && (
+          <div style={{ padding: '10px', width: '100%' }}>
+            <FontAwesomeIcon
+              icon={faMagnifyingGlass}
+              className="profile-search-icon"
+            />
+            <input className="profile-search" type="text" />
+            <FontAwesomeIcon
+              icon={faXmark}
+              className="custom-ml-10 w-20 h-20 cursor-pointer"
+              onClick={() => {
+                handleSearchBoxClose();
+              }}
+            />
           </div>
-        </div>
-      </StyledChattingItem>
+        )}
+        <StyledChattingItem>
+          <img
+            src={fakeUser.avatar}
+            alt="First slide"
+            className="main-profile"
+            onClick={() => handleAvatarClick()}
+            aria-hidden="true"
+          />
+          <div>
+            <div className="profile-label custom-ml-10">
+              {profile.info?.name}
+            </div>
+            <div className="profile-description">
+              {profile.info?.description}
+            </div>
+          </div>
+        </StyledChattingItem>
+      </div>
       {showModal && (
         <ProfileModal
           show={showModal}

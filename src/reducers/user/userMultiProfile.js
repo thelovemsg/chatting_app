@@ -48,10 +48,11 @@ export const userMultiProfileSlice = createSlice({
       state.loading = true;
     },
     REMOVE_USER_MULTI_PROFILE_INFO_SUCCESS: (state, action) => {
+      console.log('when we remove multi profile... :: ', action.payload);
       state.loading = false;
       state.success = true;
       state.list = state.list.filter(
-        (profile) => profile.userId !== action.payload.userId // remove profile from the list
+        (profile) => profile.id !== action.payload.id // remove profile from the list
       );
     },
     REMOVE_USER_MULTI_PROFILE_INFO_FAILURE: (state, action) => {

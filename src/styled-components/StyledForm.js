@@ -136,11 +136,12 @@ export const StyledChattingIntroLabel = styled('div')`
 `;
 
 export const StyledChattingItem = styled('div')`
-  padding: 20px;
+  padding: 10px;
+  margin-left: 10px;
   display: flex;
   align-items: center;
   &:hover {
-    background-color: var(--main-friend-right-tag-hover-color);
+    background-color: var(--main-profile-hover-color);
   }
 `;
 

@@ -1,9 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
-import { useState, useRef, useMemo, useEffect } from 'react';
-import { createRandomUser } from 'component/utility/FakeUser';
+import { useState, useRef, useEffect } from 'react';
+import { createRandomUuid } from 'component/utility/FakeUser';
 import { faCamera, faUser } from '@fortawesome/free-solid-svg-icons';
-import { Trans } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   ADD_USER_MULTI_PROFILE_INFO_REQUEST,
@@ -12,17 +12,13 @@ import {
 
 const NewMultiProfileModalContent = ({ handleCloseModal }) => {
   // const { id } = useSelector((state) => state.user);
+  const { t } = useTranslation();
   const { success } = useSelector((state) => state.user.multiProfile);
   const [nameInput, setNameInput] = useState('');
   const [descriptionInput, setDescriptionInput] = useState('');
   const [uploadedImage, setUploadedImage] = useState(null);
 
   const dispatch = useDispatch();
-
-  const fakeUsers = useMemo(
-    () => Array.from({ length: 1 }, () => createRandomUser()),
-    []
-  );
 
   useEffect(() => {
     if (success) {
@@ -53,11 +49,20 @@ const NewMultiProfileModalContent = ({ handleCloseModal }) => {
   };
 
   const addMultiProfile = () => {
+    if (nameInput.trim() === '' || nameInput === null) {
+      alert('Please enter a name for the profile');
+      return;
+    }
+
+    if (descriptionInput.trim() === '' || descriptionInput === null) {
+      alert('Please enter a description for the profile');
+      return;
+    }
     const data = {
-      name: nameInput,
-      description: descriptionInput,
+      name: nameInput.trim(),
+      description: descriptionInput.trim(),
       avatar: uploadedImage,
-      userId: fakeUsers[0].userId,
+      id: createRandomUuid(),
     };
     dispatch(ADD_USER_MULTI_PROFILE_INFO_REQUEST(data));
   };
@@ -121,7 +126,7 @@ const NewMultiProfileModalContent = ({ handleCloseModal }) => {
                 maxLength="20"
                 value={nameInput}
                 onChange={handleNameInput}
-                placeholder="이름"
+                placeholder={t('default.name')}
               />
               <div className="profile-modal-input-counter">{`${nameInput.length}/20`}</div>
             </div>
@@ -134,7 +139,7 @@ const NewMultiProfileModalContent = ({ handleCloseModal }) => {
                 maxLength="20"
                 value={descriptionInput}
                 onChange={handleDescriptionInput}
-                placeholder="상태메시지"
+                placeholder={t('default.description')}
               />
               <div className="profile-modal-input-counter">{`${descriptionInput.length}/20`}</div>
             </div>
