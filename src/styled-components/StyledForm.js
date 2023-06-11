@@ -193,12 +193,11 @@ export const StyledChattingScreenRight = styled('div')`
 `;
 
 export const StyledAccordionBody = styled(Accordion.Body)`
-  padding: 5px 0px 5px 20px !important;
-  margin-left: 10px;
+  padding: 5px 0px 5px 10px !important;
 `;
 
 export const StyledAccordionBodyMultiProfile = styled(Accordion.Body)`
-  padding: 5px 0px 5px 20px !important;
+  padding: 5px 0px 5px 15px !important;
   margin-left: 10px;
   display: flex;
   align-items: center;

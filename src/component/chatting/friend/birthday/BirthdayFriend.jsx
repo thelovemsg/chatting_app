@@ -53,17 +53,7 @@ const BirthdayFriend = () => {
           <StyledAccordionBody>
             <div className="birthday-box">
               {currBirthdayFriends.map((friend, index) => (
-                <div
-                  key={friend.id}
-                  className="birthday-friend-box"
-                  style={{
-                    display: 'flex',
-                    padding: '10px',
-                    paddingLeft: '0px',
-                    alignItems: 'center',
-                    width: '100%',
-                  }}
-                >
+                <div key={friend.id} className="birthday-friend-box">
                   <img
                     src={friend.avatar}
                     alt={`Friend ${index + 1}`}
@@ -71,15 +61,7 @@ const BirthdayFriend = () => {
                     className="profile-intro"
                     aria-hidden="true"
                   />
-                  <div
-                    className="custom-ml-10"
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      width: '100%',
-                      justifyContent: 'space-between',
-                    }}
-                  >
+                  <div className="custom-ml-10 custom-between">
                     <div className="profile-label">
                       <div>{returnMMDD()}</div>
                       <div>{friend.name}</div>
