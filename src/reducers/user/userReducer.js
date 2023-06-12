@@ -9,7 +9,7 @@ import { userUpdateFriendsReducer } from './userUpdatedFriends';
 const userReducer = combineReducers({
   profile: userProfileReducer,
   multiProfile: userMultiProfileReducer,
-  updateFriends: userUpdateFriendsReducer,
+  updateFriend: userUpdateFriendsReducer,
   birthday: userBirthdayFriendsReducer,
   bookmark: userBookmarkFriendsReducer,
   friends: userFriendsReducer,

@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export const userUpdateFriendsSlice = createSlice({
-  name: 'user/updateFriends',
+  name: 'user/updateFriend',
   initialState: {
     loading: false,
     error: null,
     success: false,
+    length: 0,
     list: [],
   },
   reducers: {
@@ -15,7 +16,7 @@ export const userUpdateFriendsSlice = createSlice({
     GET_USER_UPDATE_FRIENDS_SUCCESS: (state, action) => {
       state.loading = false;
       state.success = true;
-      state.list = action.payload.updatedFriends;
+      state.list = action.payload;
     },
     GET_USER_UPDATE_FRIENDS_FAILURE: (state, action) => {
       state.loading = false;

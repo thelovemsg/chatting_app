@@ -1,14 +1,14 @@
-import { all } from 'axios';
+import { createRandomUser } from 'component/utility/FakeUser';
 import {
   GET_USER_UPDATE_FRIENDS_FAILURE,
   GET_USER_UPDATE_FRIENDS_SUCCESS,
 } from 'reducers/user/userUpdatedFriends';
-import { fork, put, takeLatest } from 'redux-saga/effects';
+import { all, fork, put, takeLatest } from 'redux-saga/effects';
 
 function* getUserUpdateFriendsAction() {
   try {
-    console.log('getUserUpdateFriendsAction test....');
-    yield put(GET_USER_UPDATE_FRIENDS_SUCCESS());
+    const fakeUsers = Array.from({ length: 20 }, () => createRandomUser());
+    yield put(GET_USER_UPDATE_FRIENDS_SUCCESS(fakeUsers));
   } catch (error) {
     yield put(GET_USER_UPDATE_FRIENDS_FAILURE());
     console.log('error occur! ::', error);
@@ -17,7 +17,7 @@ function* getUserUpdateFriendsAction() {
 
 function* watchUpdateFriends() {
   yield takeLatest(
-    'user/friends/GET_USER_UPDATE_FRIENDS_REQUEST',
+    'user/updateFriend/GET_USER_UPDATE_FRIENDS_REQUEST',
     getUserUpdateFriendsAction
   );
 }

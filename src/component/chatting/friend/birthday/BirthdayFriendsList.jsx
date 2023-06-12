@@ -61,8 +61,8 @@ const BirthdayFriendsList = ({ handleCloseModal }) => {
             className="birthday-friend-box"
             style={{
               display: 'flex',
-              padding: '10px',
-              paddingLeft: '0px',
+              padding: '5px',
+              paddingLeft: '10px',
               alignItems: 'center',
             }}
           >
@@ -97,6 +97,10 @@ const BirthdayFriendsList = ({ handleCloseModal }) => {
       </div>
     ));
 
+  const groupBeforeResult = renderGroups(birthdayGroupsBefore);
+  const groupTodayResult = renderGroups(birthdayGroupsToday);
+  const groupAfterResult = renderGroups(birthdayGroupsAfter);
+
   return (
     <div className="profile-screen">
       <div className="modal-header">
@@ -111,18 +115,33 @@ const BirthdayFriendsList = ({ handleCloseModal }) => {
         <Trans i18nKey="friend.birthday.friends" />
       </div>
       <div style={{ marginLeft: '10px', padding: '10px' }}>
-        <div style={{ fontWeight: 'bold' }}>
-          <Trans i18nKey="friend.birthday.before" />
-        </div>
-        {renderGroups(birthdayGroupsBefore)}
-        <div style={{ fontWeight: 'bold' }}>
-          <Trans i18nKey="friend.birthday.current" />
-        </div>
-        {renderGroups(birthdayGroupsToday)}
-        <div style={{ fontWeight: 'bold' }}>
-          <Trans i18nKey="friend.birthday.after" />
-        </div>
-        {renderGroups(birthdayGroupsAfter)}
+        {groupBeforeResult.length !== 0 && (
+          <>
+            <div style={{ fontWeight: 'bold' }}>
+              <Trans i18nKey="friend.birthday.before" />
+            </div>
+            {groupBeforeResult}
+            <div className="underline mb-10" />
+          </>
+        )}
+        {groupTodayResult.length !== 0 && (
+          <>
+            <div style={{ fontWeight: 'bold' }}>
+              <Trans i18nKey="friend.birthday.current" />
+            </div>
+            {groupTodayResult}
+            <div className="underline mb-10" />
+          </>
+        )}
+
+        {groupAfterResult.length !== 0 && (
+          <>
+            <div style={{ fontWeight: 'bold' }}>
+              <Trans i18nKey="friend.birthday.after" />
+            </div>
+            {groupAfterResult}
+          </>
+        )}
       </div>
     </div>
   );

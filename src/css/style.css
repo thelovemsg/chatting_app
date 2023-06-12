@@ -27,6 +27,10 @@ a {
   margin-left: 10px;
 }
 
+.mb-10 {
+  margin-bottom: 10px;
+}
+
 .mr-10 {
   margin-right: 10px;
 }
@@ -743,7 +747,11 @@ a.dropdown-item {
   display: flex;
   align-items: center;
   width: 100%;
-  margin-left: 10px;
+  margin-left: 0px;
+}
+
+.birthday-friend-box:hover {
+  background-color: var(--main-profile-hover-color);
 }
 
 .give-gift {
