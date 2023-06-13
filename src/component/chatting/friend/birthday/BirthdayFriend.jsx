@@ -51,35 +51,39 @@ const BirthdayFriend = () => {
             <Trans i18nKey="friend.birthday.title" />
           </Accordion.Header>
           <StyledAccordionBody>
-            <div className="birthday-box">
-              {currBirthdayFriends.map((friend, index) => (
-                <div key={friend.id} className="birthday-friend-box">
-                  <img
-                    src={friend.avatar}
-                    alt={`Friend ${index + 1}`}
-                    onClick={() => handleUserClick(friend)}
-                    className="profile-intro"
-                    aria-hidden="true"
-                  />
-                  <div className="custom-ml-10 custom-between">
-                    <div className="profile-label">
-                      <div>{returnMMDD()}</div>
-                      <div>{friend.name}</div>
-                    </div>
-                    <div>
-                      <button
-                        type="button"
-                        className="give-gift"
-                        onClick={() => alert('나중에 작업할거에요 ㅎ')}
-                      >
-                        <Trans i18nKey="friend.birthday.giveGift" />
-                      </button>
+            {currBirthdayFriends.length !== 0 && (
+              <div className="profile-box">
+                {currBirthdayFriends.map((friend, index) => (
+                  <div key={friend.id} className="profile-friend-box">
+                    <img
+                      src={friend.avatar}
+                      alt={`Friend ${index + 1}`}
+                      onClick={() => handleUserClick(friend)}
+                      className="profile-intro"
+                      aria-hidden="true"
+                    />
+                    <div className="custom-ml-10 custom-between">
+                      <div>
+                        <div className="profile-label">{returnMMDD()}</div>
+                        <div className="profile-descreiption">
+                          {friend.name}
+                        </div>
+                      </div>
+                      <div>
+                        <button
+                          type="button"
+                          className="give-gift"
+                          onClick={() => alert('나중에 작업할거에요 ㅎ')}
+                        >
+                          <Trans i18nKey="friend.birthday.giveGift" />
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
-            <div className="birthday-box">
+                ))}
+              </div>
+            )}
+            <div className="birthday-profile-box">
               <FontAwesomeIcon
                 icon={faCakeCandles}
                 onClick={() => handleBirthIconClick()}

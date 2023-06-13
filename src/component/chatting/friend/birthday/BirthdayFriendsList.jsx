@@ -58,7 +58,7 @@ const BirthdayFriendsList = ({ handleCloseModal }) => {
         {friends.map((friend, index) => (
           <div
             key={friend.id}
-            className="birthday-friend-box"
+            className="profile-friend-box"
             style={{
               display: 'flex',
               padding: '5px',

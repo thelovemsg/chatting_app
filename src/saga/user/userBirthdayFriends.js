@@ -8,9 +8,9 @@ function* getBirthdayFriendsAction(action) {
   try {
     const fakeUsers = [];
 
-    fakeUsers.push(createRandomUser(new Date('2023-06-05')));
-    fakeUsers.push(createRandomUser(new Date('2023-06-05')));
-    fakeUsers.push(createRandomUser(new Date('2023-06-06')));
+    fakeUsers.push(createRandomUser(new Date('2023-06-14')));
+    fakeUsers.push(createRandomUser(new Date('2023-06-14')));
+    fakeUsers.push(createRandomUser(new Date('2023-06-14')));
 
     fakeUsers.push(createRandomUser(new Date('2023-06-10')));
 

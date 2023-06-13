@@ -4,14 +4,19 @@ import ProfileModal from 'component/utilComponent/ProfileModal';
 import CommonProfileModalContent from 'component/utilComponent/CommonProfileModalContent';
 import { useState, useEffect } from 'react';
 import { GET_USER_UPDATE_FRIENDS_REQUEST } from 'reducers/user/userUpdatedFriends';
-import { StyledAccordionBody } from '../../../styled-components/StyledForm';
+import { StyledAccordionBody } from 'styled-components/StyledForm';
 
 const UpdatedFriend = () => {
   const dispatch = useDispatch();
-  const { list } = useSelector((state) => state.user.updateFriend);
-  console.log('list :: ', list);
+  const { list: updateFriends } = useSelector(
+    (state) => state.user.updateFriend
+  );
 
   const [selectedUser, setSelectedUser] = useState(null);
+
+  const handleUserClick = (user) => {
+    setSelectedUser(user);
+  };
 
   const handleCloseUserModal = () => {
     setSelectedUser(null);
@@ -27,7 +32,29 @@ const UpdatedFriend = () => {
         <Accordion.Item eventKey="0">
           <Accordion.Header>UpdatedFriend</Accordion.Header>
           <StyledAccordionBody>
-            <div>UpdatedFriend test...</div>
+            {updateFriends.length !== 0 && (
+              <>
+                {updateFriends.map((friend, index) => (
+                  <div key={friend.id} className="profile-friend-box">
+                    <img
+                      src={friend.avatar}
+                      alt={`Friend ${index + 1}`}
+                      onClick={() => handleUserClick(friend)}
+                      className="profile-intro"
+                      aria-hidden="true"
+                    />
+                    <div className="custom-ml-10 custom-between">
+                      <div>
+                        <div className="profile-label">{friend.name}</div>
+                        <div className="profile-description custom-ml-0">
+                          {friend.description}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </>
+            )}
           </StyledAccordionBody>
         </Accordion.Item>
       </Accordion>

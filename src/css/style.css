@@ -690,6 +690,10 @@ a.dropdown-item {
   margin-right: 30px;
 }
 
+.custom-ml-0 {
+  margin-left: 0px !important;
+}
+
 .custom-ml-10 {
   margin-left: 10px;
 }
@@ -722,35 +726,35 @@ a.dropdown-item {
 }
 
 .birthday-icon {
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   padding: 10px;
-  margin-left: 10px;
+  margin-left: 13px;
   background-color: #f18ecd;
-  border-radius: 16px;
+  border-radius: 20px;
   margin-right: 10px;
 }
 
-.birthday-box {
+.birthday-profile-box {
   display: flex;
   align-items: center;
+}
+
+.profile-box {
+  padding: 3px;
+}
+
+.profile-friend-box {
   padding: 5px;
-}
-
-.birthday-box:hover {
-  cursor: pointer;
-  background-color: var(--main-profile-hover-color);
-}
-
-.birthday-friend-box {
   cursor: pointer;
   display: flex;
   align-items: center;
   width: 100%;
   margin-left: 0px;
+  padding-left: 10px;
 }
 
-.birthday-friend-box:hover {
+.profile-friend-box:hover {
   background-color: var(--main-profile-hover-color);
 }
 
@@ -760,11 +764,6 @@ a.dropdown-item {
   font-size: 11px;
   border-radius: 10px;
   padding: 5px;
-}
-
-.profile-box {
-  display: flex;
-  align-items: center;
 }
 
 .profile-label {
@@ -814,6 +813,16 @@ a.dropdown-item {
 .profile-btn-comment {
   margin-top: 5px;
   font-size: 15px;
+}
+
+.profile-friend-box {
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-left: 0px;
+  padding-left: 10px;
 }
 
 /* accordion */

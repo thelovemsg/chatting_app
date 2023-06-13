@@ -9,6 +9,7 @@ export function createRandomUser(inputDate) {
     avatar: faker.image.avatar(),
     password: faker.internet.password(),
     birthdate: inputDate ? new Date(inputDate) : faker.date.birthdate(),
+    description: faker.lorem.sentence(),
     registeredAt: faker.date.past(),
   };
 }
