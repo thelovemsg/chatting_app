@@ -42,8 +42,8 @@ export function createRandomProfile() {
     id: faker.datatype.uuid(),
     name: faker.internet.userName(),
     uploadDate: new Date(),
-    mainAvatar: faker.image.avatar(),
     description: faker.lorem.sentence(),
+    avatar: faker.image.avatar(),
     avatars: [],
   };
 }

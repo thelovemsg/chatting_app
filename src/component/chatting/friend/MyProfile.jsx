@@ -1,15 +1,15 @@
 import {
   faMagnifyingGlass,
+  faUser,
   faUserGroup,
   faXmark,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import {
   StyledChattingIntroLabel,
   StyledChattingItem,
 } from 'styled-components/StyledForm';
-import { createRandomUser } from 'component/utility/FakeUser';
 import { Trans } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import CommonProfileModalContent from 'component/utilComponent/CommonProfileModalContent';
@@ -17,8 +17,6 @@ import ProfileModal from 'component/utilComponent/ProfileModal';
 import { SET_USER_PROFILE_REQUEST } from 'reducers/user/userProfile';
 
 const MyProfile = () => {
-  const fakeUser = useMemo(() => createRandomUser(), []);
-
   const { profile } = useSelector((state) => state.user);
   const [showModal, setShowModal] = useState(false);
   const [showSearchbox, setShowSearchBox] = useState(false);
@@ -26,9 +24,8 @@ const MyProfile = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('SET_USER_PROFILE_REQUEST work! in my profile');
     dispatch(SET_USER_PROFILE_REQUEST());
-  }, [dispatch]);
+  }, []);
 
   const handleSearchbox = () => {
     setShowSearchBox(!showSearchbox);
@@ -49,8 +46,8 @@ const MyProfile = () => {
   return (
     <div className="underline">
       <StyledChattingIntroLabel>
-        <div style={{ fontSize: '0.8em', fontWeight: 'bold' }}>
-          <Trans i18nKey="friend.friend" />
+        <div className="main-profile-title">
+          <Trans i18nKey="friend.title" />
         </div>
         <div className="custom-mr-10 flex-align-items-center">
           <FontAwesomeIcon
@@ -87,13 +84,21 @@ const MyProfile = () => {
           </div>
         )}
         <StyledChattingItem>
-          <img
-            src={fakeUser.avatar}
-            alt="First slide"
-            className="main-profile"
-            onClick={() => handleAvatarClick()}
-            aria-hidden="true"
-          />
+          {profile.info.avatar ? (
+            <img
+              src={profile.info?.avatar}
+              alt="First slide"
+              className="main-profile"
+              onClick={() => handleAvatarClick()}
+              aria-hidden="true"
+            />
+          ) : (
+            <FontAwesomeIcon
+              icon={faUser}
+              className="profile-no-image"
+              onClick={() => handleAvatarClick()}
+            />
+          )}
           <div>
             <div className="profile-label custom-ml-10">
               {profile.info?.name}

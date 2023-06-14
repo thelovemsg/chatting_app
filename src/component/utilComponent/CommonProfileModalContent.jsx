@@ -21,7 +21,6 @@ import profileModalHandle from './func/ProfileModalHandle';
 const CommonProfileModalContent = ({
   handleCloseModal,
   userInfo,
-  stateContent,
   showImageIcon,
   showBookmark,
   showSettingIcon,
@@ -29,7 +28,6 @@ const CommonProfileModalContent = ({
   showProfileRotate,
   multiProfileOption,
 }) => {
-  console.log(':: userInfo :: ', userInfo);
   const { success } = useSelector((state) => state.user.multiProfile);
 
   useEffect(() => {
@@ -118,7 +116,7 @@ const CommonProfileModalContent = ({
           )}
         </div>
         <div className="common-profile-name">{userInfo.name}</div>
-        <div className="common-profile-description">{stateContent}</div>
+        <div className="common-profile-description">{userInfo.description}</div>
       </div>
       <div className="modal-footer" style={{ height: '18%' }}>
         {multiProfileOption ? (
@@ -179,7 +177,6 @@ CommonProfileModalContent.propTypes = {
     description: PropTypes.string,
     avatar: imageUrlPropType,
   }).isRequired,
-  stateContent: PropTypes.string.isRequired,
   showImageIcon: PropTypes.bool,
   showBookmark: PropTypes.bool,
   showDeleteIcon: PropTypes.bool,

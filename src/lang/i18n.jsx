@@ -85,6 +85,9 @@ i18n
               after: 'Comisng birthday',
               giveGift: 'Give gift!',
             },
+            update: {
+              title: 'Updated friends',
+            },
           },
           error: {
             login_check_error: 'Please login.',
@@ -156,7 +159,7 @@ i18n
             },
           },
           friend: {
-            friend: '친구',
+            title: '친구',
             multiProfile: {
               title: '멀티 프로필 만들기',
               addGuide:
@@ -170,6 +173,9 @@ i18n
               current: '현재 생일',
               after: '다가오는 생일',
               giveGift: '선물하기',
+            },
+            update: {
+              title: '업데이트한 친구',
             },
           },
           error: {

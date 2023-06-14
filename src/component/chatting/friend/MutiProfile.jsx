@@ -44,7 +44,7 @@ const MutiProfile = () => {
 
   return (
     <>
-      <Accordion defaultActiveKey="0" className="custom-accordion underline ">
+      <Accordion defaultActiveKey="0" className="custom-accordion underline">
         <Accordion.Item eventKey="0">
           <Accordion.Header>
             <Trans i18nKey="friend.multiProfile.title" />

@@ -1,16 +1,18 @@
+import { createRandomUser } from 'component/utility/FakeUser';
 import {
   GET_USER_FRIENDS_FAILURE,
+  GET_USER_FRIENDS_SUCCESS,
   //   GET_USER_FRIENDS_SUCCESS,
 } from 'reducers/user/userFriends';
 import { all, fork, put, takeLatest } from 'redux-saga/effects';
 // import { getFriends } from '../../api/member/user/user';
 
-function* getFriendsAction(action) {
+function* getFriendsAction() {
   try {
-    console.log('getFriendsAction :: ', action);
     // const result = yield call(getFriends, action.payload);
     // console.log('getFriendsAction :: ', result);
-    // yield put(GET_USER_FRIENDS_SUCCESS(result.data));
+    const fakeUsers = Array.from({ length: 23 }, () => createRandomUser());
+    yield put(GET_USER_FRIENDS_SUCCESS(fakeUsers));
   } catch (error) {
     yield put(
       GET_USER_FRIENDS_FAILURE({ code: error.code, message: error.message })

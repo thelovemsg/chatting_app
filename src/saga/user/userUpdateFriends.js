@@ -7,7 +7,7 @@ import { all, fork, put, takeLatest } from 'redux-saga/effects';
 
 function* getUserUpdateFriendsAction() {
   try {
-    const fakeUsers = Array.from({ length: 20 }, () => createRandomUser());
+    const fakeUsers = Array.from({ length: 7 }, () => createRandomUser());
     yield put(GET_USER_UPDATE_FRIENDS_SUCCESS(fakeUsers));
   } catch (error) {
     yield put(GET_USER_UPDATE_FRIENDS_FAILURE());

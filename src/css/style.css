@@ -489,6 +489,12 @@ a.dropdown-item {
   height: 60px;
   border-radius: 20px;
   border: 1px solid var(--main-border-color);
+  cursor: pointer;
+}
+
+.main-profile-title {
+  font-size: 0.8em;
+  font-weight: bold;
 }
 
 .profile-intro {
@@ -496,6 +502,11 @@ a.dropdown-item {
   height: 47px;
   border-radius: 15px;
   border: 1px solid var(--main-border-color);
+}
+
+.profile-title {
+  font-size: 0.7em;
+  font-weight: bold;
 }
 
 .profile-intro:hover {
@@ -522,6 +533,15 @@ a.dropdown-item {
 
 .profile-search:focus {
   background-color: white;
+}
+
+.profile-no-image {
+  padding: 13px;
+  width: 30px;
+  height: 30px;
+  border-radius: 23px;
+  border: 1px solid #c0bfbf;
+  background-color: #add8e6;
 }
 
 .avatar-button {
@@ -745,7 +765,7 @@ a.dropdown-item {
 }
 
 .profile-friend-box {
-  padding: 5px;
+  padding: 8px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -815,16 +835,6 @@ a.dropdown-item {
   font-size: 15px;
 }
 
-.profile-friend-box {
-  padding: 5px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  width: 100%;
-  margin-left: 0px;
-  padding-left: 10px;
-}
-
 /* accordion */
 
 .custom-accordion {
@@ -836,6 +846,10 @@ a.dropdown-item {
   background-color: #f8f9fa; /* Set your desired background color here */
   outline: none !important;
   border-bottom: none !important;
+}
+
+.accordion-header > button {
+  font-size: 0.35em;
 }
 
 .custom-accordion .accordion-button {

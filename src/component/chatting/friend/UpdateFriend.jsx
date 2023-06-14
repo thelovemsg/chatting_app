@@ -5,6 +5,7 @@ import CommonProfileModalContent from 'component/utilComponent/CommonProfileModa
 import { useState, useEffect } from 'react';
 import { GET_USER_UPDATE_FRIENDS_REQUEST } from 'reducers/user/userUpdatedFriends';
 import { StyledAccordionBody } from 'styled-components/StyledForm';
+import { Trans } from 'react-i18next';
 
 const UpdatedFriend = () => {
   const dispatch = useDispatch();
@@ -24,13 +25,15 @@ const UpdatedFriend = () => {
 
   useEffect(() => {
     dispatch(GET_USER_UPDATE_FRIENDS_REQUEST());
-  }, [dispatch]);
+  }, []);
 
   return (
     <>
       <Accordion defaultActiveKey="0" className="custom-accordion underline">
         <Accordion.Item eventKey="0">
-          <Accordion.Header>UpdatedFriend</Accordion.Header>
+          <Accordion.Header>
+            <Trans i18nKey="friend.update.title" />
+          </Accordion.Header>
           <StyledAccordionBody>
             {updateFriends.length !== 0 && (
               <>
@@ -46,9 +49,6 @@ const UpdatedFriend = () => {
                     <div className="custom-ml-10 custom-between">
                       <div>
                         <div className="profile-label">{friend.name}</div>
-                        <div className="profile-description custom-ml-0">
-                          {friend.description}
-                        </div>
                       </div>
                     </div>
                   </div>
