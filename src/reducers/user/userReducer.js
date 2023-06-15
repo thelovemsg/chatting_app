@@ -5,6 +5,7 @@ import { userBirthdayFriendsReducer } from './userBirthdayFriends';
 import { userBookmarkFriendsReducer } from './userBookmarkFriends';
 import { userFriendsReducer } from './userFriends';
 import { userUpdateFriendsReducer } from './userUpdatedFriends';
+import { userInfoReducer } from './userInfoSetting';
 
 const userReducer = combineReducers({
   profile: userProfileReducer,
@@ -13,6 +14,7 @@ const userReducer = combineReducers({
   birthday: userBirthdayFriendsReducer,
   bookmark: userBookmarkFriendsReducer,
   friends: userFriendsReducer,
+  info: userInfoReducer,
 });
 
 export default userReducer;

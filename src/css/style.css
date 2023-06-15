@@ -678,6 +678,11 @@ a.dropdown-item {
   font-weight: bold;
 }
 
+.description-down {
+  background-color: white;
+  border-radius: 10px;
+}
+
 .common-profile-no-image {
   background-color: var(--main-profile-no-image-bg-color);
   width: 46px;
@@ -695,6 +700,16 @@ a.dropdown-item {
   padding: 20px;
   display: flex;
   align-items: center;
+}
+
+.no-noti-status {
+  background-color: red;
+  width: 55%;
+  height: 2px;
+  margin: auto;
+  position: relative;
+  margin-bottom: -32px;
+  transform: rotate(-40deg);
 }
 
 /* options */

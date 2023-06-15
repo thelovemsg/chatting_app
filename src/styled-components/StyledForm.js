@@ -118,11 +118,18 @@ export const StyledChattingScreenLeft = styled('div')`
   border-bottom-left-radius: 5px 5px;
   border: 1px solid #dcdcdc;
   box-shadow: 5px 5px 5px 2px gray;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 export const StyledChattingScreenIconsTop = styled('div')`
   padding: 10px;
-  margin: auto;
+  text-align: center;
+`;
+
+export const StyledChattingScreenIconsDown = styled('div')`
+  padding: 10px;
   text-align: center;
 `;
 

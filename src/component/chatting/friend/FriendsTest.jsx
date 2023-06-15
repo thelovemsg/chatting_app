@@ -8,10 +8,14 @@ import {
 import {
   StyleFontAwesomeIcon,
   StyledChattingScreen,
+  StyledChattingScreenIconsDown,
   StyledChattingScreenIconsTop,
   StyledChattingScreenLeft,
   StyledChattingScreenRight,
 } from 'styled-components/StyledForm';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { FLIP_USER_NOTI_STATUS_REQUEST } from 'reducers/user/userInfoSetting';
 import MyProfile from './MyProfile';
 import MutiProfile from './MutiProfile';
 import BirthdayFriend from './birthday/BirthdayFriend';
@@ -19,7 +23,10 @@ import UpdatedFriend from './UpdateFriend';
 import FriendsItem from './FriendsItem';
 
 const Friends = () => {
-  console.log('tests');
+  const { notiStatus } = useSelector((state) => state.user.info);
+  const dispatch = useDispatch();
+
+  useEffect(() => {}, [notiStatus]);
 
   const handleUserClick = () => {
     console.log('handleUser');
@@ -30,11 +37,11 @@ const Friends = () => {
   };
 
   const handleBellClick = () => {
-    console.log('handleBellClick');
+    dispatch(FLIP_USER_NOTI_STATUS_REQUEST(!notiStatus));
   };
 
   const handleSettingClick = () => {
-    console.log('handleSettingClick');
+    console.log('handleBellClick');
   };
 
   return (
@@ -54,18 +61,21 @@ const Friends = () => {
             }}
           />
           <StyleFontAwesomeIcon
-            icon={faBell}
-            onClick={() => {
-              handleBellClick();
-            }}
-          />
-          <StyleFontAwesomeIcon
             icon={faEllipsis}
             onClick={() => {
               handleSettingClick();
             }}
           />
         </StyledChattingScreenIconsTop>
+        <StyledChattingScreenIconsDown>
+          <div className={!notiStatus && 'no-noti-status'} />
+          <StyleFontAwesomeIcon
+            icon={faBell}
+            onClick={() => {
+              handleBellClick();
+            }}
+          />
+        </StyledChattingScreenIconsDown>
       </StyledChattingScreenLeft>
       <StyledChattingScreenRight>
         <MyProfile />

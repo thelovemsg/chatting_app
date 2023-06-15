@@ -2,10 +2,8 @@ import { createRandomUser } from 'component/utility/FakeUser';
 import {
   GET_USER_FRIENDS_FAILURE,
   GET_USER_FRIENDS_SUCCESS,
-  //   GET_USER_FRIENDS_SUCCESS,
 } from 'reducers/user/userFriends';
 import { all, fork, put, takeLatest } from 'redux-saga/effects';
-// import { getFriends } from '../../api/member/user/user';
 
 function* getFriendsAction() {
   try {

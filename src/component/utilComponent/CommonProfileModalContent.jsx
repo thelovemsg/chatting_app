@@ -12,9 +12,11 @@ import {
   faComment,
   faPhoneVolume,
   faVideo,
+  faArrowUp,
+  faArrowDown,
 } from '@fortawesome/free-solid-svg-icons';
 import imageUrlPropType from 'function/CheckImageUrlUtil';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import profileModalHandle from './func/ProfileModalHandle';
 
@@ -29,6 +31,12 @@ const CommonProfileModalContent = ({
   multiProfileOption,
 }) => {
   const { success } = useSelector((state) => state.user.multiProfile);
+
+  const [isArrowUp, setIsArrowUp] = useState(true);
+
+  const handleUserClick = () => {
+    setIsArrowUp(!isArrowUp);
+  };
 
   useEffect(() => {
     if (success) handleCloseModal();
@@ -116,7 +124,23 @@ const CommonProfileModalContent = ({
           )}
         </div>
         <div className="common-profile-name">{userInfo.name}</div>
-        <div className="common-profile-description">{userInfo.description}</div>
+        <div className={!isArrowUp && 'description-down'}>
+          {userInfo.description.length > 20 ? (
+            <div style={{ display: 'flex', margin: 'auto' }}>
+              <div style={{ width: '90%' }}>
+                {isArrowUp && `${userInfo.description.substr(0, 25)} ...`}
+                {!isArrowUp && userInfo.description}
+              </div>
+              <FontAwesomeIcon
+                className="custom-ml-10 custom-mt-5"
+                icon={isArrowUp ? faArrowUp : faArrowDown}
+                onClick={handleUserClick}
+              />
+            </div>
+          ) : (
+            userInfo.description
+          )}
+        </div>
       </div>
       <div className="modal-footer" style={{ height: '18%' }}>
         {multiProfileOption ? (

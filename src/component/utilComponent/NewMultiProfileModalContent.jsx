@@ -11,7 +11,6 @@ import {
 } from '../../reducers/user/userMultiProfile';
 
 const NewMultiProfileModalContent = ({ handleCloseModal }) => {
-  // const { id } = useSelector((state) => state.user);
   const { t } = useTranslation();
   const { success } = useSelector((state) => state.user.multiProfile);
   const [nameInput, setNameInput] = useState('');

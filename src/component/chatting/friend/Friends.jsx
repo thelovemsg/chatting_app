@@ -8,6 +8,7 @@ import {
 import {
   StyleFontAwesomeIcon,
   StyledChattingScreen,
+  StyledChattingScreenIconsDown,
   StyledChattingScreenIconsTop,
   StyledChattingScreenLeft,
   StyledChattingScreenRight,
@@ -30,7 +31,7 @@ const Friends = () => {
   };
 
   const handleBellClick = () => {
-    console.log('handleBellClick');
+    alert('handleBellClick');
   };
 
   const handleSettingClick = () => {
@@ -54,18 +55,20 @@ const Friends = () => {
             }}
           />
           <StyleFontAwesomeIcon
-            icon={faBell}
-            onClick={() => {
-              handleBellClick();
-            }}
-          />
-          <StyleFontAwesomeIcon
             icon={faEllipsis}
             onClick={() => {
               handleSettingClick();
             }}
           />
         </StyledChattingScreenIconsTop>
+        <StyledChattingScreenIconsDown>
+          <StyleFontAwesomeIcon
+            icon={faBell}
+            onClick={() => {
+              handleBellClick();
+            }}
+          />
+        </StyledChattingScreenIconsDown>
       </StyledChattingScreenLeft>
       <StyledChattingScreenRight>
         <MyProfile />
