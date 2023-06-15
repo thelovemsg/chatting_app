@@ -14,7 +14,7 @@ import {
   StyledChattingScreenRight,
 } from 'styled-components/StyledForm';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { FLIP_USER_NOTI_STATUS_REQUEST } from 'reducers/user/userInfoSetting';
 import MyProfile from './MyProfile';
 import MutiProfile from './MutiProfile';
@@ -23,25 +23,42 @@ import UpdatedFriend from './UpdateFriend';
 import FriendsItem from './FriendsItem';
 
 const Friends = () => {
+  const [activeScreen, setActiveScreen] = useState('');
+
   const { notiStatus } = useSelector((state) => state.user.info);
   const dispatch = useDispatch();
 
   useEffect(() => {}, [notiStatus]);
 
-  const handleUserClick = () => {
-    console.log('handleUser');
+  const handleProfileIconClick = () => {
+    setActiveScreen('profile');
   };
 
-  const handleCommentClick = () => {
-    console.log('handleCommentClick');
+  const handleChattingIconClick = () => {
+    setActiveScreen('chatting');
+  };
+
+  const handleSettingClick = () => {
+    setActiveScreen('setting');
   };
 
   const handleBellClick = () => {
     dispatch(FLIP_USER_NOTI_STATUS_REQUEST(!notiStatus));
   };
 
-  const handleSettingClick = () => {
-    console.log('handleBellClick');
+  // object mapping screens
+  const screenMap = {
+    profile: (
+      <>
+        <MyProfile />
+        <MutiProfile />
+        <BirthdayFriend />
+        <UpdatedFriend />
+        <FriendsItem />
+      </>
+    ),
+    chatting: <div>ㅎㅎ... 채팅방 클릭시</div>,
+    setting: <div>setting screen ggg..</div>,
   };
 
   return (
@@ -51,13 +68,13 @@ const Friends = () => {
           <StyleFontAwesomeIcon
             icon={faUser}
             onClick={() => {
-              handleUserClick();
+              handleProfileIconClick();
             }}
           />
           <StyleFontAwesomeIcon
             icon={faCommentDots}
             onClick={() => {
-              handleCommentClick();
+              handleChattingIconClick();
             }}
           />
           <StyleFontAwesomeIcon
@@ -77,12 +94,9 @@ const Friends = () => {
           />
         </StyledChattingScreenIconsDown>
       </StyledChattingScreenLeft>
+
       <StyledChattingScreenRight>
-        <MyProfile />
-        <MutiProfile />
-        <BirthdayFriend />
-        <UpdatedFriend />
-        <FriendsItem />
+        {screenMap[activeScreen] || null}
       </StyledChattingScreenRight>
     </StyledChattingScreen>
   );
