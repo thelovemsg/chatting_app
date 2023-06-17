@@ -23,7 +23,7 @@ import UpdatedFriend from './UpdateFriend';
 import FriendsItem from './FriendsItem';
 
 const Friends = () => {
-  const [activeScreen, setActiveScreen] = useState('');
+  const [activeScreen, setActiveScreen] = useState('profile');
 
   const { notiStatus } = useSelector((state) => state.user.info);
   const dispatch = useDispatch();

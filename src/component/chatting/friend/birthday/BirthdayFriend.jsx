@@ -5,10 +5,10 @@ import { Trans } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { GET_USER_BIRTHDAY_FRIENDS_REQUEST } from 'reducers/user/userBirthdayFriends';
-import ProfileModal from 'component/utilComponent/ProfileModal';
+import ProfileModal from 'component/utilComponent/modal/ProfileModal';
 import BirthdayFriendsList from 'component/chatting/friend/birthday/BirthdayFriendsList';
 import { compareWithCurrentDate, returnMMDD } from 'component/utility/DateUtil';
-import CommonProfileModalContent from 'component/utilComponent/CommonProfileModalContent';
+import CommonProfileModalContent from 'component/utilComponent/modal/CommonProfileModalContent';
 import { StyledAccordionBody } from '../../../../styled-components/StyledForm';
 
 const BirthdayFriend = () => {

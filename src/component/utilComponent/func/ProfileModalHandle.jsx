@@ -15,8 +15,8 @@ const profileModalHandle = () => {
     }
   }, [success]);
 
-  const handleImageClick = () => {
-    console.log('handleImageClick !!');
+  const handleImageClick = (handleSecondMoldal) => {
+    console.log('secondMoldal :: ', handleSecondMoldal);
   };
 
   const handleBookmarkClick = () => {
@@ -28,8 +28,6 @@ const profileModalHandle = () => {
   };
 
   const handleProfileDelete = (userInfo) => {
-    console.log('handleProfileDelete requset...');
-    console.log('userInfo :: ', userInfo);
     dispatch(REMOVE_USER_MULTI_PROFILE_INFO_REQUEST(userInfo));
   };
 

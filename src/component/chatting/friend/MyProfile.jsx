@@ -12,15 +12,17 @@ import {
 } from 'styled-components/StyledForm';
 import { Trans } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import CommonProfileModalContent from 'component/utilComponent/CommonProfileModalContent';
-import ProfileModal from 'component/utilComponent/ProfileModal';
+import CommonProfileModalContent from 'component/utilComponent/modal/CommonProfileModalContent';
+import ProfileModal from 'component/utilComponent/modal/ProfileModal';
 import { SET_USER_PROFILE_REQUEST } from 'reducers/user/userProfile';
+import ProfileImageCarouselModal from 'component/utilComponent/modal/ProfileImageCarouselModal';
 
 const MyProfile = () => {
   const { profile } = useSelector((state) => state.user);
   const [showModal, setShowModal] = useState(false);
   const [showSearchbox, setShowSearchBox] = useState(false);
 
+  const [isSecondModalOpen, setIsSecondModalOpen] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -41,6 +43,10 @@ const MyProfile = () => {
 
   const handleCloseModal = () => {
     setShowModal(false);
+  };
+
+  const handleSecondModalClose = () => {
+    setIsSecondModalOpen(!isSecondModalOpen);
   };
 
   return (
@@ -118,11 +124,22 @@ const MyProfile = () => {
             <CommonProfileModalContent
               handleCloseModal={handleCloseModal}
               userInfo={profile.info}
-              stateContent="상태명 드러감"
-              footerContent="버튼 2개 예정"
+              setIsSecondModalOpen={setIsSecondModalOpen}
               multiProfileOption
             />
           )}
+        </ProfileModal>
+      )}
+
+      {isSecondModalOpen && (
+        <ProfileModal
+          show={isSecondModalOpen}
+          style={{ width: '570px', height: '510px', borderRadius: 'none' }}
+        >
+          <ProfileImageCarouselModal
+            handleCloseModal={handleSecondModalClose}
+            imageList={profile.info}
+          />
         </ProfileModal>
       )}
     </div>

@@ -3,12 +3,11 @@ import Accordion from 'react-bootstrap/Accordion';
 import { Trans } from 'react-i18next';
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import CommonProfileModalContent from 'component/utilComponent/CommonProfileModalContent';
-import NewMultiProfileModalContent from 'component/utilComponent/NewMultiProfileModalContent';
+import CommonProfileModalContent from 'component/utilComponent/modal/CommonProfileModalContent';
+import NewMultiProfileModalContent from 'component/utilComponent/modal/NewMultiProfileModalContent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import shortenWords from 'component/utility/UiUtil';
-import ProfileModal from '../../utilComponent/ProfileModal';
-// import { createRandomUser } from '../utility/FakeUser';
+import ProfileModal from '../../utilComponent/modal/ProfileModal';
 import {
   StyledAccordionBodyMultiProfile,
   StyledFontAwesomeIconPlus,

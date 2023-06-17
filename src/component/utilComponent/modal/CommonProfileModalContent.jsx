@@ -18,11 +18,12 @@ import {
 import imageUrlPropType from 'function/CheckImageUrlUtil';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import profileModalHandle from './func/ProfileModalHandle';
+import profileModalHandle from '../func/ProfileModalHandle';
 
 const CommonProfileModalContent = ({
   handleCloseModal,
   userInfo,
+  setIsSecondModalOpen,
   showImageIcon,
   showBookmark,
   showSettingIcon,
@@ -31,10 +32,8 @@ const CommonProfileModalContent = ({
   multiProfileOption,
 }) => {
   const { success } = useSelector((state) => state.user.multiProfile);
-
   const [isArrowUp, setIsArrowUp] = useState(true);
-
-  const handleUserClick = () => {
+  const handleDescriptionClick = () => {
     setIsArrowUp(!isArrowUp);
   };
 
@@ -61,7 +60,9 @@ const CommonProfileModalContent = ({
             <FontAwesomeIcon
               icon={faImage}
               className="profile-icon"
-              onClick={() => handleImageClick()}
+              onClick={() => {
+                handleImageClick();
+              }}
             />
           )}
           {showBookmark && (
@@ -113,7 +114,9 @@ const CommonProfileModalContent = ({
               src={userInfo.avatar}
               alt="Selected Avatar"
               className="common-profile-img"
-              onClick={() => handleImageClick()}
+              onClick={() => {
+                setIsSecondModalOpen(true);
+              }}
               aria-hidden="true"
             />
           ) : (
@@ -124,7 +127,7 @@ const CommonProfileModalContent = ({
           )}
         </div>
         <div className="common-profile-name">{userInfo.name}</div>
-        <div className={!isArrowUp && 'description-down'}>
+        <div className={`${isArrowUp}  ? '' : 'description-down'}`}>
           {userInfo.description.length > 20 ? (
             <div style={{ display: 'flex', margin: 'auto' }}>
               <div style={{ width: '90%' }}>
@@ -134,7 +137,7 @@ const CommonProfileModalContent = ({
               <FontAwesomeIcon
                 className="custom-ml-10 custom-mt-5"
                 icon={isArrowUp ? faArrowUp : faArrowDown}
-                onClick={handleUserClick}
+                onClick={handleDescriptionClick}
               />
             </div>
           ) : (
@@ -201,6 +204,8 @@ CommonProfileModalContent.propTypes = {
     description: PropTypes.string,
     avatar: imageUrlPropType,
   }).isRequired,
+  // secondModalStatus: PropTypes.bool,
+  setIsSecondModalOpen: PropTypes.func,
   showImageIcon: PropTypes.bool,
   showBookmark: PropTypes.bool,
   showDeleteIcon: PropTypes.bool,
@@ -210,6 +215,8 @@ CommonProfileModalContent.propTypes = {
 };
 
 CommonProfileModalContent.defaultProps = {
+  setIsSecondModalOpen: null,
+  // secondModalStatus: false,
   showImageIcon: false,
   showBookmark: false,
   showDeleteIcon: false,

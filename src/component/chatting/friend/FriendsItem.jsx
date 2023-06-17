@@ -1,7 +1,7 @@
 import { Accordion } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
-import ProfileModal from 'component/utilComponent/ProfileModal';
-import CommonProfileModalContent from 'component/utilComponent/CommonProfileModalContent';
+import ProfileModal from 'component/utilComponent/modal/ProfileModal';
+import CommonProfileModalContent from 'component/utilComponent/modal/CommonProfileModalContent';
 import { useDispatch, useSelector } from 'react-redux';
 import { GET_USER_FRIENDS_REQUEST } from 'reducers/user/userFriends';
 import { StyledAccordionBody } from 'styled-components/StyledForm';
