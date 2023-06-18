@@ -12,10 +12,11 @@ import {
   faRotate,
   faEllipsis,
 } from '@fortawesome/free-solid-svg-icons';
+import ImageHolder from './LoadingImage';
 
 const ProfileImageCarouselModal = ({ handleCloseModal, targetUserId }) => {
   const [rotation, setRotation] = useState(0);
-  const [scale, setScale] = useState(1); // Initial scale is 100% (or normal size)
+  const [scale, setScale] = useState(1);
   const { targetImageList } = useSelector((state) => state.user.info);
 
   const imageLength = targetImageList.length;
@@ -97,7 +98,13 @@ const ProfileImageCarouselModal = ({ handleCloseModal, targetUserId }) => {
 
           <div className="profile-image-carousel-box">
             {targetImageList?.length === 0 ? (
-              <div>nothing</div>
+              <div>
+                <ImageHolder
+                  style={{
+                    transform: `scale(${scale}) rotate(${rotation}deg)`,
+                  }} // Apply both scale and rotation
+                />
+              </div>
             ) : (
               targetImageList.map((user, index) => {
                 if (index === currentImageIndex) {
@@ -107,9 +114,7 @@ const ProfileImageCarouselModal = ({ handleCloseModal, targetUserId }) => {
                         imageRef.current[index] = el;
                       }}
                     >
-                      <img
-                        className="profile-image-carousel"
-                        alt={`user profile ${index + 1}`}
+                      <ImageHolder
                         src={user.avatar}
                         style={{
                           transform: `scale(${scale}) rotate(${rotation}deg)`,

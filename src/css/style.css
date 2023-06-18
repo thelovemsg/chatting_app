@@ -214,6 +214,10 @@ a.dropdown-item {
   padding: 0px !important;
 }
 
+.modal-title {
+  margin-top: 10px;
+}
+
 .profile-modal-input-box {
   margin-top: 15px;
   text-align: left;
@@ -319,9 +323,9 @@ a.dropdown-item {
 
 .profile-icon {
   margin-right: 10px;
-  width: 15px;
-  height: 15px;
-  padding: 7px;
+  width: 12px;
+  height: 12px;
+  padding: 6px;
   border-radius: 15px;
   border: 1px solid white;
 }

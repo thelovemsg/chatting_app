@@ -115,7 +115,7 @@ const CommonProfileModalContent = ({
               alt="Selected Avatar"
               className="common-profile-img"
               onClick={() => {
-                setIsSecondModalOpen(true);
+                if (setIsSecondModalOpen != null) setIsSecondModalOpen(true);
               }}
               aria-hidden="true"
             />
