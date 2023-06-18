@@ -5,7 +5,8 @@ import {
   faXmark,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 import {
   StyledChattingIntroLabel,
   StyledChattingItem,
@@ -17,25 +18,32 @@ import ProfileModal from 'component/utilComponent/modal/ProfileModal';
 import { SET_USER_PROFILE_REQUEST } from 'reducers/user/userProfile';
 import ProfileImageCarouselModal from 'component/utilComponent/modal/ProfileImageCarouselModal';
 
-const MyProfile = () => {
+const MyProfile = ({
+  showSearchBox,
+  handleSearchBox,
+  handleSearchBoxClose,
+  searchInput,
+  handleSearchInputChange,
+}) => {
   const { profile } = useSelector((state) => state.user);
   const [showModal, setShowModal] = useState(false);
-  const [showSearchbox, setShowSearchBox] = useState(false);
-
   const [isSecondModalOpen, setIsSecondModalOpen] = useState(false);
+
+  // Declare your ref
+  const searchInputRef = useRef(null);
+
+  useEffect(() => {
+    // Whenever the search box is shown, focus the input
+    if (showSearchBox && searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, [showSearchBox]);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(SET_USER_PROFILE_REQUEST());
   }, []);
-
-  const handleSearchbox = () => {
-    setShowSearchBox(!showSearchbox);
-  };
-
-  const handleSearchBoxClose = () => {
-    setShowSearchBox(false);
-  };
 
   const handleAvatarClick = () => {
     setShowModal(true);
@@ -59,9 +67,7 @@ const MyProfile = () => {
           <FontAwesomeIcon
             className="cursor-pointer custom-mr-30 w-20 h-30"
             icon={faMagnifyingGlass}
-            onClick={() => {
-              handleSearchbox();
-            }}
+            onClick={handleSearchBox}
           />
           <FontAwesomeIcon
             icon={faUserGroup}
@@ -73,47 +79,53 @@ const MyProfile = () => {
         </div>
       </StyledChattingIntroLabel>
       <div>
-        {showSearchbox && (
+        {showSearchBox && (
           <div style={{ padding: '10px', width: '100%' }}>
             <FontAwesomeIcon
               icon={faMagnifyingGlass}
               className="profile-search-icon"
             />
-            <input className="profile-search" type="text" />
+            <input
+              ref={searchInputRef}
+              className="profile-search"
+              type="text"
+              value={searchInput}
+              onChange={handleSearchInputChange}
+            />
             <FontAwesomeIcon
               icon={faXmark}
               className="custom-ml-10 w-20 h-20 cursor-pointer"
-              onClick={() => {
-                handleSearchBoxClose();
-              }}
+              onClick={handleSearchBoxClose}
             />
           </div>
         )}
-        <StyledChattingItem>
-          {profile.info.avatar ? (
-            <img
-              src={profile.info?.avatar}
-              alt="First slide"
-              className="main-profile"
-              onClick={() => handleAvatarClick()}
-              aria-hidden="true"
-            />
-          ) : (
-            <FontAwesomeIcon
-              icon={faUser}
-              className="profile-no-image"
-              onClick={() => handleAvatarClick()}
-            />
-          )}
-          <div>
-            <div className="profile-label custom-ml-10">
-              {profile.info?.name}
+        {searchInput === '' && (
+          <StyledChattingItem>
+            {profile.info.avatar ? (
+              <img
+                src={profile.info?.avatar}
+                alt="First slide"
+                className="main-profile"
+                onClick={handleAvatarClick}
+                aria-hidden="true"
+              />
+            ) : (
+              <FontAwesomeIcon
+                icon={faUser}
+                className="profile-no-image"
+                onClick={() => handleAvatarClick}
+              />
+            )}
+            <div>
+              <div className="profile-label custom-ml-10">
+                {profile.info?.name}
+              </div>
+              <div className="profile-description">
+                {profile.info?.description}
+              </div>
             </div>
-            <div className="profile-description">
-              {profile.info?.description}
-            </div>
-          </div>
-        </StyledChattingItem>
+          </StyledChattingItem>
+        )}
       </div>
       {showModal && (
         <ProfileModal
@@ -147,3 +159,15 @@ const MyProfile = () => {
 };
 
 export default MyProfile;
+
+MyProfile.propTypes = {
+  showSearchBox: PropTypes.bool.isRequired,
+  handleSearchBox: PropTypes.func.isRequired,
+  handleSearchBoxClose: PropTypes.func.isRequired,
+  searchInput: PropTypes.string,
+  handleSearchInputChange: PropTypes.func.isRequired,
+};
+
+MyProfile.defaultProps = {
+  searchInput: null,
+};

@@ -13,6 +13,9 @@ import {
   StyledChattingScreenLeft,
   StyledChattingScreenRight,
 } from 'styled-components/StyledForm';
+import { useState, useEffect } from 'react';
+import { FLIP_USER_NOTI_STATUS_REQUEST } from 'reducers/user/userInfoSetting';
+import { useDispatch, useSelector } from 'react-redux';
 import MyProfile from './MyProfile';
 import MutiProfile from './MutiProfile';
 import BirthdayFriend from './birthday/BirthdayFriend';
@@ -20,22 +23,68 @@ import UpdatedFriend from './UpdateFriend';
 import FriendsItem from './FriendsItem';
 
 const Friends = () => {
-  console.log('tests');
+  const dispatch = useDispatch();
+  const { notiStatus } = useSelector((state) => state.user.info);
+  const [showSearchBox, setShowSearchBox] = useState(false);
+  const [searchInput, setSearchInput] = useState('');
+  const [activeScreen, setActiveScreen] = useState('');
 
-  const handleUserClick = () => {
-    console.log('handleUser');
+  useEffect(() => {
+    console.log('searchInput :: ', searchInput);
+  }, [searchInput]);
+
+  const handleSearchBox = () => {
+    setShowSearchBox(!showSearchBox);
   };
 
-  const handleCommentClick = () => {
-    console.log('handleCommentClick');
+  const handleSearchInputChange = (e) => {
+    setSearchInput(e.target.value);
   };
 
-  const handleBellClick = () => {
-    alert('handleBellClick');
+  const handleSearchBoxClose = () => {
+    setShowSearchBox(false);
+    setSearchInput('');
+  };
+
+  const handleProfileIconClick = () => {
+    setActiveScreen('profile');
+  };
+
+  const handleChattingIconClick = () => {
+    setActiveScreen('chatting');
   };
 
   const handleSettingClick = () => {
-    console.log('handleBellClick');
+    setActiveScreen('setting');
+  };
+
+  const handleBellClick = () => {
+    dispatch(FLIP_USER_NOTI_STATUS_REQUEST(!notiStatus));
+  };
+
+  const screenMap = {
+    profile: (
+      <>
+        <MyProfile
+          showSearchBox={showSearchBox}
+          handleSearchBox={handleSearchBox}
+          handleSearchBoxClose={handleSearchBoxClose}
+          searchInput={searchInput}
+          handleSearchInputChange={handleSearchInputChange}
+        />
+        {searchInput === '' && (
+          <>
+            <MutiProfile />
+            <BirthdayFriend />
+            <UpdatedFriend />
+            <FriendsItem />
+          </>
+        )}
+        <FriendsItem searchInput={searchInput} />
+      </>
+    ),
+    chatting: <div>ㅎㅎ... 채팅방 클릭시</div>,
+    setting: <div>setting screen ggg..</div>,
   };
 
   return (
@@ -45,13 +94,13 @@ const Friends = () => {
           <StyleFontAwesomeIcon
             icon={faUser}
             onClick={() => {
-              handleUserClick();
+              handleProfileIconClick();
             }}
           />
           <StyleFontAwesomeIcon
             icon={faCommentDots}
             onClick={() => {
-              handleCommentClick();
+              handleChattingIconClick();
             }}
           />
           <StyleFontAwesomeIcon
@@ -71,11 +120,7 @@ const Friends = () => {
         </StyledChattingScreenIconsDown>
       </StyledChattingScreenLeft>
       <StyledChattingScreenRight>
-        <MyProfile />
-        <MutiProfile />
-        <BirthdayFriend />
-        <UpdatedFriend />
-        <FriendsItem />
+        {screenMap[activeScreen] || null}
       </StyledChattingScreenRight>
     </StyledChattingScreen>
   );

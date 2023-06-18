@@ -6,8 +6,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { GET_USER_FRIENDS_REQUEST } from 'reducers/user/userFriends';
 import { StyledAccordionBody } from 'styled-components/StyledForm';
 import { Trans } from 'react-i18next';
+import PropTypes from 'prop-types';
 
-const FriendsItem = () => {
+const FriendsItem = ({ searchInput }) => {
   const dispatch = useDispatch();
   const [selectedUser, setSelectedUser] = useState(null);
 
@@ -15,9 +16,17 @@ const FriendsItem = () => {
     dispatch(GET_USER_FRIENDS_REQUEST());
   }, []);
 
+  useEffect(() => {
+    console.log('searchInput :: ', searchInput);
+  }, [searchInput]);
+
   const { list: friends } = useSelector((state) => state.user.friends);
 
-  const sortedFriends = [...friends].sort((a, b) => {
+  const filteredFriends = friends.filter((friend) =>
+    friend.name.toLowerCase().includes(searchInput.toLowerCase())
+  );
+
+  const sortedFriends = [...filteredFriends].sort((a, b) => {
     const targetA = a.name.charAt(0);
     const targetB = b.name.charAt(0);
     return targetA > targetB ? 1 : -1;
@@ -79,3 +88,11 @@ const FriendsItem = () => {
 };
 
 export default FriendsItem;
+
+FriendsItem.propTypes = {
+  searchInput: PropTypes.string,
+};
+
+FriendsItem.defaultProps = {
+  searchInput: null,
+};

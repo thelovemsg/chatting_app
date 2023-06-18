@@ -7,14 +7,18 @@ import {
   faAngleLeft,
   faAngleRight,
   faArrowsDownToLine,
-  faMinus,
-  faPlus,
+  // faMinus,
+  // faPlus,
   faRotate,
   faEllipsis,
 } from '@fortawesome/free-solid-svg-icons';
 import ImageHolder from './LoadingImage';
 
-const ProfileImageCarouselModal = ({ handleCloseModal, targetUserId }) => {
+const ProfileImageCarouselModal = ({
+  handleCloseModal,
+  targetUserId,
+  isOwner,
+}) => {
   const [rotation, setRotation] = useState(0);
   const [scale, setScale] = useState(1);
   const { targetImageList } = useSelector((state) => state.user.info);
@@ -25,14 +29,14 @@ const ProfileImageCarouselModal = ({ handleCloseModal, targetUserId }) => {
     dispatch(GET_TARGET_USER_PROFILE_IMAGE_LIST_REQUEST(targetUserId));
   }, []);
 
-  const handleShrink = () => {
-    if (scale === 1) return;
-    setScale((prevScale) => Math.max(0.1, prevScale - 0.1)); // Decreases the scale, but not less than 10%
-  };
+  // const handleShrink = () => {
+  //   if (scale === 1) return;
+  //   setScale((prevScale) => Math.max(0.1, prevScale - 0.1)); // Decreases the scale, but not less than 10%
+  // };
 
-  const handleMagnify = () => {
-    setScale((prevScale) => Math.min(2, prevScale + 0.1)); // Increases the scale, but not more than 200%
-  };
+  // const handleMagnify = () => {
+  //   setScale((prevScale) => Math.min(2, prevScale + 0.1)); // Increases the scale, but not more than 200%
+  // };
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const imageRef = useRef([]);
@@ -106,25 +110,20 @@ const ProfileImageCarouselModal = ({ handleCloseModal, targetUserId }) => {
                 />
               </div>
             ) : (
-              targetImageList.map((user, index) => {
-                if (index === currentImageIndex) {
-                  return (
-                    <div
-                      ref={(el) => {
-                        imageRef.current[index] = el;
-                      }}
-                    >
-                      <ImageHolder
-                        src={user.avatar}
-                        style={{
-                          transform: `scale(${scale}) rotate(${rotation}deg)`,
-                        }} // Apply both scale and rotation
-                      />
-                    </div>
-                  );
-                }
-                return null;
-              })
+              targetImageList.map((user, index) => (
+                <div
+                  ref={(el) => {
+                    imageRef.current[index] = el;
+                  }}
+                >
+                  <ImageHolder
+                    src={user.avatar}
+                    style={{
+                      transform: `scale(${scale}) rotate(${rotation}deg)`,
+                    }} // Apply both scale and rotation
+                  />
+                </div>
+              ))
             )}
           </div>
           {currentImageIndex !== targetImageList.length - 1 ? (
@@ -142,7 +141,7 @@ const ProfileImageCarouselModal = ({ handleCloseModal, targetUserId }) => {
         </div>
         <div className="profile-image-carousel-options">
           <div>
-            <FontAwesomeIcon
+            {/* <FontAwesomeIcon
               icon={faMinus}
               className={`profile-image-icon-option ${
                 scale === 1 ? 'icon-blur' : ''
@@ -153,7 +152,7 @@ const ProfileImageCarouselModal = ({ handleCloseModal, targetUserId }) => {
               icon={faPlus}
               className="profile-image-icon-option"
               onClick={handleMagnify}
-            />
+            /> */}
             <FontAwesomeIcon
               icon={faRotate}
               className="profile-image-icon-option"
@@ -162,16 +161,18 @@ const ProfileImageCarouselModal = ({ handleCloseModal, targetUserId }) => {
               }}
             />
           </div>
-          <div>
-            <FontAwesomeIcon
-              icon={faArrowsDownToLine}
-              className="profile-image-icon-option"
-            />
-            <FontAwesomeIcon
-              icon={faEllipsis}
-              className="profile-image-icon-option"
-            />
-          </div>
+          {isOwner && (
+            <div>
+              <FontAwesomeIcon
+                icon={faArrowsDownToLine}
+                className="profile-image-icon-option"
+              />
+              <FontAwesomeIcon
+                icon={faEllipsis}
+                className="profile-image-icon-option"
+              />
+            </div>
+          )}
         </div>
       </div>
     </>
@@ -182,4 +183,9 @@ export default ProfileImageCarouselModal;
 ProfileImageCarouselModal.propTypes = {
   handleCloseModal: PropTypes.func.isRequired,
   targetUserId: PropTypes.string.isRequired,
+  isOwner: PropTypes.bool,
+};
+
+ProfileImageCarouselModal.defaultProps = {
+  isOwner: false,
 };

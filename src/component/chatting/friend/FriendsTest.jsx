@@ -13,9 +13,9 @@ import {
   StyledChattingScreenLeft,
   StyledChattingScreenRight,
 } from 'styled-components/StyledForm';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FLIP_USER_NOTI_STATUS_REQUEST } from 'reducers/user/userInfoSetting';
+import { useDispatch, useSelector } from 'react-redux';
 import MyProfile from './MyProfile';
 import MutiProfile from './MutiProfile';
 import BirthdayFriend from './birthday/BirthdayFriend';
@@ -23,38 +23,63 @@ import UpdatedFriend from './UpdateFriend';
 import FriendsItem from './FriendsItem';
 
 const Friends = () => {
+  const dispatch = useDispatch();
+  const { notiStatus } = useSelector((state) => state.user.info);
+  const [showSearchBox, setShowSearchBox] = useState(false);
+  const [searchInput, setSearchInput] = useState('');
   const [activeScreen, setActiveScreen] = useState('profile');
 
-  const { notiStatus } = useSelector((state) => state.user.info);
-  const dispatch = useDispatch();
+  const handleSearchBox = () => {
+    setShowSearchBox(!showSearchBox);
+  };
 
-  useEffect(() => {}, [notiStatus]);
+  const handleSearchInputChange = (e) => {
+    setSearchInput(e.target.value);
+  };
+
+  const handleSearchBoxClose = () => {
+    setShowSearchBox(false);
+    setSearchInput('');
+  };
 
   const handleProfileIconClick = () => {
     setActiveScreen('profile');
+    setSearchInput('');
   };
 
   const handleChattingIconClick = () => {
     setActiveScreen('chatting');
+    setSearchInput('');
   };
 
   const handleSettingClick = () => {
     setActiveScreen('setting');
+    setSearchInput('');
   };
 
   const handleBellClick = () => {
     dispatch(FLIP_USER_NOTI_STATUS_REQUEST(!notiStatus));
   };
 
-  // object mapping screens
   const screenMap = {
     profile: (
       <>
-        <MyProfile />
-        <MutiProfile />
-        <BirthdayFriend />
-        <UpdatedFriend />
-        <FriendsItem />
+        <MyProfile
+          showSearchBox={showSearchBox}
+          handleSearchBox={handleSearchBox}
+          handleSearchBoxClose={handleSearchBoxClose}
+          searchInput={searchInput}
+          handleSearchInputChange={handleSearchInputChange}
+        />
+        {searchInput === '' && (
+          <>
+            <MutiProfile />
+            <BirthdayFriend />
+            <UpdatedFriend />
+            <FriendsItem searchInput={searchInput} />
+          </>
+        )}
+        <FriendsItem searchInput={searchInput} />
       </>
     ),
     chatting: <div>ㅎㅎ... 채팅방 클릭시</div>,
@@ -85,7 +110,6 @@ const Friends = () => {
           />
         </StyledChattingScreenIconsTop>
         <StyledChattingScreenIconsDown>
-          <div className={!notiStatus && 'no-noti-status'} />
           <StyleFontAwesomeIcon
             icon={faBell}
             onClick={() => {
@@ -94,7 +118,6 @@ const Friends = () => {
           />
         </StyledChattingScreenIconsDown>
       </StyledChattingScreenLeft>
-
       <StyledChattingScreenRight>
         {screenMap[activeScreen] || null}
       </StyledChattingScreenRight>
