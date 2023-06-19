@@ -197,6 +197,10 @@ a.dropdown-item {
   justify-content: space-between;
 }
 
+.add-friend-title {
+  margin-top: 20px;
+}
+
 .profile-carousel-image-icon {
   width: 30px;
   height: 30px;
@@ -660,6 +664,7 @@ a.dropdown-item {
 .multi-profile-screen {
   background-color: snow;
   height: 100%;
+  padding: 10px;
 }
 
 .multi-profile-title {
@@ -716,7 +721,7 @@ a.dropdown-item {
 }
 
 .multi-profile-btns {
-  margin-top: 80px;
+  margin-top: 90px;
   float: right;
 }
 
@@ -758,7 +763,7 @@ a.dropdown-item {
 }
 
 .description-down {
-  background-color: white;
+  background-color: white !important;
   border-radius: 10px;
 }
 

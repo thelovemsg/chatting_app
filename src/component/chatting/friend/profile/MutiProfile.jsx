@@ -7,11 +7,11 @@ import CommonProfileModalContent from 'component/utilComponent/modal/CommonProfi
 import NewMultiProfileModalContent from 'component/utilComponent/modal/NewMultiProfileModalContent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import shortenWords from 'component/utility/UiUtil';
-import ProfileModal from '../../utilComponent/modal/ProfileModal';
+import ProfileModal from '../../../utilComponent/modal/ProfileModal';
 import {
   StyledAccordionBodyMultiProfile,
   StyledFontAwesomeIconPlus,
-} from '../../../styled-components/StyledForm';
+} from '../../../../styled-components/StyledForm';
 
 const MutiProfile = () => {
   const [showModal, setShowModal] = useState(false);

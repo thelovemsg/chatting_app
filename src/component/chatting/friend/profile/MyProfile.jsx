@@ -17,6 +17,7 @@ import CommonProfileModalContent from 'component/utilComponent/modal/CommonProfi
 import ProfileModal from 'component/utilComponent/modal/ProfileModal';
 import { SET_USER_PROFILE_REQUEST } from 'reducers/user/userProfile';
 import ProfileImageCarouselModal from 'component/utilComponent/modal/ProfileImageCarouselModal';
+import AddFriendModal from 'component/utilComponent/modal/AddFriendModal';
 
 const MyProfile = ({
   showSearchBox,
@@ -28,6 +29,7 @@ const MyProfile = ({
   const { profile } = useSelector((state) => state.user);
   const [showModal, setShowModal] = useState(false);
   const [isSecondModalOpen, setIsSecondModalOpen] = useState(false);
+  const [isFriendAddModalOpen, setIsFriendAddModalOpen] = useState(false);
 
   // Declare your ref
   const searchInputRef = useRef(null);
@@ -57,6 +59,14 @@ const MyProfile = ({
     setIsSecondModalOpen(!isSecondModalOpen);
   };
 
+  const handleFriendAddModal = () => {
+    setIsFriendAddModalOpen(true);
+  };
+
+  const handleFriendAddModalClose = () => {
+    setIsFriendAddModalOpen(!isFriendAddModalOpen);
+  };
+
   return (
     <div className="underline">
       <StyledChattingIntroLabel>
@@ -72,9 +82,7 @@ const MyProfile = ({
           <FontAwesomeIcon
             icon={faUserGroup}
             style={{ width: '25px', height: '25px' }}
-            onClick={() => {
-              alert('friend add click!!');
-            }}
+            onClick={handleFriendAddModal}
           />
         </div>
       </StyledChattingIntroLabel>
@@ -151,6 +159,18 @@ const MyProfile = ({
           <ProfileImageCarouselModal
             handleCloseModal={handleSecondModalClose}
             imageList={profile.info}
+          />
+        </ProfileModal>
+      )}
+
+      {isFriendAddModalOpen && (
+        <ProfileModal
+          show={isFriendAddModalOpen}
+          style={{ width: '300px', height: '460px', borderRadius: 'none' }}
+        >
+          <AddFriendModal
+            handleCloseModal={handleFriendAddModalClose}
+            userId={profile.info.id}
           />
         </ProfileModal>
       )}

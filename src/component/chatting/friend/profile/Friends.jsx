@@ -18,9 +18,10 @@ import { FLIP_USER_NOTI_STATUS_REQUEST } from 'reducers/user/userInfoSetting';
 import { useDispatch, useSelector } from 'react-redux';
 import MyProfile from './MyProfile';
 import MutiProfile from './MutiProfile';
-import BirthdayFriend from './birthday/BirthdayFriend';
+import BirthdayFriend from '../birthday/BirthdayFriend';
 import UpdatedFriend from './UpdateFriend';
 import FriendsItem from './FriendsItem';
+import ChattingList from '../chatting/ChattingList';
 
 const Friends = () => {
   const dispatch = useDispatch();
@@ -76,13 +77,17 @@ const Friends = () => {
             <MutiProfile />
             <BirthdayFriend />
             <UpdatedFriend />
-            <FriendsItem searchInput={searchInput} />
           </>
         )}
         <FriendsItem searchInput={searchInput} />
       </>
     ),
-    chatting: <div>ㅎㅎ... 채팅방 클릭시</div>,
+    chatting: (
+      <>
+        <ChattingList />
+        <div>ㅎㅎ... 채팅방 클릭시</div>
+      </>
+    ),
     setting: <div>setting screen ggg..</div>,
   };
 
@@ -110,6 +115,7 @@ const Friends = () => {
           />
         </StyledChattingScreenIconsTop>
         <StyledChattingScreenIconsDown>
+          <div className={`${notiStatus === false && 'no-noti-status'}`} />
           <StyleFontAwesomeIcon
             icon={faBell}
             onClick={() => {

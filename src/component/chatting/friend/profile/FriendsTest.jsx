@@ -13,27 +13,25 @@ import {
   StyledChattingScreenLeft,
   StyledChattingScreenRight,
 } from 'styled-components/StyledForm';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { FLIP_USER_NOTI_STATUS_REQUEST } from 'reducers/user/userInfoSetting';
 import { useDispatch, useSelector } from 'react-redux';
 import MyProfile from './MyProfile';
 import MutiProfile from './MutiProfile';
-import BirthdayFriend from './birthday/BirthdayFriend';
+import BirthdayFriend from '../birthday/BirthdayFriend';
 import UpdatedFriend from './UpdateFriend';
 import FriendsItem from './FriendsItem';
+import ChattingList from '../chatting/ChattingList';
 
 const Friends = () => {
   const dispatch = useDispatch();
   const { notiStatus } = useSelector((state) => state.user.info);
   const [showSearchBox, setShowSearchBox] = useState(false);
   const [searchInput, setSearchInput] = useState('');
-  const [activeScreen, setActiveScreen] = useState('');
-
-  useEffect(() => {
-    console.log('searchInput :: ', searchInput);
-  }, [searchInput]);
+  const [activeScreen, setActiveScreen] = useState('profile');
 
   const handleSearchBox = () => {
+    console.log('testing... showSearchBox :: ', showSearchBox);
     setShowSearchBox(!showSearchBox);
   };
 
@@ -48,14 +46,17 @@ const Friends = () => {
 
   const handleProfileIconClick = () => {
     setActiveScreen('profile');
+    setSearchInput('');
   };
 
   const handleChattingIconClick = () => {
     setActiveScreen('chatting');
+    setSearchInput('');
   };
 
   const handleSettingClick = () => {
     setActiveScreen('setting');
+    setSearchInput('');
   };
 
   const handleBellClick = () => {
@@ -77,13 +78,23 @@ const Friends = () => {
             <MutiProfile />
             <BirthdayFriend />
             <UpdatedFriend />
-            <FriendsItem />
           </>
         )}
         <FriendsItem searchInput={searchInput} />
       </>
     ),
-    chatting: <div>ㅎㅎ... 채팅방 클릭시</div>,
+    chatting: (
+      <>
+        <ChattingList
+          showSearchBox={showSearchBox}
+          handleSearchBox={handleSearchBox}
+          handleSearchBoxClose={handleSearchBoxClose}
+          searchInput={searchInput}
+          handleSearchInputChange={handleSearchInputChange}
+        />
+        <div>ㅎㅎ... 채팅방 클릭시</div>
+      </>
+    ),
     setting: <div>setting screen ggg..</div>,
   };
 
@@ -111,6 +122,7 @@ const Friends = () => {
           />
         </StyledChattingScreenIconsTop>
         <StyledChattingScreenIconsDown>
+          <div className={`${notiStatus === false && 'no-noti-status'}`} />
           <StyleFontAwesomeIcon
             icon={faBell}
             onClick={() => {

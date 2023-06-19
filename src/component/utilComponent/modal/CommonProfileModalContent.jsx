@@ -127,8 +127,8 @@ const CommonProfileModalContent = ({
           )}
         </div>
         <div className="common-profile-name">{userInfo.name}</div>
-        <div className={`${isArrowUp}  ? '' : 'description-down'}`}>
-          {userInfo.description.length > 20 ? (
+        <div className={`${isArrowUp ? '' : 'description-down'}`}>
+          {userInfo.description.length > 30 ? (
             <div style={{ display: 'flex', margin: 'auto' }}>
               <div style={{ width: '90%' }}>
                 {isArrowUp && `${userInfo.description.substr(0, 25)} ...`}
@@ -181,9 +181,7 @@ const CommonProfileModalContent = ({
               onClick={handleVideoCall}
             >
               <FontAwesomeIcon icon={faVideo} />
-              <div className="profile-btn-comment" o>
-                페이스톡
-              </div>
+              <div className="profile-btn-comment">페이스톡</div>
             </button>
           </div>
         )}

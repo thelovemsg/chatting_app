@@ -80,7 +80,7 @@ const NewMultiProfileModalContent = ({ handleCloseModal }) => {
         <Trans i18nKey="friend.multiProfile.title" />
       </div>
       <div className="modal-body">
-        <div style={{ height: '40%', margin: 'auto' }}>
+        <div style={{ height: '40%', margin: 'auto', marginTop: '30px' }}>
           <label htmlFor="fileInput">
             {uploadedImage ? (
               <img

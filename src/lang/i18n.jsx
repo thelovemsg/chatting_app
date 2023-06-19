@@ -89,6 +89,9 @@ i18n
               title: 'Updated friends',
             },
           },
+          chatting: {
+            title: 'Chatting',
+          },
           error: {
             login_check_error: 'Please login.',
           },
@@ -177,6 +180,9 @@ i18n
             update: {
               title: '업데이트한 친구',
             },
+          },
+          chatting: {
+            title: '채팅',
           },
           error: {
             login_check_error: '로그인을 해 주세요',
