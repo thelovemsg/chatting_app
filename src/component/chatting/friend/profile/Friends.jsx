@@ -84,7 +84,13 @@ const Friends = () => {
     ),
     chatting: (
       <>
-        <ChattingList />
+        <ChattingList
+          showSearchBox={showSearchBox}
+          handleSearchBox={handleSearchBox}
+          handleSearchBoxClose={handleSearchBoxClose}
+          searchInput={searchInput}
+          handleSearchInputChange={handleSearchInputChange}
+        />
         <div>ㅎㅎ... 채팅방 클릭시</div>
       </>
     ),

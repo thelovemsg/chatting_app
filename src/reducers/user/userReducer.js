@@ -1,4 +1,5 @@
 import { combineReducers } from '@reduxjs/toolkit';
+import { chattingRoomReducer } from 'reducers/chatting/chattingReducer';
 import { userProfileReducer } from './userProfile';
 import { userMultiProfileReducer } from './userMultiProfile';
 import { userBirthdayFriendsReducer } from './userBirthdayFriends';
@@ -14,6 +15,7 @@ const userReducer = combineReducers({
   birthday: userBirthdayFriendsReducer,
   bookmark: userBookmarkFriendsReducer,
   friends: userFriendsReducer,
+  chattingRoom: chattingRoomReducer,
   info: userInfoReducer,
 });
 

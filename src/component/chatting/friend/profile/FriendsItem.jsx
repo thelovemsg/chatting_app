@@ -16,10 +16,6 @@ const FriendsItem = ({ searchInput }) => {
     dispatch(GET_USER_FRIENDS_REQUEST());
   }, []);
 
-  useEffect(() => {
-    console.log('searchInput :: ', searchInput);
-  }, [searchInput]);
-
   const { list: friends } = useSelector((state) => state.user.friends);
 
   const filteredFriends = friends.filter((friend) =>

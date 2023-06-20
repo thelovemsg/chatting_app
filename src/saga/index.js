@@ -6,6 +6,7 @@ import userProfileSaga from './user/userProfile';
 import userUpdateFriendSaga from './user/userUpdateFriends';
 import userFriendsSaga from './user/uersFriends';
 import userInfoSettingSaga from './user/userInfoSetting';
+import userChattingRoomSaga from './chatting/chattingRoomList';
 
 export function* rootSaga() {
   yield all([
@@ -16,6 +17,7 @@ export function* rootSaga() {
     fork(userMultiProfileSaga),
     fork(userUpdateFriendSaga),
     fork(userInfoSettingSaga),
+    fork(userChattingRoomSaga),
   ]); // all 은 배열 안의 여러 사가를 동시에 실행시켜줍니다.
 }
 

@@ -22,6 +22,7 @@ import BirthdayFriend from '../birthday/BirthdayFriend';
 import UpdatedFriend from './UpdateFriend';
 import FriendsItem from './FriendsItem';
 import ChattingList from '../chatting/ChattingList';
+import ChattingRoomList from '../chatting/ChattingRoomList';
 
 const Friends = () => {
   const dispatch = useDispatch();
@@ -92,7 +93,7 @@ const Friends = () => {
           searchInput={searchInput}
           handleSearchInputChange={handleSearchInputChange}
         />
-        <div>ㅎㅎ... 채팅방 클릭시</div>
+        <ChattingRoomList />
       </>
     ),
     setting: <div>setting screen ggg..</div>,

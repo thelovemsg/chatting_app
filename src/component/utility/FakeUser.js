@@ -47,3 +47,14 @@ export function createRandomProfile() {
     avatars: [],
   };
 }
+
+export function createChattingRoomInfo(inputDate) {
+  return {
+    id: faker.datatype.uuid(),
+    name: faker.internet.userName(),
+    avatar: faker.image.avatar(), // 아바타
+    lastChattingDate: inputDate ? new Date(inputDate) : faker.date.birthdate(), // last chatting date for user
+    lastChattingContent: faker.lorem.sentence(),
+    description: faker.lorem.sentence(),
+  };
+}

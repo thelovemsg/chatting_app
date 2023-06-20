@@ -135,7 +135,6 @@ export const StyledChattingScreenIconsDown = styled('div')`
 
 export const StyledChattingIntroLabel = styled('div')`
   font-size: 25px;
-  margin-top: 10px;
   margin-left: 10px;
   display: flex;
   align-items: center;
