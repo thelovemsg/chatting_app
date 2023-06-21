@@ -166,7 +166,12 @@ const MyProfile = ({
       {isFriendAddModalOpen && (
         <ProfileModal
           show={isFriendAddModalOpen}
-          style={{ width: '300px', height: '460px', borderRadius: 'none' }}
+          style={{
+            width: '300px',
+            height: '462px',
+            borderRadius: 'none',
+          }}
+          modalBgColor="white"
         >
           <AddFriendModal
             handleCloseModal={handleFriendAddModalClose}

@@ -19,6 +19,7 @@
     "i18next": "^22.4.11",
     "i18next-browser-languagedetector": "^7.0.1",
     "immer": "^9.0.19",
+    "moment": "^2.29.4",
     "prop-types": "^15.8.1",
     "re-resizable": "^6.9.9",
     "react": "^18.2.0",

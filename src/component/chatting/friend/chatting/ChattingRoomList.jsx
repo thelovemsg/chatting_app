@@ -1,6 +1,6 @@
 import CommonProfileModalContent from 'component/utilComponent/modal/CommonProfileModalContent';
 import ProfileModal from 'component/utilComponent/modal/ProfileModal';
-import { returnCurrDateYYYYMMDD } from 'component/utility/DateUtil';
+import { returnCurrDateYYYYMMDDV2 } from 'component/utility/DateUtil';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { GET_USER_CHATTING_ROOM_REQUEST } from 'reducers/chatting/chattingReducer';
@@ -42,7 +42,7 @@ const ChattingRoomList = () => {
                 className="profile-intro"
                 aria-hidden="true"
               />
-              <div className="custom-ml-10 custom-between">
+              <div className="custom-ml-20 custom-between">
                 <div>
                   <div
                     role="button"
@@ -60,7 +60,7 @@ const ChattingRoomList = () => {
                   </div>
                 </div>
                 <div style={{ marginBottom: '20px', fontSize: '15px' }}>
-                  {returnCurrDateYYYYMMDD(chattingRoom.lastChattingDate)}
+                  {returnCurrDateYYYYMMDDV2(chattingRoom.lastChattingDate)}
                 </div>
               </div>
             </div>

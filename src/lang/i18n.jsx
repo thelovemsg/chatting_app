@@ -88,6 +88,12 @@ i18n
             update: {
               title: 'Updated friends',
             },
+            add: {
+              title: 'Add Friend',
+              addWithTelnum: 'Add With Telphone Number',
+              addWithId: 'Add With ID',
+              telNumDesc: 'Please Input your friend name and telphone number.',
+            },
           },
           chatting: {
             title: 'Chatting',
@@ -179,6 +185,12 @@ i18n
             },
             update: {
               title: '업데이트한 친구',
+            },
+            add: {
+              title: '친구 추가',
+              addWithTelnum: '연락처로 추가',
+              addWithId: 'ID로 추가',
+              telNumDesc: '친구의 이름과 전화번호를 입력해주세요.',
             },
           },
           chatting: {

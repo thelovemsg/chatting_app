@@ -144,7 +144,6 @@ a.dropdown-item {
   height: 10% !important;
 }
 
-/* test */
 .draggable-modal .modal-dialog {
   position: absolute;
   margin: 0;
@@ -220,6 +219,10 @@ a.dropdown-item {
 
 .modal-title {
   margin-top: 10px;
+}
+
+.modal-footer {
+  border-top: none !important;
 }
 
 .profile-modal-input-box {

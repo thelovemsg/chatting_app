@@ -56,7 +56,7 @@ const FriendsItem = ({ searchInput }) => {
                       className="profile-intro"
                       aria-hidden="true"
                     />
-                    <div className="custom-ml-10 custom-between">
+                    <div className="custom-ml-20 custom-between">
                       <div>
                         <div className="profile-label">{friend.name}</div>
                       </div>
