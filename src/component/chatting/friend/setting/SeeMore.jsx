@@ -1,4 +1,5 @@
 import {
+  faAngleRight,
   faBullhorn,
   faCalendarWeek,
   faCircleInfo,
@@ -6,12 +7,15 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Trans } from 'react-i18next';
-import { StyledChattingIntroLabel } from 'styled-components/StyledForm';
+import {
+  StyledChattingIntroLabel,
+  StyledChattingMyInfo,
+  StyledChattingMySubscribe,
+} from 'styled-components/StyledForm';
 
 const SeeMore = () => {
   console.log('testing용');
 
-  // Recalculate animation speed when data changes
   return (
     <div>
       <StyledChattingIntroLabel>
@@ -19,41 +23,16 @@ const SeeMore = () => {
           <Trans i18nKey="setting.seeMore" />
         </div>
       </StyledChattingIntroLabel>
-      <div
-        className="mt-3 underline"
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          backgroundColor: 'gray',
-          border: '1px solid black',
-          borderTopLeftRadius: '5px',
-          borderTopRightRadius: '5px',
-          width: '98%',
-          margin: 'auto',
-          height: '74px',
-        }}
-      >
-        <div>홍길동</div>
-        <div>thelovemsg@naver.com</div>
-      </div>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          backgroundColor: 'gray',
-          border: '1px solid black',
-          borderTop: 'none',
-          borderBottomLeftRadius: '5px',
-          borderBottomRightRadius: '5px',
-          width: '98%',
-          margin: 'auto',
-          height: '43px',
-        }}
-      >
-        test
-      </div>
+      <StyledChattingMyInfo className="mt-3 underline">
+        <div className="custom-ml-20">홍길동</div>
+        <div className="custom-ml-20">thelovemsg@naver.com</div>
+      </StyledChattingMyInfo>
+      <StyledChattingMySubscribe>
+        <div className="custom-ml-20">My 구독</div>
+        <button type="button" className="custom-mr-20">
+          <FontAwesomeIcon icon={faAngleRight} />
+        </button>
+      </StyledChattingMySubscribe>
       <div
         className="mt-5"
         style={{
@@ -67,13 +46,57 @@ const SeeMore = () => {
             justifyContent: 'space-between', // Optional: Adds space between the columns
           }}
         >
-          <FontAwesomeIcon className="setting-icon" icon={faEnvelope} />
-          <FontAwesomeIcon className="setting-icon" icon={faCalendarWeek} />
-          <FontAwesomeIcon className="setting-icon" icon={faCircleInfo} />
-          <FontAwesomeIcon className="setting-icon" icon={faBullhorn} />
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <FontAwesomeIcon className="setting-icon" icon={faEnvelope} />
+            <div>
+              <Trans i18nKey="setting.mail" />
+            </div>
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <FontAwesomeIcon className="setting-icon" icon={faCalendarWeek} />
+            <div>
+              <Trans i18nKey="setting.calander" />
+            </div>
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <FontAwesomeIcon className="setting-icon" icon={faCircleInfo} />
+            <div>
+              <Trans i18nKey="setting.info" />
+            </div>
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <FontAwesomeIcon className="setting-icon" icon={faBullhorn} />
+            <div>
+              <Trans i18nKey="setting.notice" />
+            </div>
+          </div>
         </div>
       </div>
-      <div className="underline mt-4" />
+      <div className="underline mt-2" />
     </div>
   );
 };

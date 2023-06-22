@@ -221,3 +221,30 @@ export const StyledFontAwesomeIconPlus = styled(FontAwesomeIcon)`
     /* Add hover styles here, e.g., change background color, border color, etc. */
   }
 `;
+
+export const StyledChattingMyInfo = styled(`div`)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: gray;
+  background-color: var(--main-draggable-modal-bg-color);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  width: 98%;
+  margin: auto;
+  height: 74px;
+`;
+
+export const StyledChattingMySubscribe = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: gray;
+  border-top: none;
+  background-color: var(--main-draggable-modal-bg-color);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  width: 98%;
+  margin: auto;
+  height: 43px;
+`;
