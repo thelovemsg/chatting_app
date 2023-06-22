@@ -5,7 +5,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Signin from 'component/nav/Signin';
 import Contact from 'component/nav/Contact';
 import Register from 'component/nav/Register';
-import Friends from 'component/chatting/friend/profile/Friends';
 // import ScrollButtons from 'component/utilComponent/ScrollButtons';
 import Navtag from 'component/nav/Navtag';
 import ChattingRoomDesignTest from 'component/chatting/ChattingRoomDesignTest';
@@ -28,7 +27,6 @@ const App = () => (
         <Route path="/chattingRoom" element={<ChattingRoom />} />
         <Route path="/chattingTest" element={<ChattingRoomDesignTest />} />
         <Route path="/friendsTest" element={<FriendsTest />} />
-        <Route path="/friends" element={<Friends />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
     </RoutesWrapper>

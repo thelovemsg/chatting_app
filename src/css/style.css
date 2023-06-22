@@ -766,8 +766,10 @@ a.dropdown-item {
 }
 
 .description-down {
+  width: 95%;
   background-color: white !important;
   border-radius: 10px;
+  margin: auto;
 }
 
 .common-profile-no-image {
@@ -998,4 +1000,45 @@ a.dropdown-item {
 .underline {
   padding-bottom: 5px;
   border-bottom: 1px solid var(--main-underline-color);
+}
+
+/* setting */
+.setting-icon {
+  width: 30px;
+  height: 25px;
+}
+
+.down-carousel {
+  margin-left: 20px;
+  float: left;
+  height: 30px; /* This should match the height of your items */
+  overflow: hidden;
+}
+
+.down-carousel-inner {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 0;
+}
+
+.down-carousel-item {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes carousel {
+  0%,
+  75% {
+    top: 0;
+  }
+  25%,
+  100% {
+    top: -30px;
+  }
+  50% {
+    top: -60px;
+  }
 }

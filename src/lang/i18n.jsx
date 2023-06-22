@@ -98,6 +98,9 @@ i18n
           chatting: {
             title: 'Chatting',
           },
+          setting: {
+            seeMore: 'See More',
+          },
           error: {
             login_check_error: 'Please login.',
           },
@@ -195,6 +198,9 @@ i18n
           },
           chatting: {
             title: '채팅',
+          },
+          setting: {
+            seeMore: '더보기',
           },
           error: {
             login_check_error: '로그인을 해 주세요',

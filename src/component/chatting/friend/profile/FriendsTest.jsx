@@ -23,6 +23,7 @@ import UpdatedFriend from './UpdateFriend';
 import FriendsItem from './FriendsItem';
 import ChattingList from '../chatting/ChattingList';
 import ChattingRoomList from '../chatting/ChattingRoomList';
+import SeeMore from '../setting/SeeMore';
 
 const Friends = () => {
   const dispatch = useDispatch();
@@ -32,7 +33,6 @@ const Friends = () => {
   const [activeScreen, setActiveScreen] = useState('profile');
 
   const handleSearchBox = () => {
-    console.log('testing... showSearchBox :: ', showSearchBox);
     setShowSearchBox(!showSearchBox);
   };
 
@@ -93,10 +93,10 @@ const Friends = () => {
           searchInput={searchInput}
           handleSearchInputChange={handleSearchInputChange}
         />
-        <ChattingRoomList />
+        <ChattingRoomList searchInput={searchInput} />
       </>
     ),
-    setting: <div>setting screen ggg..</div>,
+    setting: <SeeMore />,
   };
 
   return (

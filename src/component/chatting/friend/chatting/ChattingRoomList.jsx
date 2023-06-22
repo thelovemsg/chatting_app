@@ -1,11 +1,13 @@
 import CommonProfileModalContent from 'component/utilComponent/modal/CommonProfileModalContent';
 import ProfileModal from 'component/utilComponent/modal/ProfileModal';
 import { returnCurrDateYYYYMMDDV2 } from 'component/utility/DateUtil';
+import { sortFriendsByDate } from 'component/utility/SortUtil';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import { GET_USER_CHATTING_ROOM_REQUEST } from 'reducers/chatting/chattingReducer';
 
-const ChattingRoomList = () => {
+const ChattingRoomList = ({ searchInput }) => {
   const dispatch = useDispatch();
   const [selectedUser, setSelectedUser] = useState(null);
 
@@ -25,15 +27,17 @@ const ChattingRoomList = () => {
     (state) => state.user.chattingRoom
   );
 
-  const sortFriendsByDate = [...chattingRoomList].sort(
-    (a, b) => new Date(b.lastChattingDate) - new Date(a.lastChattingDate)
+  const sortList = sortFriendsByDate(chattingRoomList);
+
+  const filteredChattingRoomList = sortList.filter((friend) =>
+    friend.name.toLowerCase().includes(searchInput.toLowerCase())
   );
 
   return (
     <>
-      {chattingRoomList.length !== 0 && (
+      {filteredChattingRoomList.length !== 0 && (
         <>
-          {sortFriendsByDate.map((chattingRoom, index) => (
+          {filteredChattingRoomList.map((chattingRoom, index) => (
             <div key={chattingRoom.id} className="profile-friend-box">
               <img
                 src={chattingRoom.avatar}
@@ -83,3 +87,11 @@ const ChattingRoomList = () => {
 };
 
 export default ChattingRoomList;
+
+ChattingRoomList.propTypes = {
+  searchInput: PropTypes.string,
+};
+
+ChattingRoomList.defaultProps = {
+  searchInput: null,
+};

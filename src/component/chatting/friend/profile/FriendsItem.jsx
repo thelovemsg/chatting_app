@@ -7,6 +7,8 @@ import { GET_USER_FRIENDS_REQUEST } from 'reducers/user/userFriends';
 import { StyledAccordionBody } from 'styled-components/StyledForm';
 import { Trans } from 'react-i18next';
 import PropTypes from 'prop-types';
+import { sortArrayWithFirstChar } from '../../../utility/SortUtil';
+// component/utility/SortUtil';
 
 const FriendsItem = ({ searchInput }) => {
   const dispatch = useDispatch();
@@ -22,11 +24,7 @@ const FriendsItem = ({ searchInput }) => {
     friend.name.toLowerCase().includes(searchInput.toLowerCase())
   );
 
-  const sortedFriends = [...filteredFriends].sort((a, b) => {
-    const targetA = a.name.charAt(0);
-    const targetB = b.name.charAt(0);
-    return targetA > targetB ? 1 : -1;
-  });
+  const sortedFriends = sortArrayWithFirstChar(filteredFriends);
 
   const handleUserClick = (user) => {
     setSelectedUser(user);
