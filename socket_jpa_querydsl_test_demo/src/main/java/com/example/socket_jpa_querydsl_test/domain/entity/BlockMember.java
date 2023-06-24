@@ -14,7 +14,7 @@ import static jakarta.persistence.FetchType.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@AttributeOverride(name = "id", column = @Column(name = "chatting_room_id"))
+@AttributeOverride(name = "id", column = @Column(name = "block_member_id"))
 @Where(clause = "deleted = false")
 public class BlockMember extends BaseEntity{
 

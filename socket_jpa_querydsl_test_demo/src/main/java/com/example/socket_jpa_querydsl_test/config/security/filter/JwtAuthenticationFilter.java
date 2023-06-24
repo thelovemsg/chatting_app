@@ -1,7 +1,7 @@
 package com.example.socket_jpa_querydsl_test.config.security.filter;
 
 import com.example.socket_jpa_querydsl_test.api.util.JsonUtil;
-import com.example.socket_jpa_querydsl_test.config.customenum.ContentType;
+import com.example.socket_jpa_querydsl_test.config.customenum.ContentTypeEnum;
 import com.example.socket_jpa_querydsl_test.config.exception.*;
 import com.example.socket_jpa_querydsl_test.config.security.provider.JwtTokenProvider;
 import jakarta.servlet.FilterChain;
@@ -12,9 +12,6 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;
 
 import java.io.IOException;
@@ -77,7 +74,7 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
     private static void returnFailResponse(HttpServletResponse response, String message, String code) throws IOException {
         var httpResponse = response;
         httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        httpResponse.setContentType(ContentType.JSON.getContentType());
+        httpResponse.setContentType(ContentTypeEnum.JSON.getContentType());
         ErrorMessage errorMessage = new ErrorMessage(message, code);
         httpResponse.getWriter().write(JsonUtil.toJson(errorMessage));
         httpResponse.getWriter().flush();

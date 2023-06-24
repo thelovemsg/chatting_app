@@ -1,13 +1,34 @@
 import { createRandomChatMessage } from 'component/utility/FakeUser';
 import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFolderOpen } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCalendar,
+  faClock,
+  faEnvelope,
+  faFolderOpen,
+  faPaperclip,
+} from '@fortawesome/free-solid-svg-icons';
 import '../../css/style.css';
-import { returnDateToYYYYMMDD } from '../utility/DateUtil';
+import { useLocation } from 'react-router-dom';
+import { returnDateToYYYYMMDD24HHMISS } from '../utility/DateUtil';
 
 const ChattingRoom = () => {
+  const location = useLocation();
+
+  // 2. location.state 에서 파라미터 취득
+  const { chattingRoomId } = location.state;
+  const { userId } = location.state;
+
+  console.log(chattingRoomId);
+  console.log(userId);
+
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
+
+  /**
+   * TODO:
+   * 로딩중이면 로딩 중이라고 표시하고 로딩에 실패하면 해당 정보를 전송함.
+   */
 
   // These userIds are now constant for each render of the component
   const currentUserId = 'test1';
@@ -24,7 +45,7 @@ const ChattingRoom = () => {
   }, []); // add these dependencies to the effect
 
   const sendMessage = (content, hasFile = false) => {
-    const newMessage = createRandomChatMessage(currentUserId, anotherUserId);
+    const newMessage = createRandomChatMessage(anotherUserId, currentUserId);
     const check = !!content;
     if (check) {
       newMessage.content = content;
@@ -59,7 +80,6 @@ const ChattingRoom = () => {
     if (message.senderId === currentUserId) {
       return message.hasFile ? 'bubble-left-with-file' : 'bubble-left';
     }
-
     return 'bubble-right';
   };
 
@@ -68,7 +88,7 @@ const ChattingRoom = () => {
   useEffect(() => {
     const setChatWindowHeight = () => {
       if (chatWindowRef.current) {
-        chatWindowRef.current.style.maxHeight = `${window.innerHeight * 0.5}px`;
+        chatWindowRef.current.style.maxHeight = `${window.innerHeight * 0.6}px`;
       }
     };
 
@@ -84,7 +104,14 @@ const ChattingRoom = () => {
     <div className="chat-main">
       <div className="chat-window" ref={chatWindowRef}>
         {messages.map((message, index) => (
-          <div key={`${message.userId + index + 1}`}>
+          <div
+            className={
+              message.senderId === currentUserId
+                ? 'bubble-left-wrapper'
+                : 'bubble-right-wrapper'
+            }
+            key={`${message.userId + index + 1}`}
+          >
             {message.id}
             <div
               className={
@@ -120,7 +147,7 @@ const ChattingRoom = () => {
                 message.senderId === currentUserId ? 'time-left' : 'time-right'
               }
             >
-              {returnDateToYYYYMMDD(message.timestamp)}
+              {returnDateToYYYYMMDD24HHMISS(message.timestamp)}
             </p>
           </div>
         ))}
@@ -142,9 +169,18 @@ const ChattingRoom = () => {
       </div>
       <div className="chat-options">
         <div className="chat-options-buttons">
-          <div className="ml-10 mr-10">예정1</div>
-          <div className="ml-10 mr-10">예정2</div>
-          <div className="ml-10 mr-10">예정3</div>
+          <div className="ml-10 mr-10">
+            <FontAwesomeIcon icon={faEnvelope} />
+          </div>
+          <div className="ml-10 mr-10">
+            <FontAwesomeIcon icon={faCalendar} />
+          </div>
+          <div className="ml-10 mr-10">
+            <FontAwesomeIcon icon={faClock} />
+          </div>
+          <div className="ml-10 mr-10">
+            <FontAwesomeIcon icon={faPaperclip} />
+          </div>
         </div>
         <div>
           <button type="button" onClick={() => sendMessage(input)}>

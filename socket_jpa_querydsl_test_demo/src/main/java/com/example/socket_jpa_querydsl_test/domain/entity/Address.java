@@ -18,7 +18,7 @@ import static jakarta.persistence.FetchType.LAZY;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString(exclude = "member")
-@AttributeOverride(name = "id", column = @Column(name = "friend_id"))
+@AttributeOverride(name = "id", column = @Column(name = "address_id"))
 public class Address extends BaseEntity{
 
     @Column(name = "address1")

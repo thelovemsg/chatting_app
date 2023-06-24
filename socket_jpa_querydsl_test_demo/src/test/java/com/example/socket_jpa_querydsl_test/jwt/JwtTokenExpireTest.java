@@ -1,7 +1,7 @@
 package com.example.socket_jpa_querydsl_test.jwt;
 
 import com.example.socket_jpa_querydsl_test.api.dto.request.RefreshTokenRequest;
-import com.example.socket_jpa_querydsl_test.config.security.LoginRequest;
+import com.example.socket_jpa_querydsl_test.config.dao.LoginRequestDao;
 import com.example.socket_jpa_querydsl_test.domain.utils.TokenInfo;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -90,8 +90,8 @@ public class JwtTokenExpireTest {
 
     }
 
-    private LoginRequest createLoginRequest() {
-        return new LoginRequest("test1@naver.com", "password1234");
+    private LoginRequestDao createLoginRequest() {
+        return new LoginRequestDao("test1@naver.com", "password1234");
     }
 
     private RefreshTokenRequest createRefreshTokenRequest(String refreshToken) {

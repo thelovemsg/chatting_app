@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { GET_USER_CHATTING_ROOM_REQUEST } from 'reducers/chatting/chattingReducer';
+import { useNavigate } from 'react-router-dom';
 
 const ChattingRoomList = ({ searchInput }) => {
   const dispatch = useDispatch();
@@ -33,12 +34,27 @@ const ChattingRoomList = ({ searchInput }) => {
     friend.name.toLowerCase().includes(searchInput.toLowerCase())
   );
 
+  const navigate = useNavigate();
+
+  const moveToChattingSreen = (chattingRoom) => {
+    console.log('test :: ', chattingRoom);
+    navigate('/chattingTest', {
+      state: {
+        chattingRoomId: 1,
+        userId: '개발자',
+      },
+    });
+  };
+
   return (
     <>
       {filteredChattingRoomList.length !== 0 && (
         <>
           {filteredChattingRoomList.map((chattingRoom, index) => (
-            <div key={chattingRoom.id} className="profile-friend-box">
+            <div
+              key={chattingRoom.chattingRoomId}
+              className="profile-friend-box"
+            >
               <img
                 src={chattingRoom.avatar}
                 alt={`Friend ${index + 1}`}
@@ -46,7 +62,10 @@ const ChattingRoomList = ({ searchInput }) => {
                 className="profile-intro"
                 aria-hidden="true"
               />
-              <div className="custom-ml-20 custom-between">
+              <div
+                className="custom-ml-20 custom-between"
+                onDoubleClick={() => moveToChattingSreen(chattingRoom)}
+              >
                 <div>
                   <div
                     role="button"
