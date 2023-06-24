@@ -1,18 +1,17 @@
 package com.example.socket_jpa_querydsl_test.domain.entity;
 
-import com.example.socket_jpa_querydsl_test.domain.status.FlagStatus;
+import com.example.socket_jpa_querydsl_test.domain.customenum.FlagStatus;
+import com.example.socket_jpa_querydsl_test.domain.customenum.PositionType;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import static jakarta.persistence.EnumType.*;
 import static jakarta.persistence.FetchType.LAZY;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Setter
+@Setter(AccessLevel.PRIVATE)
 @Entity
 @ToString
 @AttributeOverride(name = "id", column = @Column(name = "member_chatting_room_id"))
@@ -26,30 +25,21 @@ public class MemberChattingRoom extends BaseEntity{
     @JoinColumn(name = "chatting_room_id")
     private ChattingRoom chattingRoom;
 
-    /**
-     * When user get out of the chatting room,
-     * the column "withdrawalStatus" should be updated as YES.
-     */
     @Column(name = "withdrawal_status")
     private FlagStatus withdrawalStatus = FlagStatus.NO;
 
-    /**
-     * When the room is closed by owner,
-     * the column "roomStatus" should be updated as YES.
-     */
     @Column(name = "room_closed")
     private FlagStatus isRoomClosed = FlagStatus.NO;
 
-    /**
-     * When the room is closed by website manager for some reasons,
-     * the column "isExpired" should be updated as YES.
-     * (Or for some room that they don't use any more for too long time)
-     */
     @Column(name = "is_expired")
     private FlagStatus isExpired = FlagStatus.NO;
 
     @Column(name = "description")
     private String description;
+
+    @Enumerated(STRING)
+    @Column(name = "position")
+    private PositionType position = PositionType.MANAGER;
 
     public void withdrawMember() {
         this.withdrawalStatus = FlagStatus.YES;

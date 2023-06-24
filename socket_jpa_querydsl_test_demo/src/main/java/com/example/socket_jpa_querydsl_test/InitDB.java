@@ -1,12 +1,21 @@
 package com.example.socket_jpa_querydsl_test;
 
+import com.example.socket_jpa_querydsl_test.config.PasswordEncoderConfig;
+import com.example.socket_jpa_querydsl_test.domain.customenum.ProfileType;
 import com.example.socket_jpa_querydsl_test.domain.entity.*;
+import com.example.socket_jpa_querydsl_test.domain.profile.Profile;
 import com.example.socket_jpa_querydsl_test.repository.chatting.ChattingRoomRepository;
+import com.example.socket_jpa_querydsl_test.service.MemberService;
 import jakarta.annotation.PostConstruct;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+
+import static com.example.socket_jpa_querydsl_test.domain.customenum.ProfileType.*;
 
 @Component
 @RequiredArgsConstructor
@@ -18,6 +27,7 @@ public class InitDB {
     @PostConstruct
     public void init() {
         initService.initDb1();
+        initService.initDb2();
     }
 
     @Component
@@ -25,8 +35,11 @@ public class InitDB {
     @RequiredArgsConstructor
     static class InitService {
         private final EntityManager em;
-        public void initDb1() {
+        private final MemberService memberService;
+        private final PasswordEncoderConfig passwordEncoderConfig;
 
+        //set member test data
+        public void initDb1() {
             Member memberA = createMember("test1@naver.com", "testbot1", "samenicknam1","01011112222", "password1234");
             em.persist(memberA);
 
@@ -35,13 +48,16 @@ public class InitDB {
 
             MemberRole memberRoleA = new MemberRole();
             memberRoleA.setMember(memberA);
-            memberA.getMemberRoles().add(memberRoleA);
+            ArrayList mRolesArrayListA = new ArrayList<>();
+            mRolesArrayListA.add(memberRoleA);
+            memberA.setMemberRoles(mRolesArrayListA);
             em.persist(memberRoleA);
 
             MemberRole memberRoleB = new MemberRole();
-            memberRoleB.setRoleEnum(RoleEnum.MANAGER);
             memberRoleB.setMember(memberB);
-            memberB.getMemberRoles().add(memberRoleB);
+            memberRoleB.setRoleEnum(RoleEnum.MANAGER);
+            ArrayList mRolesArrayListB = new ArrayList<>();
+            memberB.setMemberRoles(mRolesArrayListB);
             em.persist(memberRoleB);
 
             Address addressA = createAddress("address1", "address2");
@@ -49,7 +65,7 @@ public class InitDB {
             em.persist(addressA);
 
             Address addressB = createAddress("address11_1", "address22_1");
-            addressA.setMember(memberB);
+            addressB.setMember(memberB);
             em.persist(addressB);
 
             Address addressC = createAddress("address11_2", "address22_2");
@@ -66,7 +82,45 @@ public class InitDB {
             em.persist(memberChattingRoomB);
         }
 
-        private Address createAddress(String address1, String address2) {
+        // set profile test data
+        public void initDb2() {
+            Member memberA = memberService.getMemberByEmail("test1@naver.com");
+
+            Profile profileA = Profile.builder()
+                                .member(memberA)
+                                .name("테스트 이름 1")
+                                .statusDescription("테스트 이름 설명입니다. 1")
+                                .build();
+            em.persist(profileA);
+
+            Member memberB = memberService.getMemberByEmail("test2@naver.com");
+            Profile profileB = Profile.builder()
+                                .member(memberB)
+                                .name("테스트 이름 2")
+                                .statusDescription("테스트 이름 설명입니다. 2")
+                                .build();
+            em.persist(profileB);
+
+            Profile profileC = Profile.builder()
+                                .member(memberB)
+                                .name("멀티 테스트 이름")
+                                .profileType(MULTI)
+                                .statusDescription("멀티 테스트 이름 설명입니다.").build();
+            em.persist(profileC);
+        }
+
+        // set friend test data
+        public void initDb3() {
+            Member memberA = memberService.getMemberByEmail("test1@naver.com");
+
+
+            Member memberB = memberService.getMemberByEmail("test2@naver.com");
+
+
+        }
+
+
+            private Address createAddress(String address1, String address2) {
             Address address = new Address();
             address.setAddress1(address1);
             address.setAddress2(address2);
@@ -74,13 +128,9 @@ public class InitDB {
         }
 
         private Member createMember(String email, String name, String nickname, String phoneNumber, String password) {
-            Member member = new Member();
-            member.setEmail(email);
-            member.setName(name);
-            member.setNickname(nickname);
-            member.setPhoneNumber(phoneNumber);
-            member.setPassword(password);
-            return member;
+            return Member.builder().email(email)
+                    .name(name).nickname(nickname)
+                    .phoneNumber(phoneNumber).password(password).build();
         }
 
         private ChattingRoom createChattingRoom(String name, String password){

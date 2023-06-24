@@ -2,7 +2,7 @@ package com.example.socket_jpa_querydsl_test.domain.entity;
 
 import com.example.socket_jpa_querydsl_test.api.dto.entity.MemberSaveDto;
 import com.example.socket_jpa_querydsl_test.domain.entity.security.RefreshToken;
-import com.example.socket_jpa_querydsl_test.domain.status.AddressStatus;
+import com.example.socket_jpa_querydsl_test.domain.customenum.AddressType;
 import com.example.socket_jpa_querydsl_test.domain.utils.PasswordConverterUtil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -52,9 +52,12 @@ public class Member extends BaseEntity implements Serializable {
     private String password;
 
     @OneToMany(mappedBy = "member", fetch = EAGER)
+    @Builder.Default
     private List<MemberRole> memberRoles = new ArrayList<>();
 
-//    @JsonIgnore
+    @Column(name = "member_indv_id")
+    private String memberIndividualId;
+
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     @Builder.Default
     private List<Address> addresses = new ArrayList<>();
@@ -65,6 +68,10 @@ public class Member extends BaseEntity implements Serializable {
 
     public void addAddress(Address address){
         addresses.add(address);
+    }
+
+    public void removeAddress(Address address){
+        addresses.remove(address);
     }
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
@@ -96,11 +103,17 @@ public class Member extends BaseEntity implements Serializable {
         }
     }
 
+    public static Member returnMemberWithId(Long memberId) {
+        Member member = new Member();
+        member.setId(memberId);
+        return member;
+    }
+
     public Member createMember(MemberSaveDto memberSaveDto){
         Address address = new Address();
         address.setAddress1(memberSaveDto.getAddress1());
         address.setAddress2(memberSaveDto.getAddress2());
-        address.setAddressStatus(AddressStatus.PRIMARY);
+        address.setAddressType(AddressType.PRIMARY);
 
         List<Address> addresses = new ArrayList<>();
         addresses.add(address);
@@ -119,6 +132,5 @@ public class Member extends BaseEntity implements Serializable {
                 .phoneNumber(memberSaveDto.getPhoneNumber())
                 .build();
     }
-
 
 }

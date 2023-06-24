@@ -51,6 +51,8 @@ public class QMember extends EntityPathBase<Member> {
     //inherited
     public final StringPath lastModifiedBy = _super.lastModifiedBy;
 
+    public final StringPath memberIndividualId = createString("memberIndividualId");
+
     public final ListPath<MemberRole, QMemberRole> memberRoles = this.<MemberRole, QMemberRole>createList("memberRoles", MemberRole.class, QMemberRole.class, PathInits.DIRECT2);
 
     //inherited

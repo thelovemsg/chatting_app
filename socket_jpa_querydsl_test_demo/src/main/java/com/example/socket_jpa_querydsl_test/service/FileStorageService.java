@@ -1,8 +1,7 @@
 package com.example.socket_jpa_querydsl_test.service;
 
 import com.example.socket_jpa_querydsl_test.domain.entity.File;
-import com.example.socket_jpa_querydsl_test.repository.FileRepository;
-import lombok.RequiredArgsConstructor;
+import com.example.socket_jpa_querydsl_test.repository.etc.FileRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -16,8 +15,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.time.Instant;
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 

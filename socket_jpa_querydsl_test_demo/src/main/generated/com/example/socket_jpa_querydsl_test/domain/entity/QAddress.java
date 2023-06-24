@@ -28,7 +28,7 @@ public class QAddress extends EntityPathBase<Address> {
 
     public final StringPath address2 = createString("address2");
 
-    public final EnumPath<com.example.socket_jpa_querydsl_test.domain.status.AddressStatus> addressStatus = createEnum("addressStatus", com.example.socket_jpa_querydsl_test.domain.status.AddressStatus.class);
+    public final EnumPath<com.example.socket_jpa_querydsl_test.domain.customenum.AddressType> addressType = createEnum("addressType", com.example.socket_jpa_querydsl_test.domain.customenum.AddressType.class);
 
     //inherited
     public final StringPath createdBy = _super.createdBy;

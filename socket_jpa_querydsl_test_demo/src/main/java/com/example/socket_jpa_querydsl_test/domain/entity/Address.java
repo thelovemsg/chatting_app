@@ -1,10 +1,9 @@
 package com.example.socket_jpa_querydsl_test.domain.entity;
 
-import com.example.socket_jpa_querydsl_test.domain.status.AddressStatus;
+import com.example.socket_jpa_querydsl_test.domain.customenum.AddressType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.Where;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
@@ -38,6 +37,6 @@ public class Address extends BaseEntity{
 
     @Enumerated(STRING)
     @Column(name = "addressStatus")
-    private AddressStatus addressStatus = AddressStatus.ETC;
+    private AddressType addressType = AddressType.ETC;
 
 }

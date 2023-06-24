@@ -11,8 +11,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static com.example.socket_jpa_querydsl_test.domain.entity.QMemberChattingRoom.memberChattingRoom;
-import static com.example.socket_jpa_querydsl_test.domain.status.FlagStatus.NO;
-
+import static com.example.socket_jpa_querydsl_test.domain.customenum.FlagStatus.NO;
 
 @Repository
 public class MemberChattingRoomRepositoryImpl extends SimpleJpaRepository<MemberChattingRoom, Long> implements MemberChattingRoomRepository {

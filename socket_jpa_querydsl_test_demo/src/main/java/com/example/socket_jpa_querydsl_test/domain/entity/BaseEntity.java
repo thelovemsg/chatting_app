@@ -34,6 +34,7 @@ public abstract class BaseEntity {
 
     @Column(name = "createdBy", nullable = false, columnDefinition = "varchar(255) default 'ADMIN'")
     private String createdBy = "ADMIN";
+
     @Column(name = "lastModifiedBy", nullable = false, columnDefinition = "varchar(255) default 'ADMIN'")
     private String lastModifiedBy  = "ADMIN";
 

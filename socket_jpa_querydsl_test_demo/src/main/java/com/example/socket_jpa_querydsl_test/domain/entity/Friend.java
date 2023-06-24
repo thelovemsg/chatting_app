@@ -1,5 +1,6 @@
 package com.example.socket_jpa_querydsl_test.domain.entity;
 
+import com.example.socket_jpa_querydsl_test.domain.profile.ProfilePermission;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -7,6 +8,8 @@ import org.hibernate.annotations.Where;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static jakarta.persistence.FetchType.LAZY;
 
@@ -22,6 +25,9 @@ public class Friend extends BaseEntity{
     @JsonIgnore
     @JoinColumn(name = "member_id")
     private Member member;
+
+    @OneToMany(mappedBy = "friend")
+    private List<ProfilePermission> profilePermission = new ArrayList<>();
 
     @Column(name = "from_member_id")
     private String fromMemberId;

@@ -1,4 +1,4 @@
-package com.example.socket_jpa_querydsl_test.domain.entity.security;
+package com.example.socket_jpa_querydsl_test.domain.profile;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
@@ -11,16 +11,16 @@ import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
- * QRefreshToken is a Querydsl query type for RefreshToken
+ * QProfile is a Querydsl query type for Profile
  */
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
-public class QRefreshToken extends EntityPathBase<RefreshToken> {
+public class QProfile extends EntityPathBase<Profile> {
 
-    private static final long serialVersionUID = -580815398L;
+    private static final long serialVersionUID = -1019520021L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
-    public static final QRefreshToken refreshToken = new QRefreshToken("refreshToken");
+    public static final QProfile profile = new QProfile("profile");
 
     public final com.example.socket_jpa_querydsl_test.domain.entity.QBaseEntity _super = new com.example.socket_jpa_querydsl_test.domain.entity.QBaseEntity(this);
 
@@ -33,8 +33,6 @@ public class QRefreshToken extends EntityPathBase<RefreshToken> {
     //inherited
     public final BooleanPath deleted = _super.deleted;
 
-    public final DateTimePath<java.time.Instant> expiryDate = createDateTime("expiryDate", java.time.Instant.class);
-
     //inherited
     public final NumberPath<Long> id = _super.id;
 
@@ -46,25 +44,31 @@ public class QRefreshToken extends EntityPathBase<RefreshToken> {
     //inherited
     public final DateTimePath<java.time.ZonedDateTime> modifiedDate = _super.modifiedDate;
 
-    public final StringPath token = createString("token");
+    public final StringPath name = createString("name");
 
-    public QRefreshToken(String variable) {
-        this(RefreshToken.class, forVariable(variable), INITS);
+    public final EnumPath<com.example.socket_jpa_querydsl_test.domain.customenum.ProfileType> profileType = createEnum("profileType", com.example.socket_jpa_querydsl_test.domain.customenum.ProfileType.class);
+
+    public final StringPath statusDescription = createString("statusDescription");
+
+    public final DateTimePath<java.time.ZonedDateTime> uploadDateTime = createDateTime("uploadDateTime", java.time.ZonedDateTime.class);
+
+    public QProfile(String variable) {
+        this(Profile.class, forVariable(variable), INITS);
     }
 
-    public QRefreshToken(Path<? extends RefreshToken> path) {
+    public QProfile(Path<? extends Profile> path) {
         this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QRefreshToken(PathMetadata metadata) {
+    public QProfile(PathMetadata metadata) {
         this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QRefreshToken(PathMetadata metadata, PathInits inits) {
-        this(RefreshToken.class, metadata, inits);
+    public QProfile(PathMetadata metadata, PathInits inits) {
+        this(Profile.class, metadata, inits);
     }
 
-    public QRefreshToken(Class<? extends RefreshToken> type, PathMetadata metadata, PathInits inits) {
+    public QProfile(Class<? extends Profile> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.member = inits.isInitialized("member") ? new com.example.socket_jpa_querydsl_test.domain.entity.QMember(forProperty("member"), inits.get("member")) : null;
     }

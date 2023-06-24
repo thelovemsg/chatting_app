@@ -3,7 +3,7 @@ package com.example.socket_jpa_querydsl_test.repository;
 import com.example.socket_jpa_querydsl_test.domain.entity.ChattingRoom;
 import com.example.socket_jpa_querydsl_test.domain.entity.Member;
 import com.example.socket_jpa_querydsl_test.domain.entity.MemberChattingRoom;
-import com.example.socket_jpa_querydsl_test.domain.status.FlagStatus;
+import com.example.socket_jpa_querydsl_test.domain.customenum.FlagStatus;
 import com.example.socket_jpa_querydsl_test.repository.chatting.ChattingRoomRepository;
 import com.example.socket_jpa_querydsl_test.repository.member.MemberChattingRoomRepositoryImpl;
 import com.example.socket_jpa_querydsl_test.repository.member.MemberRepository;

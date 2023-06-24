@@ -1,8 +1,7 @@
 package com.example.socket_jpa_querydsl_test.service;
 
-import com.example.socket_jpa_querydsl_test.repository.FileRepository;
+import com.example.socket_jpa_querydsl_test.repository.etc.FileRepository;
 import jakarta.transaction.Transactional;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

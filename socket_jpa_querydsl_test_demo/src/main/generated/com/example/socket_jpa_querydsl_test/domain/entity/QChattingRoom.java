@@ -36,7 +36,7 @@ public class QChattingRoom extends EntityPathBase<ChattingRoom> {
     //inherited
     public final NumberPath<Long> id = _super.id;
 
-    public final EnumPath<com.example.socket_jpa_querydsl_test.domain.status.ChattingRoomStatus> isClosed = createEnum("isClosed", com.example.socket_jpa_querydsl_test.domain.status.ChattingRoomStatus.class);
+    public final EnumPath<com.example.socket_jpa_querydsl_test.domain.customenum.ChattingRoomType> isClosed = createEnum("isClosed", com.example.socket_jpa_querydsl_test.domain.customenum.ChattingRoomType.class);
 
     //inherited
     public final StringPath lastModifiedBy = _super.lastModifiedBy;

@@ -1,5 +1,6 @@
 package com.example.socket_jpa_querydsl_test.domain.entity;
 
+import com.example.socket_jpa_querydsl_test.domain.customenum.FlagStatus;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Where;
@@ -27,6 +28,10 @@ public class BlockMember extends BaseEntity{
     private Member memberTarget;
 
     @CreatedDate
-    private LocalDateTime blockDate;
+    @Column(name = "block_datetime")
+    private LocalDateTime blockDatetime;
+
+    @Column(name = "block_type")
+    private FlagStatus blockType;
 
 }

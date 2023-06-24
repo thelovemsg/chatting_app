@@ -24,7 +24,9 @@ public class QBlockMember extends EntityPathBase<BlockMember> {
 
     public final QBaseEntity _super = new QBaseEntity(this);
 
-    public final DateTimePath<java.time.LocalDateTime> blockDate = createDateTime("blockDate", java.time.LocalDateTime.class);
+    public final DateTimePath<java.time.LocalDateTime> blockDatetime = createDateTime("blockDatetime", java.time.LocalDateTime.class);
+
+    public final EnumPath<com.example.socket_jpa_querydsl_test.domain.customenum.FlagStatus> blockType = createEnum("blockType", com.example.socket_jpa_querydsl_test.domain.customenum.FlagStatus.class);
 
     //inherited
     public final StringPath createdBy = _super.createdBy;

@@ -1,4 +1,4 @@
-package com.example.socket_jpa_querydsl_test.repository;
+package com.example.socket_jpa_querydsl_test.repository.etc;
 
 import com.example.socket_jpa_querydsl_test.domain.entity.security.RefreshToken;
 import org.springframework.data.jpa.repository.JpaRepository;

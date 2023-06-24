@@ -1,6 +1,6 @@
 package com.example.socket_jpa_querydsl_test.domain.entity;
 
-import com.example.socket_jpa_querydsl_test.domain.status.ChattingRoomStatus;
+import com.example.socket_jpa_querydsl_test.domain.customenum.ChattingRoomType;
 import com.example.socket_jpa_querydsl_test.domain.utils.PasswordConverterUtil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.f4b6a3.tsid.TsidCreator;
@@ -32,7 +32,7 @@ public class ChattingRoom extends BaseEntity {
 
     @Column(name = "chatting_room_status")
     @Enumerated(STRING)
-    private ChattingRoomStatus isClosed = ChattingRoomStatus.OPEN;
+    private ChattingRoomType isClosed = ChattingRoomType.OPEN;
 
     @OneToMany(mappedBy = "chattingRoom", cascade = CascadeType.ALL)
     private List<Hashtag> hashtags = new ArrayList<>();
@@ -61,10 +61,10 @@ public class ChattingRoom extends BaseEntity {
     }
 
     public boolean isRoomActive() {
-        return isClosed == ChattingRoomStatus.OPEN && (roomExpirationDate == null || LocalDateTime.now().isBefore(roomExpirationDate));
+        return isClosed == ChattingRoomType.OPEN && (roomExpirationDate == null || LocalDateTime.now().isBefore(roomExpirationDate));
     }
 
-    public void changeStatus(ChattingRoomStatus isClosed) {
+    public void changeStatus(ChattingRoomType isClosed) {
         this.isClosed = isClosed;
     }
 
