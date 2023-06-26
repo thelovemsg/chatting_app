@@ -38,27 +38,20 @@ public class InitDB {
         private final MemberService memberService;
         private final PasswordEncoderConfig passwordEncoderConfig;
 
-        //set member test data
+        //set member and address data
         public void initDb1() {
             Member memberA = createMember("test1@naver.com", "testbot1", "samenicknam1","01011112222", "password1234");
             em.persist(memberA);
 
-            Member memberB = createMember("test2@naver.com", "testbot2", "samenicknam2", "01022223333", "password1234");
+            Member memberB = createMember("test2@naver.com", "testbot2", "samenicknam2", "01011112222", "password1234");
             em.persist(memberB);
 
-            MemberRole memberRoleA = new MemberRole();
-            memberRoleA.setMember(memberA);
-            ArrayList mRolesArrayListA = new ArrayList<>();
-            mRolesArrayListA.add(memberRoleA);
-            memberA.setMemberRoles(mRolesArrayListA);
-            em.persist(memberRoleA);
+            Member memberC = createMember("test3@naver.com", "testbote", "samenicknam3","01011113333", "password1234");
+            em.persist(memberC);
 
-            MemberRole memberRoleB = new MemberRole();
-            memberRoleB.setMember(memberB);
-            memberRoleB.setRoleEnum(RoleEnum.MANAGER);
-            ArrayList mRolesArrayListB = new ArrayList<>();
-            memberB.setMemberRoles(mRolesArrayListB);
-            em.persist(memberRoleB);
+            em.persist(setMemberRole(memberA, null));
+            em.persist(setMemberRole(memberB, RoleEnum.MANAGER));
+            em.persist(setMemberRole(memberC, null));
 
             Address addressA = createAddress("address1", "address2");
             addressA.setMember(memberA);
@@ -72,17 +65,13 @@ public class InitDB {
             addressC.setMember(memberB);
             em.persist(addressC);
 
-            ChattingRoom testRoom = createChattingRoom("test_room", "1234");
-            em.persist(testRoom);
+            Address addressD = createAddress("address33", "address334");
+            addressD.setMember(memberC);
+            em.persist(addressD);
 
-            MemberChattingRoom memberChattingRoomA = MemberChattingRoom.joinMemberToChattingRoom(memberA, testRoom);
-            em.persist(memberChattingRoomA);
-
-            MemberChattingRoom memberChattingRoomB = MemberChattingRoom.joinMemberToChattingRoom(memberB, testRoom);
-            em.persist(memberChattingRoomB);
         }
 
-        // set profile test data
+        // set profile data
         public void initDb2() {
             Member memberA = memberService.getMemberByEmail("test1@naver.com");
 
@@ -109,13 +98,19 @@ public class InitDB {
             em.persist(profileC);
         }
 
-        // set friend test data
+        // set friend and chatting room dta
         public void initDb3() {
+
+            /**
+             * 1. memberA와 memberB, memberC는 친구다.
+             * 2. memberB는 memberC에게 친구 신청을 보냈다.
+             * 3. memberB는 memberA에게 멀티프로필을 사용하고 있다.
+             * 4. memberA에게 memberC는 즐겨찾기에 추가되어있다.
+             */
+
             Member memberA = memberService.getMemberByEmail("test1@naver.com");
-
-
             Member memberB = memberService.getMemberByEmail("test2@naver.com");
-
+            Member memberC = memberService.getMemberByEmail("test2@naver.com");
 
         }
 
@@ -138,6 +133,19 @@ public class InitDB {
             chattingRoom.setName(name);
             chattingRoom.setPassword(password);
             return chattingRoom;
+        }
+
+        private MemberRole setMemberRole(Member member, RoleEnum roleEnum) {
+            MemberRole memberRole = new MemberRole();
+            memberRole.setMember(member);
+
+            if(roleEnum != null)
+                memberRole.setRoleEnum(roleEnum);
+
+            ArrayList mRolesArrayListA = new ArrayList<>();
+            mRolesArrayListA.add(memberRole);
+            member.setMemberRoles(mRolesArrayListA);
+            return memberRole;
         }
 
     }

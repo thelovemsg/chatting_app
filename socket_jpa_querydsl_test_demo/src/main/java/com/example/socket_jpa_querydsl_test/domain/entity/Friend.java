@@ -1,5 +1,6 @@
 package com.example.socket_jpa_querydsl_test.domain.entity;
 
+import com.example.socket_jpa_querydsl_test.domain.customenum.FlagStatus;
 import com.example.socket_jpa_querydsl_test.domain.profile.ProfilePermission;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -8,10 +9,13 @@ import org.hibernate.annotations.Where;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static jakarta.persistence.EnumType.*;
 import static jakarta.persistence.FetchType.LAZY;
+import static lombok.Builder.*;
 
 @Entity
 @Getter
@@ -36,10 +40,11 @@ public class Friend extends BaseEntity{
     private String toMemberId;
 
     @Column(name = "are_we_friend", columnDefinition = "false")
-    private boolean areWeFriend;
+    @Enumerated(STRING)
+    private FlagStatus areWeFriend = FlagStatus.YES;
 
     @Column(name = "apply_date")
     @CreatedDate
-    private LocalDateTime applyDate;
+    private ZonedDateTime applyDate = ZonedDateTime.now();
 
 }
