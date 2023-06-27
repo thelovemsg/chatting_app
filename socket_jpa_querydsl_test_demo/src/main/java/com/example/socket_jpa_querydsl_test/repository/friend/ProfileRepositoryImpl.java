@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class ProfileRepositoryImpl extends SimpleJpaRepository<Profile, Long>{
+public class ProfileRepositoryImpl extends SimpleJpaRepository<Profile, Long> {
 
     private final JPAQueryFactory queryFactory;
 
@@ -15,7 +15,5 @@ public class ProfileRepositoryImpl extends SimpleJpaRepository<Profile, Long>{
         super(Profile.class, entityManager);
         this.queryFactory = new JPAQueryFactory(entityManager);
     }
-
-
 
 }

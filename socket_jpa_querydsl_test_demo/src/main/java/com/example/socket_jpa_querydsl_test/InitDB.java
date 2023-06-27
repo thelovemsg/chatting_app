@@ -5,7 +5,9 @@ import com.example.socket_jpa_querydsl_test.domain.customenum.ProfileType;
 import com.example.socket_jpa_querydsl_test.domain.entity.*;
 import com.example.socket_jpa_querydsl_test.domain.profile.Profile;
 import com.example.socket_jpa_querydsl_test.repository.chatting.ChattingRoomRepository;
+import com.example.socket_jpa_querydsl_test.service.FriendService;
 import com.example.socket_jpa_querydsl_test.service.MemberService;
+import com.example.socket_jpa_querydsl_test.service.ProfileService;
 import jakarta.annotation.PostConstruct;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -14,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.example.socket_jpa_querydsl_test.domain.customenum.ProfileType.*;
 
@@ -36,7 +39,9 @@ public class InitDB {
     static class InitService {
         private final EntityManager em;
         private final MemberService memberService;
+        private final ProfileService profileService;
         private final PasswordEncoderConfig passwordEncoderConfig;
+        private final FriendService friendService;
 
         //set member and address data
         public void initDb1() {
@@ -96,6 +101,14 @@ public class InitDB {
                                 .profileType(MULTI)
                                 .statusDescription("멀티 테스트 이름 설명입니다.").build();
             em.persist(profileC);
+
+            Member memberC = memberService.getMemberByEmail("test3@naver.com");
+            Profile profileD = Profile.builder()
+                    .member(memberC)
+                    .name("테스트 이름 3")
+                    .statusDescription("테스트 이름 설명입니다 3").build();
+            em.persist(profileD);
+
         }
 
         // set friend and chatting room dta
@@ -111,6 +124,12 @@ public class InitDB {
             Member memberA = memberService.getMemberByEmail("test1@naver.com");
             Member memberB = memberService.getMemberByEmail("test2@naver.com");
             Member memberC = memberService.getMemberByEmail("test2@naver.com");
+
+            // 1. memberA와 memberB, memberC는 친구다.
+            friendService.addFriend(memberA, memberB);
+
+            List<Profile> profiles = profileService.getProfiles(memberA.getId());
+
 
         }
 

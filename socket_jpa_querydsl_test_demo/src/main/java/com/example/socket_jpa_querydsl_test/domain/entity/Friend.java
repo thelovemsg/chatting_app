@@ -34,10 +34,10 @@ public class Friend extends BaseEntity{
     private List<ProfilePermission> profilePermission = new ArrayList<>();
 
     @Column(name = "from_member_id")
-    private String fromMemberId;
+    private Long fromMemberId;
 
     @Column(name = "to_member_id")
-    private String toMemberId;
+    private Long toMemberId;
 
     @Column(name = "are_we_friend", columnDefinition = "false")
     @Enumerated(STRING)

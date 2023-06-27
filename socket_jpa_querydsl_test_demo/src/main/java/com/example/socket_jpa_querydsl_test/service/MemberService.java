@@ -112,4 +112,14 @@ public class MemberService {
     public Member getMemberByEmail(String email) {
         return memberRepository.getMemberByEmail(email).orElseThrow(() -> new IllegalStateException("no member"));
     }
+
+    public Long searchMemberWithPhoneNumber(String phoneNumber){
+
+        return 0L;
+    }
+
+    public Long searchMemberWithWebId(Long memberId){
+        return 0L;
+    }
+
 }

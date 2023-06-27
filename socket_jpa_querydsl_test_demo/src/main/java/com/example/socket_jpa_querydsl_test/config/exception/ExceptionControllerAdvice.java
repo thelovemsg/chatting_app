@@ -29,4 +29,12 @@ public class ExceptionControllerAdvice {
         return new ResponseEntity<>(message, HttpStatus.OK);
     }
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(value = AlreadyFriendException.class)
+    public ResponseEntity<Object> handleAlreadyFriendException(AlreadyFriendException e) {
+        log.error(e.getMessage());
+        Message message = new Message(StatusEnum.BAD_REQUEST, e.getMessage(), e.getData());
+        return new ResponseEntity<>(message, HttpStatus.OK);
+    }
+
 }

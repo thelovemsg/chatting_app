@@ -36,7 +36,7 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-security'
     testImplementation 'org.springframework.security:spring-security-test'
-    testImplementation 'org.springframework:spring-websocket-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-websocket'
 
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'com.h2database:h2'

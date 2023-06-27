@@ -24,9 +24,9 @@ public class QFriend extends EntityPathBase<Friend> {
 
     public final QBaseEntity _super = new QBaseEntity(this);
 
-    public final DateTimePath<java.time.LocalDateTime> applyDate = createDateTime("applyDate", java.time.LocalDateTime.class);
+    public final DateTimePath<java.time.ZonedDateTime> applyDate = createDateTime("applyDate", java.time.ZonedDateTime.class);
 
-    public final BooleanPath areWeFriend = createBoolean("areWeFriend");
+    public final EnumPath<com.example.socket_jpa_querydsl_test.domain.customenum.FlagStatus> areWeFriend = createEnum("areWeFriend", com.example.socket_jpa_querydsl_test.domain.customenum.FlagStatus.class);
 
     //inherited
     public final StringPath createdBy = _super.createdBy;
@@ -37,7 +37,7 @@ public class QFriend extends EntityPathBase<Friend> {
     //inherited
     public final BooleanPath deleted = _super.deleted;
 
-    public final StringPath fromMemberId = createString("fromMemberId");
+    public final NumberPath<Long> fromMemberId = createNumber("fromMemberId", Long.class);
 
     //inherited
     public final NumberPath<Long> id = _super.id;
@@ -50,7 +50,9 @@ public class QFriend extends EntityPathBase<Friend> {
     //inherited
     public final DateTimePath<java.time.ZonedDateTime> modifiedDate = _super.modifiedDate;
 
-    public final StringPath toMemberId = createString("toMemberId");
+    public final ListPath<com.example.socket_jpa_querydsl_test.domain.profile.ProfilePermission, com.example.socket_jpa_querydsl_test.domain.profile.QProfilePermission> profilePermission = this.<com.example.socket_jpa_querydsl_test.domain.profile.ProfilePermission, com.example.socket_jpa_querydsl_test.domain.profile.QProfilePermission>createList("profilePermission", com.example.socket_jpa_querydsl_test.domain.profile.ProfilePermission.class, com.example.socket_jpa_querydsl_test.domain.profile.QProfilePermission.class, PathInits.DIRECT2);
+
+    public final NumberPath<Long> toMemberId = createNumber("toMemberId", Long.class);
 
     public QFriend(String variable) {
         this(Friend.class, forVariable(variable), INITS);

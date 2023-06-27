@@ -46,6 +46,8 @@ public class QProfile extends EntityPathBase<Profile> {
 
     public final StringPath name = createString("name");
 
+    public final ListPath<ProfilePermission, QProfilePermission> profilePermission = this.<ProfilePermission, QProfilePermission>createList("profilePermission", ProfilePermission.class, QProfilePermission.class, PathInits.DIRECT2);
+
     public final EnumPath<com.example.socket_jpa_querydsl_test.domain.customenum.ProfileType> profileType = createEnum("profileType", com.example.socket_jpa_querydsl_test.domain.customenum.ProfileType.class);
 
     public final StringPath statusDescription = createString("statusDescription");

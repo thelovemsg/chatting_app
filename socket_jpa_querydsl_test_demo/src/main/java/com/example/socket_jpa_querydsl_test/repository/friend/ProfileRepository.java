@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface ProfileRepository extends JpaRepository<Profile, Long> {
-    List<Profile> getProfilesByMemberId(String memberId);
-    Profile getProfilesById(String profileId);
+    List<Profile> getProfilesByMemberId(Long memberId);
+    Profile getProfilesById(Long profileId);
 }
