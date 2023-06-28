@@ -67,11 +67,13 @@ public class Member extends BaseEntity implements Serializable {
     private List<File> files = new ArrayList<>();
 
     public void addAddress(Address address){
-        addresses.add(address);
+        if(!addresses.contains(address))
+            addresses.add(address);
     }
 
     public void removeAddress(Address address){
-        addresses.remove(address);
+        if(addresses.contains(address))
+            addresses.remove(address);
     }
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)

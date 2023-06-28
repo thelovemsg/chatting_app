@@ -23,28 +23,28 @@ import static lombok.Builder.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @AttributeOverride(name = "id", column = @Column(name = "friend_id"))
+@Builder
 public class Friend extends BaseEntity{
 
     @ManyToOne(fetch = LAZY)
     @JsonIgnore
     @JoinColumn(name = "member_id")
-    private Member member;
+    private Member fromMember;
 
     @OneToMany(mappedBy = "friend")
     private List<ProfilePermission> profilePermission = new ArrayList<>();
 
-    @Column(name = "from_member_id")
-    private Long fromMemberId;
-
     @Column(name = "to_member_id")
     private Long toMemberId;
 
-    @Column(name = "are_we_friend", columnDefinition = "false")
+    @Column(name = "is_accepted", columnDefinition = "false")
+    @Default
     @Enumerated(STRING)
-    private FlagStatus areWeFriend = FlagStatus.YES;
+    private FlagStatus isAccepted = FlagStatus.YES;
 
     @Column(name = "apply_date")
     @CreatedDate
+    @Default
     private ZonedDateTime applyDate = ZonedDateTime.now();
 
 }

@@ -3,6 +3,7 @@ package com.example.socket_jpa_querydsl_test.domain.profile;
 import com.example.socket_jpa_querydsl_test.domain.customenum.ProfileType;
 import com.example.socket_jpa_querydsl_test.domain.entity.BaseEntity;
 import com.example.socket_jpa_querydsl_test.domain.entity.Member;
+import com.example.socket_jpa_querydsl_test.domain.entity.ProfileConn;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Where;
@@ -47,5 +48,17 @@ public class Profile extends BaseEntity {
     @Builder.Default
     private ProfileType profileType = ProfileType.MAIN;
 
+    @OneToMany(mappedBy = "profile")
+    private List<ProfileConn> profileConnList = new ArrayList<>();
+
+    private void removeProfileConn(ProfileConn profileConn) {
+        if(profileConnList.contains(profileConn))
+            profileConnList.remove(profileConn);
+    }
+
+    private void addProfileConn(ProfileConn profileConn) {
+        if(!profileConnList.contains(profileConn))
+            profileConnList.add(profileConn);
+    }
 
 }
