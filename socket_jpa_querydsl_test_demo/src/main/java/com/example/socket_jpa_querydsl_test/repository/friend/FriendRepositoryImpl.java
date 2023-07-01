@@ -7,7 +7,8 @@ import jakarta.persistence.EntityManager;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.stereotype.Repository;
 
-import static com.example.socket_jpa_querydsl_test.domain.entity.QFriend.*;
+import static com.example.socket_jpa_querydsl_test.domain.entity.QFriend.friend;
+
 
 @Repository
 public class FriendRepositoryImpl extends SimpleJpaRepository<Friend, Long>{
@@ -19,10 +20,10 @@ public class FriendRepositoryImpl extends SimpleJpaRepository<Friend, Long>{
         this.queryFactory = new JPAQueryFactory(entityManager);
     }
 
-    public Friend getFriendByfromMemberAndToMemberId(Member fromMember, Long toMemberId) {
+    public Friend getFriendByfromMemberAndToMember(Member fromMember, Member toMember) {
         return queryFactory.selectFrom(friend)
                 .where(friend.fromMember.eq(fromMember)
-                        .and(friend.toMemberId.eq(toMemberId)))
+                        .and(friend.toMember.eq(toMember)))
                         .fetchFirst();
     }
 

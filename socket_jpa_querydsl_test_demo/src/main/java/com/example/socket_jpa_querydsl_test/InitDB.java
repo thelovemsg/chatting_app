@@ -5,6 +5,7 @@ import com.example.socket_jpa_querydsl_test.domain.customenum.ProfileType;
 import com.example.socket_jpa_querydsl_test.domain.entity.*;
 import com.example.socket_jpa_querydsl_test.domain.profile.Profile;
 import com.example.socket_jpa_querydsl_test.repository.chatting.ChattingRoomRepository;
+import com.example.socket_jpa_querydsl_test.service.FavoriteService;
 import com.example.socket_jpa_querydsl_test.service.FriendService;
 import com.example.socket_jpa_querydsl_test.service.MemberService;
 import com.example.socket_jpa_querydsl_test.service.ProfileService;
@@ -40,12 +41,12 @@ public class InitDB {
         private final EntityManager em;
         private final MemberService memberService;
         private final ProfileService profileService;
-        private final PasswordEncoderConfig passwordEncoderConfig;
         private final FriendService friendService;
+        private final FavoriteService favoriteService;
 
         //set member and address data
         public void initDb1() {
-            Member memberA = createMember("test1@naver.com", "testbot1", "samenicknam1","01011112222", "password1234");
+            Member memberA = createMember("test1@naver.com", "testbot1", "samenicknam1","01011111111", "password1234");
             em.persist(memberA);
 
             Member memberB = createMember("test2@naver.com", "testbot2", "samenicknam2", "01011112222", "password1234");
@@ -127,8 +128,11 @@ public class InitDB {
 
             // 1. memberA와 memberB, memberC는 친구다.
             friendService.addFriend(memberA, memberB);
+            friendService.addFriend(memberA, memberC);
 
             List<Profile> profiles = profileService.getProfiles(memberA.getId());
+
+//            favoriteService.
 
 
         }

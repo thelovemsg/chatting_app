@@ -26,8 +26,6 @@ public class QFriend extends EntityPathBase<Friend> {
 
     public final DateTimePath<java.time.ZonedDateTime> applyDate = createDateTime("applyDate", java.time.ZonedDateTime.class);
 
-    public final EnumPath<com.example.socket_jpa_querydsl_test.domain.customenum.FlagStatus> areWeFriend = createEnum("areWeFriend", com.example.socket_jpa_querydsl_test.domain.customenum.FlagStatus.class);
-
     //inherited
     public final StringPath createdBy = _super.createdBy;
 
@@ -42,6 +40,8 @@ public class QFriend extends EntityPathBase<Friend> {
     //inherited
     public final NumberPath<Long> id = _super.id;
 
+    public final EnumPath<com.example.socket_jpa_querydsl_test.domain.customenum.FlagStatus> isAccepted = createEnum("isAccepted", com.example.socket_jpa_querydsl_test.domain.customenum.FlagStatus.class);
+
     //inherited
     public final StringPath lastModifiedBy = _super.lastModifiedBy;
 
@@ -50,7 +50,7 @@ public class QFriend extends EntityPathBase<Friend> {
 
     public final ListPath<com.example.socket_jpa_querydsl_test.domain.profile.ProfilePermission, com.example.socket_jpa_querydsl_test.domain.profile.QProfilePermission> profilePermission = this.<com.example.socket_jpa_querydsl_test.domain.profile.ProfilePermission, com.example.socket_jpa_querydsl_test.domain.profile.QProfilePermission>createList("profilePermission", com.example.socket_jpa_querydsl_test.domain.profile.ProfilePermission.class, com.example.socket_jpa_querydsl_test.domain.profile.QProfilePermission.class, PathInits.DIRECT2);
 
-    public final NumberPath<Long> toMemberId = createNumber("toMemberId", Long.class);
+    public final QMember toMember;
 
     public QFriend(String variable) {
         this(Friend.class, forVariable(variable), INITS);
@@ -71,6 +71,7 @@ public class QFriend extends EntityPathBase<Friend> {
     public QFriend(Class<? extends Friend> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.fromMember = inits.isInitialized("fromMember") ? new QMember(forProperty("fromMember"), inits.get("fromMember")) : null;
+        this.toMember = inits.isInitialized("toMember") ? new QMember(forProperty("toMember"), inits.get("toMember")) : null;
     }
 
 }

@@ -2,7 +2,9 @@ package com.example.socket_jpa_querydsl_test.service;
 
 import com.example.socket_jpa_querydsl_test.repository.etc.FileRepository;
 import jakarta.transaction.Transactional;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.io.Resource;
@@ -12,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -26,13 +29,13 @@ public class FileStorageServiceTest {
     @Autowired
     private FileRepository fileRepository;
 
-//    @TempDir
-//    Path tempDir;
+    @TempDir
+    Path tempDir;
 
-//    @BeforeEach
-//    void setUp() {
-//        fileStorageService = new FileStorageService(null, fileRepository);
-//    }
+    @BeforeEach
+    void setUp() {
+        fileStorageService = new FileStorageService(null, fileRepository);
+    }
 
     @Test
     void testStoreAndLoadFile() throws IOException {

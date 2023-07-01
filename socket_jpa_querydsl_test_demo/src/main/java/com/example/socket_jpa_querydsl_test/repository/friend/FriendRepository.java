@@ -8,5 +8,4 @@ import java.util.Optional;
 
 @Repository
 public interface FriendRepository extends JpaRepository<Friend, Long> {
-    Friend saveFriend(Friend friend);
 }

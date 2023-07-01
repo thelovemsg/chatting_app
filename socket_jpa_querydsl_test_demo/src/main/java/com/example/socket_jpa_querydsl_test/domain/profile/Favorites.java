@@ -4,15 +4,19 @@ import com.example.socket_jpa_querydsl_test.domain.customenum.EnrollType;
 import com.example.socket_jpa_querydsl_test.domain.entity.BaseEntity;
 import com.example.socket_jpa_querydsl_test.domain.entity.Friend;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.ZonedDateTime;
 
-import static com.example.socket_jpa_querydsl_test.domain.customenum.EnrollType.*;
-import static jakarta.persistence.EnumType.*;
-import static jakarta.persistence.FetchType.*;
-import static lombok.AccessLevel.*;
+import static com.example.socket_jpa_querydsl_test.domain.customenum.EnrollType.Add;
+import static jakarta.persistence.EnumType.STRING;
+import static jakarta.persistence.FetchType.LAZY;
+import static lombok.AccessLevel.PROTECTED;
 
+@Entity
 @Getter
 @Setter(PROTECTED)
 @NoArgsConstructor

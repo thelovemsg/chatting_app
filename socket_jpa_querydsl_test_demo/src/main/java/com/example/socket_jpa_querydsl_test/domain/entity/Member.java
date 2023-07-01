@@ -85,8 +85,11 @@ public class Member extends BaseEntity implements Serializable {
     @OneToOne(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private RefreshToken refreshToken;
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<Friend> friends;
+    @OneToMany(mappedBy = "fromMember", cascade = CascadeType.ALL)
+    private List<Friend> fromFriends;
+
+    @OneToMany(mappedBy = "toMember", cascade = CascadeType.ALL)
+    private List<Friend> toFriends;
 
     /**
      * @param blockMember

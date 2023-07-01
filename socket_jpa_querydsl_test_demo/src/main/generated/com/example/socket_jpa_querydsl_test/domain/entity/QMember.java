@@ -43,7 +43,7 @@ public class QMember extends EntityPathBase<Member> {
 
     public final ListPath<File, QFile> files = this.<File, QFile>createList("files", File.class, QFile.class, PathInits.DIRECT2);
 
-    public final ListPath<Friend, QFriend> friends = this.<Friend, QFriend>createList("friends", Friend.class, QFriend.class, PathInits.DIRECT2);
+    public final ListPath<Friend, QFriend> fromFriends = this.<Friend, QFriend>createList("fromFriends", Friend.class, QFriend.class, PathInits.DIRECT2);
 
     //inherited
     public final NumberPath<Long> id = _super.id;
@@ -67,6 +67,8 @@ public class QMember extends EntityPathBase<Member> {
     public final StringPath phoneNumber = createString("phoneNumber");
 
     public final com.example.socket_jpa_querydsl_test.domain.entity.security.QRefreshToken refreshToken;
+
+    public final ListPath<Friend, QFriend> toFriends = this.<Friend, QFriend>createList("toFriends", Friend.class, QFriend.class, PathInits.DIRECT2);
 
     public final StringPath userOwnId = createString("userOwnId");
 

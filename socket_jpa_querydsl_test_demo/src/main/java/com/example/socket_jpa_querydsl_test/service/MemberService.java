@@ -16,6 +16,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static com.example.socket_jpa_querydsl_test.domain.entity.QMember.*;
+
 @Service
 @RequiredArgsConstructor
 public class MemberService {
@@ -91,7 +93,6 @@ public class MemberService {
     }
 
     public String findDuplicateFieldName(String email, String nickname, String phoneNumber) {
-        QMember member = QMember.member;
 
         if(email != null && memberRepository.findOne(member.email.equalsIgnoreCase(email)).isPresent()){
             return "email";
@@ -114,7 +115,6 @@ public class MemberService {
     }
 
     public Long searchMemberWithPhoneNumber(String phoneNumber){
-
         return 0L;
     }
 

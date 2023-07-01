@@ -7,9 +7,11 @@ import com.example.socket_jpa_querydsl_test.domain.entity.Friend;
 import com.example.socket_jpa_querydsl_test.domain.entity.Member;
 import com.example.socket_jpa_querydsl_test.domain.entity.ProfileConn;
 import com.example.socket_jpa_querydsl_test.domain.profile.Profile;
-import com.example.socket_jpa_querydsl_test.repository.friend.*;
+import com.example.socket_jpa_querydsl_test.repository.friend.FriendRepository;
+import com.example.socket_jpa_querydsl_test.repository.friend.FriendRepositoryImpl;
+import com.example.socket_jpa_querydsl_test.repository.friend.ProfileConnRepository;
+import com.example.socket_jpa_querydsl_test.repository.friend.ProfileRepositoryImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,6 +24,7 @@ public class FriendService {
     private final ProfileRepositoryImpl profileRepositoryImpl;
 
     public void addFriend(Member proposer, Member acceptor) {
+
         /**
          * 1. 먼저 친구인지 확인한다.
          * 2. 친구라면 이미 친구라는 에러 반환한다.
@@ -41,16 +44,16 @@ public class FriendService {
                  new ErrorMessage("Already friends with this member", "FRIENDS_ALREADY"));
         }
 
-        Friend friendProposer = friendRepository.saveFriend(
+        Friend friendProposer = friendRepository.save(
                                                     Friend.builder()
                                                         .fromMember(proposer)
-                                                        .toMemberId(acceptor.getId())
+                                                        .toMember(acceptor)
                                                             .build());
 
-        Friend friendAcceptor = friendRepository.saveFriend(
+        Friend friendAcceptor = friendRepository.save(
                                                     Friend.builder()
                                                         .fromMember(acceptor)
-                                                        .toMemberId(proposer.getId())
+                                                        .toMember(proposer)
                                                         .isAccepted(FlagStatus.HANG)
                                                             .build());
 
@@ -74,7 +77,7 @@ public class FriendService {
 
     private boolean checkIfFriend(Member processor, Member acceptor) {
         return friendRepositoryImpl.
-                    getFriendByfromMemberAndToMemberId(processor, acceptor.getId()) != null ? true: false;
+                    getFriendByfromMemberAndToMember(processor, acceptor) != null ? true: false;
     }
 
 }

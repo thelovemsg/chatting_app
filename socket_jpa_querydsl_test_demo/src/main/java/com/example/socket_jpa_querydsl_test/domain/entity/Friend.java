@@ -28,16 +28,18 @@ public class Friend extends BaseEntity{
 
     @ManyToOne(fetch = LAZY)
     @JsonIgnore
-    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "from_member_id")
     private Member fromMember;
 
     @OneToMany(mappedBy = "friend")
     private List<ProfilePermission> profilePermission = new ArrayList<>();
 
-    @Column(name = "to_member_id")
-    private Long toMemberId;
+    @ManyToOne(fetch = LAZY)
+    @JsonIgnore
+    @JoinColumn(name = "to_member_id")
+    private Member toMember;
 
-    @Column(name = "is_accepted", columnDefinition = "false")
+    @Column(name = "is_accepted")
     @Default
     @Enumerated(STRING)
     private FlagStatus isAccepted = FlagStatus.YES;
