@@ -1,4 +1,4 @@
-package com.example.socket_jpa_querydsl_test.config;
+package com.example.socket_jpa_querydsl_test.config.jpa;
 
 import com.github.f4b6a3.tsid.TsidCreator;
 import org.hibernate.HibernateException;

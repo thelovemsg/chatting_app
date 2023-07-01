@@ -25,10 +25,10 @@ public class QProfile extends EntityPathBase<Profile> {
     public final com.example.socket_jpa_querydsl_test.domain.entity.QBaseEntity _super = new com.example.socket_jpa_querydsl_test.domain.entity.QBaseEntity(this);
 
     //inherited
-    public final StringPath createdBy = _super.createdBy;
+    public final DateTimePath<java.time.ZonedDateTime> createDate = _super.createDate;
 
     //inherited
-    public final DateTimePath<java.time.ZonedDateTime> createdDate = _super.createdDate;
+    public final StringPath createdBy = _super.createdBy;
 
     //inherited
     public final BooleanPath deleted = _super.deleted;
@@ -42,19 +42,19 @@ public class QProfile extends EntityPathBase<Profile> {
     public final com.example.socket_jpa_querydsl_test.domain.entity.QMember member;
 
     //inherited
-    public final DateTimePath<java.time.ZonedDateTime> modifiedDate = _super.modifiedDate;
+    public final DateTimePath<java.time.ZonedDateTime> modifyDate = _super.modifyDate;
 
     public final StringPath name = createString("name");
 
-    public final ListPath<com.example.socket_jpa_querydsl_test.domain.entity.ProfileConn, com.example.socket_jpa_querydsl_test.domain.entity.QProfileConn> profileConnList = this.<com.example.socket_jpa_querydsl_test.domain.entity.ProfileConn, com.example.socket_jpa_querydsl_test.domain.entity.QProfileConn>createList("profileConnList", com.example.socket_jpa_querydsl_test.domain.entity.ProfileConn.class, com.example.socket_jpa_querydsl_test.domain.entity.QProfileConn.class, PathInits.DIRECT2);
+    public final ListPath<ProfileConn, QProfileConn> profileConnList = this.<ProfileConn, QProfileConn>createList("profileConnList", ProfileConn.class, QProfileConn.class, PathInits.DIRECT2);
 
-    public final ListPath<ProfilePermission, QProfilePermission> profilePermission = this.<ProfilePermission, QProfilePermission>createList("profilePermission", ProfilePermission.class, QProfilePermission.class, PathInits.DIRECT2);
+    public final ListPath<ProfileConn, QProfileConn> profileConns = this.<ProfileConn, QProfileConn>createList("profileConns", ProfileConn.class, QProfileConn.class, PathInits.DIRECT2);
 
     public final EnumPath<com.example.socket_jpa_querydsl_test.domain.customenum.ProfileType> profileType = createEnum("profileType", com.example.socket_jpa_querydsl_test.domain.customenum.ProfileType.class);
 
     public final StringPath statusDescription = createString("statusDescription");
 
-    public final DateTimePath<java.time.ZonedDateTime> uploadDateTime = createDateTime("uploadDateTime", java.time.ZonedDateTime.class);
+    public final DateTimePath<java.time.LocalDateTime> uploadDateTime = createDateTime("uploadDateTime", java.time.LocalDateTime.class);
 
     public QProfile(String variable) {
         this(Profile.class, forVariable(variable), INITS);

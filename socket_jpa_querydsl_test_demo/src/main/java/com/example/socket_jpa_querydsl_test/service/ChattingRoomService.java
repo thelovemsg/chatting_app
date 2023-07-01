@@ -15,7 +15,7 @@ public class ChattingRoomService {
 
     private final ChattingRoomRepository chattingRoomRepository;
 
-    public ChattingRoom saveChattingRoomWithHashtags(ChattingRoom chattingRoom, List<String> hashtagContents) {
+    public ChattingRoom addChattingRoomWithHashtags(ChattingRoom chattingRoom, List<String> hashtagContents) {
         AtomicInteger sequence = new AtomicInteger(1);
 
         hashtagContents.forEach(content -> {
@@ -23,6 +23,10 @@ public class ChattingRoomService {
             chattingRoom.addHashtag(hashtag);
         });
 
+        return chattingRoomRepository.save(chattingRoom);
+    }
+
+    public ChattingRoom addChattingRoom(ChattingRoom chattingRoom) {
         return chattingRoomRepository.save(chattingRoom);
     }
 

@@ -3,17 +3,18 @@ package com.example.socket_jpa_querydsl_test.domain.profile;
 import com.example.socket_jpa_querydsl_test.domain.customenum.ProfileType;
 import com.example.socket_jpa_querydsl_test.domain.entity.BaseEntity;
 import com.example.socket_jpa_querydsl_test.domain.entity.Member;
-import com.example.socket_jpa_querydsl_test.domain.entity.ProfileConn;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Where;
 
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import static jakarta.persistence.EnumType.*;
 import static jakarta.persistence.FetchType.LAZY;
+import static lombok.Builder.*;
 
 @Entity
 @AllArgsConstructor
@@ -31,7 +32,7 @@ public class Profile extends BaseEntity {
 
     @OneToMany(mappedBy = "profile")
     @Builder.Default
-    private List<ProfilePermission> profilePermission = new ArrayList<>();
+    private List<ProfileConn> profileConns = new ArrayList<>();
 
     @Column(name = "content")
     private String name;
@@ -41,14 +42,15 @@ public class Profile extends BaseEntity {
 
     @Column(name = "upload_date")
     @Builder.Default
-    private ZonedDateTime uploadDateTime = ZonedDateTime.now();
+    private LocalDateTime uploadDateTime = LocalDateTime.now();
 
-    @Enumerated(STRING)
     @Column(name = "profile_type")
     @Builder.Default
+    @Enumerated(STRING)
     private ProfileType profileType = ProfileType.MAIN;
 
     @OneToMany(mappedBy = "profile")
+    @Builder.Default
     private List<ProfileConn> profileConnList = new ArrayList<>();
 
     private void removeProfileConn(ProfileConn profileConn) {

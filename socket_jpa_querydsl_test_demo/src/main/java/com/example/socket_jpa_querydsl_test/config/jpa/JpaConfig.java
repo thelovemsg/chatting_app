@@ -1,4 +1,4 @@
-package com.example.socket_jpa_querydsl_test.config;
+package com.example.socket_jpa_querydsl_test.config.jpa;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

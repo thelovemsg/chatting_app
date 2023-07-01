@@ -3,12 +3,10 @@ package com.example.socket_jpa_querydsl_test;
 import com.example.socket_jpa_querydsl_test.config.PasswordEncoderConfig;
 import com.example.socket_jpa_querydsl_test.domain.customenum.ProfileType;
 import com.example.socket_jpa_querydsl_test.domain.entity.*;
+import com.example.socket_jpa_querydsl_test.domain.profile.Favorites;
 import com.example.socket_jpa_querydsl_test.domain.profile.Profile;
 import com.example.socket_jpa_querydsl_test.repository.chatting.ChattingRoomRepository;
-import com.example.socket_jpa_querydsl_test.service.FavoriteService;
-import com.example.socket_jpa_querydsl_test.service.FriendService;
-import com.example.socket_jpa_querydsl_test.service.MemberService;
-import com.example.socket_jpa_querydsl_test.service.ProfileService;
+import com.example.socket_jpa_querydsl_test.service.*;
 import jakarta.annotation.PostConstruct;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -32,6 +30,7 @@ public class InitDB {
     public void init() {
         initService.initDb1();
         initService.initDb2();
+        initService.initDb3();
     }
 
     @Component
@@ -43,6 +42,7 @@ public class InitDB {
         private final ProfileService profileService;
         private final FriendService friendService;
         private final FavoriteService favoriteService;
+        private final ChattingRoomService chattingRoomService;
 
         //set member and address data
         public void initDb1() {
@@ -86,7 +86,7 @@ public class InitDB {
                                 .name("테스트 이름 1")
                                 .statusDescription("테스트 이름 설명입니다. 1")
                                 .build();
-            em.persist(profileA);
+            profileService.addProfile(profileA);
 
             Member memberB = memberService.getMemberByEmail("test2@naver.com");
             Profile profileB = Profile.builder()
@@ -94,14 +94,14 @@ public class InitDB {
                                 .name("테스트 이름 2")
                                 .statusDescription("테스트 이름 설명입니다. 2")
                                 .build();
-            em.persist(profileB);
+            profileService.addProfile(profileB);
 
             Profile profileC = Profile.builder()
                                 .member(memberB)
                                 .name("멀티 테스트 이름")
                                 .profileType(MULTI)
                                 .statusDescription("멀티 테스트 이름 설명입니다.").build();
-            em.persist(profileC);
+            profileService.addProfile(profileC);
 
             Member memberC = memberService.getMemberByEmail("test3@naver.com");
             Profile profileD = Profile.builder()
@@ -112,7 +112,7 @@ public class InitDB {
 
         }
 
-        // set friend and chatting room dta
+        // set friend and chatting room data
         public void initDb3() {
 
             /**
@@ -120,20 +120,24 @@ public class InitDB {
              * 2. memberB는 memberC에게 친구 신청을 보냈다.
              * 3. memberB는 memberA에게 멀티프로필을 사용하고 있다.
              * 4. memberA에게 memberC는 즐겨찾기에 추가되어있다.
+             * 5. memberA와 memberB는 이미 채팅을 했다.(같은 채팅방에 존재한다.)
+             * 6. memberA, memberB 그리고 memberC는 현재 오픈 톡방에 있다. (PRIVATE 버전)
              */
 
             Member memberA = memberService.getMemberByEmail("test1@naver.com");
             Member memberB = memberService.getMemberByEmail("test2@naver.com");
-            Member memberC = memberService.getMemberByEmail("test2@naver.com");
+            Member memberC = memberService.getMemberByEmail("test3@naver.com");
 
             // 1. memberA와 memberB, memberC는 친구다.
             friendService.addFriend(memberA, memberB);
-            friendService.addFriend(memberA, memberC);
+            Friend friendProposer = friendService.addFriend(memberA, memberC);
 
-            List<Profile> profiles = profileService.getProfiles(memberA.getId());
+//            List<Profile> profiles = profileService.getProfiles(memberA.getId());
 
-//            favoriteService.
+            // memberA에게 memberC는 즐겨찾기에 추가되어있다.
+            favoriteService.addFavorites(friendProposer);
 
+            chattingRoomService.addChattingRoom();
 
         }
 

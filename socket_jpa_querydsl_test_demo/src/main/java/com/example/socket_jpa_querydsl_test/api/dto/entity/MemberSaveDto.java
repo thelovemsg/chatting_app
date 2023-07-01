@@ -26,6 +26,7 @@ public class MemberSaveDto {
     @Pattern(regexp = "\\d+", message = " must contain only digits")
     @NotBlank(message = " needed")
     private String phoneNumber;
+
     @Length(min = 8, message = " must be over 8 lengths")
     @NotBlank(message = " needed")
     private String password;

@@ -1,21 +1,18 @@
 package com.example.socket_jpa_querydsl_test.domain.entity;
 
 import com.example.socket_jpa_querydsl_test.domain.customenum.FlagStatus;
-import com.example.socket_jpa_querydsl_test.domain.profile.ProfilePermission;
+import com.example.socket_jpa_querydsl_test.domain.profile.ProfileConn;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.Where;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static jakarta.persistence.EnumType.*;
+import static jakarta.persistence.EnumType.STRING;
 import static jakarta.persistence.FetchType.LAZY;
-import static lombok.Builder.*;
 
 @Entity
 @Getter
@@ -32,7 +29,8 @@ public class Friend extends BaseEntity{
     private Member fromMember;
 
     @OneToMany(mappedBy = "friend")
-    private List<ProfilePermission> profilePermission = new ArrayList<>();
+    @Builder.Default
+    private List<ProfileConn> profileConns = new ArrayList<>();
 
     @ManyToOne(fetch = LAZY)
     @JsonIgnore
@@ -40,13 +38,14 @@ public class Friend extends BaseEntity{
     private Member toMember;
 
     @Column(name = "is_accepted")
-    @Default
+    @Builder.Default
     @Enumerated(STRING)
     private FlagStatus isAccepted = FlagStatus.YES;
 
     @Column(name = "apply_date")
     @CreatedDate
-    @Default
-    private ZonedDateTime applyDate = ZonedDateTime.now();
+    @Builder.Default
+    private LocalDateTime applyDate = LocalDateTime.now();
 
 }
+

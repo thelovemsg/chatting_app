@@ -11,16 +11,16 @@ import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
- * QFavorites is a Querydsl query type for Favorites
+ * QProfileConn is a Querydsl query type for ProfileConn
  */
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
-public class QFavorites extends EntityPathBase<Favorites> {
+public class QProfileConn extends EntityPathBase<ProfileConn> {
 
-    private static final long serialVersionUID = -1286032359L;
+    private static final long serialVersionUID = -1121611337L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
-    public static final QFavorites favorites = new QFavorites("favorites");
+    public static final QProfileConn profileConn = new QProfileConn("profileConn");
 
     public final com.example.socket_jpa_querydsl_test.domain.entity.QBaseEntity _super = new com.example.socket_jpa_querydsl_test.domain.entity.QBaseEntity(this);
 
@@ -33,10 +33,6 @@ public class QFavorites extends EntityPathBase<Favorites> {
     //inherited
     public final BooleanPath deleted = _super.deleted;
 
-    public final DateTimePath<java.time.ZonedDateTime> enrollTime = createDateTime("enrollTime", java.time.ZonedDateTime.class);
-
-    public final EnumPath<com.example.socket_jpa_querydsl_test.domain.customenum.EnrollType> enrollType = createEnum("enrollType", com.example.socket_jpa_querydsl_test.domain.customenum.EnrollType.class);
-
     public final com.example.socket_jpa_querydsl_test.domain.entity.QFriend friend;
 
     //inherited
@@ -48,25 +44,28 @@ public class QFavorites extends EntityPathBase<Favorites> {
     //inherited
     public final DateTimePath<java.time.ZonedDateTime> modifyDate = _super.modifyDate;
 
-    public QFavorites(String variable) {
-        this(Favorites.class, forVariable(variable), INITS);
+    public final QProfile profile;
+
+    public QProfileConn(String variable) {
+        this(ProfileConn.class, forVariable(variable), INITS);
     }
 
-    public QFavorites(Path<? extends Favorites> path) {
+    public QProfileConn(Path<? extends ProfileConn> path) {
         this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QFavorites(PathMetadata metadata) {
+    public QProfileConn(PathMetadata metadata) {
         this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QFavorites(PathMetadata metadata, PathInits inits) {
-        this(Favorites.class, metadata, inits);
+    public QProfileConn(PathMetadata metadata, PathInits inits) {
+        this(ProfileConn.class, metadata, inits);
     }
 
-    public QFavorites(Class<? extends Favorites> type, PathMetadata metadata, PathInits inits) {
+    public QProfileConn(Class<? extends ProfileConn> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.friend = inits.isInitialized("friend") ? new com.example.socket_jpa_querydsl_test.domain.entity.QFriend(forProperty("friend"), inits.get("friend")) : null;
+        this.profile = inits.isInitialized("profile") ? new QProfile(forProperty("profile"), inits.get("profile")) : null;
     }
 
 }

@@ -29,10 +29,10 @@ public class QBlockMember extends EntityPathBase<BlockMember> {
     public final EnumPath<com.example.socket_jpa_querydsl_test.domain.customenum.FlagStatus> blockType = createEnum("blockType", com.example.socket_jpa_querydsl_test.domain.customenum.FlagStatus.class);
 
     //inherited
-    public final StringPath createdBy = _super.createdBy;
+    public final DateTimePath<java.time.ZonedDateTime> createDate = _super.createDate;
 
     //inherited
-    public final DateTimePath<java.time.ZonedDateTime> createdDate = _super.createdDate;
+    public final StringPath createdBy = _super.createdBy;
 
     //inherited
     public final BooleanPath deleted = _super.deleted;
@@ -48,7 +48,7 @@ public class QBlockMember extends EntityPathBase<BlockMember> {
     public final QMember memberTarget;
 
     //inherited
-    public final DateTimePath<java.time.ZonedDateTime> modifiedDate = _super.modifiedDate;
+    public final DateTimePath<java.time.ZonedDateTime> modifyDate = _super.modifyDate;
 
     public QBlockMember(String variable) {
         this(BlockMember.class, forVariable(variable), INITS);

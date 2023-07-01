@@ -1,5 +1,6 @@
 package com.example.socket_jpa_querydsl_test;
 
+import com.example.socket_jpa_querydsl_test.api.Message;
 import com.example.socket_jpa_querydsl_test.api.dto.entity.MemberSaveDto;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -33,18 +34,21 @@ public class MemberApiTest {
     @DisplayName("회원가입 - 비밀번호 길이 형식 오류")
     public void saveMemberTest_password_error() throws Exception {
         //password 길이 오류 체크
-        MemberSaveDto memberSaveDto = new MemberSaveDto("thelovemsg@naver.com", "test", "nickname", "01012345678", "passwo", "address1", "address2");
+        MemberSaveDto memberSaveDto = new MemberSaveDto("testtest@naver.com", "testtest", "testtest", "01012345678", "passwo", "address1", "address2");
 
         String jsonData = objectMapper.writeValueAsString(memberSaveDto);
 
-//        IllegalArgumentException을 던지지만 ServletException으로 변환됌 (???)
-        Assertions.assertThrows(ServletException.class, () -> {
-           mockMvc.perform(
+        MvcResult mvcResult = mockMvc.perform(
                 MockMvcRequestBuilders.post("/memberSave")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(jsonData)
-            );
-        });
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonData)
+        ).andReturn();
+
+        int status = mvcResult.getResponse().getStatus();
+        Assertions.assertEquals(200, status);
+
+        Message responseMessage = objectMapper.readValue(mvcResult.getResponse().getContentAsString(), Message.class);
+        Assertions.assertEquals("password must be over 8 lengths", responseMessage.getMessage());
     }
 
     @Test

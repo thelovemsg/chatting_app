@@ -22,7 +22,7 @@ public class ProfileRepositoryImpl extends SimpleJpaRepository<Profile, Long> {
         this.queryFactory = new JPAQueryFactory(entityManager);
     }
 
-    public Profile getMainProfileByMemberId(Member targetMember) {
+    public Profile getMainProfileByMember(Member targetMember) {
         return queryFactory.selectFrom(profile)
                 .where(profile.member.eq(targetMember)
                     .and(profile.profileType.eq(ProfileType.MAIN)))
@@ -35,6 +35,5 @@ public class ProfileRepositoryImpl extends SimpleJpaRepository<Profile, Long> {
                 .where(profile.member.eq(targetMember)
                         .and(profile.profileType.eq(profileType))).fetch();
     }
-
 
 }

@@ -1,4 +1,4 @@
-package com.example.socket_jpa_querydsl_test.config;
+package com.example.socket_jpa_querydsl_test.config.jpa;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;

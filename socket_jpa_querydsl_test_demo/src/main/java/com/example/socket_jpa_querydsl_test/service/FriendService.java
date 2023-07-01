@@ -5,7 +5,7 @@ import com.example.socket_jpa_querydsl_test.config.exception.ErrorMessage;
 import com.example.socket_jpa_querydsl_test.domain.customenum.FlagStatus;
 import com.example.socket_jpa_querydsl_test.domain.entity.Friend;
 import com.example.socket_jpa_querydsl_test.domain.entity.Member;
-import com.example.socket_jpa_querydsl_test.domain.entity.ProfileConn;
+import com.example.socket_jpa_querydsl_test.domain.profile.ProfileConn;
 import com.example.socket_jpa_querydsl_test.domain.profile.Profile;
 import com.example.socket_jpa_querydsl_test.repository.friend.FriendRepository;
 import com.example.socket_jpa_querydsl_test.repository.friend.FriendRepositoryImpl;
@@ -23,7 +23,7 @@ public class FriendService {
     private final ProfileConnRepository profileConnRepository;
     private final ProfileRepositoryImpl profileRepositoryImpl;
 
-    public void addFriend(Member proposer, Member acceptor) {
+    public Friend addFriend(Member proposer, Member acceptor) {
 
         /**
          * 1. 먼저 친구인지 확인한다.
@@ -57,8 +57,8 @@ public class FriendService {
                                                         .isAccepted(FlagStatus.HANG)
                                                             .build());
 
-        Profile mainProfileA = profileRepositoryImpl.getMainProfileByMemberId(proposer);
-        Profile mainProfileB = profileRepositoryImpl.getMainProfileByMemberId(acceptor);
+        Profile mainProfileA = profileRepositoryImpl.getMainProfileByMember(proposer);
+        Profile mainProfileB = profileRepositoryImpl.getMainProfileByMember(acceptor);
 
         // Warning!
         // Each friend don't want to see their own profile!
@@ -72,7 +72,7 @@ public class FriendService {
                                                 .friend(friendProposer)
                                                     .build());
 
-
+        return friendProposer;
     }
 
     private boolean checkIfFriend(Member processor, Member acceptor) {

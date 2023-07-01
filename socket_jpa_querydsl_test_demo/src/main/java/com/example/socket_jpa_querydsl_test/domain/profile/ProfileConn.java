@@ -1,5 +1,7 @@
-package com.example.socket_jpa_querydsl_test.domain.entity;
+package com.example.socket_jpa_querydsl_test.domain.profile;
 
+import com.example.socket_jpa_querydsl_test.domain.entity.BaseEntity;
+import com.example.socket_jpa_querydsl_test.domain.entity.Friend;
 import com.example.socket_jpa_querydsl_test.domain.profile.Profile;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

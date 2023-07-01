@@ -19,9 +19,9 @@ public class QBaseEntity extends EntityPathBase<BaseEntity> {
 
     public static final QBaseEntity baseEntity = new QBaseEntity("baseEntity");
 
-    public final StringPath createdBy = createString("createdBy");
+    public final DateTimePath<java.time.ZonedDateTime> createDate = createDateTime("createDate", java.time.ZonedDateTime.class);
 
-    public final DateTimePath<java.time.ZonedDateTime> createdDate = createDateTime("createdDate", java.time.ZonedDateTime.class);
+    public final StringPath createdBy = createString("createdBy");
 
     public final BooleanPath deleted = createBoolean("deleted");
 
@@ -29,7 +29,7 @@ public class QBaseEntity extends EntityPathBase<BaseEntity> {
 
     public final StringPath lastModifiedBy = createString("lastModifiedBy");
 
-    public final DateTimePath<java.time.ZonedDateTime> modifiedDate = createDateTime("modifiedDate", java.time.ZonedDateTime.class);
+    public final DateTimePath<java.time.ZonedDateTime> modifyDate = createDateTime("modifyDate", java.time.ZonedDateTime.class);
 
     public QBaseEntity(String variable) {
         super(BaseEntity.class, forVariable(variable));

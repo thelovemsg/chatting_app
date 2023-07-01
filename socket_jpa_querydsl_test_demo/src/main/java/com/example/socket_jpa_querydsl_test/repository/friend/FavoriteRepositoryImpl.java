@@ -1,7 +1,9 @@
 package com.example.socket_jpa_querydsl_test.repository.friend;
 
 import com.example.socket_jpa_querydsl_test.domain.entity.Member;
+import com.example.socket_jpa_querydsl_test.domain.entity.QMember;
 import com.example.socket_jpa_querydsl_test.domain.profile.Favorites;
+import com.example.socket_jpa_querydsl_test.domain.profile.QFavorites;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
@@ -20,8 +22,8 @@ public class FavoriteRepositoryImpl extends SimpleJpaRepository<Favorites, Long>
     }
 
     public List<Favorites> getFavorites(Member member) {
-//        return queryFactory.selectFrom(QFavorites.favorites);
-        return null;
+        return queryFactory.selectFrom(QFavorites.favorites)
+                .where(QMember.member.eq(member)).fetch();
     }
 
 }

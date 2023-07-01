@@ -24,13 +24,13 @@ public class QFriend extends EntityPathBase<Friend> {
 
     public final QBaseEntity _super = new QBaseEntity(this);
 
-    public final DateTimePath<java.time.ZonedDateTime> applyDate = createDateTime("applyDate", java.time.ZonedDateTime.class);
+    public final DateTimePath<java.time.LocalDateTime> applyDate = createDateTime("applyDate", java.time.LocalDateTime.class);
+
+    //inherited
+    public final DateTimePath<java.time.ZonedDateTime> createDate = _super.createDate;
 
     //inherited
     public final StringPath createdBy = _super.createdBy;
-
-    //inherited
-    public final DateTimePath<java.time.ZonedDateTime> createdDate = _super.createdDate;
 
     //inherited
     public final BooleanPath deleted = _super.deleted;
@@ -46,9 +46,9 @@ public class QFriend extends EntityPathBase<Friend> {
     public final StringPath lastModifiedBy = _super.lastModifiedBy;
 
     //inherited
-    public final DateTimePath<java.time.ZonedDateTime> modifiedDate = _super.modifiedDate;
+    public final DateTimePath<java.time.ZonedDateTime> modifyDate = _super.modifyDate;
 
-    public final ListPath<com.example.socket_jpa_querydsl_test.domain.profile.ProfilePermission, com.example.socket_jpa_querydsl_test.domain.profile.QProfilePermission> profilePermission = this.<com.example.socket_jpa_querydsl_test.domain.profile.ProfilePermission, com.example.socket_jpa_querydsl_test.domain.profile.QProfilePermission>createList("profilePermission", com.example.socket_jpa_querydsl_test.domain.profile.ProfilePermission.class, com.example.socket_jpa_querydsl_test.domain.profile.QProfilePermission.class, PathInits.DIRECT2);
+    public final ListPath<com.example.socket_jpa_querydsl_test.domain.profile.ProfileConn, com.example.socket_jpa_querydsl_test.domain.profile.QProfileConn> profileConns = this.<com.example.socket_jpa_querydsl_test.domain.profile.ProfileConn, com.example.socket_jpa_querydsl_test.domain.profile.QProfileConn>createList("profileConns", com.example.socket_jpa_querydsl_test.domain.profile.ProfileConn.class, com.example.socket_jpa_querydsl_test.domain.profile.QProfileConn.class, PathInits.DIRECT2);
 
     public final QMember toMember;
 

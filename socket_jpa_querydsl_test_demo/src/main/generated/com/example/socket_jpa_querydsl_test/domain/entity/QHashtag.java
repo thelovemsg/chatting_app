@@ -29,10 +29,10 @@ public class QHashtag extends EntityPathBase<Hashtag> {
     public final StringPath content = createString("content");
 
     //inherited
-    public final StringPath createdBy = _super.createdBy;
+    public final DateTimePath<java.time.ZonedDateTime> createDate = _super.createDate;
 
     //inherited
-    public final DateTimePath<java.time.ZonedDateTime> createdDate = _super.createdDate;
+    public final StringPath createdBy = _super.createdBy;
 
     //inherited
     public final BooleanPath deleted = _super.deleted;
@@ -44,7 +44,7 @@ public class QHashtag extends EntityPathBase<Hashtag> {
     public final StringPath lastModifiedBy = _super.lastModifiedBy;
 
     //inherited
-    public final DateTimePath<java.time.ZonedDateTime> modifiedDate = _super.modifiedDate;
+    public final DateTimePath<java.time.ZonedDateTime> modifyDate = _super.modifyDate;
 
     public final NumberPath<Integer> seq = createNumber("seq", Integer.class);
 

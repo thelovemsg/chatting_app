@@ -11,7 +11,7 @@ import lombok.Setter;
 
 import java.time.ZonedDateTime;
 
-import static com.example.socket_jpa_querydsl_test.domain.customenum.EnrollType.Add;
+import static com.example.socket_jpa_querydsl_test.domain.customenum.EnrollType.ADD;
 import static jakarta.persistence.EnumType.STRING;
 import static jakarta.persistence.FetchType.LAZY;
 import static lombok.AccessLevel.PROTECTED;
@@ -30,12 +30,12 @@ public class Favorites extends BaseEntity {
 
     @Enumerated(STRING)
     @Column(name = "enroll_type")
-    private EnrollType enrollType = Add;
+    private EnrollType enrollType = ADD;
 
     @Column(name = "enroll_time")
     private ZonedDateTime enrollTime = ZonedDateTime.now();
 
-    public Favorites makeFriend(Friend friend) {
+    public static Favorites makeFriend(Friend friend) {
         Favorites favorites = new Favorites();
         favorites.setFriend(friend);
         return favorites;

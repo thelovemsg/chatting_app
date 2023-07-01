@@ -6,6 +6,7 @@ import com.example.socket_jpa_querydsl_test.repository.custom.MemberRepositoryIm
 import com.example.socket_jpa_querydsl_test.repository.member.MemberChattingRoomRepositoryImpl;
 import lombok.RequiredArgsConstructor;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,8 +29,10 @@ public class InitDataTest {
         Member findMemberB = memberRepository.findMemberByEmail("test2@naver.com");
 
         // 2. 멤버A, B의 memberChattingRoom 정보 검색
-        List<MemberChattingRoom> memberChattingRoomsA = memberChattingRoomRepository.getMemberChattingRoomByMemberId(findMemberA.getId()).collect(Collectors.toList());
-        List<MemberChattingRoom> memberChattingRoomsB = memberChattingRoomRepository.getMemberChattingRoomByMemberId(findMemberB.getId()).collect(Collectors.toList());
+        var memberChattingRoomsA = memberChattingRoomRepository
+                                    .getMemberChattingRoomByMemberId(findMemberA.getId()).collect(Collectors.toList());
+        var memberChattingRoomsB = memberChattingRoomRepository
+                                    .getMemberChattingRoomByMemberId(findMemberB.getId()).collect(Collectors.toList());
 
         MemberChattingRoom memberChattingRoom = memberChattingRoomsA.get(0);
         Assertions.assertThat(memberChattingRoomsA.get(0).getChattingRoom().getId())

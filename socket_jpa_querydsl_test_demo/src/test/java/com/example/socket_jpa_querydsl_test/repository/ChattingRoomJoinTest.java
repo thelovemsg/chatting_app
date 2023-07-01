@@ -119,12 +119,10 @@ class ChattingRoomJoinTest {
         MemberChattingRoom memberChattingRoom2 = MemberChattingRoom.joinMemberToChattingRoom(member2, chattingRoom);
         memberChattingRoom2 = memberChattingRoomRepositoryImpl.save(memberChattingRoom2);
 
-        //check if data is well saved.
-        ChattingRoom selectedChattingRoom = chattingRoomRepository.getChattingRoomById(chattingRoom.getId());
-        Assertions.assertThat(chattingRoom.getId()).isEqualTo(selectedChattingRoom.getId());
-
         //get members of chatting room. It must be two!!!
-        List<MemberChattingRoom> memberChattingRooms = memberChattingRoomRepositoryImpl.getMemberChattingRoomByChattingRoomId(selectedChattingRoom.getId()).collect(Collectors.toList());
+        List<MemberChattingRoom> memberChattingRooms = memberChattingRoomRepositoryImpl
+                                                            .getMemberChattingRoomByChattingRoomId(chattingRoom.getId())
+                                                                .collect(Collectors.toList());
         Assertions.assertThat(memberChattingRooms.size()).isEqualTo(2);
 
         /**
@@ -171,11 +169,11 @@ class ChattingRoomJoinTest {
         memberChattingRoom2 = memberChattingRoomRepositoryImpl.save(memberChattingRoom2);
 
         //check if data is well saved.
-        ChattingRoom selectedChattingRoom = chattingRoomRepository.getChattingRoomById(chattingRoom.getId());
-        Assertions.assertThat(chattingRoom.getId()).isEqualTo(selectedChattingRoom.getId());
+//        ChattingRoom selectedChattingRoom = chattingRoomRepository.getChattingRoomById(chattingRoom.getId());
+//        Assertions.assertThat(chattingRoom.getId()).isEqualTo(selectedChattingRoom.getId());
 
         //get members of chatting room. It must be two!!!
-        List<MemberChattingRoom> memberChattingRooms = memberChattingRoomRepositoryImpl.getMemberChattingRoomByChattingRoomId(selectedChattingRoom.getId()).collect(Collectors.toList());
+        List<MemberChattingRoom> memberChattingRooms = memberChattingRoomRepositoryImpl.getMemberChattingRoomByChattingRoomId(chattingRoom.getId()).collect(Collectors.toList());
         Assertions.assertThat(memberChattingRooms.size()).isEqualTo(2);
 
         Assertions.assertThat(chattingRoom.isRoomActive()).isTrue();

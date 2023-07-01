@@ -25,10 +25,10 @@ public class QRefreshToken extends EntityPathBase<RefreshToken> {
     public final com.example.socket_jpa_querydsl_test.domain.entity.QBaseEntity _super = new com.example.socket_jpa_querydsl_test.domain.entity.QBaseEntity(this);
 
     //inherited
-    public final StringPath createdBy = _super.createdBy;
+    public final DateTimePath<java.time.ZonedDateTime> createDate = _super.createDate;
 
     //inherited
-    public final DateTimePath<java.time.ZonedDateTime> createdDate = _super.createdDate;
+    public final StringPath createdBy = _super.createdBy;
 
     //inherited
     public final BooleanPath deleted = _super.deleted;
@@ -44,7 +44,7 @@ public class QRefreshToken extends EntityPathBase<RefreshToken> {
     public final com.example.socket_jpa_querydsl_test.domain.entity.QMember member;
 
     //inherited
-    public final DateTimePath<java.time.ZonedDateTime> modifiedDate = _super.modifiedDate;
+    public final DateTimePath<java.time.ZonedDateTime> modifyDate = _super.modifyDate;
 
     public final StringPath token = createString("token");
 

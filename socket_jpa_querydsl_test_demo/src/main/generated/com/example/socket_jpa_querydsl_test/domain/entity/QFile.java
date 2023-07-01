@@ -25,10 +25,10 @@ public class QFile extends EntityPathBase<File> {
     public final QBaseEntity _super = new QBaseEntity(this);
 
     //inherited
-    public final StringPath createdBy = _super.createdBy;
+    public final DateTimePath<java.time.ZonedDateTime> createDate = _super.createDate;
 
     //inherited
-    public final DateTimePath<java.time.ZonedDateTime> createdDate = _super.createdDate;
+    public final StringPath createdBy = _super.createdBy;
 
     //inherited
     public final BooleanPath deleted = _super.deleted;
@@ -52,7 +52,7 @@ public class QFile extends EntityPathBase<File> {
     public final QMember member;
 
     //inherited
-    public final DateTimePath<java.time.ZonedDateTime> modifiedDate = _super.modifiedDate;
+    public final DateTimePath<java.time.ZonedDateTime> modifyDate = _super.modifyDate;
 
     public final StringPath storedFileName = createString("storedFileName");
 

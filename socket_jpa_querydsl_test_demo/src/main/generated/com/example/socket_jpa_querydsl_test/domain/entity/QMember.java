@@ -31,10 +31,10 @@ public class QMember extends EntityPathBase<Member> {
     public final ListPath<BlockMember, QBlockMember> blockingMembers = this.<BlockMember, QBlockMember>createList("blockingMembers", BlockMember.class, QBlockMember.class, PathInits.DIRECT2);
 
     //inherited
-    public final StringPath createdBy = _super.createdBy;
+    public final DateTimePath<java.time.ZonedDateTime> createDate = _super.createDate;
 
     //inherited
-    public final DateTimePath<java.time.ZonedDateTime> createdDate = _super.createdDate;
+    public final StringPath createdBy = _super.createdBy;
 
     //inherited
     public final BooleanPath deleted = _super.deleted;
@@ -56,7 +56,7 @@ public class QMember extends EntityPathBase<Member> {
     public final ListPath<MemberRole, QMemberRole> memberRoles = this.<MemberRole, QMemberRole>createList("memberRoles", MemberRole.class, QMemberRole.class, PathInits.DIRECT2);
 
     //inherited
-    public final DateTimePath<java.time.ZonedDateTime> modifiedDate = _super.modifiedDate;
+    public final DateTimePath<java.time.ZonedDateTime> modifyDate = _super.modifyDate;
 
     public final StringPath name = createString("name");
 
