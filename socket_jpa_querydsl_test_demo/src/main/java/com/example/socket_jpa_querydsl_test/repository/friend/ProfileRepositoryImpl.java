@@ -36,4 +36,7 @@ public class ProfileRepositoryImpl extends SimpleJpaRepository<Profile, Long> {
                         .and(profile.profileType.eq(profileType))).fetch();
     }
 
+    public Profile getSpecificProfilesByProfile(Member targetMember, Profile profile) {
+        return null;
+    }
 }

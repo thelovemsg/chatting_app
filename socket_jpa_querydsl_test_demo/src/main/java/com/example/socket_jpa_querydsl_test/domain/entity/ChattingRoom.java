@@ -23,12 +23,12 @@ import static jakarta.persistence.EnumType.STRING;
 public class ChattingRoom extends BaseEntity {
 
     @Column(name = "name")
-    private String name;
+    private String name = "CR_" + TsidCreator.getTsid().toLong();
 
     @JsonIgnore
     @Column(name = "password")
     @Convert(converter = PasswordConverterUtil.class)
-    private String password;
+    private String password = "OPEN";
 
     @Column(name = "chatting_room_status")
     @Enumerated(STRING)
@@ -48,16 +48,6 @@ public class ChattingRoom extends BaseEntity {
     public void removeHashtag(Hashtag hashtag) {
         hashtags.remove(hashtag);
         hashtag.setChattingRoom(null);
-    }
-
-    @PrePersist
-    public void onPrePersist() {
-        if (name == null) {
-            name = "CR_" + TsidCreator.getTsid().toLong();
-        }
-        if (password == null) {
-            password = "OPEN"; // Set the default password value here
-        }
     }
 
     public boolean isRoomActive() {

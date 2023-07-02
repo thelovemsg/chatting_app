@@ -1,8 +1,8 @@
 package com.example.socket_jpa_querydsl_test.controller;
 
 import com.example.socket_jpa_querydsl_test.api.dto.request.RefreshTokenRequest;
-import com.example.socket_jpa_querydsl_test.config.exception.JwtTokenExpiredException;
-import com.example.socket_jpa_querydsl_test.config.exception.JwtTokenInvalidException;
+import com.example.socket_jpa_querydsl_test.config.exception.token.JwtTokenExpiredException;
+import com.example.socket_jpa_querydsl_test.config.exception.token.JwtTokenInvalidException;
 import com.example.socket_jpa_querydsl_test.config.security.provider.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

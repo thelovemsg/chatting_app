@@ -20,7 +20,6 @@ import static lombok.AccessLevel.PROTECTED;
 @Getter
 @Setter(PROTECTED)
 @NoArgsConstructor
-@AllArgsConstructor
 @AttributeOverride(name = "id", column = @Column(name = "favorite_id"))
 public class Favorites extends BaseEntity {
 
@@ -35,7 +34,7 @@ public class Favorites extends BaseEntity {
     @Column(name = "enroll_time")
     private ZonedDateTime enrollTime = ZonedDateTime.now();
 
-    public static Favorites makeFriend(Friend friend) {
+    public static Favorites makeFavoriteFriend(Friend friend) {
         Favorites favorites = new Favorites();
         favorites.setFriend(friend);
         return favorites;

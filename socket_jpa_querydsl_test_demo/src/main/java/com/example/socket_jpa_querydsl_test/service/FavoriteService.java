@@ -25,7 +25,7 @@ public class FavoriteService {
     }
 
     public Favorites addFavorites(Friend addFriend) {
-        return favoriteRepository.save(Favorites.makeFriend(addFriend));
+        return favoriteRepository.save(Favorites.makeFavoriteFriend(addFriend));
     }
 
 }

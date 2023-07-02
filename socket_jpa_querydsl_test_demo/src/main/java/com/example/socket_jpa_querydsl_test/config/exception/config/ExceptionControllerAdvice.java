@@ -1,7 +1,9 @@
-package com.example.socket_jpa_querydsl_test.config.exception;
+package com.example.socket_jpa_querydsl_test.config.exception.config;
 
 import com.example.socket_jpa_querydsl_test.api.Message;
 import com.example.socket_jpa_querydsl_test.api.StatusEnum;
+import com.example.socket_jpa_querydsl_test.config.exception.AlreadyFriendException;
+import com.example.socket_jpa_querydsl_test.config.exception.ErrorMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,9 +19,11 @@ public class ExceptionControllerAdvice {
     @ExceptionHandler({IllegalArgumentException.class})
     public ResponseEntity<Message> errorHandler(IllegalArgumentException e) {
         log.error(e.getMessage());
-        Message message = new Message(StatusEnum.BAD_REQUEST, e.getMessage(), null);
+        Message message;
+        message = new Message(StatusEnum.BAD_REQUEST, e.getMessage(), null);
         return new ResponseEntity(message, HttpStatus.OK);
     }
+
 
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ExceptionHandler(value = Exception.class)

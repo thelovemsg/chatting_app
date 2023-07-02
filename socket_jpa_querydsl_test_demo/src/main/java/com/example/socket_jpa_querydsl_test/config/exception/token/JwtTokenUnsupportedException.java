@@ -1,4 +1,4 @@
-package com.example.socket_jpa_querydsl_test.config.exception;
+package com.example.socket_jpa_querydsl_test.config.exception.token;
 
 public class JwtTokenUnsupportedException extends RuntimeException{
     public JwtTokenUnsupportedException() {

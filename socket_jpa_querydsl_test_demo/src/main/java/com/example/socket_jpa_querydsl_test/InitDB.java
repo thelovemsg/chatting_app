@@ -1,9 +1,7 @@
 package com.example.socket_jpa_querydsl_test;
 
-import com.example.socket_jpa_querydsl_test.config.PasswordEncoderConfig;
-import com.example.socket_jpa_querydsl_test.domain.customenum.ProfileType;
+import com.example.socket_jpa_querydsl_test.domain.customenum.ChattingRoomType;
 import com.example.socket_jpa_querydsl_test.domain.entity.*;
-import com.example.socket_jpa_querydsl_test.domain.profile.Favorites;
 import com.example.socket_jpa_querydsl_test.domain.profile.Profile;
 import com.example.socket_jpa_querydsl_test.repository.chatting.ChattingRoomRepository;
 import com.example.socket_jpa_querydsl_test.service.*;
@@ -11,7 +9,6 @@ import jakarta.annotation.PostConstruct;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -117,27 +114,40 @@ public class InitDB {
 
             /**
              * 1. memberA와 memberB, memberC는 친구다.
-             * 2. memberB는 memberC에게 친구 신청을 보냈다.
-             * 3. memberB는 memberA에게 멀티프로필을 사용하고 있다.
-             * 4. memberA에게 memberC는 즐겨찾기에 추가되어있다.
-             * 5. memberA와 memberB는 이미 채팅을 했다.(같은 채팅방에 존재한다.)
-             * 6. memberA, memberB 그리고 memberC는 현재 오픈 톡방에 있다. (PRIVATE 버전)
+             * 2. memberB는 memberA와 친구다.
+             * 3. memberC는 memberB의 친구이다. memberC는 그를 친구로 등록하지 않았다.
+             * 4. memberB는 memberA에게 멀티프로필을 사용하고 있다.
+             * 5. memberA에게 memberC는 즐겨찾기에 추가되어있다.
+             *
+             * 6. memberA와 memberB는 이미 채팅을 했다.(같은 채팅방에 존재한다.)
+             * 7. memberA, memberB 그리고 memberC는 현재 오픈 톡방에 있다. (PRIVATE 버전)
              */
 
             Member memberA = memberService.getMemberByEmail("test1@naver.com");
             Member memberB = memberService.getMemberByEmail("test2@naver.com");
             Member memberC = memberService.getMemberByEmail("test3@naver.com");
 
-            // 1. memberA와 memberB, memberC는 친구다.
             friendService.addFriend(memberA, memberB);
-            Friend friendProposer = friendService.addFriend(memberA, memberC);
+            friendService.addFriend(memberA, memberC);
+            friendService.addFriend(memberB, memberA);
+            friendService.addFriend(memberB, memberC);
 
-//            List<Profile> profiles = profileService.getProfiles(memberA.getId());
+            //link member B's multi profile to member A
+            Profile multiProfile = profileService.getOneMultiProfile(memberB);
+            profileService.linkProfileToFriend(friendService.getFriend(memberB, memberA)
+                                                , multiProfile);
+
+//          List<Profile> profiles = profileService.getProfile(memberA.getId());
 
             // memberA에게 memberC는 즐겨찾기에 추가되어있다.
-            favoriteService.addFavorites(friendProposer);
+            favoriteService.addFavorites(friendService.getFriend(memberA, memberC));
 
-            chattingRoomService.addChattingRoom();
+            // no hashtag, common chatting room
+            List<Hashtag> hashtagList = new ArrayList<>();
+            chattingRoomService.addChattingRoom(hashtagList, ChattingRoomType.OPEN);
+
+            //add member chatting room event listener
+            // TODO :
 
         }
 

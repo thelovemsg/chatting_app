@@ -1,9 +1,9 @@
 package com.example.socket_jpa_querydsl_test.config.security.provider;
 
-import com.example.socket_jpa_querydsl_test.config.exception.JwtTokenEmptyClaimsException;
-import com.example.socket_jpa_querydsl_test.config.exception.JwtTokenExpiredException;
-import com.example.socket_jpa_querydsl_test.config.exception.JwtTokenInvalidException;
-import com.example.socket_jpa_querydsl_test.config.exception.JwtTokenUnsupportedException;
+import com.example.socket_jpa_querydsl_test.config.exception.token.JwtTokenEmptyClaimsException;
+import com.example.socket_jpa_querydsl_test.config.exception.token.JwtTokenExpiredException;
+import com.example.socket_jpa_querydsl_test.config.exception.token.JwtTokenInvalidException;
+import com.example.socket_jpa_querydsl_test.config.exception.token.JwtTokenUnsupportedException;
 import com.example.socket_jpa_querydsl_test.config.security.custom.CustomUserDetails;
 import com.example.socket_jpa_querydsl_test.domain.entity.Member;
 import com.example.socket_jpa_querydsl_test.domain.entity.security.RefreshToken;
