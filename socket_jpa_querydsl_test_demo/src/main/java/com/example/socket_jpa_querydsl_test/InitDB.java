@@ -11,7 +11,9 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static com.example.socket_jpa_querydsl_test.domain.customenum.ProfileType.*;
@@ -40,6 +42,7 @@ public class InitDB {
         private final FriendService friendService;
         private final FavoriteService favoriteService;
         private final ChattingRoomService chattingRoomService;
+        private final MemberChattingRoomService memberChattingRoomService;
 
         //set member and address data
         public void initDb1() {
@@ -121,11 +124,13 @@ public class InitDB {
              *
              * 6. memberA와 memberB는 이미 채팅을 했다.(같은 채팅방에 존재한다.)
              * 7. memberA, memberB 그리고 memberC는 현재 오픈 톡방에 있다. (PRIVATE 버전)
+             *   => 만약 사용자가 오픈 채팅방에 들어갔다가 퇴장당했다면 다시는 들어올 수 없다.
              */
 
             Member memberA = memberService.getMemberByEmail("test1@naver.com");
             Member memberB = memberService.getMemberByEmail("test2@naver.com");
             Member memberC = memberService.getMemberByEmail("test3@naver.com");
+
 
             friendService.addFriend(memberA, memberB);
             friendService.addFriend(memberA, memberC);
@@ -134,21 +139,28 @@ public class InitDB {
 
             //link member B's multi profile to member A
             Profile multiProfile = profileService.getOneMultiProfile(memberB);
-            profileService.linkProfileToFriend(friendService.getFriend(memberB, memberA)
-                                                , multiProfile);
+            profileService.linkProfileToFriend(friendService.getFriend(memberB, memberA), multiProfile);
 
 //          List<Profile> profiles = profileService.getProfile(memberA.getId());
 
             // memberA에게 memberC는 즐겨찾기에 추가되어있다.
             favoriteService.addFavorites(friendService.getFriend(memberA, memberC));
 
-            // no hashtag, common chatting room
-            List<Hashtag> hashtagList = new ArrayList<>();
-            chattingRoomService.addChattingRoom(hashtagList, ChattingRoomType.OPEN);
+            // individual chatting room is made and has member (memberA and memberB)
+            /**
+             * add member chatting room event listener
+             * when user make chatting room, he doesn't need to know
+             * what room we choose because it's the first time with him.
+             */
+            memberChattingRoomService.openNewIndividualChattingRoom(memberA, memberB);
 
-            //add member chatting room event listener
-            // TODO :
 
+            //
+            // memberA, memberB 그리고 memberC는 현재 오픈 톡방에 있다. (PRIVATE 버전)
+            List<Hashtag> hashtagsForOpenRoom = Arrays.asList(new Hashtag("test1", 1)
+                    , new Hashtag("test2", 2)
+                    , new Hashtag("test3", 3));
+            memberChattingRoomService.openNewOpenChattingRoom(memberA, memberB, memberC);
         }
 
 

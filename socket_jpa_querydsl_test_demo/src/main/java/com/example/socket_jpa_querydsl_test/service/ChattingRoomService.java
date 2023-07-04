@@ -17,7 +17,12 @@ public class ChattingRoomService {
 
     private final ChattingRoomRepository chattingRoomRepository;
 
-    public ChattingRoom addChattingRoom(List<Hashtag> hashtags, ChattingRoomType chattingRoomType) {
+    public ChattingRoom addChattingRoomForIndividual() {
+        ChattingRoom chattingRoom = new ChattingRoom();
+        return chattingRoomRepository.save(chattingRoom);
+    }
+
+    public ChattingRoom addChattingRoomForOpenRoom(List<Hashtag> hashtags) {
         ChattingRoom chattingRoom = new ChattingRoom();
         AtomicInteger sequence = new AtomicInteger(1);
 
@@ -28,5 +33,17 @@ public class ChattingRoomService {
 
         return chattingRoomRepository.save(chattingRoom);
     }
+
+    public ChattingRoom expireChattingRoom(Long memberId, Long expireMemberChattingRoomId) {
+        /**
+         * 채팅룸을 폐쇄치키려면 폐쇄하려는 직원의 직위(position)이 Manager 이어야 함.
+         * 체크 후 폐쇄함.
+         */
+
+        // TODO: do something...
+
+        return null;
+    }
+
 
 }

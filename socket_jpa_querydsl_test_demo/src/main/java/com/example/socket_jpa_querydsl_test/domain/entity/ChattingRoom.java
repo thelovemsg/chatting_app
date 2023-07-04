@@ -1,6 +1,7 @@
 package com.example.socket_jpa_querydsl_test.domain.entity;
 
 import com.example.socket_jpa_querydsl_test.domain.customenum.ChattingRoomType;
+import com.example.socket_jpa_querydsl_test.domain.customenum.FlagStatus;
 import com.example.socket_jpa_querydsl_test.domain.utils.PasswordConverterUtil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.f4b6a3.tsid.TsidCreator;
@@ -15,7 +16,7 @@ import static jakarta.persistence.EnumType.STRING;
 
 @Entity
 @Getter
-@Setter
+@Setter(AccessLevel.PRIVATE)
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString(exclude = "password")
@@ -30,9 +31,13 @@ public class ChattingRoom extends BaseEntity {
     @Convert(converter = PasswordConverterUtil.class)
     private String password = "OPEN";
 
+    @Column(name = "chatting_room_type")
+    @Enumerated(STRING)
+    private ChattingRoomType chattingRoomType = ChattingRoomType.INDIVIDUAL;
+
     @Column(name = "chatting_room_status")
     @Enumerated(STRING)
-    private ChattingRoomType isClosed = ChattingRoomType.OPEN;
+    private FlagStatus isClosed = FlagStatus.NO;
 
     @OneToMany(mappedBy = "chattingRoom", cascade = CascadeType.ALL)
     private List<Hashtag> hashtags = new ArrayList<>();
@@ -51,15 +56,21 @@ public class ChattingRoom extends BaseEntity {
     }
 
     public boolean isRoomActive() {
-        return isClosed == ChattingRoomType.OPEN && (roomExpirationDate == null || LocalDateTime.now().isBefore(roomExpirationDate));
+        return isClosed == FlagStatus.NO && (roomExpirationDate == null);
     }
 
-    public void changeStatus(ChattingRoomType isClosed) {
-        this.isClosed = isClosed;
+    public void closeChattingRoom() {
+        this.isClosed = FlagStatus.YES;
     }
 
     public void expireRoom() {
         this.roomExpirationDate = LocalDateTime.now();
+    }
+
+    public static ChattingRoom makeOpenChattingRoom() {
+        ChattingRoom chattingRoom = new ChattingRoom();
+        chattingRoom.setChattingRoomType(ChattingRoomType.OPEN);
+        return chattingRoom;
     }
 
 }

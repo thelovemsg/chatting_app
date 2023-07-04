@@ -39,7 +39,7 @@ public class MemberChattingRoom extends BaseEntity{
 
     @Enumerated(STRING)
     @Column(name = "position")
-    private PositionType position = PositionType.MANAGER;
+    private PositionType position = PositionType.MEMBER;
 
     public void withdrawMember() {
         this.withdrawalStatus = FlagStatus.YES;
@@ -53,11 +53,15 @@ public class MemberChattingRoom extends BaseEntity{
         this.isRoomClosed = FlagStatus.YES;
     }
 
-    public static MemberChattingRoom joinMemberToChattingRoom(Member member, ChattingRoom chattingRoom) {
+    public static MemberChattingRoom joinMemberToChattingRoom(ChattingRoom chattingRoom, Member member) {
         MemberChattingRoom memberChattingRoom = new MemberChattingRoom();
         memberChattingRoom.setMember(member);
         memberChattingRoom.setChattingRoom(chattingRoom);
         return memberChattingRoom;
+    }
+
+    public void changePosition(PositionType position) {
+        this.position = position;
     }
 
 
