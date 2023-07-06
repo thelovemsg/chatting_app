@@ -16,7 +16,7 @@ import static jakarta.persistence.EnumType.STRING;
 
 @Entity
 @Getter
-@Setter(AccessLevel.PRIVATE)
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString(exclude = "password")
@@ -70,6 +70,13 @@ public class ChattingRoom extends BaseEntity {
     public static ChattingRoom makeOpenChattingRoom() {
         ChattingRoom chattingRoom = new ChattingRoom();
         chattingRoom.setChattingRoomType(ChattingRoomType.OPEN);
+        return chattingRoom;
+    }
+
+    public static ChattingRoom makePrivateChattingRoom(String password) {
+        ChattingRoom chattingRoom = new ChattingRoom();
+        chattingRoom.setChattingRoomType(ChattingRoomType.PRIVATE);
+        chattingRoom.setPassword(password);
         return chattingRoom;
     }
 

@@ -40,8 +40,6 @@ public class QFriend extends EntityPathBase<Friend> {
     //inherited
     public final NumberPath<Long> id = _super.id;
 
-    public final EnumPath<com.example.socket_jpa_querydsl_test.domain.customenum.FlagStatus> isAccepted = createEnum("isAccepted", com.example.socket_jpa_querydsl_test.domain.customenum.FlagStatus.class);
-
     //inherited
     public final StringPath lastModifiedBy = _super.lastModifiedBy;
 

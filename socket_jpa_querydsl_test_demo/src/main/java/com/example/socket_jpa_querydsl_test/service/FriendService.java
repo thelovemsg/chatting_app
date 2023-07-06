@@ -43,14 +43,8 @@ public class FriendService {
     }
 
     public Friend getFriend(Member processor, Member acceptor) {
-        Friend friend = friendRepositoryImpl.
+        return friendRepositoryImpl.
                 getFriendByfromMemberAndToMember(processor, acceptor);
-
-        if(friend == null)
-            throw new IllegalArgumentException("NO_FRIEND",
-                    new ErrorMessage("NO_FRIEND", "NO_FRIEND"));
-
-        return friend;
     }
 
 }

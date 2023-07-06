@@ -22,6 +22,8 @@ public class QChattingRoom extends EntityPathBase<ChattingRoom> {
 
     public final QBaseEntity _super = new QBaseEntity(this);
 
+    public final EnumPath<com.example.socket_jpa_querydsl_test.domain.customenum.ChattingRoomType> chattingRoomType = createEnum("chattingRoomType", com.example.socket_jpa_querydsl_test.domain.customenum.ChattingRoomType.class);
+
     //inherited
     public final DateTimePath<java.time.ZonedDateTime> createDate = _super.createDate;
 
@@ -36,7 +38,7 @@ public class QChattingRoom extends EntityPathBase<ChattingRoom> {
     //inherited
     public final NumberPath<Long> id = _super.id;
 
-    public final EnumPath<com.example.socket_jpa_querydsl_test.domain.customenum.ChattingRoomType> isClosed = createEnum("isClosed", com.example.socket_jpa_querydsl_test.domain.customenum.ChattingRoomType.class);
+    public final EnumPath<com.example.socket_jpa_querydsl_test.domain.customenum.FlagStatus> isClosed = createEnum("isClosed", com.example.socket_jpa_querydsl_test.domain.customenum.FlagStatus.class);
 
     //inherited
     public final StringPath lastModifiedBy = _super.lastModifiedBy;

@@ -1,13 +1,11 @@
 package com.example.socket_jpa_querydsl_test.service;
 
-import com.example.socket_jpa_querydsl_test.domain.customenum.ChattingRoomType;
 import com.example.socket_jpa_querydsl_test.domain.entity.ChattingRoom;
 import com.example.socket_jpa_querydsl_test.domain.entity.Hashtag;
 import com.example.socket_jpa_querydsl_test.repository.chatting.ChattingRoomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -15,6 +13,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @RequiredArgsConstructor
 public class ChattingRoomService {
 
+    private final HashtagService hashtagService;
     private final ChattingRoomRepository chattingRoomRepository;
 
     public ChattingRoom addChattingRoomForIndividual() {
@@ -22,12 +21,26 @@ public class ChattingRoomService {
         return chattingRoomRepository.save(chattingRoom);
     }
 
-    public ChattingRoom addChattingRoomForOpenRoom(List<Hashtag> hashtags) {
-        ChattingRoom chattingRoom = new ChattingRoom();
+    public ChattingRoom addChattingRoomForOpen(List<Hashtag> hashtags) {
+        ChattingRoom chattingRoom = ChattingRoom.makeOpenChattingRoom();
         AtomicInteger sequence = new AtomicInteger(1);
 
         hashtags.forEach(hashtag -> {
             hashtag.setSeq(sequence.getAndIncrement());
+            hashtagService.addHashtag(hashtag);
+            chattingRoom.addHashtag(hashtag);
+        });
+
+        return chattingRoomRepository.save(chattingRoom);
+    }
+
+    public ChattingRoom addChattingRoomForPrivate(List<Hashtag> hashtags) {
+        ChattingRoom chattingRoom = ChattingRoom.makePrivateChattingRoom("test");
+        AtomicInteger sequence = new AtomicInteger(1);
+
+        hashtags.forEach(hashtag -> {
+            hashtag.setSeq(sequence.getAndIncrement());
+            hashtagService.addHashtag(hashtag);
             chattingRoom.addHashtag(hashtag);
         });
 

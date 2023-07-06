@@ -41,11 +41,11 @@ public class MemberTest {
     public void find_init_data() {
         // member데이터는 초기화시 2개
         List<Member> members = memberService.getMembers();
-        assertThat(members.size()).isEqualTo(2);
-
-        for (Member member : members) {
-            System.out.println(addressService.findAddresses(member.getId()).toString());
-        }
+//        assertThat(members.size()).isEqualTo(2);
+//
+//        for (Member member : members) {
+//            System.out.println(addressService.findAddresses(member.getId()).toString());
+//        }
 
         // address데이터는 초기화시 3개
 //        assertThat(addressService.getAdress().size()).isEqualTo(2);

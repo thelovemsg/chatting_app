@@ -30,10 +30,16 @@ public class ProfileRepositoryImpl extends SimpleJpaRepository<Profile, Long> {
                 .fetchFirst();
     }
 
-    public List<Profile> getSpecificProfilesByMemberId(Member targetMember, ProfileType profileType) {
+    public List<Profile> getSpecificProfilesByMember(Member targetMember, ProfileType profileType) {
         return queryFactory.selectFrom(profile)
                 .where(profile.member.eq(targetMember)
                         .and(profile.profileType.eq(profileType))).fetch();
+    }
+
+    public List<Profile> getProfilesByProfileId(Long targetMemberId) {
+//        return queryFactory.selectFrom(profile)
+//                .where(profile.id(targetMemberId)).fetch();
+        return null;
     }
 
     public Profile getSpecificProfilesByProfile(Member targetMember, Profile profile) {

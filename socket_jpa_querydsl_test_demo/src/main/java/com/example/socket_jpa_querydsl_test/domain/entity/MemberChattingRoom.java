@@ -53,7 +53,7 @@ public class MemberChattingRoom extends BaseEntity{
         this.isRoomClosed = FlagStatus.YES;
     }
 
-    public static MemberChattingRoom joinMemberToChattingRoom(ChattingRoom chattingRoom, Member member) {
+    public static MemberChattingRoom joinMemberToChattingRoom(Member member, ChattingRoom chattingRoom) {
         MemberChattingRoom memberChattingRoom = new MemberChattingRoom();
         memberChattingRoom.setMember(member);
         memberChattingRoom.setChattingRoom(chattingRoom);
@@ -63,6 +63,5 @@ public class MemberChattingRoom extends BaseEntity{
     public void changePosition(PositionType position) {
         this.position = position;
     }
-
 
 }

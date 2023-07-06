@@ -1,6 +1,5 @@
 package com.example.socket_jpa_querydsl_test;
 
-import com.example.socket_jpa_querydsl_test.domain.customenum.ChattingRoomType;
 import com.example.socket_jpa_querydsl_test.domain.entity.*;
 import com.example.socket_jpa_querydsl_test.domain.profile.Profile;
 import com.example.socket_jpa_querydsl_test.repository.chatting.ChattingRoomRepository;
@@ -11,7 +10,6 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -41,7 +39,6 @@ public class InitDB {
         private final ProfileService profileService;
         private final FriendService friendService;
         private final FavoriteService favoriteService;
-        private final ChattingRoomService chattingRoomService;
         private final MemberChattingRoomService memberChattingRoomService;
 
         //set member and address data
@@ -122,15 +119,15 @@ public class InitDB {
              * 4. memberB는 memberA에게 멀티프로필을 사용하고 있다.
              * 5. memberA에게 memberC는 즐겨찾기에 추가되어있다.
              *
-             * 6. memberA와 memberB는 이미 채팅을 했다.(같은 채팅방에 존재한다.)
+             * 6. memberA와 memberB는 채팅방을 개설했다.
              * 7. memberA, memberB 그리고 memberC는 현재 오픈 톡방에 있다. (PRIVATE 버전)
              *   => 만약 사용자가 오픈 채팅방에 들어갔다가 퇴장당했다면 다시는 들어올 수 없다.
+             *   => 히스토리를 전부 관리해야 하는데 이거는 어떻게 하지?
              */
 
             Member memberA = memberService.getMemberByEmail("test1@naver.com");
             Member memberB = memberService.getMemberByEmail("test2@naver.com");
             Member memberC = memberService.getMemberByEmail("test3@naver.com");
-
 
             friendService.addFriend(memberA, memberB);
             friendService.addFriend(memberA, memberC);
@@ -138,33 +135,44 @@ public class InitDB {
             friendService.addFriend(memberB, memberC);
 
             //link member B's multi profile to member A
-            Profile multiProfile = profileService.getOneMultiProfile(memberB);
+            Profile multiProfile = profileService.getOneMultiProfileTest(memberB);
             profileService.linkProfileToFriend(friendService.getFriend(memberB, memberA), multiProfile);
-
-//          List<Profile> profiles = profileService.getProfile(memberA.getId());
 
             // memberA에게 memberC는 즐겨찾기에 추가되어있다.
             favoriteService.addFavorites(friendService.getFriend(memberA, memberC));
 
-            // individual chatting room is made and has member (memberA and memberB)
-            /**
-             * add member chatting room event listener
-             * when user make chatting room, he doesn't need to know
-             * what room we choose because it's the first time with him.
-             */
-            memberChattingRoomService.openNewIndividualChattingRoom(memberA, memberB);
+            memberChattingRoomService.makeNewIndividualChattingRoom(memberA, memberB);
 
-
-            //
-            // memberA, memberB 그리고 memberC는 현재 오픈 톡방에 있다. (PRIVATE 버전)
-            List<Hashtag> hashtagsForOpenRoom = Arrays.asList(new Hashtag("test1", 1)
+            // memberA, memberB 그리고 memberC는 현재 private한 오픈 톡방에 있다. (PRIVATE - 비밀번호가 있음)
+            List<Hashtag> hashtags = Arrays.asList(new Hashtag("test1", 1)
                     , new Hashtag("test2", 2)
                     , new Hashtag("test3", 3));
-            memberChattingRoomService.openNewOpenChattingRoom(memberA, memberB, memberC);
+
+            // 오픈 톡방 만들 때 memberChattingRoomService로 모든 로직을 모음.
+            memberChattingRoomService.makeNewPrivateChattingRoom(hashtags, memberA, memberB, memberC);
+
         }
 
+        public void initDb4() {
+            Member memberA = memberService.getMemberByEmail("test1@naver.com");
+            Member memberB = memberService.getMemberByEmail("test2@naver.com");
+            Member memberC = memberService.getMemberByEmail("test3@naver.com");
 
-            private Address createAddress(String address1, String address2) {
+            List<Hashtag> hashtags = Arrays.asList(new Hashtag("test1", 1)
+                    , new Hashtag("test2", 2)
+                    , new Hashtag("test3", 3));
+
+            // memberA와 memberB는 오픈 톡방이 있다. 여기에 추후에 memberC가 검색해서 들어오려고 한다.
+            // 그런데 memberC는 이미 추방되었던 사람이라서 초대없이는 들어올 수 없다.
+            // 여기서는 memberC를 해당 방의 추방 목록에 추가할 것임.
+            memberChattingRoomService.makeNewOpenChattingRoom(hashtags, memberA, memberB, memberC);
+
+//            memberChattingRoomService.banishMemberFromMemberChattingRoom()
+
+
+        }
+
+        private Address createAddress(String address1, String address2) {
             Address address = new Address();
             address.setAddress1(address1);
             address.setAddress2(address2);

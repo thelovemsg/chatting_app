@@ -35,9 +35,14 @@ public class ProfileService {
         return profileRepository.findById(profile.getId()).orElseThrow();
     }
 
-    // test method for init db.
-    public Profile getOneMultiProfile(Member member) {
-        return profileRepositoryImpl.getSpecificProfilesByMemberId(member, ProfileType.MULTI).get(0);
+    // test method for init db. member
+    public Profile getOneMultiProfileTest(Member member) {
+        return profileRepositoryImpl.getSpecificProfilesByMember(member, ProfileType.MULTI).get(0);
+    }
+
+    // test method for init db. member
+    public Profile getOneMultiProfile(Long profileId) {
+        return profileRepositoryImpl.getProfilesByProfileId(profileId).get(0);
     }
 
     public Profile getMainProfile(Member member) {
