@@ -1,6 +1,6 @@
 package com.example.socket_jpa_querydsl_test.repository.member;
 
-import com.example.socket_jpa_querydsl_test.domain.entity.Member;
+import com.example.socket_jpa_querydsl_test.domain.entity.member.Member;
 import com.example.socket_jpa_querydsl_test.repository.custom.MemberRepositoryCustom;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;

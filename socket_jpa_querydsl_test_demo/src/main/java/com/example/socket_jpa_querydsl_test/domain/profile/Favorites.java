@@ -1,10 +1,9 @@
 package com.example.socket_jpa_querydsl_test.domain.profile;
 
 import com.example.socket_jpa_querydsl_test.domain.customenum.EnrollType;
-import com.example.socket_jpa_querydsl_test.domain.entity.BaseEntity;
-import com.example.socket_jpa_querydsl_test.domain.entity.Friend;
+import com.example.socket_jpa_querydsl_test.domain.entity.base.BaseEntity;
+import com.example.socket_jpa_querydsl_test.domain.entity.chatting.Friend;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

@@ -2,6 +2,12 @@ package com.example.socket_jpa_querydsl_test.domain.entity;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
+import com.example.socket_jpa_querydsl_test.domain.entity.chatting.Friend;
+import com.example.socket_jpa_querydsl_test.domain.entity.file.File;
+import com.example.socket_jpa_querydsl_test.domain.entity.member.Address;
+import com.example.socket_jpa_querydsl_test.domain.entity.member.BlockMember;
+import com.example.socket_jpa_querydsl_test.domain.entity.member.Member;
+import com.example.socket_jpa_querydsl_test.domain.entity.member.MemberRole;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;

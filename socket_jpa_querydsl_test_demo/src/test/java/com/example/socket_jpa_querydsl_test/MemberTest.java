@@ -1,7 +1,7 @@
 package com.example.socket_jpa_querydsl_test;
 
-import com.example.socket_jpa_querydsl_test.domain.entity.Address;
-import com.example.socket_jpa_querydsl_test.domain.entity.Member;
+import com.example.socket_jpa_querydsl_test.domain.entity.member.Address;
+import com.example.socket_jpa_querydsl_test.domain.entity.member.Member;
 import com.example.socket_jpa_querydsl_test.service.AddressService;
 import com.example.socket_jpa_querydsl_test.service.MemberService;
 import jakarta.transaction.Transactional;
@@ -81,8 +81,8 @@ public class MemberTest {
         System.out.println("member1 = " + member1.getCreatedBy());
 
         Address address = new Address();
-        address.setAddress1("address1");
-        address.setAddress2("address2");
+        address.setAddress("address1");
+        address.setAddressDetail("address2");
         address.setMember(member);
         addressService.saveAddress(address);
     }

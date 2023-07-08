@@ -1,9 +1,9 @@
-package com.example.socket_jpa_querydsl_test.domain.entity;
+package com.example.socket_jpa_querydsl_test.domain.entity.chatting;
 
+import com.example.socket_jpa_querydsl_test.domain.entity.base.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.Where;
 
 import static jakarta.persistence.FetchType.LAZY;
 import static lombok.AccessLevel.*;

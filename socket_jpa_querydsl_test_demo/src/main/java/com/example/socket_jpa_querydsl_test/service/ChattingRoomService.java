@@ -1,16 +1,18 @@
 package com.example.socket_jpa_querydsl_test.service;
 
-import com.example.socket_jpa_querydsl_test.domain.entity.ChattingRoom;
-import com.example.socket_jpa_querydsl_test.domain.entity.Hashtag;
+import com.example.socket_jpa_querydsl_test.domain.entity.chatting.ChattingRoom;
+import com.example.socket_jpa_querydsl_test.domain.entity.chatting.Hashtag;
 import com.example.socket_jpa_querydsl_test.repository.chatting.ChattingRoomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class ChattingRoomService {
 
     private final HashtagService hashtagService;

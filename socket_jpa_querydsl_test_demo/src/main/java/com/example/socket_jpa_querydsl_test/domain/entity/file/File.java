@@ -1,11 +1,11 @@
-package com.example.socket_jpa_querydsl_test.domain.entity;
+package com.example.socket_jpa_querydsl_test.domain.entity.file;
 
+import com.example.socket_jpa_querydsl_test.domain.entity.base.BaseEntity;
+import com.example.socket_jpa_querydsl_test.domain.entity.member.Member;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.Where;
 
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 
 import static jakarta.persistence.FetchType.LAZY;
@@ -18,7 +18,7 @@ import static jakarta.persistence.FetchType.LAZY;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper=false)
 @AttributeOverride(name = "id", column = @Column(name = "file_id"))
-public class File extends BaseEntity{
+public class File extends BaseEntity {
 
     @Column(nullable = false, name = "file_name")
     private String fileName;

@@ -3,7 +3,7 @@ package com.example.socket_jpa_querydsl_test.api;
 import com.example.socket_jpa_querydsl_test.api.dto.entity.MemberDto;
 import com.example.socket_jpa_querydsl_test.api.dto.entity.MemberSaveDto;
 import com.example.socket_jpa_querydsl_test.api.dto.response.MemberResponseDto;
-import com.example.socket_jpa_querydsl_test.domain.entity.Member;
+import com.example.socket_jpa_querydsl_test.domain.entity.member.Member;
 import com.example.socket_jpa_querydsl_test.service.MemberService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

@@ -1,6 +1,7 @@
-package com.example.socket_jpa_querydsl_test.domain.entity;
+package com.example.socket_jpa_querydsl_test.domain.entity.member;
 
 import com.example.socket_jpa_querydsl_test.domain.customenum.FlagStatus;
+import com.example.socket_jpa_querydsl_test.domain.entity.base.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Where;
@@ -17,7 +18,7 @@ import static jakarta.persistence.FetchType.*;
 @NoArgsConstructor
 @AttributeOverride(name = "id", column = @Column(name = "block_member_id"))
 @Where(clause = "deleted = false")
-public class BlockMember extends BaseEntity{
+public class BlockMember extends BaseEntity {
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "member_id")

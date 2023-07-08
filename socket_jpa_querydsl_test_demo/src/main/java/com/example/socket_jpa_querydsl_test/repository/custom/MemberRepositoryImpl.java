@@ -1,6 +1,6 @@
 package com.example.socket_jpa_querydsl_test.repository.custom;
 
-import com.example.socket_jpa_querydsl_test.domain.entity.Member;
+import com.example.socket_jpa_querydsl_test.domain.entity.member.Member;
 import com.querydsl.jpa.JPQLQueryFactory;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;

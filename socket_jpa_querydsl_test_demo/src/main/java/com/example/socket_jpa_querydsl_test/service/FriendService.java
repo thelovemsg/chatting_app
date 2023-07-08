@@ -1,8 +1,8 @@
 package com.example.socket_jpa_querydsl_test.service;
 
 import com.example.socket_jpa_querydsl_test.config.exception.ErrorMessage;
-import com.example.socket_jpa_querydsl_test.domain.entity.Friend;
-import com.example.socket_jpa_querydsl_test.domain.entity.Member;
+import com.example.socket_jpa_querydsl_test.domain.entity.chatting.Friend;
+import com.example.socket_jpa_querydsl_test.domain.entity.member.Member;
 import com.example.socket_jpa_querydsl_test.domain.event.FriendAddEvent;
 import com.example.socket_jpa_querydsl_test.repository.friend.*;
 import lombok.RequiredArgsConstructor;

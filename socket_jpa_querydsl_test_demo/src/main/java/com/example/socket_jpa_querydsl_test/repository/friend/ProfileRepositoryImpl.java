@@ -1,7 +1,7 @@
 package com.example.socket_jpa_querydsl_test.repository.friend;
 
 import com.example.socket_jpa_querydsl_test.domain.customenum.ProfileType;
-import com.example.socket_jpa_querydsl_test.domain.entity.Member;
+import com.example.socket_jpa_querydsl_test.domain.entity.member.Member;
 import com.example.socket_jpa_querydsl_test.domain.profile.Profile;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;

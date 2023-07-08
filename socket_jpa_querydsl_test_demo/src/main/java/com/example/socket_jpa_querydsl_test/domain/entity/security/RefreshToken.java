@@ -1,7 +1,7 @@
 package com.example.socket_jpa_querydsl_test.domain.entity.security;
 
-import com.example.socket_jpa_querydsl_test.domain.entity.BaseEntity;
-import com.example.socket_jpa_querydsl_test.domain.entity.Member;
+import com.example.socket_jpa_querydsl_test.domain.entity.base.BaseEntity;
+import com.example.socket_jpa_querydsl_test.domain.entity.member.Member;
 import jakarta.persistence.*;
 import lombok.*;
 

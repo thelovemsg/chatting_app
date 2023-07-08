@@ -5,7 +5,7 @@ import com.example.socket_jpa_querydsl_test.config.exception.token.JwtTokenExpir
 import com.example.socket_jpa_querydsl_test.config.exception.token.JwtTokenInvalidException;
 import com.example.socket_jpa_querydsl_test.config.exception.token.JwtTokenUnsupportedException;
 import com.example.socket_jpa_querydsl_test.config.security.custom.CustomUserDetails;
-import com.example.socket_jpa_querydsl_test.domain.entity.Member;
+import com.example.socket_jpa_querydsl_test.domain.entity.member.Member;
 import com.example.socket_jpa_querydsl_test.domain.entity.security.RefreshToken;
 import com.example.socket_jpa_querydsl_test.domain.utils.TokenInfo;
 import com.example.socket_jpa_querydsl_test.repository.etc.RefreshTokenRepository;

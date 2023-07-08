@@ -1,6 +1,6 @@
 package com.example.socket_jpa_querydsl_test.repository.chatting;
 
-import com.example.socket_jpa_querydsl_test.domain.entity.ChattingRoom;
+import com.example.socket_jpa_querydsl_test.domain.entity.chatting.ChattingRoom;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.JPQLQueryFactory;
 import com.querydsl.jpa.impl.JPAQueryFactory;

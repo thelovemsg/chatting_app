@@ -1,6 +1,9 @@
-package com.example.socket_jpa_querydsl_test.domain.entity;
+package com.example.socket_jpa_querydsl_test.domain.entity.member;
 
 import com.example.socket_jpa_querydsl_test.api.dto.entity.MemberSaveDto;
+import com.example.socket_jpa_querydsl_test.domain.entity.base.BaseEntity;
+import com.example.socket_jpa_querydsl_test.domain.entity.file.File;
+import com.example.socket_jpa_querydsl_test.domain.entity.chatting.Friend;
 import com.example.socket_jpa_querydsl_test.domain.entity.security.RefreshToken;
 import com.example.socket_jpa_querydsl_test.domain.customenum.AddressType;
 import com.example.socket_jpa_querydsl_test.domain.utils.PasswordConverterUtil;
@@ -116,8 +119,8 @@ public class Member extends BaseEntity implements Serializable {
 
     public Member createMember(MemberSaveDto memberSaveDto){
         Address address = new Address();
-        address.setAddress1(memberSaveDto.getAddress1());
-        address.setAddress2(memberSaveDto.getAddress2());
+        address.setAddress(memberSaveDto.getAddress1());
+        address.setAddressDetail(memberSaveDto.getAddress2());
         address.setAddressType(AddressType.PRIMARY);
 
         List<Address> addresses = new ArrayList<>();

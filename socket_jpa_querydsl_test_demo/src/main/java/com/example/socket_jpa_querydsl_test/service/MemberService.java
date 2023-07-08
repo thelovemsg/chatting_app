@@ -2,8 +2,7 @@ package com.example.socket_jpa_querydsl_test.service;
 
 import com.example.socket_jpa_querydsl_test.api.dto.entity.MemberDto;
 import com.example.socket_jpa_querydsl_test.config.security.provider.JwtTokenProvider;
-import com.example.socket_jpa_querydsl_test.domain.entity.Member;
-import com.example.socket_jpa_querydsl_test.domain.entity.QMember;
+import com.example.socket_jpa_querydsl_test.domain.entity.member.Member;
 import com.example.socket_jpa_querydsl_test.domain.utils.TokenInfo;
 import com.example.socket_jpa_querydsl_test.repository.member.AddressRepository;
 import com.example.socket_jpa_querydsl_test.repository.member.MemberRepository;

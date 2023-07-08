@@ -1,6 +1,6 @@
 package com.example.socket_jpa_querydsl_test.config.security.serivce;
 
-import com.example.socket_jpa_querydsl_test.domain.entity.Member;
+import com.example.socket_jpa_querydsl_test.domain.entity.member.Member;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 

@@ -1,6 +1,6 @@
 package com.example.socket_jpa_querydsl_test.repository.etc;
 
-import com.example.socket_jpa_querydsl_test.domain.entity.File;
+import com.example.socket_jpa_querydsl_test.domain.entity.file.File;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

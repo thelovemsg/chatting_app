@@ -1,7 +1,9 @@
-package com.example.socket_jpa_querydsl_test.domain.entity;
+package com.example.socket_jpa_querydsl_test.domain.entity.member;
 
 import com.example.socket_jpa_querydsl_test.domain.customenum.FlagStatus;
 import com.example.socket_jpa_querydsl_test.domain.customenum.PositionType;
+import com.example.socket_jpa_querydsl_test.domain.entity.base.BaseEntity;
+import com.example.socket_jpa_querydsl_test.domain.entity.chatting.ChattingRoom;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,7 +17,7 @@ import static jakarta.persistence.FetchType.LAZY;
 @Entity
 @ToString
 @AttributeOverride(name = "id", column = @Column(name = "member_chatting_room_id"))
-public class MemberChattingRoom extends BaseEntity{
+public class MemberChattingRoom extends BaseEntity {
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "member_id")

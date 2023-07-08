@@ -1,7 +1,8 @@
-package com.example.socket_jpa_querydsl_test.domain.entity;
+package com.example.socket_jpa_querydsl_test.domain.entity.chatting;
 
 import com.example.socket_jpa_querydsl_test.domain.customenum.ChattingRoomType;
 import com.example.socket_jpa_querydsl_test.domain.customenum.FlagStatus;
+import com.example.socket_jpa_querydsl_test.domain.entity.base.BaseEntity;
 import com.example.socket_jpa_querydsl_test.domain.utils.PasswordConverterUtil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.f4b6a3.tsid.TsidCreator;

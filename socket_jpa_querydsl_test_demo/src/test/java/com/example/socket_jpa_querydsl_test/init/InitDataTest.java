@@ -1,17 +1,14 @@
 package com.example.socket_jpa_querydsl_test.init;
 
-import com.example.socket_jpa_querydsl_test.domain.entity.Member;
-import com.example.socket_jpa_querydsl_test.domain.entity.MemberChattingRoom;
+import com.example.socket_jpa_querydsl_test.domain.entity.member.Member;
+import com.example.socket_jpa_querydsl_test.domain.entity.member.MemberChattingRoom;
 import com.example.socket_jpa_querydsl_test.repository.custom.MemberRepositoryImpl;
 import com.example.socket_jpa_querydsl_test.repository.member.MemberChattingRoomRepositoryImpl;
-import lombok.RequiredArgsConstructor;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 @SpringBootTest

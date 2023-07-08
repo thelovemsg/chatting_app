@@ -1,6 +1,7 @@
-package com.example.socket_jpa_querydsl_test.domain.entity;
+package com.example.socket_jpa_querydsl_test.domain.entity.member;
 
 import com.example.socket_jpa_querydsl_test.domain.customenum.AddressType;
+import com.example.socket_jpa_querydsl_test.domain.entity.base.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -18,13 +19,16 @@ import static jakarta.persistence.FetchType.LAZY;
 @NoArgsConstructor
 @ToString(exclude = "member")
 @AttributeOverride(name = "id", column = @Column(name = "address_id"))
-public class Address extends BaseEntity{
+public class Address extends BaseEntity {
 
-    @Column(name = "address1")
-    private String address1;
+    @Column(name = "zipCode")
+    private String zipCode;
 
-    @Column(name = "address2")
-    private String address2;
+    @Column(name = "address")
+    private String address;
+
+    @Column(name = "addressDetails")
+    private String addressDetail;
 
     @JsonIgnore
     @ManyToOne(fetch = LAZY)
@@ -38,5 +42,10 @@ public class Address extends BaseEntity{
     @Enumerated(STRING)
     @Column(name = "addressStatus")
     private AddressType addressType = AddressType.ETC;
+
+    public Address(String address, String addressDetail) {
+        this.address = address;
+        this.addressDetail = addressDetail;
+    }
 
 }

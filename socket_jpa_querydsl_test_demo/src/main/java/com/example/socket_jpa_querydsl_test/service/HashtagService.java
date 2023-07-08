@@ -1,6 +1,6 @@
 package com.example.socket_jpa_querydsl_test.service;
 
-import com.example.socket_jpa_querydsl_test.domain.entity.Hashtag;
+import com.example.socket_jpa_querydsl_test.domain.entity.chatting.Hashtag;
 import com.example.socket_jpa_querydsl_test.repository.chatting.HashtagRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

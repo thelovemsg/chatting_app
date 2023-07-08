@@ -1,6 +1,10 @@
 package com.example.socket_jpa_querydsl_test;
 
 import com.example.socket_jpa_querydsl_test.domain.entity.*;
+import com.example.socket_jpa_querydsl_test.domain.entity.chatting.Hashtag;
+import com.example.socket_jpa_querydsl_test.domain.entity.member.Address;
+import com.example.socket_jpa_querydsl_test.domain.entity.member.Member;
+import com.example.socket_jpa_querydsl_test.domain.entity.member.MemberRole;
 import com.example.socket_jpa_querydsl_test.domain.profile.Profile;
 import com.example.socket_jpa_querydsl_test.repository.chatting.ChattingRoomRepository;
 import com.example.socket_jpa_querydsl_test.service.*;
@@ -34,41 +38,54 @@ public class InitDB {
     @Transactional
     @RequiredArgsConstructor
     static class InitService {
+
         private final EntityManager em;
         private final MemberService memberService;
         private final ProfileService profileService;
         private final FriendService friendService;
         private final FavoriteService favoriteService;
         private final MemberChattingRoomService memberChattingRoomService;
+        private final MemberRoleService memberRoleService;
 
         //set member and address data
         public void initDb1() {
-            Member memberA = createMember("test1@naver.com", "testbot1", "samenicknam1","01011111111", "password1234");
-            em.persist(memberA);
+            Member memberA = Member.builder().email("test1@naver.com")
+                                .name("testbot1").nickname("samenicknam1")
+                                    .phoneNumber("01011111111").password("password1234").build();
 
-            Member memberB = createMember("test2@naver.com", "testbot2", "samenicknam2", "01011112222", "password1234");
-            em.persist(memberB);
+            memberService.saveMember(memberA);
 
-            Member memberC = createMember("test3@naver.com", "testbote", "samenicknam3","01011113333", "password1234");
-            em.persist(memberC);
+            Member memberB = Member.builder().email("test2@naver.com")
+                    .name("testbot2").nickname("samenicknam2")
+                    .phoneNumber("01022222222").password("password1234").build();
 
-            em.persist(setMemberRole(memberA, null));
-            em.persist(setMemberRole(memberB, RoleEnum.MANAGER));
-            em.persist(setMemberRole(memberC, null));
+            memberService.saveMember(memberB);
 
-            Address addressA = createAddress("address1", "address2");
+            MemberRole memberRole = new MemberRole();
+            memberRole.setRoleEnum(RoleEnum.MANAGER);
+            memberRole.setMember(memberB);
+
+            memberRoleService.saveMemberRole(memberRole);
+
+            Member memberC = Member.builder().email("test3@naver.com")
+                    .name("testbot3").nickname("samenicknam3")
+                    .phoneNumber("01033333333").password("password1234").build();
+
+            memberService.saveMember(memberC);
+
+            Address addressA = new Address("address1", "address2");
             addressA.setMember(memberA);
             em.persist(addressA);
 
-            Address addressB = createAddress("address11_1", "address22_1");
+            Address addressB = new Address("address11_1", "address22_1");
             addressB.setMember(memberB);
             em.persist(addressB);
 
-            Address addressC = createAddress("address11_2", "address22_2");
+            Address addressC = new Address("address11_2", "address22_2");
             addressC.setMember(memberB);
             em.persist(addressC);
 
-            Address addressD = createAddress("address33", "address334");
+            Address addressD = new Address("address33", "address334");
             addressD.setMember(memberC);
             em.persist(addressD);
 
@@ -165,18 +182,9 @@ public class InitDB {
             // memberA와 memberB는 오픈 톡방이 있다. 여기에 추후에 memberC가 검색해서 들어오려고 한다.
             // 그런데 memberC는 이미 추방되었던 사람이라서 초대없이는 들어올 수 없다.
             // 여기서는 memberC를 해당 방의 추방 목록에 추가할 것임.
+            // 이부분은 테스트코드로 작성할 것임.
             memberChattingRoomService.makeNewOpenChattingRoom(hashtags, memberA, memberB, memberC);
 
-//            memberChattingRoomService.banishMemberFromMemberChattingRoom()
-
-
-        }
-
-        private Address createAddress(String address1, String address2) {
-            Address address = new Address();
-            address.setAddress1(address1);
-            address.setAddress2(address2);
-            return address;
         }
 
         private Member createMember(String email, String name, String nickname, String phoneNumber, String password) {
@@ -185,25 +193,7 @@ public class InitDB {
                     .phoneNumber(phoneNumber).password(password).build();
         }
 
-        private ChattingRoom createChattingRoom(String name, String password){
-            ChattingRoom chattingRoom = new ChattingRoom();
-            chattingRoom.setName(name);
-            chattingRoom.setPassword(password);
-            return chattingRoom;
-        }
 
-        private MemberRole setMemberRole(Member member, RoleEnum roleEnum) {
-            MemberRole memberRole = new MemberRole();
-            memberRole.setMember(member);
-
-            if(roleEnum != null)
-                memberRole.setRoleEnum(roleEnum);
-
-            ArrayList mRolesArrayListA = new ArrayList<>();
-            mRolesArrayListA.add(memberRole);
-            member.setMemberRoles(mRolesArrayListA);
-            return memberRole;
-        }
 
     }
 

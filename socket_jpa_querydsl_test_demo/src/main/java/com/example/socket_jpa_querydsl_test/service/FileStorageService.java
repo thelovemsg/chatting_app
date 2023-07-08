@@ -1,6 +1,6 @@
 package com.example.socket_jpa_querydsl_test.service;
 
-import com.example.socket_jpa_querydsl_test.domain.entity.File;
+import com.example.socket_jpa_querydsl_test.domain.entity.file.File;
 import com.example.socket_jpa_querydsl_test.repository.etc.FileRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;

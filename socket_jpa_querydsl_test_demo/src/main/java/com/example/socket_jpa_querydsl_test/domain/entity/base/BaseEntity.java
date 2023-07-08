@@ -1,4 +1,4 @@
-package com.example.socket_jpa_querydsl_test.domain.entity;
+package com.example.socket_jpa_querydsl_test.domain.entity.base;
 
 import jakarta.persistence.*;
 import lombok.Getter;

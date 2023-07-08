@@ -1,8 +1,8 @@
 package com.example.socket_jpa_querydsl_test.service;
 
 import com.example.socket_jpa_querydsl_test.domain.customenum.ProfileType;
-import com.example.socket_jpa_querydsl_test.domain.entity.Friend;
-import com.example.socket_jpa_querydsl_test.domain.entity.Member;
+import com.example.socket_jpa_querydsl_test.domain.entity.chatting.Friend;
+import com.example.socket_jpa_querydsl_test.domain.entity.member.Member;
 import com.example.socket_jpa_querydsl_test.domain.profile.Profile;
 import com.example.socket_jpa_querydsl_test.domain.profile.ProfileConn;
 import com.example.socket_jpa_querydsl_test.domain.event.FriendAddEvent;

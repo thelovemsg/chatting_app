@@ -2,6 +2,7 @@ package com.example.socket_jpa_querydsl_test.domain.entity;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
+import com.example.socket_jpa_querydsl_test.domain.entity.chatting.Message;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;

@@ -1,7 +1,7 @@
 package com.example.socket_jpa_querydsl_test.repository.member;
 
 import com.example.socket_jpa_querydsl_test.domain.customenum.FlagStatus;
-import com.example.socket_jpa_querydsl_test.domain.entity.MemberChattingRoom;
+import com.example.socket_jpa_querydsl_test.domain.entity.member.MemberChattingRoom;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,5 +58,11 @@ public class MemberChattingRoomRepositoryImpl extends SimpleJpaRepository<Member
     public MemberChattingRoom getMemberChattingRoomById(Long id) {
         return queryFactory.selectFrom(memberChattingRoom)
                 .where(memberChattingRoom.id.eq(id)).fetchFirst();
+    }
+
+    public MemberChattingRoom getMemberChattingRoomByIdAndMemberId(Long id, Long memberId) {
+        return queryFactory.selectFrom(memberChattingRoom)
+                .where(memberChattingRoom.id.eq(id).and(memberChattingRoom.member.id.eq(memberId)))
+                    .fetchFirst();
     }
 }

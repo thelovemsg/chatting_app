@@ -1,5 +1,7 @@
-package com.example.socket_jpa_querydsl_test.domain.entity;
+package com.example.socket_jpa_querydsl_test.domain.entity.member;
 
+import com.example.socket_jpa_querydsl_test.domain.entity.base.BaseEntity;
+import com.example.socket_jpa_querydsl_test.domain.entity.RoleEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,7 +16,7 @@ import static jakarta.persistence.FetchType.LAZY;
 @NoArgsConstructor
 @AllArgsConstructor
 @AttributeOverride(name = "id", column = @Column(name = "member_role_id"))
-public class MemberRole extends BaseEntity{
+public class MemberRole extends BaseEntity {
 
     @Column(name="role")
     @Enumerated(EnumType.STRING)
