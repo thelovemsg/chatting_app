@@ -1,8 +1,7 @@
-package com.example.socket_jpa_querydsl_test.domain.entity;
+package com.example.socket_jpa_querydsl_test.domain.entity.member;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.example.socket_jpa_querydsl_test.domain.entity.member.Address;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;
@@ -17,17 +16,17 @@ import com.querydsl.core.types.dsl.PathInits;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QAddress extends EntityPathBase<Address> {
 
-    private static final long serialVersionUID = 806283842L;
+    private static final long serialVersionUID = 565405266L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
-    public static final QAddress address = new QAddress("address");
+    public static final QAddress address1 = new QAddress("address1");
 
-    public final QBaseEntity _super = new QBaseEntity(this);
+    public final com.example.socket_jpa_querydsl_test.domain.entity.base.QBaseEntity _super = new com.example.socket_jpa_querydsl_test.domain.entity.base.QBaseEntity(this);
 
-    public final StringPath address1 = createString("address1");
+    public final StringPath address = createString("address");
 
-    public final StringPath address2 = createString("address2");
+    public final StringPath addressDetail = createString("addressDetail");
 
     public final EnumPath<com.example.socket_jpa_querydsl_test.domain.customenum.AddressType> addressType = createEnum("addressType", com.example.socket_jpa_querydsl_test.domain.customenum.AddressType.class);
 
@@ -52,6 +51,8 @@ public class QAddress extends EntityPathBase<Address> {
     public final DateTimePath<java.time.ZonedDateTime> modifyDate = _super.modifyDate;
 
     public final DateTimePath<java.time.LocalDateTime> regDate = createDateTime("regDate", java.time.LocalDateTime.class);
+
+    public final StringPath zipCode = createString("zipCode");
 
     public QAddress(String variable) {
         this(Address.class, forVariable(variable), INITS);

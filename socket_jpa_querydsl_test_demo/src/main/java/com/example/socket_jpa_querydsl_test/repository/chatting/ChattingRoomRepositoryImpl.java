@@ -11,8 +11,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-import static com.example.socket_jpa_querydsl_test.domain.entity.QChattingRoom.chattingRoom;
-import static com.example.socket_jpa_querydsl_test.domain.entity.QHashtag.hashtag;
+import static com.example.socket_jpa_querydsl_test.domain.entity.chatting.QChattingRoom.chattingRoom;
+import static com.example.socket_jpa_querydsl_test.domain.entity.chatting.QHashtag.hashtag;
 
 @Repository
 public class ChattingRoomRepositoryImpl extends SimpleJpaRepository<ChattingRoom, Long>  implements ChattingRoomRepository{

@@ -1,8 +1,7 @@
-package com.example.socket_jpa_querydsl_test.domain.entity;
+package com.example.socket_jpa_querydsl_test.domain.entity.member;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.example.socket_jpa_querydsl_test.domain.entity.member.BlockMember;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;
@@ -17,13 +16,13 @@ import com.querydsl.core.types.dsl.PathInits;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QBlockMember extends EntityPathBase<BlockMember> {
 
-    private static final long serialVersionUID = -636070699L;
+    private static final long serialVersionUID = 771639525L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
     public static final QBlockMember blockMember = new QBlockMember("blockMember");
 
-    public final QBaseEntity _super = new QBaseEntity(this);
+    public final com.example.socket_jpa_querydsl_test.domain.entity.base.QBaseEntity _super = new com.example.socket_jpa_querydsl_test.domain.entity.base.QBaseEntity(this);
 
     public final DateTimePath<java.time.LocalDateTime> blockDatetime = createDateTime("blockDatetime", java.time.LocalDateTime.class);
 

@@ -1,5 +1,6 @@
 package com.example.socket_jpa_querydsl_test.service;
 
+import com.example.socket_jpa_querydsl_test.config.exception.ErrorMessage;
 import com.example.socket_jpa_querydsl_test.domain.customenum.PositionType;
 import com.example.socket_jpa_querydsl_test.domain.dto.MemberChattingRoomDto;
 import com.example.socket_jpa_querydsl_test.domain.entity.chatting.ChattingRoom;
@@ -31,26 +32,22 @@ public class MemberChattingRoomService {
         addMemberChattingRoomMember(chattingRoom, memberA, memberB);
     }
 
-    public void makeNewPrivateChattingRoom(List<Hashtag> hashtags, Member manager, Member... member) {
-        ChattingRoom newRoom = chattingRoomService.addChattingRoomForPrivate(hashtags);
+    public void makeNewPrivateChattingRoom(List<Hashtag> hashtags, String password, Member manager, Member... member) {
+        ChattingRoom newRoom = chattingRoomService.addChattingRoomForPrivate(hashtags, password);
 
-        //add manager as member first
         MemberChattingRoom managerChattingRoom = MemberChattingRoom.joinMemberToChattingRoom(manager, newRoom);
         managerChattingRoom.changePosition(PositionType.MANAGER);
-
-        //add the others as member
         addMemberChattingRoomMember(newRoom, member);
+
     }
 
     public void makeNewOpenChattingRoom(List<Hashtag> hashtags, Member manager, Member... members) {
         ChattingRoom newRoom = chattingRoomService.addChattingRoomForOpen(hashtags);
 
-        //add manager as member first
         MemberChattingRoom managerChattingRoom = MemberChattingRoom.joinMemberToChattingRoom(manager, newRoom);
         managerChattingRoom.changePosition(PositionType.MANAGER);
-
-        //add the others as member
         addMemberChattingRoomMember(newRoom, members);
+
     }
 
     public MemberChattingRoomDto getMemberChattingRoomInfo(Long id) {
@@ -73,17 +70,23 @@ public class MemberChattingRoomService {
 
     public void banishMemberFromMemberChattingRoom(Long memberChattingRoomId, Long managerId, Long targetMemberId) {
         MemberChattingRoom resultMemberChattingRoom = memberChattingRoomRepositoryImpl.getMemberChattingRoomByIdAndMemberId(memberChattingRoomId, managerId);
-        if(resultMemberChattingRoom.getPosition() != PositionType.MANAGER){
-            throw new IllegalArgumentException("not allowed to banish another user");
+
+        if(checkIfManager(memberChattingRoomId, managerId)){
+            throw new IllegalArgumentException("NO_AUTH_FOR_BANISH",
+                    new ErrorMessage("NO_AUTH_FOR_BANISH", "NO_AUTH_FOR_BANISH"));
         }
 
-        banishHistoryService.addBanishHistory(resultMemberChattingRoom);
+        MemberChattingRoom targetMemberChattingRoom = getBanishMemberChattingRoomTarget(resultMemberChattingRoom.getId(), targetMemberId);
+        banishHistoryService.addBanishHistory(targetMemberChattingRoom);
+    }
 
+    public MemberChattingRoom getBanishMemberChattingRoomTarget(Long memberChattingRoomId, Long targetMemberId) {
+        return memberChattingRoomRepositoryImpl.getMemberChattingRoomByIdAndMemberId(memberChattingRoomId, targetMemberId);
     }
 
     private boolean checkIfManager(Long memberChattingRoomId, Long managerId) {
-        MemberChattingRoom memberChattingRoom = memberChattingRoomRepositoryImpl.getMemberChattingRoomByIdAndMemberId(memberChattingRoomId, managerId);
-        return memberChattingRoom.getPosition() == PositionType.MANAGER;
+        return memberChattingRoomRepositoryImpl.getMemberChattingRoomByIdAndMemberId(memberChattingRoomId, managerId)
+                    .getPosition() == PositionType.MANAGER;
     }
 
 }

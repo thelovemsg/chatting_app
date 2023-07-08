@@ -11,8 +11,8 @@ import org.springframework.stereotype.Repository;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static com.example.socket_jpa_querydsl_test.domain.entity.QMemberChattingRoom.memberChattingRoom;
 import static com.example.socket_jpa_querydsl_test.domain.customenum.FlagStatus.NO;
+import static com.example.socket_jpa_querydsl_test.domain.entity.member.QMemberChattingRoom.memberChattingRoom;
 
 @Repository
 public class MemberChattingRoomRepositoryImpl extends SimpleJpaRepository<MemberChattingRoom, Long> {

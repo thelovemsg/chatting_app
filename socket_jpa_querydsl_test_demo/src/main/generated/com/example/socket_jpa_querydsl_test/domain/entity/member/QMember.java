@@ -1,13 +1,7 @@
-package com.example.socket_jpa_querydsl_test.domain.entity;
+package com.example.socket_jpa_querydsl_test.domain.entity.member;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.example.socket_jpa_querydsl_test.domain.entity.chatting.Friend;
-import com.example.socket_jpa_querydsl_test.domain.entity.file.File;
-import com.example.socket_jpa_querydsl_test.domain.entity.member.Address;
-import com.example.socket_jpa_querydsl_test.domain.entity.member.BlockMember;
-import com.example.socket_jpa_querydsl_test.domain.entity.member.Member;
-import com.example.socket_jpa_querydsl_test.domain.entity.member.MemberRole;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;
@@ -22,13 +16,13 @@ import com.querydsl.core.types.dsl.PathInits;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QMember extends EntityPathBase<Member> {
 
-    private static final long serialVersionUID = 924924556L;
+    private static final long serialVersionUID = 1609890940L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
     public static final QMember member = new QMember("member1");
 
-    public final QBaseEntity _super = new QBaseEntity(this);
+    public final com.example.socket_jpa_querydsl_test.domain.entity.base.QBaseEntity _super = new com.example.socket_jpa_querydsl_test.domain.entity.base.QBaseEntity(this);
 
     public final ListPath<Address, QAddress> addresses = this.<Address, QAddress>createList("addresses", Address.class, QAddress.class, PathInits.DIRECT2);
 
@@ -47,9 +41,9 @@ public class QMember extends EntityPathBase<Member> {
 
     public final StringPath email = createString("email");
 
-    public final ListPath<File, QFile> files = this.<File, QFile>createList("files", File.class, QFile.class, PathInits.DIRECT2);
+    public final ListPath<com.example.socket_jpa_querydsl_test.domain.entity.file.File, com.example.socket_jpa_querydsl_test.domain.entity.file.QFile> files = this.<com.example.socket_jpa_querydsl_test.domain.entity.file.File, com.example.socket_jpa_querydsl_test.domain.entity.file.QFile>createList("files", com.example.socket_jpa_querydsl_test.domain.entity.file.File.class, com.example.socket_jpa_querydsl_test.domain.entity.file.QFile.class, PathInits.DIRECT2);
 
-    public final ListPath<Friend, QFriend> fromFriends = this.<Friend, QFriend>createList("fromFriends", Friend.class, QFriend.class, PathInits.DIRECT2);
+    public final ListPath<com.example.socket_jpa_querydsl_test.domain.entity.chatting.Friend, com.example.socket_jpa_querydsl_test.domain.entity.chatting.QFriend> fromFriends = this.<com.example.socket_jpa_querydsl_test.domain.entity.chatting.Friend, com.example.socket_jpa_querydsl_test.domain.entity.chatting.QFriend>createList("fromFriends", com.example.socket_jpa_querydsl_test.domain.entity.chatting.Friend.class, com.example.socket_jpa_querydsl_test.domain.entity.chatting.QFriend.class, PathInits.DIRECT2);
 
     //inherited
     public final NumberPath<Long> id = _super.id;
@@ -74,7 +68,7 @@ public class QMember extends EntityPathBase<Member> {
 
     public final com.example.socket_jpa_querydsl_test.domain.entity.security.QRefreshToken refreshToken;
 
-    public final ListPath<Friend, QFriend> toFriends = this.<Friend, QFriend>createList("toFriends", Friend.class, QFriend.class, PathInits.DIRECT2);
+    public final ListPath<com.example.socket_jpa_querydsl_test.domain.entity.chatting.Friend, com.example.socket_jpa_querydsl_test.domain.entity.chatting.QFriend> toFriends = this.<com.example.socket_jpa_querydsl_test.domain.entity.chatting.Friend, com.example.socket_jpa_querydsl_test.domain.entity.chatting.QFriend>createList("toFriends", com.example.socket_jpa_querydsl_test.domain.entity.chatting.Friend.class, com.example.socket_jpa_querydsl_test.domain.entity.chatting.QFriend.class, PathInits.DIRECT2);
 
     public final StringPath userOwnId = createString("userOwnId");
 

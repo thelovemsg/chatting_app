@@ -1,7 +1,7 @@
 package com.example.socket_jpa_querydsl_test.repository.friend;
 
 import com.example.socket_jpa_querydsl_test.domain.entity.member.Member;
-import com.example.socket_jpa_querydsl_test.domain.entity.QMember;
+import com.example.socket_jpa_querydsl_test.domain.entity.member.QMember;
 import com.example.socket_jpa_querydsl_test.domain.profile.Favorites;
 import com.example.socket_jpa_querydsl_test.domain.profile.QFavorites;
 import com.querydsl.jpa.impl.JPAQueryFactory;

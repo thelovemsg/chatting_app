@@ -13,7 +13,7 @@ public class AddressService {
 
     private final AddressRepository addressRepository;
 
-    public Address saveAddress(Address address) {
+    public Address addAddress(Address address) {
         return addressRepository.save(address);
     }
 

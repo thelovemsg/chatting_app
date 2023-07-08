@@ -1,4 +1,4 @@
-package com.example.socket_jpa_querydsl_test.domain.entity.security;
+package com.example.socket_jpa_querydsl_test.domain.entity.member;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
@@ -11,18 +11,20 @@ import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
- * QRefreshToken is a Querydsl query type for RefreshToken
+ * QBanishHistory is a Querydsl query type for BanishHistory
  */
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
-public class QRefreshToken extends EntityPathBase<RefreshToken> {
+public class QBanishHistory extends EntityPathBase<BanishHistory> {
 
-    private static final long serialVersionUID = -580815398L;
+    private static final long serialVersionUID = 179501923L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
-    public static final QRefreshToken refreshToken = new QRefreshToken("refreshToken");
+    public static final QBanishHistory banishHistory = new QBanishHistory("banishHistory");
 
     public final com.example.socket_jpa_querydsl_test.domain.entity.base.QBaseEntity _super = new com.example.socket_jpa_querydsl_test.domain.entity.base.QBaseEntity(this);
+
+    public final DateTimePath<java.time.LocalDateTime> banishDatetime = createDateTime("banishDatetime", java.time.LocalDateTime.class);
 
     //inherited
     public final DateTimePath<java.time.ZonedDateTime> createDate = _super.createDate;
@@ -33,40 +35,36 @@ public class QRefreshToken extends EntityPathBase<RefreshToken> {
     //inherited
     public final BooleanPath deleted = _super.deleted;
 
-    public final DateTimePath<java.time.Instant> expiryDate = createDateTime("expiryDate", java.time.Instant.class);
-
     //inherited
     public final NumberPath<Long> id = _super.id;
 
     //inherited
     public final StringPath lastModifiedBy = _super.lastModifiedBy;
 
-    public final com.example.socket_jpa_querydsl_test.domain.entity.member.QMember member;
+    public final QMemberChattingRoom memberChattingRoom;
 
     //inherited
     public final DateTimePath<java.time.ZonedDateTime> modifyDate = _super.modifyDate;
 
-    public final StringPath token = createString("token");
-
-    public QRefreshToken(String variable) {
-        this(RefreshToken.class, forVariable(variable), INITS);
+    public QBanishHistory(String variable) {
+        this(BanishHistory.class, forVariable(variable), INITS);
     }
 
-    public QRefreshToken(Path<? extends RefreshToken> path) {
+    public QBanishHistory(Path<? extends BanishHistory> path) {
         this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QRefreshToken(PathMetadata metadata) {
+    public QBanishHistory(PathMetadata metadata) {
         this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QRefreshToken(PathMetadata metadata, PathInits inits) {
-        this(RefreshToken.class, metadata, inits);
+    public QBanishHistory(PathMetadata metadata, PathInits inits) {
+        this(BanishHistory.class, metadata, inits);
     }
 
-    public QRefreshToken(Class<? extends RefreshToken> type, PathMetadata metadata, PathInits inits) {
+    public QBanishHistory(Class<? extends BanishHistory> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.member = inits.isInitialized("member") ? new com.example.socket_jpa_querydsl_test.domain.entity.member.QMember(forProperty("member"), inits.get("member")) : null;
+        this.memberChattingRoom = inits.isInitialized("memberChattingRoom") ? new QMemberChattingRoom(forProperty("memberChattingRoom"), inits.get("memberChattingRoom")) : null;
     }
 
 }

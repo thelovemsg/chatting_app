@@ -3,6 +3,7 @@ package com.example.socket_jpa_querydsl_test.service;
 import com.example.socket_jpa_querydsl_test.api.dto.entity.MemberDto;
 import com.example.socket_jpa_querydsl_test.config.security.provider.JwtTokenProvider;
 import com.example.socket_jpa_querydsl_test.domain.entity.member.Member;
+import com.example.socket_jpa_querydsl_test.domain.entity.member.QMember;
 import com.example.socket_jpa_querydsl_test.domain.utils.TokenInfo;
 import com.example.socket_jpa_querydsl_test.repository.member.AddressRepository;
 import com.example.socket_jpa_querydsl_test.repository.member.MemberRepository;
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.example.socket_jpa_querydsl_test.domain.entity.QMember.*;
+import static com.example.socket_jpa_querydsl_test.domain.entity.member.QMember.*;
 
 @Service
 @RequiredArgsConstructor

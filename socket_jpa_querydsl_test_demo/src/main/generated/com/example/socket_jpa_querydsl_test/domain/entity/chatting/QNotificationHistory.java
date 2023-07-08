@@ -1,8 +1,7 @@
-package com.example.socket_jpa_querydsl_test.domain.entity;
+package com.example.socket_jpa_querydsl_test.domain.entity.chatting;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.example.socket_jpa_querydsl_test.domain.entity.chatting.NotificationHistory;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;
@@ -17,13 +16,13 @@ import com.querydsl.core.types.dsl.PathInits;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QNotificationHistory extends EntityPathBase<NotificationHistory> {
 
-    private static final long serialVersionUID = -2027458953L;
+    private static final long serialVersionUID = -2117843021L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
     public static final QNotificationHistory notificationHistory = new QNotificationHistory("notificationHistory");
 
-    public final QBaseEntity _super = new QBaseEntity(this);
+    public final com.example.socket_jpa_querydsl_test.domain.entity.base.QBaseEntity _super = new com.example.socket_jpa_querydsl_test.domain.entity.base.QBaseEntity(this);
 
     //inherited
     public final DateTimePath<java.time.ZonedDateTime> createDate = _super.createDate;
@@ -40,7 +39,7 @@ public class QNotificationHistory extends EntityPathBase<NotificationHistory> {
     //inherited
     public final StringPath lastModifiedBy = _super.lastModifiedBy;
 
-    public final QMember member;
+    public final com.example.socket_jpa_querydsl_test.domain.entity.member.QMember member;
 
     //inherited
     public final DateTimePath<java.time.ZonedDateTime> modifyDate = _super.modifyDate;
@@ -65,7 +64,7 @@ public class QNotificationHistory extends EntityPathBase<NotificationHistory> {
 
     public QNotificationHistory(Class<? extends NotificationHistory> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.member = inits.isInitialized("member") ? new QMember(forProperty("member"), inits.get("member")) : null;
+        this.member = inits.isInitialized("member") ? new com.example.socket_jpa_querydsl_test.domain.entity.member.QMember(forProperty("member"), inits.get("member")) : null;
     }
 
 }

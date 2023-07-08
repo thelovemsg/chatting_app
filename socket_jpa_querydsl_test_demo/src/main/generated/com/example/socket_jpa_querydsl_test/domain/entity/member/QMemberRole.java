@@ -1,8 +1,7 @@
-package com.example.socket_jpa_querydsl_test.domain.entity;
+package com.example.socket_jpa_querydsl_test.domain.entity.member;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.example.socket_jpa_querydsl_test.domain.entity.member.MemberRole;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;
@@ -17,13 +16,13 @@ import com.querydsl.core.types.dsl.PathInits;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QMemberRole extends EntityPathBase<MemberRole> {
 
-    private static final long serialVersionUID = -137361118L;
+    private static final long serialVersionUID = 739332882L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
     public static final QMemberRole memberRole = new QMemberRole("memberRole");
 
-    public final QBaseEntity _super = new QBaseEntity(this);
+    public final com.example.socket_jpa_querydsl_test.domain.entity.base.QBaseEntity _super = new com.example.socket_jpa_querydsl_test.domain.entity.base.QBaseEntity(this);
 
     //inherited
     public final DateTimePath<java.time.ZonedDateTime> createDate = _super.createDate;
@@ -45,7 +44,7 @@ public class QMemberRole extends EntityPathBase<MemberRole> {
     //inherited
     public final DateTimePath<java.time.ZonedDateTime> modifyDate = _super.modifyDate;
 
-    public final EnumPath<RoleEnum> roleEnum = createEnum("roleEnum", RoleEnum.class);
+    public final EnumPath<com.example.socket_jpa_querydsl_test.domain.entity.RoleEnum> roleEnum = createEnum("roleEnum", com.example.socket_jpa_querydsl_test.domain.entity.RoleEnum.class);
 
     public QMemberRole(String variable) {
         this(MemberRole.class, forVariable(variable), INITS);

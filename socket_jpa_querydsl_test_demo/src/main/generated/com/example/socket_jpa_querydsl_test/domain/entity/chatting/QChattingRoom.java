@@ -1,9 +1,7 @@
-package com.example.socket_jpa_querydsl_test.domain.entity;
+package com.example.socket_jpa_querydsl_test.domain.entity.chatting;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.example.socket_jpa_querydsl_test.domain.entity.chatting.ChattingRoom;
-import com.example.socket_jpa_querydsl_test.domain.entity.chatting.Hashtag;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;
@@ -18,11 +16,11 @@ import com.querydsl.core.types.dsl.PathInits;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QChattingRoom extends EntityPathBase<ChattingRoom> {
 
-    private static final long serialVersionUID = 410209971L;
+    private static final long serialVersionUID = -835313417L;
 
     public static final QChattingRoom chattingRoom = new QChattingRoom("chattingRoom");
 
-    public final QBaseEntity _super = new QBaseEntity(this);
+    public final com.example.socket_jpa_querydsl_test.domain.entity.base.QBaseEntity _super = new com.example.socket_jpa_querydsl_test.domain.entity.base.QBaseEntity(this);
 
     public final EnumPath<com.example.socket_jpa_querydsl_test.domain.customenum.ChattingRoomType> chattingRoomType = createEnum("chattingRoomType", com.example.socket_jpa_querydsl_test.domain.customenum.ChattingRoomType.class);
 

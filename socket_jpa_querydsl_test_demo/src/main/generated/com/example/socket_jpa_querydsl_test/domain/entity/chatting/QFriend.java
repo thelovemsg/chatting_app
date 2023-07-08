@@ -1,8 +1,7 @@
-package com.example.socket_jpa_querydsl_test.domain.entity;
+package com.example.socket_jpa_querydsl_test.domain.entity.chatting;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.example.socket_jpa_querydsl_test.domain.entity.chatting.Friend;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;
@@ -17,13 +16,13 @@ import com.querydsl.core.types.dsl.PathInits;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QFriend extends EntityPathBase<Friend> {
 
-    private static final long serialVersionUID = 736410256L;
+    private static final long serialVersionUID = -676098092L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
     public static final QFriend friend = new QFriend("friend");
 
-    public final QBaseEntity _super = new QBaseEntity(this);
+    public final com.example.socket_jpa_querydsl_test.domain.entity.base.QBaseEntity _super = new com.example.socket_jpa_querydsl_test.domain.entity.base.QBaseEntity(this);
 
     public final DateTimePath<java.time.LocalDateTime> applyDate = createDateTime("applyDate", java.time.LocalDateTime.class);
 
@@ -36,7 +35,7 @@ public class QFriend extends EntityPathBase<Friend> {
     //inherited
     public final BooleanPath deleted = _super.deleted;
 
-    public final QMember fromMember;
+    public final com.example.socket_jpa_querydsl_test.domain.entity.member.QMember fromMember;
 
     //inherited
     public final NumberPath<Long> id = _super.id;
@@ -49,7 +48,7 @@ public class QFriend extends EntityPathBase<Friend> {
 
     public final ListPath<com.example.socket_jpa_querydsl_test.domain.profile.ProfileConn, com.example.socket_jpa_querydsl_test.domain.profile.QProfileConn> profileConns = this.<com.example.socket_jpa_querydsl_test.domain.profile.ProfileConn, com.example.socket_jpa_querydsl_test.domain.profile.QProfileConn>createList("profileConns", com.example.socket_jpa_querydsl_test.domain.profile.ProfileConn.class, com.example.socket_jpa_querydsl_test.domain.profile.QProfileConn.class, PathInits.DIRECT2);
 
-    public final QMember toMember;
+    public final com.example.socket_jpa_querydsl_test.domain.entity.member.QMember toMember;
 
     public QFriend(String variable) {
         this(Friend.class, forVariable(variable), INITS);
@@ -69,8 +68,8 @@ public class QFriend extends EntityPathBase<Friend> {
 
     public QFriend(Class<? extends Friend> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.fromMember = inits.isInitialized("fromMember") ? new QMember(forProperty("fromMember"), inits.get("fromMember")) : null;
-        this.toMember = inits.isInitialized("toMember") ? new QMember(forProperty("toMember"), inits.get("toMember")) : null;
+        this.fromMember = inits.isInitialized("fromMember") ? new com.example.socket_jpa_querydsl_test.domain.entity.member.QMember(forProperty("fromMember"), inits.get("fromMember")) : null;
+        this.toMember = inits.isInitialized("toMember") ? new com.example.socket_jpa_querydsl_test.domain.entity.member.QMember(forProperty("toMember"), inits.get("toMember")) : null;
     }
 
 }

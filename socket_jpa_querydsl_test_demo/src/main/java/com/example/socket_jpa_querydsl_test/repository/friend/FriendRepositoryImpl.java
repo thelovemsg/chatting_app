@@ -7,7 +7,7 @@ import jakarta.persistence.EntityManager;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.stereotype.Repository;
 
-import static com.example.socket_jpa_querydsl_test.domain.entity.QFriend.friend;
+import static com.example.socket_jpa_querydsl_test.domain.entity.chatting.QFriend.friend;
 
 
 @Repository

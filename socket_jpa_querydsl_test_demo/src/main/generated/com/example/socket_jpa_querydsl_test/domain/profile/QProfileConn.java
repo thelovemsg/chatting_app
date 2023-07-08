@@ -22,7 +22,7 @@ public class QProfileConn extends EntityPathBase<ProfileConn> {
 
     public static final QProfileConn profileConn = new QProfileConn("profileConn");
 
-    public final com.example.socket_jpa_querydsl_test.domain.entity.QBaseEntity _super = new com.example.socket_jpa_querydsl_test.domain.entity.QBaseEntity(this);
+    public final com.example.socket_jpa_querydsl_test.domain.entity.base.QBaseEntity _super = new com.example.socket_jpa_querydsl_test.domain.entity.base.QBaseEntity(this);
 
     //inherited
     public final DateTimePath<java.time.ZonedDateTime> createDate = _super.createDate;
@@ -33,7 +33,7 @@ public class QProfileConn extends EntityPathBase<ProfileConn> {
     //inherited
     public final BooleanPath deleted = _super.deleted;
 
-    public final com.example.socket_jpa_querydsl_test.domain.entity.QFriend friend;
+    public final com.example.socket_jpa_querydsl_test.domain.entity.chatting.QFriend friend;
 
     //inherited
     public final NumberPath<Long> id = _super.id;
@@ -64,7 +64,7 @@ public class QProfileConn extends EntityPathBase<ProfileConn> {
 
     public QProfileConn(Class<? extends ProfileConn> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.friend = inits.isInitialized("friend") ? new com.example.socket_jpa_querydsl_test.domain.entity.QFriend(forProperty("friend"), inits.get("friend")) : null;
+        this.friend = inits.isInitialized("friend") ? new com.example.socket_jpa_querydsl_test.domain.entity.chatting.QFriend(forProperty("friend"), inits.get("friend")) : null;
         this.profile = inits.isInitialized("profile") ? new QProfile(forProperty("profile"), inits.get("profile")) : null;
     }
 

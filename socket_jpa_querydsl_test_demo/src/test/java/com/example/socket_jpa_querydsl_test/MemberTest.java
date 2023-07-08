@@ -84,6 +84,6 @@ public class MemberTest {
         address.setAddress("address1");
         address.setAddressDetail("address2");
         address.setMember(member);
-        addressService.saveAddress(address);
+        addressService.addAddress(address);
     }
 }

@@ -1,8 +1,7 @@
-package com.example.socket_jpa_querydsl_test.domain.entity;
+package com.example.socket_jpa_querydsl_test.domain.entity.chatting;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.example.socket_jpa_querydsl_test.domain.entity.chatting.Message;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;
@@ -17,13 +16,13 @@ import com.querydsl.core.types.dsl.PathInits;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QMessage extends EntityPathBase<Message> {
 
-    private static final long serialVersionUID = -1386066347L;
+    private static final long serialVersionUID = 2070815121L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
     public static final QMessage message = new QMessage("message");
 
-    public final QBaseEntity _super = new QBaseEntity(this);
+    public final com.example.socket_jpa_querydsl_test.domain.entity.base.QBaseEntity _super = new com.example.socket_jpa_querydsl_test.domain.entity.base.QBaseEntity(this);
 
     public final QChattingRoom chattingRoom;
 
@@ -38,7 +37,7 @@ public class QMessage extends EntityPathBase<Message> {
     //inherited
     public final BooleanPath deleted = _super.deleted;
 
-    public final QFile file;
+    public final com.example.socket_jpa_querydsl_test.domain.entity.file.QFile file;
 
     //inherited
     public final NumberPath<Long> id = _super.id;
@@ -46,7 +45,7 @@ public class QMessage extends EntityPathBase<Message> {
     //inherited
     public final StringPath lastModifiedBy = _super.lastModifiedBy;
 
-    public final QMember member;
+    public final com.example.socket_jpa_querydsl_test.domain.entity.member.QMember member;
 
     //inherited
     public final DateTimePath<java.time.ZonedDateTime> modifyDate = _super.modifyDate;
@@ -72,8 +71,8 @@ public class QMessage extends EntityPathBase<Message> {
     public QMessage(Class<? extends Message> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.chattingRoom = inits.isInitialized("chattingRoom") ? new QChattingRoom(forProperty("chattingRoom")) : null;
-        this.file = inits.isInitialized("file") ? new QFile(forProperty("file"), inits.get("file")) : null;
-        this.member = inits.isInitialized("member") ? new QMember(forProperty("member"), inits.get("member")) : null;
+        this.file = inits.isInitialized("file") ? new com.example.socket_jpa_querydsl_test.domain.entity.file.QFile(forProperty("file"), inits.get("file")) : null;
+        this.member = inits.isInitialized("member") ? new com.example.socket_jpa_querydsl_test.domain.entity.member.QMember(forProperty("member"), inits.get("member")) : null;
     }
 
 }

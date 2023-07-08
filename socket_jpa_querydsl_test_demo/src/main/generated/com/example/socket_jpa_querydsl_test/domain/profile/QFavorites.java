@@ -22,7 +22,7 @@ public class QFavorites extends EntityPathBase<Favorites> {
 
     public static final QFavorites favorites = new QFavorites("favorites");
 
-    public final com.example.socket_jpa_querydsl_test.domain.entity.QBaseEntity _super = new com.example.socket_jpa_querydsl_test.domain.entity.QBaseEntity(this);
+    public final com.example.socket_jpa_querydsl_test.domain.entity.base.QBaseEntity _super = new com.example.socket_jpa_querydsl_test.domain.entity.base.QBaseEntity(this);
 
     //inherited
     public final DateTimePath<java.time.ZonedDateTime> createDate = _super.createDate;
@@ -37,7 +37,7 @@ public class QFavorites extends EntityPathBase<Favorites> {
 
     public final EnumPath<com.example.socket_jpa_querydsl_test.domain.customenum.EnrollType> enrollType = createEnum("enrollType", com.example.socket_jpa_querydsl_test.domain.customenum.EnrollType.class);
 
-    public final com.example.socket_jpa_querydsl_test.domain.entity.QFriend friend;
+    public final com.example.socket_jpa_querydsl_test.domain.entity.chatting.QFriend friend;
 
     //inherited
     public final NumberPath<Long> id = _super.id;
@@ -66,7 +66,7 @@ public class QFavorites extends EntityPathBase<Favorites> {
 
     public QFavorites(Class<? extends Favorites> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.friend = inits.isInitialized("friend") ? new com.example.socket_jpa_querydsl_test.domain.entity.QFriend(forProperty("friend"), inits.get("friend")) : null;
+        this.friend = inits.isInitialized("friend") ? new com.example.socket_jpa_querydsl_test.domain.entity.chatting.QFriend(forProperty("friend"), inits.get("friend")) : null;
     }
 
 }

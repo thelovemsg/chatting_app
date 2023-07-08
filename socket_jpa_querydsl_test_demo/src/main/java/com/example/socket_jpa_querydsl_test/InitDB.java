@@ -1,5 +1,6 @@
 package com.example.socket_jpa_querydsl_test;
 
+import com.example.socket_jpa_querydsl_test.domain.customenum.AddressType;
 import com.example.socket_jpa_querydsl_test.domain.entity.*;
 import com.example.socket_jpa_querydsl_test.domain.entity.chatting.Hashtag;
 import com.example.socket_jpa_querydsl_test.domain.entity.member.Address;
@@ -14,7 +15,6 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,13 +25,13 @@ import static com.example.socket_jpa_querydsl_test.domain.customenum.ProfileType
 public class InitDB {
 
     private final InitService initService;
-    private final ChattingRoomRepository chattingRoomRepository;
 
     @PostConstruct
     public void init() {
         initService.initDb1();
         initService.initDb2();
         initService.initDb3();
+        initService.initDb4();
     }
 
     @Component
@@ -44,11 +44,13 @@ public class InitDB {
         private final ProfileService profileService;
         private final FriendService friendService;
         private final FavoriteService favoriteService;
+        private final AddressService addressService;
         private final MemberChattingRoomService memberChattingRoomService;
         private final MemberRoleService memberRoleService;
 
         //set member and address data
         public void initDb1() {
+
             Member memberA = Member.builder().email("test1@naver.com")
                                 .name("testbot1").nickname("samenicknam1")
                                     .phoneNumber("01011111111").password("password1234").build();
@@ -65,7 +67,7 @@ public class InitDB {
             memberRole.setRoleEnum(RoleEnum.MANAGER);
             memberRole.setMember(memberB);
 
-            memberRoleService.saveMemberRole(memberRole);
+            memberRoleService.addNewMemberRole(memberRole);
 
             Member memberC = Member.builder().email("test3@naver.com")
                     .name("testbot3").nickname("samenicknam3")
@@ -73,21 +75,21 @@ public class InitDB {
 
             memberService.saveMember(memberC);
 
-            Address addressA = new Address("address1", "address2");
+            Address addressA = new Address("11111","address1", "address2", AddressType.PRIMARY);
             addressA.setMember(memberA);
-            em.persist(addressA);
+            addressService.addAddress(addressA);
 
-            Address addressB = new Address("address11_1", "address22_1");
+            Address addressB = new Address("22222", "address11_1", "address22_1", AddressType.PRIMARY);
             addressB.setMember(memberB);
-            em.persist(addressB);
+            addressService.addAddress(addressB);
 
-            Address addressC = new Address("address11_2", "address22_2");
+            Address addressC = new Address("33333","address11_2", "address22_2", AddressType.ETC);
             addressC.setMember(memberB);
-            em.persist(addressC);
+            addressService.addAddress(addressC);
 
-            Address addressD = new Address("address33", "address334");
+            Address addressD = new Address("44444","address33", "address334", AddressType.PRIMARY);
             addressD.setMember(memberC);
-            em.persist(addressD);
+            addressService.addAddress(addressD);
 
         }
 
@@ -122,7 +124,7 @@ public class InitDB {
                     .member(memberC)
                     .name("테스트 이름 3")
                     .statusDescription("테스트 이름 설명입니다 3").build();
-            em.persist(profileD);
+            profileService.addProfile(profileD);
 
         }
 
@@ -138,7 +140,6 @@ public class InitDB {
              *
              * 6. memberA와 memberB는 채팅방을 개설했다.
              * 7. memberA, memberB 그리고 memberC는 현재 오픈 톡방에 있다. (PRIVATE 버전)
-             *   => 만약 사용자가 오픈 채팅방에 들어갔다가 퇴장당했다면 다시는 들어올 수 없다.
              *   => 히스토리를 전부 관리해야 하는데 이거는 어떻게 하지?
              */
 
@@ -166,7 +167,7 @@ public class InitDB {
                     , new Hashtag("test3", 3));
 
             // 오픈 톡방 만들 때 memberChattingRoomService로 모든 로직을 모음.
-            memberChattingRoomService.makeNewPrivateChattingRoom(hashtags, memberA, memberB, memberC);
+            memberChattingRoomService.makeNewPrivateChattingRoom(hashtags, "password", memberA, memberB, memberC);
 
         }
 
@@ -186,14 +187,6 @@ public class InitDB {
             memberChattingRoomService.makeNewOpenChattingRoom(hashtags, memberA, memberB, memberC);
 
         }
-
-        private Member createMember(String email, String name, String nickname, String phoneNumber, String password) {
-            return Member.builder().email(email)
-                    .name(name).nickname(nickname)
-                    .phoneNumber(phoneNumber).password(password).build();
-        }
-
-
 
     }
 

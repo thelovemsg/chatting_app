@@ -36,8 +36,8 @@ public class ChattingRoomService {
         return chattingRoomRepository.save(chattingRoom);
     }
 
-    public ChattingRoom addChattingRoomForPrivate(List<Hashtag> hashtags) {
-        ChattingRoom chattingRoom = ChattingRoom.makePrivateChattingRoom("test");
+    public ChattingRoom addChattingRoomForPrivate(List<Hashtag> hashtags, String password) {
+        ChattingRoom chattingRoom = ChattingRoom.makePrivateChattingRoom(password);
         AtomicInteger sequence = new AtomicInteger(1);
 
         hashtags.forEach(hashtag -> {

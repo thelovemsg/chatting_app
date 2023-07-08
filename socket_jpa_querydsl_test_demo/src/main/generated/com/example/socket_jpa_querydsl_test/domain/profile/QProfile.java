@@ -22,7 +22,7 @@ public class QProfile extends EntityPathBase<Profile> {
 
     public static final QProfile profile = new QProfile("profile");
 
-    public final com.example.socket_jpa_querydsl_test.domain.entity.QBaseEntity _super = new com.example.socket_jpa_querydsl_test.domain.entity.QBaseEntity(this);
+    public final com.example.socket_jpa_querydsl_test.domain.entity.base.QBaseEntity _super = new com.example.socket_jpa_querydsl_test.domain.entity.base.QBaseEntity(this);
 
     //inherited
     public final DateTimePath<java.time.ZonedDateTime> createDate = _super.createDate;
@@ -39,7 +39,7 @@ public class QProfile extends EntityPathBase<Profile> {
     //inherited
     public final StringPath lastModifiedBy = _super.lastModifiedBy;
 
-    public final com.example.socket_jpa_querydsl_test.domain.entity.QMember member;
+    public final com.example.socket_jpa_querydsl_test.domain.entity.member.QMember member;
 
     //inherited
     public final DateTimePath<java.time.ZonedDateTime> modifyDate = _super.modifyDate;
@@ -74,7 +74,7 @@ public class QProfile extends EntityPathBase<Profile> {
 
     public QProfile(Class<? extends Profile> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.member = inits.isInitialized("member") ? new com.example.socket_jpa_querydsl_test.domain.entity.QMember(forProperty("member"), inits.get("member")) : null;
+        this.member = inits.isInitialized("member") ? new com.example.socket_jpa_querydsl_test.domain.entity.member.QMember(forProperty("member"), inits.get("member")) : null;
     }
 
 }

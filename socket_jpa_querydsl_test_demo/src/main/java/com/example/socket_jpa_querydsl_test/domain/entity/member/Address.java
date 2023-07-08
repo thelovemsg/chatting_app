@@ -41,11 +41,13 @@ public class Address extends BaseEntity {
 
     @Enumerated(STRING)
     @Column(name = "addressStatus")
-    private AddressType addressType = AddressType.ETC;
+    private AddressType addressType;
 
-    public Address(String address, String addressDetail) {
+    public Address(String zipCode, String address, String addressDetail, AddressType addressType) {
+        this.zipCode = zipCode;
         this.address = address;
         this.addressDetail = addressDetail;
+        this.addressType = addressType;
     }
 
 }

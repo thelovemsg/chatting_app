@@ -1,8 +1,7 @@
-package com.example.socket_jpa_querydsl_test.domain.entity;
+package com.example.socket_jpa_querydsl_test.domain.entity.member;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.example.socket_jpa_querydsl_test.domain.entity.member.MemberChattingRoom;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;
@@ -17,15 +16,15 @@ import com.querydsl.core.types.dsl.PathInits;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QMemberChattingRoom extends EntityPathBase<MemberChattingRoom> {
 
-    private static final long serialVersionUID = 1912404205L;
+    private static final long serialVersionUID = 1494045405L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
     public static final QMemberChattingRoom memberChattingRoom = new QMemberChattingRoom("memberChattingRoom");
 
-    public final QBaseEntity _super = new QBaseEntity(this);
+    public final com.example.socket_jpa_querydsl_test.domain.entity.base.QBaseEntity _super = new com.example.socket_jpa_querydsl_test.domain.entity.base.QBaseEntity(this);
 
-    public final QChattingRoom chattingRoom;
+    public final com.example.socket_jpa_querydsl_test.domain.entity.chatting.QChattingRoom chattingRoom;
 
     //inherited
     public final DateTimePath<java.time.ZonedDateTime> createDate = _super.createDate;
@@ -75,7 +74,7 @@ public class QMemberChattingRoom extends EntityPathBase<MemberChattingRoom> {
 
     public QMemberChattingRoom(Class<? extends MemberChattingRoom> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.chattingRoom = inits.isInitialized("chattingRoom") ? new QChattingRoom(forProperty("chattingRoom")) : null;
+        this.chattingRoom = inits.isInitialized("chattingRoom") ? new com.example.socket_jpa_querydsl_test.domain.entity.chatting.QChattingRoom(forProperty("chattingRoom")) : null;
         this.member = inits.isInitialized("member") ? new QMember(forProperty("member"), inits.get("member")) : null;
     }
 
